@@ -91,7 +91,64 @@ class CanCreateContent(permissions.BasePermission):
     """
     def has_permission(self, request, view):
         return (
-            request.user and 
-            request.user.is_authenticated and 
+            request.user and
+            request.user.is_authenticated and
             request.user.can_create_content()
         )
+
+
+class IsAdminOrReadOnly(permissions.BasePermission):
+    """
+    Permission class that allows read access to all users but write access only to admins
+    """
+    def has_permission(self, request, view):
+        # Read permissions for any request
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        # Write permissions only for admin users
+        return (
+            request.user and
+            request.user.is_authenticated and
+            request.user.role == UserRole.ADMIN
+        )
+
+
+class IsOwnerOrReadOnly(permissions.BasePermission):
+    """
+    Permission class that allows read access to all users but write access only to owners
+    """
+    def has_permission(self, request, view):
+        # Read permissions for any request
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        # Write permissions require authentication
+        return request.user and request.user.is_authenticated
+
+    def has_object_permission(self, request, view, obj):
+        # Read permissions for any request
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        # Admin can access any object
+        if request.user.role == UserRole.ADMIN:
+            return True
+
+        # Check if the object has a 'submitted_by' attribute (for publications, etc.)
+        if hasattr(obj, 'submitted_by'):
+            return obj.submitted_by == request.user
+
+        # Check if the object has a 'user' attribute (for profiles, etc.)
+        if hasattr(obj, 'user'):
+            return obj.user == request.user
+
+        # Check if the user is an author of the publication
+        if hasattr(obj, 'authors'):
+            return request.user in obj.authors.all()
+
+        # For User objects, check if it's the same user
+        if hasattr(obj, 'id') and hasattr(request.user, 'id'):
+            return obj.id == request.user.id
+
+        return False
