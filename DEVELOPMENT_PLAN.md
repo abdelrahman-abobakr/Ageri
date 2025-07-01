@@ -78,9 +78,14 @@ Full-stack platform with Django REST Framework backend and React frontend for sc
 - [x] Custom User model with roles (Admin, Moderator, Researcher)
 - [x] User profile models with CV upload and ORCID
 - [x] Admin interface with approval workflow
-- [ ] Authentication views and serializers
-- [ ] Permission classes
-- [ ] API endpoints for user management
+- [x] Authentication views and serializers (JWT-based)
+- [x] Permission classes (role-based access control)
+- [x] API endpoints for user management
+- [x] User registration with admin approval workflow
+- [x] Login/logout with JWT tokens
+- [x] User profile management
+- [x] Admin user approval system
+- [x] API documentation endpoints
 
 ### 3.3 Organization App 📋
 - [ ] Department model
