@@ -117,10 +117,47 @@ Full-stack platform with Django REST Framework backend and React frontend for sc
 
 **Progress Update:** Research app is now fully functional with complete CRUD operations, approval workflow, file uploads, metrics tracking, and advanced features like bulk approval and publication statistics.
 
-### 3.5 Content App 📋
-- [ ] Announcement model
-- [ ] Post model for events/activities
-- [ ] Moderator content creation system
+### 3.5 Content App ✅
+- [x] Announcement model (priority, target audience, scheduling)
+  - Priority levels (low, medium, high, urgent)
+  - Target audience (all, approved, researchers, moderators, admins)
+  - Scheduling with publish_at and expires_at
+  - Approval workflow (draft → pending → approved → published)
+  - Pinned and featured announcements
+  - File attachments support
+  - View count tracking
+- [x] Post model (events, activities, general content)
+  - Categories (news, event, workshop, seminar, conference, training, activity, general)
+  - Event management with date, location, registration
+  - Content scheduling and approval workflow
+  - Featured posts and public/private visibility
+  - Tags system and file attachments
+  - View and like count tracking
+- [x] Comment system (for both announcements and posts)
+  - Generic foreign key for flexible content relationships
+  - Comment threading with parent-child relationships
+  - Comment approval and moderation
+  - Like system for comments
+- [x] Comment like system (Post likes removed per user request)
+  - CommentLike model for comment engagement only
+  - Unique constraints to prevent duplicate likes
+- [x] Admin interface with content management and moderation
+  - Comprehensive admin for announcements with filtering and search
+  - Post admin with event-specific fields and management
+  - Comment admin with content object links and threading
+  - Bulk operations for content approval and management
+- [x] API development with full CRUD operations
+  - AnnouncementViewSet and PostViewSet with role-based permissions
+  - CommentViewSet for comment management
+  - Like/unlike endpoints for comments only
+  - Advanced filtering, search, and ordering capabilities
+  - Featured content and event-specific endpoints
+- [x] Moderator content creation system
+  - Role-based content creation permissions
+  - Approval workflow for content moderation
+  - Content scheduling and publishing controls
+
+**Progress Update:** Content app is now fully functional with comprehensive announcement and post management, comment system (with comment likes only - post likes removed per user preference), and role-based content creation workflows.
 
 ### 3.6 Training App 📋
 - [ ] Course model

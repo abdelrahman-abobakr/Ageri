@@ -204,6 +204,7 @@ def add_researcher_relationships(sender, **kwargs):
                 models.ManyToManyField(
                     Lab,
                     through=ResearcherAssignment,
+                    through_fields=('researcher', 'lab'),
                     related_name='researchers',
                     blank=True
                 )
@@ -216,6 +217,7 @@ def add_researcher_relationships(sender, **kwargs):
                 models.ManyToManyField(
                     Department,
                     through=ResearcherAssignment,
+                    through_fields=('researcher', 'department'),
                     related_name='researchers',
                     blank=True
                 )
