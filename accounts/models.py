@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.core.validators import FileExtensionValidator
 from core.models import TimeStampedModel, StatusChoices, upload_to_user_directory
 
@@ -9,6 +9,15 @@ class UserRole(models.TextChoices):
     ADMIN = 'admin', 'Admin'
     MODERATOR = 'moderator', 'Moderator'
     RESEARCHER = 'researcher', 'Researcher'
+
+
+class CustomUserManager(UserManager):
+    """Custom user manager to handle superuser creation"""
+
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault('role', UserRole.ADMIN)
+        extra_fields.setdefault('is_approved', True)
+        return super().create_superuser(username, email, password, **extra_fields)
 
 
 class User(AbstractUser):
@@ -34,6 +43,9 @@ class User(AbstractUser):
     # Additional fields
     phone = models.CharField(max_length=20, blank=True)
     institution = models.CharField(max_length=200, blank=True)
+
+    # Custom manager
+    objects = CustomUserManager()
     department = models.CharField(max_length=200, blank=True)
 
     USERNAME_FIELD = 'email'
@@ -64,6 +76,15 @@ class User(AbstractUser):
 
     def can_create_content(self):
         return self.is_admin or self.is_moderator
+
+    def save(self, *args, **kwargs):
+        # Automatically set is_staff for admin users
+        if self.role == UserRole.ADMIN:
+            self.is_staff = True
+        # Auto-approve superusers
+        if self.is_superuser and not self.is_approved:
+            self.is_approved = True
+        super().save(*args, **kwargs)
 
 
 class UserProfile(TimeStampedModel):

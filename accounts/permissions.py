@@ -8,9 +8,10 @@ class IsAdminUser(permissions.BasePermission):
     """
     def has_permission(self, request, view):
         return (
-            request.user and 
-            request.user.is_authenticated and 
-            request.user.role == UserRole.ADMIN
+            request.user and
+            request.user.is_authenticated and
+            request.user.role == UserRole.ADMIN and
+            request.user.is_approved
         )
 
 
@@ -20,9 +21,10 @@ class IsModeratorOrAdmin(permissions.BasePermission):
     """
     def has_permission(self, request, view):
         return (
-            request.user and 
-            request.user.is_authenticated and 
-            request.user.role in [UserRole.ADMIN, UserRole.MODERATOR]
+            request.user and
+            request.user.is_authenticated and
+            request.user.role in [UserRole.ADMIN, UserRole.MODERATOR] and
+            request.user.is_approved
         )
 
 
@@ -31,7 +33,11 @@ class IsOwnerOrAdmin(permissions.BasePermission):
     Permission class that allows owners to access their own data or admins to access any data
     """
     def has_permission(self, request, view):
-        return request.user and request.user.is_authenticated
+        return (
+            request.user and
+            request.user.is_authenticated and
+            request.user.is_approved
+        )
     
     def has_object_permission(self, request, view, obj):
         # Admin can access any object
@@ -67,9 +73,10 @@ class IsResearcherOrAbove(permissions.BasePermission):
     """
     def has_permission(self, request, view):
         return (
-            request.user and 
-            request.user.is_authenticated and 
-            request.user.role in [UserRole.RESEARCHER, UserRole.MODERATOR, UserRole.ADMIN]
+            request.user and
+            request.user.is_authenticated and
+            request.user.role in [UserRole.RESEARCHER, UserRole.MODERATOR, UserRole.ADMIN] and
+            request.user.is_approved
         )
 
 
@@ -102,16 +109,16 @@ class IsAdminOrReadOnly(permissions.BasePermission):
     Permission class that allows read access to all users but write access only to admins
     """
     def has_permission(self, request, view):
-        # Read permissions for any request
+        # Check if user is authenticated and approved
+        if not (request.user and request.user.is_authenticated and request.user.is_approved):
+            return False
+
+        # Read permissions for approved users
         if request.method in permissions.SAFE_METHODS:
             return True
 
         # Write permissions only for admin users
-        return (
-            request.user and
-            request.user.is_authenticated and
-            request.user.role == UserRole.ADMIN
-        )
+        return request.user.role == UserRole.ADMIN
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):

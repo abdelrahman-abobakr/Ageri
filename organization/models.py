@@ -95,7 +95,7 @@ class Lab(TimeStampedModel):
 
     @property
     def current_researchers_count(self):
-        return self.researchers.filter(status=StatusChoices.ACTIVE).count()
+        return self.researcher_assignments.filter(status=StatusChoices.ACTIVE).count()
 
     @property
     def is_at_capacity(self):
@@ -104,6 +104,10 @@ class Lab(TimeStampedModel):
     @property
     def available_spots(self):
         return max(0, self.capacity - self.current_researchers_count)
+
+    @property
+    def is_full(self):
+        return self.current_researchers_count >= self.capacity
 
 
 class ResearcherAssignment(TimeStampedModel):

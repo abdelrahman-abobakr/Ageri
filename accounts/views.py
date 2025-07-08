@@ -31,8 +31,7 @@ class UserRegistrationView(generics.CreateAPIView):
 
         return Response({
             'message': 'Registration successful. Please wait for admin approval.',
-            'user_id': user.id,
-            'email': user.email
+            'user': UserSerializer(user).data
         }, status=status.HTTP_201_CREATED)
 
 
@@ -79,7 +78,8 @@ class UserDetailView(generics.RetrieveUpdateAPIView):
     permission_classes = [IsOwnerOrAdmin]
 
     def get_object(self):
-        if self.kwargs.get('pk') == 'me':
+        # Check if this is the 'me' endpoint (no pk in kwargs)
+        if 'pk' not in self.kwargs:
             return self.request.user
         return super().get_object()
 
@@ -90,14 +90,21 @@ class UserApprovalView(generics.UpdateAPIView):
     """
     queryset = User.objects.all()
     serializer_class = UserApprovalSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
+    http_method_names = ['post', 'put', 'patch']
+
+    def post(self, request, *args, **kwargs):
+        """Handle POST requests by calling update"""
+        return self.update(request, *args, **kwargs)
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
 
-        if request.data.get('is_approved'):
+        # Handle both 'approved' and 'is_approved' field names
+        approved = request.data.get('approved') or request.data.get('is_approved')
+        if approved:
             instance.is_approved = True
             instance.approved_by = request.user
             instance.approval_date = timezone.now()
@@ -140,3 +147,19 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
             profile, created = UserProfile.objects.get_or_create(user=self.request.user)
             return profile
         return super().get_object()
+
+
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
+def logout_view(request):
+    """
+    Logout view that blacklists the refresh token
+    """
+    try:
+        refresh_token = request.data.get('refresh_token')
+        if refresh_token:
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+        return Response({'message': 'Successfully logged out'}, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
