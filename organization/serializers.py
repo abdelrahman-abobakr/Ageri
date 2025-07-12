@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.utils import timezone
 from accounts.serializers import UserListSerializer
-from .models import Department, Lab, ResearcherAssignment
+from .models import Department, Lab, ResearcherAssignment, OrganizationSettings
 
 
 class DepartmentListSerializer(serializers.ModelSerializer):
@@ -225,10 +225,39 @@ class ResearcherAssignmentListSerializer(serializers.ModelSerializer):
     researcher_name = serializers.CharField(source='researcher.get_full_name', read_only=True)
     lab_name = serializers.CharField(source='lab.name', read_only=True)
     department_name = serializers.CharField(source='department.name', read_only=True)
-    
+
     class Meta:
         model = ResearcherAssignment
         fields = [
             'id', 'researcher_name', 'lab_name', 'department_name',
             'position', 'start_date', 'end_date', 'status', 'is_active'
+        ]
+
+
+class OrganizationSettingsSerializer(serializers.ModelSerializer):
+    """Serializer for organization settings"""
+
+    class Meta:
+        model = OrganizationSettings
+        fields = [
+            'id', 'name', 'vision', 'vision_image', 'mission', 'mission_image', 'about',
+            'email', 'phone', 'address',
+            'website', 'facebook', 'twitter', 'linkedin', 'instagram',
+            'logo', 'banner', 'enable_registration', 'require_approval',
+            'maintenance_mode', 'maintenance_message',
+            'created_at', 'updated_at'
+        ]
+        read_only_fields = ['created_at', 'updated_at']
+
+
+class OrganizationPublicSerializer(serializers.ModelSerializer):
+    """Public serializer for organization settings (limited fields)"""
+
+    class Meta:
+        model = OrganizationSettings
+        fields = [
+            'name', 'vision', 'vision_image', 'mission', 'mission_image', 'about',
+            'email', 'phone', 'address',
+            'website', 'facebook', 'twitter', 'linkedin', 'instagram',
+            'logo', 'banner', 'enable_registration'
         ]

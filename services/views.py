@@ -190,7 +190,7 @@ class ServiceRequestViewSet(viewsets.ModelViewSet):
         queryset = super().get_queryset()
 
         # Filter by user role
-        if self.request.user.role == 'researcher':
+        if self.request.user.is_authenticated and self.request.user.role == 'researcher':
             # Researchers can only see requests they're assigned to
             queryset = queryset.filter(assigned_technician=self.request.user)
 

@@ -1,0 +1,144 @@
+{% extends 'dashboard/base.html' %}
+
+{% block page_title %}Edit Announcement{% endblock %}
+{% block page_description %}Edit announcement: {{ announcement.title }}{% endblock %}
+
+{% block page_actions %}
+<a href="{% url 'dashboard:content_management' %}" class="btn btn-secondary">
+    <i class="bi bi-arrow-left me-1"></i>Back to Content
+</a>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-pencil me-2"></i>Edit Announcement
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Title *</label>
+                                <input type="text" class="form-control" id="title" name="title" 
+                                       value="{{ announcement.title }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="announcement_type" class="form-label">Type</label>
+                                <select class="form-select" id="announcement_type" name="announcement_type">
+                                    <option value="general" {% if announcement.announcement_type == 'general' %}selected{% endif %}>General</option>
+                                    <option value="urgent" {% if announcement.announcement_type == 'urgent' %}selected{% endif %}>Urgent</option>
+                                    <option value="maintenance" {% if announcement.announcement_type == 'maintenance' %}selected{% endif %}>Maintenance</option>
+                                    <option value="event" {% if announcement.announcement_type == 'event' %}selected{% endif %}>Event</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content *</label>
+                        <textarea class="form-control" id="content" name="content" rows="8" required>{{ announcement.content }}</textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="priority" class="form-label">Priority</label>
+                                <select class="form-select" id="priority" name="priority">
+                                    <option value="low" {% if announcement.priority == 'low' %}selected{% endif %}>Low</option>
+                                    <option value="medium" {% if announcement.priority == 'medium' %}selected{% endif %}>Medium</option>
+                                    <option value="high" {% if announcement.priority == 'high' %}selected{% endif %}>High</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="target_audience" class="form-label">Target Audience</label>
+                                <select class="form-select" id="target_audience" name="target_audience">
+                                    <option value="all" {% if announcement.target_audience == 'all' %}selected{% endif %}>All Users</option>
+                                    <option value="approved_users" {% if announcement.target_audience == 'approved_users' %}selected{% endif %}>Approved Users</option>
+                                    <option value="researchers" {% if announcement.target_audience == 'researchers' %}selected{% endif %}>Researchers</option>
+                                    <option value="moderators" {% if announcement.target_audience == 'moderators' %}selected{% endif %}>Moderators</option>
+                                    <option value="admins" {% if announcement.target_audience == 'admins' %}selected{% endif %}>Admins</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label">Options</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="is_pinned" name="is_pinned" 
+                                           {% if announcement.is_pinned %}checked{% endif %}>
+                                    <label class="form-check-label" for="is_pinned">
+                                        Pin to top
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="is_featured" name="is_featured"
+                                           {% if announcement.is_featured %}checked{% endif %}>
+                                    <label class="form-check-label" for="is_featured">
+                                        Feature on homepage
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Current Status -->
+                    <div class="mb-3">
+                        <label class="form-label">Current Status</label>
+                        <div class="d-flex align-items-center">
+                            {% if announcement.status == 'published' %}
+                                <span class="badge bg-success me-2">Published</span>
+                            {% elif announcement.status == 'pending' %}
+                                <span class="badge bg-warning me-2">Pending</span>
+                            {% elif announcement.status == 'draft' %}
+                                <span class="badge bg-secondary me-2">Draft</span>
+                            {% else %}
+                                <span class="badge bg-danger me-2">Rejected</span>
+                            {% endif %}
+                            <small class="text-muted">
+                                Created: {{ announcement.created_at|date:"M d, Y H:i" }}
+                                {% if announcement.updated_at != announcement.created_at %}
+                                    | Updated: {{ announcement.updated_at|date:"M d, Y H:i" }}
+                                {% endif %}
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Images and Attachments Info -->
+                    {% if announcement.images.count > 0 or announcement.attachments.count > 0 %}
+                    <div class="mb-3">
+                        <label class="form-label">Media</label>
+                        <div class="d-flex gap-3">
+                            {% if announcement.images.count > 0 %}
+                                <span class="badge bg-info">{{ announcement.images.count }} image{{ announcement.images.count|pluralize }}</span>
+                            {% endif %}
+                            {% if announcement.attachments.count > 0 %}
+                                <span class="badge bg-success">{{ announcement.attachments.count }} attachment{{ announcement.attachments.count|pluralize }}</span>
+                            {% endif %}
+                        </div>
+                        <small class="text-muted">Media files can be managed through the API or Django admin.</small>
+                    </div>
+                    {% endif %}
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a href="{% url 'dashboard:content_management' %}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-check-lg me-1"></i>Update Announcement
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -12,6 +12,8 @@ urlpatterns = [
     path('labs/', views.LabListCreateView.as_view(), name='lab-list'),
     path('labs/<int:pk>/', views.LabDetailView.as_view(), name='lab-detail'),
     path('departments/<int:department_id>/labs/', views.LabsByDepartmentView.as_view(), name='labs-by-department'),
+    path('labs/<int:lab_id>/researchers/', views.LabResearchersView.as_view(), name='lab-researchers'),
+    path('labs/<int:lab_id>/head/', views.LabHeadView.as_view(), name='lab-head'),
     path('labs/<int:lab_id>/availability/', views.LabAvailabilityView.as_view(), name='lab-availability'),
     
     # Researcher assignment endpoints
@@ -21,4 +23,7 @@ urlpatterns = [
     
     # Statistics
     path('stats/', views.organization_stats, name='organization-stats'),
+
+    # Organization settings
+    path('settings/', views.OrganizationSettingsView.as_view(), name='organization-settings'),
 ]

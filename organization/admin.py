@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Department, Lab, ResearcherAssignment
+from .models import Department, Lab, ResearcherAssignment, OrganizationSettings
 
 
 class LabInline(admin.TabularInline):
@@ -126,3 +126,61 @@ class ResearcherAssignmentAdmin(admin.ModelAdmin):
         if not change:  # Only set assigned_by for new assignments
             obj.assigned_by = request.user
         super().save_model(request, obj, form, change)
+
+
+@admin.register(OrganizationSettings)
+class OrganizationSettingsAdmin(admin.ModelAdmin):
+    """
+    Admin interface for organization settings (singleton model)
+    """
+
+    def has_add_permission(self, request):
+        # Only allow adding if no instance exists
+        return not OrganizationSettings.objects.exists()
+
+    def has_delete_permission(self, request, obj=None):
+        # Never allow deletion
+        return False
+
+    fieldsets = (
+        ('Organization Identity', {
+            'fields': ('name',)
+        }),
+        ('Vision & Mission', {
+            'fields': ('vision', 'vision_image', 'mission', 'mission_image')
+        }),
+        ('About Organization', {
+            'fields': ('about',)
+        }),
+        ('Contact Information', {
+            'fields': ('email', 'phone', 'address')
+        }),
+        ('Social Media', {
+            'fields': ('website', 'facebook', 'twitter', 'linkedin', 'instagram'),
+            'classes': ('collapse',)
+        }),
+        ('Media Files', {
+            'fields': ('logo', 'banner')
+        }),
+        ('System Settings', {
+            'fields': (
+                'enable_registration', 'require_approval',
+                'maintenance_mode', 'maintenance_message'
+            ),
+            'classes': ('collapse',)
+        }),
+        ('Timestamps', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )
+
+    readonly_fields = ('created_at', 'updated_at')
+
+    def changelist_view(self, request, extra_context=None):
+        # Redirect to the single instance if it exists, otherwise show add form
+        if OrganizationSettings.objects.exists():
+            obj = OrganizationSettings.objects.first()
+            return self.change_view(request, str(obj.pk), extra_context)
+        else:
+            return self.add_view(request, extra_context)

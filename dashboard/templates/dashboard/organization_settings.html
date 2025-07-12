@@ -1,0 +1,351 @@
+{% extends 'dashboard/base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Organization Settings - Admin Dashboard" %}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .settings-section {
+        background: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .settings-section h3 {
+        color: #2c3e50;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #3498db;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    .form-group label {
+        font-weight: 600;
+        color: #34495e;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    .form-control:focus {
+        border-color: #3498db;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+    .btn-primary {
+        background-color: #3498db;
+        border-color: #3498db;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+    }
+    .btn-primary:hover {
+        background-color: #2980b9;
+        border-color: #2980b9;
+    }
+    .image-preview-container {
+        margin-top: 10px;
+    }
+    .image-preview img {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .current-image-display {
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        border: 1px solid #e9ecef;
+    }
+    .current-image img {
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    }
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .checkbox-group input[type="checkbox"] {
+        width: auto;
+    }
+    .file-upload-info {
+        font-size: 0.8rem;
+        color: #7f8c8d;
+        margin-top: 0.25rem;
+    }
+    .current-file {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    .current-file img {
+        max-width: 100px;
+        max-height: 100px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3 mb-0 text-gray-800">{% trans "Organization Settings" %}</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'dashboard:home' %}">{% trans "Dashboard" %}</a></li>
+                        <li class="breadcrumb-item active">{% trans "Organization Settings" %}</li>
+                    </ol>
+                </nav>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Organization Identity -->
+                <div class="settings-section">
+                    <h3>{% trans "Organization Identity" %}</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">{% trans "Organization Name" %}</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                       value="{{ settings.name }}" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vision & Mission -->
+                <div class="settings-section">
+                    <h3>{% trans "Vision & Mission" %}</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="vision">{% trans "Vision Statement" %}</label>
+                                <textarea class="form-control" id="vision" name="vision" rows="3">{{ settings.vision }}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="vision_image">{% trans "Vision Image" %}</label>
+                                <input type="file" class="form-control" id="vision_image" name="vision_image"
+                                       accept="image/jpeg,image/jpg,image/png">
+                                {% if settings.vision_image %}
+                                    <small class="text-muted">
+                                        {% trans "Current:" %} <a href="{{ settings.vision_image.url }}" target="_blank">{{ settings.vision_image.name }}</a>
+                                    </small>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="mission">{% trans "Mission Statement" %}</label>
+                                <textarea class="form-control" id="mission" name="mission" rows="3">{{ settings.mission }}</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="mission_image">{% trans "Mission Image" %}</label>
+                                <input type="file" class="form-control" id="mission_image" name="mission_image"
+                                       accept="image/jpeg,image/jpg,image/png">
+                                {% if settings.mission_image %}
+                                    <small class="text-muted">
+                                        {% trans "Current:" %} <a href="{{ settings.mission_image.url }}" target="_blank">{{ settings.mission_image.name }}</a>
+                                    </small>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Organization -->
+                <div class="settings-section">
+                    <h3>{% trans "About Organization" %}</h3>
+                    <div class="form-group">
+                        <label for="about">{% trans "About Description" %}</label>
+                        <textarea class="form-control" id="about" name="about" rows="4">{{ settings.about }}</textarea>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="settings-section">
+                    <h3>Contact Information</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" 
+                                       value="{{ settings.email }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="text" class="form-control" id="phone" name="phone" 
+                                       value="{{ settings.phone }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea class="form-control" id="address" name="address" rows="2">{{ settings.address }}</textarea>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="settings-section">
+                    <h3>Social Media & Website</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="website">Website URL</label>
+                                <input type="url" class="form-control" id="website" name="website" 
+                                       value="{{ settings.website }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="facebook">Facebook URL</label>
+                                <input type="url" class="form-control" id="facebook" name="facebook" 
+                                       value="{{ settings.facebook }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="twitter">Twitter URL</label>
+                                <input type="url" class="form-control" id="twitter" name="twitter" 
+                                       value="{{ settings.twitter }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="linkedin">LinkedIn URL</label>
+                                <input type="url" class="form-control" id="linkedin" name="linkedin" 
+                                       value="{{ settings.linkedin }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="instagram">Instagram URL</label>
+                                <input type="url" class="form-control" id="instagram" name="instagram" 
+                                       value="{{ settings.instagram }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media Files -->
+                <div class="settings-section">
+                    <h3>Media Files</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="logo">Organization Logo</label>
+                                <input type="file" class="form-control" id="logo" name="logo" 
+                                       accept="image/jpeg,image/jpg,image/png,image/svg+xml">
+                                <div class="file-upload-info">Supported formats: JPG, PNG, SVG</div>
+                                {% if settings.logo %}
+                                    <div class="current-file">
+                                        <strong>Current logo:</strong><br>
+                                        <img src="{{ settings.logo.url }}" alt="Current logo">
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="banner">Organization Banner</label>
+                                <input type="file" class="form-control" id="banner" name="banner" 
+                                       accept="image/jpeg,image/jpg,image/png">
+                                <div class="file-upload-info">Supported formats: JPG, PNG</div>
+                                {% if settings.banner %}
+                                    <div class="current-file">
+                                        <strong>Current banner:</strong><br>
+                                        <img src="{{ settings.banner.url }}" alt="Current banner">
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Settings -->
+                <div class="settings-section">
+                    <h3>System Settings</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="enable_registration" name="enable_registration" 
+                                           {% if settings.enable_registration %}checked{% endif %}>
+                                    <label for="enable_registration">Enable User Registration</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="require_approval" name="require_approval" 
+                                           {% if settings.require_approval %}checked{% endif %}>
+                                    <label for="require_approval">Require Admin Approval</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="maintenance_mode" name="maintenance_mode" 
+                                           {% if settings.maintenance_mode %}checked{% endif %}>
+                                    <label for="maintenance_mode">Maintenance Mode</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="maintenance_message">Maintenance Message</label>
+                        <textarea class="form-control" id="maintenance_message" name="maintenance_message" 
+                                  rows="2">{{ settings.maintenance_message }}</textarea>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-save"></i> Save Settings
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'dashboard/js/organization-settings.js' %}"></script>
+{% endblock %}

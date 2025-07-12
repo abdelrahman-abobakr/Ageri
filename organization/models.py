@@ -1,6 +1,12 @@
 from django.db import models
 from django.conf import settings
+from django.core.validators import FileExtensionValidator
 from core.models import TimeStampedModel, StatusChoices
+
+
+def upload_to_organization(instance, filename):
+    """Upload organization files to organized directories"""
+    return f'organization/{filename}'
 
 
 class Department(TimeStampedModel):
@@ -226,3 +232,107 @@ def add_researcher_relationships(sender, **kwargs):
                     blank=True
                 )
             )
+
+
+class OrganizationSettings(TimeStampedModel):
+    """
+    Singleton model for organization-wide settings and content
+    """
+    # Organization Identity
+    name = models.CharField(
+        max_length=200,
+        default="Scientific Research Organization",
+        help_text="Organization name"
+    )
+
+    # Vision and Mission
+    vision = models.TextField(
+        blank=True,
+        help_text="Organization vision statement"
+    )
+    vision_image = models.ImageField(
+        upload_to=upload_to_organization,
+        blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
+        help_text="Vision statement image (JPG, PNG)"
+    )
+
+    mission = models.TextField(
+        blank=True,
+        help_text="Organization mission statement"
+    )
+    mission_image = models.ImageField(
+        upload_to=upload_to_organization,
+        blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
+        help_text="Mission statement image (JPG, PNG)"
+    )
+
+    # About and Description
+    about = models.TextField(
+        blank=True,
+        help_text="About the organization"
+    )
+
+    # Contact Information
+    email = models.EmailField(blank=True, help_text="Main contact email")
+    phone = models.CharField(max_length=20, blank=True, help_text="Main contact phone")
+    address = models.TextField(blank=True, help_text="Organization address")
+
+    # Social Media
+    website = models.URLField(blank=True, help_text="Official website URL")
+    facebook = models.URLField(blank=True, help_text="Facebook page URL")
+    twitter = models.URLField(blank=True, help_text="Twitter profile URL")
+    linkedin = models.URLField(blank=True, help_text="LinkedIn page URL")
+    instagram = models.URLField(blank=True, help_text="Instagram profile URL")
+
+    # Media Files
+    logo = models.ImageField(
+        upload_to=upload_to_organization,
+        blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'svg'])],
+        help_text="Organization logo (JPG, PNG, SVG)"
+    )
+    banner = models.ImageField(
+        upload_to=upload_to_organization,
+        blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
+        help_text="Organization banner image (JPG, PNG)"
+    )
+
+    # Additional Settings
+    enable_registration = models.BooleanField(
+        default=True,
+        help_text="Allow new user registration"
+    )
+    require_approval = models.BooleanField(
+        default=True,
+        help_text="Require admin approval for new users"
+    )
+    maintenance_mode = models.BooleanField(
+        default=False,
+        help_text="Enable maintenance mode"
+    )
+    maintenance_message = models.TextField(
+        blank=True,
+        help_text="Message to display during maintenance"
+    )
+
+    class Meta:
+        verbose_name = 'Organization Settings'
+        verbose_name_plural = 'Organization Settings'
+
+    def __str__(self):
+        return f"Settings for {self.name}"
+
+    def save(self, *args, **kwargs):
+        # Ensure only one instance exists (singleton pattern)
+        if not self.pk and OrganizationSettings.objects.exists():
+            raise ValueError("Only one OrganizationSettings instance is allowed")
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def get_settings(cls):
+        """Get or create the singleton settings instance"""
+        settings, created = cls.objects.get_or_create(pk=1)
+        return settings

@@ -329,7 +329,10 @@ class PublicationAuthorViewSet(viewsets.ModelViewSet):
             'publication', 'author'
         )
 
-        if user.is_admin:
+        if not user.is_authenticated:
+            # Anonymous users see only public published publications
+            return queryset.filter(publication__is_public=True, publication__status='published')
+        elif user.is_admin:
             return queryset
         else:
             # Users can only see author assignments for publications they have access to
@@ -357,7 +360,10 @@ class PublicationMetricsViewSet(viewsets.ReadOnlyModelViewSet):
 
         queryset = PublicationMetrics.objects.select_related('publication')
 
-        if user.is_admin:
+        if not user.is_authenticated:
+            # Anonymous users see only public published publications
+            return queryset.filter(publication__is_public=True, publication__status='published')
+        elif user.is_admin:
             return queryset
         else:
             # Users can only see metrics for publications they have access to

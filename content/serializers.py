@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.utils import timezone
-from .models import Announcement, Post, Comment, CommentLike
+from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment
 
 User = get_user_model()
 
@@ -9,10 +9,64 @@ User = get_user_model()
 class AuthorSerializer(serializers.ModelSerializer):
     """Serializer for author information"""
     full_name = serializers.CharField(source='get_full_name', read_only=True)
-    
+
     class Meta:
         model = User
         fields = ['id', 'first_name', 'last_name', 'full_name', 'email']
+
+
+class AnnouncementImageSerializer(serializers.ModelSerializer):
+    """Serializer for announcement images"""
+    image_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = AnnouncementImage
+        fields = [
+            'id', 'announcement', 'image', 'image_url', 'caption',
+            'alt_text', 'order', 'created_at'
+        ]
+        read_only_fields = ['image_url']
+
+    def get_image_url(self, obj):
+        """Get full image URL"""
+        request = self.context.get('request')
+        if obj.image and request:
+            return request.build_absolute_uri(obj.image.url)
+        return None
+
+
+class AnnouncementAttachmentSerializer(serializers.ModelSerializer):
+    """Serializer for announcement attachments"""
+    file_url = serializers.SerializerMethodField()
+    file_size_display = serializers.SerializerMethodField()
+
+    class Meta:
+        model = AnnouncementAttachment
+        fields = [
+            'id', 'announcement', 'file', 'file_url', 'title',
+            'description', 'file_size', 'file_size_display',
+            'download_count', 'created_at'
+        ]
+        read_only_fields = ['file_url', 'file_size', 'file_size_display', 'download_count']
+
+    def get_file_url(self, obj):
+        """Get full file URL"""
+        request = self.context.get('request')
+        if obj.file and request:
+            return request.build_absolute_uri(obj.file.url)
+        return None
+
+    def get_file_size_display(self, obj):
+        """Get human-readable file size"""
+        if not obj.file_size:
+            return "Unknown"
+
+        # Convert bytes to human-readable format
+        size = obj.file_size
+        for unit in ['B', 'KB', 'MB', 'GB']:
+            if size < 1024 or unit == 'GB':
+                return f"{size:.2f} {unit}"
+            size /= 1024
 
 
 class AnnouncementListSerializer(serializers.ModelSerializer):
@@ -20,15 +74,26 @@ class AnnouncementListSerializer(serializers.ModelSerializer):
     author = AuthorSerializer(read_only=True)
     is_published = serializers.BooleanField(read_only=True)
     is_expired = serializers.BooleanField(read_only=True)
-    
+    images = AnnouncementImageSerializer(many=True, read_only=True)
+    attachments = AnnouncementAttachmentSerializer(many=True, read_only=True)
+    attachment_url = serializers.SerializerMethodField()
+
     class Meta:
         model = Announcement
         fields = [
-            'id', 'title', 'summary', 'announcement_type', 'priority',
+            'id', 'title', 'content', 'summary', 'announcement_type', 'priority',
             'target_audience', 'status', 'is_pinned', 'is_featured',
             'publish_at', 'expires_at', 'author', 'view_count',
-            'is_published', 'is_expired', 'created_at'
+            'is_published', 'is_expired', 'attachment', 'attachment_url',
+            'images', 'attachments', 'created_at'
         ]
+
+    def get_attachment_url(self, obj):
+        """Get full URL for legacy attachment field"""
+        request = self.context.get('request')
+        if obj.attachment and request:
+            return request.build_absolute_uri(obj.attachment.url)
+        return None
 
 
 class AnnouncementDetailSerializer(serializers.ModelSerializer):
@@ -37,16 +102,27 @@ class AnnouncementDetailSerializer(serializers.ModelSerializer):
     approved_by = AuthorSerializer(read_only=True)
     is_published = serializers.BooleanField(read_only=True)
     is_expired = serializers.BooleanField(read_only=True)
-    
+    images = AnnouncementImageSerializer(many=True, read_only=True)
+    attachments = AnnouncementAttachmentSerializer(many=True, read_only=True)
+    attachment_url = serializers.SerializerMethodField()
+
     class Meta:
         model = Announcement
         fields = [
             'id', 'title', 'content', 'summary', 'announcement_type',
             'priority', 'target_audience', 'status', 'is_pinned',
             'is_featured', 'publish_at', 'expires_at', 'author',
-            'approved_by', 'approved_at', 'attachment', 'view_count',
-            'is_published', 'is_expired', 'created_at', 'updated_at'
+            'approved_by', 'approved_at', 'attachment', 'attachment_url',
+            'view_count', 'is_published', 'is_expired', 'images',
+            'attachments', 'created_at', 'updated_at'
         ]
+
+    def get_attachment_url(self, obj):
+        """Get full URL for legacy attachment field"""
+        request = self.context.get('request')
+        if obj.attachment and request:
+            return request.build_absolute_uri(obj.attachment.url)
+        return None
 
 
 class AnnouncementCreateUpdateSerializer(serializers.ModelSerializer):
@@ -242,7 +318,10 @@ class CommentCreateSerializer(serializers.ModelSerializer):
 class CommentLikeSerializer(serializers.ModelSerializer):
     """Serializer for comment likes"""
     user = AuthorSerializer(read_only=True)
-    
+
     class Meta:
         model = CommentLike
         fields = ['id', 'user', 'created_at']
+
+
+

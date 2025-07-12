@@ -18,23 +18,33 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    # Language switching
+    path('i18n/', include('django.conf.urls.i18n')),
 
-    # API Documentation
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-
-    # API endpoints
+    # API endpoints (not translated)
     path('api/auth/', include('accounts.urls')),
     path('api/organization/', include('organization.urls')),
     path('api/research/', include('research.urls')),
     path('api/content/', include('content.urls')),
     path('api/training/', include('training.urls')),
     path('api/services/', include('services.urls')),
+
+    # API Documentation
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 ]
+
+# Translated URLs
+urlpatterns += i18n_patterns(
+    path("admin/", admin.site.urls),
+    path('dashboard/', include('dashboard.urls')),  # Custom admin dashboard
+    path('rosetta/', include('rosetta.urls')),  # Translation management
+    prefix_default_language=False,
+)
 
 # Serve media files in development
 if settings.DEBUG:

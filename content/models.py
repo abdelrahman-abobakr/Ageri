@@ -31,7 +31,11 @@ class TargetAudience(models.TextChoices):
 
 def upload_to_announcements(instance, filename):
     """Upload announcement attachments to organized directories"""
-    return f'content/announcements/{instance.id}/{filename}'
+    return f'content/announcements/{instance.announcement.id}/{filename}'
+
+def upload_to_announcement_images(instance, filename):
+    """Upload announcement images to organized directories"""
+    return f'content/announcements/{instance.announcement.id}/images/{filename}'
 
 
 class Announcement(TimeStampedModel):
@@ -181,6 +185,95 @@ class Announcement(TimeStampedModel):
         """Increment view count"""
         self.view_count += 1
         self.save(update_fields=['view_count'])
+
+
+class AnnouncementImage(TimeStampedModel):
+    """
+    Model for announcement images
+    """
+    announcement = models.ForeignKey(
+        Announcement,
+        on_delete=models.CASCADE,
+        related_name='images'
+    )
+    image = models.ImageField(
+        upload_to=upload_to_announcement_images,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif', 'webp'])],
+        help_text="Announcement image (JPG, PNG, GIF, WebP)"
+    )
+    caption = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Optional image caption"
+    )
+    alt_text = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Alternative text for accessibility"
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        help_text="Display order (0 = first)"
+    )
+
+    class Meta:
+        ordering = ['order', 'created_at']
+        verbose_name = 'Announcement Image'
+        verbose_name_plural = 'Announcement Images'
+
+    def __str__(self):
+        return f"Image for {self.announcement.title}"
+
+
+class AnnouncementAttachment(TimeStampedModel):
+    """
+    Model for announcement file attachments
+    """
+    announcement = models.ForeignKey(
+        Announcement,
+        on_delete=models.CASCADE,
+        related_name='attachments'
+    )
+    file = models.FileField(
+        upload_to=upload_to_announcements,
+        validators=[FileExtensionValidator(allowed_extensions=['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'txt'])],
+        help_text="Announcement attachment (PDF, DOC, XLS, PPT, TXT)"
+    )
+    title = models.CharField(
+        max_length=200,
+        help_text="Display name for the attachment"
+    )
+    description = models.TextField(
+        blank=True,
+        help_text="Optional description of the attachment"
+    )
+    file_size = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        help_text="File size in bytes"
+    )
+    download_count = models.PositiveIntegerField(
+        default=0,
+        help_text="Number of times downloaded"
+    )
+
+    class Meta:
+        ordering = ['created_at']
+        verbose_name = 'Announcement Attachment'
+        verbose_name_plural = 'Announcement Attachments'
+
+    def __str__(self):
+        return f"{self.title} - {self.announcement.title}"
+
+    def save(self, *args, **kwargs):
+        if self.file and not self.file_size:
+            self.file_size = self.file.size
+        super().save(*args, **kwargs)
+
+    def increment_download_count(self):
+        """Increment download count"""
+        self.download_count += 1
+        self.save(update_fields=['download_count'])
 
 
 class PostCategory(models.TextChoices):

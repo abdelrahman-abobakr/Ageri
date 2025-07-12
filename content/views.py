@@ -9,13 +9,13 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 from accounts.permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly, IsModeratorOrAdmin, IsApprovedUser
-from .models import Announcement, Post, Comment, CommentLike
+from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment
 from .serializers import (
     AnnouncementListSerializer, AnnouncementDetailSerializer,
     AnnouncementCreateUpdateSerializer, AnnouncementApprovalSerializer,
     PostListSerializer, PostDetailSerializer, PostCreateUpdateSerializer,
     PostApprovalSerializer, CommentSerializer, CommentCreateSerializer,
-    CommentLikeSerializer
+    CommentLikeSerializer, AnnouncementImageSerializer, AnnouncementAttachmentSerializer
 )
 
 
@@ -23,7 +23,7 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing announcements
     """
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = [
         'announcement_type', 'priority', 'target_audience', 'status',
@@ -38,6 +38,10 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
         user = self.request.user
 
         queryset = Announcement.objects.select_related('author', 'approved_by')
+
+        # Handle anonymous users
+        if not user.is_authenticated:
+            return queryset.filter(status='published', target_audience='all')
 
         if user.is_admin:
             return queryset
@@ -152,12 +156,68 @@ class AnnouncementViewSet(viewsets.ModelViewSet):
         serializer = AnnouncementListSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 
+    @action(detail=True, methods=['get', 'post'], permission_classes=[IsModeratorOrAdmin])
+    def images(self, request, pk=None):
+        """Manage announcement images"""
+        announcement = self.get_object()
+
+        if request.method == 'GET':
+            images = announcement.images.all()
+            serializer = AnnouncementImageSerializer(images, many=True, context={'request': request})
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            serializer = AnnouncementImageSerializer(data=request.data, context={'request': request})
+            if serializer.is_valid():
+                serializer.save(announcement=announcement)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['delete'], permission_classes=[IsModeratorOrAdmin], url_path='images/(?P<image_id>[^/.]+)')
+    def delete_image(self, request, pk=None, image_id=None):
+        """Delete announcement image"""
+        announcement = self.get_object()
+        try:
+            image = announcement.images.get(id=image_id)
+            image.delete()
+            return Response({'message': 'Image deleted successfully'})
+        except AnnouncementImage.DoesNotExist:
+            return Response({'error': 'Image not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    @action(detail=True, methods=['get', 'post'], permission_classes=[IsModeratorOrAdmin])
+    def attachments(self, request, pk=None):
+        """Manage announcement attachments"""
+        announcement = self.get_object()
+
+        if request.method == 'GET':
+            attachments = announcement.attachments.all()
+            serializer = AnnouncementAttachmentSerializer(attachments, many=True, context={'request': request})
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            serializer = AnnouncementAttachmentSerializer(data=request.data, context={'request': request})
+            if serializer.is_valid():
+                serializer.save(announcement=announcement)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['delete'], permission_classes=[IsModeratorOrAdmin], url_path='attachments/(?P<attachment_id>[^/.]+)')
+    def delete_attachment(self, request, pk=None, attachment_id=None):
+        """Delete announcement attachment"""
+        announcement = self.get_object()
+        try:
+            attachment = announcement.attachments.get(id=attachment_id)
+            attachment.delete()
+            return Response({'message': 'Attachment deleted successfully'})
+        except AnnouncementAttachment.DoesNotExist:
+            return Response({'error': 'Attachment not found'}, status=status.HTTP_404_NOT_FOUND)
+
 
 class PostViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing posts
     """
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = [
         'category', 'status', 'is_featured', 'is_public',
@@ -172,6 +232,10 @@ class PostViewSet(viewsets.ModelViewSet):
         user = self.request.user
 
         queryset = Post.objects.select_related('author', 'approved_by')
+
+        # Handle anonymous users
+        if not user.is_authenticated:
+            return queryset.filter(status='published', is_public=True)
 
         if user.is_admin:
             return queryset

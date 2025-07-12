@@ -54,7 +54,7 @@ class CourseViewSet(viewsets.ModelViewSet):
         ).prefetch_related('enrollments')
 
         # Non-admin users can only see published courses
-        if not self.request.user.role in ['admin', 'moderator']:
+        if not (self.request.user.is_authenticated and self.request.user.role in ['admin', 'moderator']):
             queryset = queryset.filter(status='published', is_public=True)
 
         return queryset
@@ -163,7 +163,7 @@ class SummerTrainingViewSet(viewsets.ModelViewSet):
         ).prefetch_related('applications')
 
         # Non-admin users can only see published programs
-        if not self.request.user.role in ['admin', 'moderator']:
+        if not (self.request.user.is_authenticated and self.request.user.role in ['admin', 'moderator']):
             queryset = queryset.filter(status='published', is_public=True)
 
         return queryset
@@ -271,7 +271,7 @@ class PublicServiceViewSet(viewsets.ModelViewSet):
         ).prefetch_related('requests')
 
         # Non-admin users can only see published services
-        if not self.request.user.role in ['admin', 'moderator']:
+        if not (self.request.user.is_authenticated and self.request.user.role in ['admin', 'moderator']):
             queryset = queryset.filter(status='published', is_public=True)
 
         return queryset

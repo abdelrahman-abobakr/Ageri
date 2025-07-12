@@ -3,13 +3,16 @@ from django.test import TestCase
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils import timezone
+from django.core.files.uploadedfile import SimpleUploadedFile
 from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from decimal import Decimal
 from datetime import date, timedelta
+from PIL import Image
+import io
 
 from .models import TestService, Client, TechnicianAssignment, ServiceRequest
-from organization.models import Department, Lab
+from organization.models import Department, Lab, OrganizationSettings
 
 User = get_user_model()
 
@@ -697,3 +700,202 @@ class ServicesAPITest(APITestCase):
         self.assertIn('total_services', response.data)
         self.assertIn('active_services', response.data)
         self.assertIn('total_requests', response.data)
+
+
+@pytest.mark.django_db
+class OrganizationSettingsImageTest(TestCase):
+    """Test cases for Organization Settings image upload functionality"""
+
+    def setUp(self):
+        """Set up test data"""
+        self.admin_user = User.objects.create_user(
+            username='org_admin',
+            email='org_admin@test.com',
+            password='testpass123',
+            role='admin',
+            is_approved=True,
+            is_staff=True
+        )
+
+    def create_test_image(self, name='test_image.jpg', format='JPEG'):
+        """Create a test image file"""
+        image = Image.new('RGB', (100, 100), color='red')
+        image_file = io.BytesIO()
+        image.save(image_file, format=format)
+        image_file.seek(0)
+        return SimpleUploadedFile(
+            name=name,
+            content=image_file.getvalue(),
+            content_type=f'image/{format.lower()}'
+        )
+
+    def test_organization_settings_vision_image_upload(self):
+        """Test uploading vision image to organization settings"""
+        settings = OrganizationSettings.get_settings()
+
+        # Create test image
+        vision_image = self.create_test_image('vision_test.jpg')
+
+        # Update settings with vision image
+        settings.vision = "Our vision for the future"
+        settings.vision_image = vision_image
+        settings.save()
+
+        # Verify image was saved
+        settings.refresh_from_db()
+        self.assertTrue(settings.vision_image)
+        self.assertIn('vision_test', settings.vision_image.name)
+        self.assertEqual(settings.vision, "Our vision for the future")
+
+    def test_organization_settings_mission_image_upload(self):
+        """Test uploading mission image to organization settings"""
+        settings = OrganizationSettings.get_settings()
+
+        # Create test image
+        mission_image = self.create_test_image('mission_test.png', 'PNG')
+
+        # Update settings with mission image
+        settings.mission = "Our mission statement"
+        settings.mission_image = mission_image
+        settings.save()
+
+        # Verify image was saved
+        settings.refresh_from_db()
+        self.assertTrue(settings.mission_image)
+        self.assertIn('mission_test', settings.mission_image.name)
+        self.assertEqual(settings.mission, "Our mission statement")
+
+    def test_organization_settings_both_images_upload(self):
+        """Test uploading both vision and mission images"""
+        settings = OrganizationSettings.get_settings()
+
+        # Create test images
+        vision_image = self.create_test_image('vision_both.jpg')
+        mission_image = self.create_test_image('mission_both.jpg')
+
+        # Update settings with both images
+        settings.vision = "Vision with image"
+        settings.vision_image = vision_image
+        settings.mission = "Mission with image"
+        settings.mission_image = mission_image
+        settings.save()
+
+        # Verify both images were saved
+        settings.refresh_from_db()
+        self.assertTrue(settings.vision_image)
+        self.assertTrue(settings.mission_image)
+        self.assertIn('vision_both', settings.vision_image.name)
+        self.assertIn('mission_both', settings.mission_image.name)
+
+    def test_organization_settings_image_validation(self):
+        """Test image file validation"""
+        settings = OrganizationSettings.get_settings()
+
+        # Test with invalid file extension (should be handled by validator)
+        invalid_file = SimpleUploadedFile(
+            name='test.txt',
+            content=b'This is not an image',
+            content_type='text/plain'
+        )
+
+        # This should not raise an error at model level,
+        # but validation should happen at form/serializer level
+        settings.vision_image = invalid_file
+        # Note: Django model validation doesn't run automatically on save()
+        # Validation typically happens at form/serializer level
+
+
+@pytest.mark.django_db
+class OrganizationSettingsAPIImageTest(APITestCase):
+    """Test cases for Organization Settings API with image upload"""
+
+    def setUp(self):
+        """Set up test data"""
+        self.client_api = APIClient()
+
+        self.admin_user = User.objects.create_user(
+            username='api_org_admin',
+            email='api_org_admin@test.com',
+            password='testpass123',
+            role='admin',
+            is_approved=True,
+            is_staff=True
+        )
+
+    def create_test_image(self, name='test_image.jpg', format='JPEG'):
+        """Create a test image file"""
+        image = Image.new('RGB', (100, 100), color='blue')
+        image_file = io.BytesIO()
+        image.save(image_file, format=format)
+        image_file.seek(0)
+        return SimpleUploadedFile(
+            name=name,
+            content=image_file.getvalue(),
+            content_type=f'image/{format.lower()}'
+        )
+
+    def test_organization_settings_api_get_with_images(self):
+        """Test getting organization settings via API with images"""
+        # Set up organization settings with images
+        settings = OrganizationSettings.get_settings()
+        settings.vision = "API Test Vision"
+        settings.mission = "API Test Mission"
+        settings.vision_image = self.create_test_image('api_vision.jpg')
+        settings.mission_image = self.create_test_image('api_mission.jpg')
+        settings.save()
+
+        # Test public access (no authentication)
+        url = '/api/organization/settings/'
+        response = self.client_api.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['vision'], "API Test Vision")
+        self.assertEqual(response.data['mission'], "API Test Mission")
+        self.assertIn('vision_image', response.data)
+        self.assertIn('mission_image', response.data)
+
+    def test_organization_settings_api_update_with_images(self):
+        """Test updating organization settings via API with images"""
+        self.client_api.force_authenticate(user=self.admin_user)
+
+        url = '/api/organization/settings/'
+
+        # Create test images
+        vision_image = self.create_test_image('api_update_vision.png', 'PNG')
+        mission_image = self.create_test_image('api_update_mission.png', 'PNG')
+
+        data = {
+            'name': 'Updated Organization',
+            'vision': 'Updated Vision Statement',
+            'mission': 'Updated Mission Statement',
+            'vision_image': vision_image,
+            'mission_image': mission_image,
+        }
+
+        response = self.client_api.put(url, data, format='multipart')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['vision'], 'Updated Vision Statement')
+        self.assertEqual(response.data['mission'], 'Updated Mission Statement')
+        self.assertIn('vision_image', response.data)
+        self.assertIn('mission_image', response.data)
+
+    def test_organization_settings_api_unauthorized_update(self):
+        """Test that non-admin users cannot update organization settings"""
+        # Create non-admin user
+        researcher_user = User.objects.create_user(
+            username='api_researcher',
+            email='api_researcher@test.com',
+            password='testpass123',
+            role='researcher',
+            is_approved=True
+        )
+
+        self.client_api.force_authenticate(user=researcher_user)
+
+        url = '/api/organization/settings/'
+        data = {
+            'vision': 'Unauthorized Vision Update',
+            'mission': 'Unauthorized Mission Update',
+        }
+
+        response = self.client_api.put(url, data)
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

@@ -1,0 +1,212 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+
+{% block page_title %}{% trans "Translation Management" %}{% endblock %}
+{% block page_description %}{% trans "Manage translations for the admin dashboard" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <!-- Translation Overview Card -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="bi bi-translate me-2"></i>{% trans "Translation Status" %}
+                </h5>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="bi bi-gear me-1"></i>{% trans "Translation Actions" %}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <form method="post" class="d-inline">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="update_translations">
+                                <button type="submit" class="dropdown-item">
+                                    <i class="bi bi-arrow-clockwise me-2"></i>{% trans "Update All Translations" %}
+                                </button>
+                            </form>
+                        </li>
+                        <li>
+                            <form method="post" class="d-inline">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="compile_translations">
+                                <button type="submit" class="dropdown-item">
+                                    <i class="bi bi-check-circle me-2"></i>{% trans "Compile All Translations" %}
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for file in translation_files %}
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100 {% if file.language_code == 'ar' %}border-primary{% endif %}">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-3">
+                                    <h6 class="card-title mb-0">
+                                        {{ file.language_name }}
+                                        {% if file.language_code == current_language %}
+                                            <span class="badge bg-primary ms-1">{% trans "Current" %}</span>
+                                        {% endif %}
+                                    </h6>
+                                    <span class="badge bg-{% if file.completion_percentage >= 90 %}success{% elif file.completion_percentage >= 50 %}warning{% else %}danger{% endif %}">
+                                        {{ file.completion_percentage }}%
+                                    </span>
+                                </div>
+                                
+                                <div class="progress mb-3" style="height: 8px;">
+                                    <div class="progress-bar bg-{% if file.completion_percentage >= 90 %}success{% elif file.completion_percentage >= 50 %}warning{% else %}danger{% endif %}" 
+                                         style="width: {{ file.completion_percentage }}%"></div>
+                                </div>
+                                
+                                <div class="small text-muted mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>{% trans "Translated" %}:</span>
+                                        <span>{{ file.translated_strings }}/{{ file.total_strings }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <span>{% trans "Status" %}:</span>
+                                        <span>
+                                            {% if file.po_file_exists %}
+                                                <i class="bi bi-check-circle text-success"></i> {% trans "Available" %}
+                                            {% else %}
+                                                <i class="bi bi-x-circle text-danger"></i> {% trans "Missing" %}
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div class="btn-group w-100" role="group">
+                                    <form method="post" class="flex-fill">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="update_translations">
+                                        <input type="hidden" name="language" value="{{ file.language_code }}">
+                                        <button type="submit" class="btn btn-outline-primary btn-sm w-100">
+                                            <i class="bi bi-arrow-clockwise"></i> {% trans "Update" %}
+                                        </button>
+                                    </form>
+                                    <form method="post" class="flex-fill">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="compile_translations">
+                                        <input type="hidden" name="language" value="{{ file.language_code }}">
+                                        <button type="submit" class="btn btn-outline-success btn-sm w-100">
+                                            <i class="bi bi-check-circle"></i> {% trans "Compile" %}
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Translation Instructions Card -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-info-circle me-2"></i>{% trans "Translation Instructions" %}
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>{% trans "How to Add New Translations" %}:</h6>
+                        <ol class="small">
+                            <li>{% trans "Add translation tags to templates" %}: <code>{% verbatim %}{% trans "Text to translate" %}{% endverbatim %}</code></li>
+                            <li>{% trans "Click 'Update Translations' to extract new strings" %}</li>
+                            <li>{% trans "Edit the .po files to add Arabic translations" %}</li>
+                            <li>{% trans "Click 'Compile Translations' to apply changes" %}</li>
+                            <li>{% trans "Refresh the page to see translations" %}</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>{% trans "Translation File Locations" %}:</h6>
+                        <ul class="small">
+                            <li><strong>{% trans "Arabic" %}:</strong> <code>locale/ar/LC_MESSAGES/django.po</code></li>
+                            <li><strong>{% trans "English" %}:</strong> <code>locale/en/LC_MESSAGES/django.po</code></li>
+                        </ul>
+                        
+                        <h6 class="mt-3">{% trans "Quick Actions" %}:</h6>
+                        <div class="d-grid gap-2">
+                            <a href="/admin/rosetta/" class="btn btn-outline-info btn-sm" target="_blank">
+                                <i class="bi bi-box-arrow-up-right me-1"></i>{% trans "Open Rosetta Translation Interface" %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Language Switcher Test Card -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-globe me-2"></i>{% trans "Language Switcher Test" %}
+                </h5>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">{% trans "Test the language switcher functionality:" %}</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>{% trans "Current Language" %}:</h6>
+                        <p class="badge bg-primary fs-6">{{ current_language|upper }} - {% for code, name in available_languages %}{% if code == current_language %}{{ name }}{% endif %}{% endfor %}</p>
+                        
+                        <h6 class="mt-3">{% trans "Sample Translated Text" %}:</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check text-success"></i> {% trans "Dashboard" %}</li>
+                            <li><i class="bi bi-check text-success"></i> {% trans "Users" %}</li>
+                            <li><i class="bi bi-check text-success"></i> {% trans "Publications" %}</li>
+                            <li><i class="bi bi-check text-success"></i> {% trans "Settings" %}</li>
+                            <li><i class="bi bi-check text-success"></i> {% trans "Organization" %}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6>{% trans "Switch Language" %}:</h6>
+                        <div class="d-grid gap-2">
+                            {% for code, name in available_languages %}
+                                <form method="post" action="/i18n/setlang/">
+                                    {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                                    <button type="submit" name="language" value="{{ code }}" 
+                                            class="btn {% if code == current_language %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                                        {% if code == current_language %}<i class="bi bi-check me-1"></i>{% endif %}
+                                        {{ name }} ({{ code|upper }})
+                                    </button>
+                                </form>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Auto-refresh translation status every 30 seconds
+setInterval(function() {
+    // Only refresh if no forms are being submitted
+    if (!document.querySelector('form:target')) {
+        location.reload();
+    }
+}, 30000);
+
+// Show loading state for translation actions
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function() {
+        const button = this.querySelector('button[type="submit"]');
+        if (button) {
+            button.disabled = true;
+            button.innerHTML = '<i class="bi bi-hourglass-split"></i> {% trans "Processing..." %}';
+        }
+    });
+});
+</script>
+{% endblock %}

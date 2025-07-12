@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Settings API Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4"><i class="fas fa-cog"></i> Organization Settings API Test</h1>
+        
+        <!-- API Status -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-wifi"></i> API Status</h5>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-primary" onclick="testApiConnection()">
+                            <i class="fas fa-plug"></i> Test API Connection
+                        </button>
+                        <div id="api-status" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Settings Display -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-eye"></i> Current Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-info" onclick="loadCurrentSettings()">
+                            <i class="fas fa-download"></i> Load Current Settings
+                        </button>
+                        <div id="current-settings" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Settings Form -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-upload"></i> Update Settings (Admin Only)</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="update-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="vision" class="form-label">Vision Statement</label>
+                                        <textarea class="form-control" id="vision" rows="3" placeholder="Enter vision statement..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="vision_image" class="form-label">Vision Image</label>
+                                        <input type="file" class="form-control" id="vision_image" accept="image/jpeg,image/jpg,image/png">
+                                        <div id="vision-preview" class="mt-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="mission" class="form-label">Mission Statement</label>
+                                        <textarea class="form-control" id="mission" rows="3" placeholder="Enter mission statement..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="mission_image" class="form-label">Mission Image</label>
+                                        <input type="file" class="form-control" id="mission_image" accept="image/jpeg,image/jpg,image/png">
+                                        <div id="mission-preview" class="mt-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="admin-token" class="form-label">Admin Token (Required for updates)</label>
+                                <input type="password" class="form-control" id="admin-token" placeholder="Enter admin JWT token...">
+                                <small class="text-muted">Get this from your admin login or API authentication</small>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Update Settings
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Documentation -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-book"></i> API Documentation</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Endpoints:</h6>
+                        <ul>
+                            <li><strong>GET</strong> <code>/api/organization/settings/</code> - Get organization settings (Public)</li>
+                            <li><strong>PUT</strong> <code>/api/organization/settings/</code> - Update organization settings (Admin only)</li>
+                        </ul>
+                        
+                        <h6>New Fields:</h6>
+                        <ul>
+                            <li><code>vision_image</code> - URL to vision statement image</li>
+                            <li><code>mission_image</code> - URL to mission statement image</li>
+                        </ul>
+                        
+                        <h6>Supported Image Formats:</h6>
+                        <p>JPG, JPEG, PNG</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = '/api/organization/settings/';
+        
+        // Test API connection
+        async function testApiConnection() {
+            const statusDiv = document.getElementById('api-status');
+            statusDiv.innerHTML = '<div class="spinner-border spinner-border-sm" role="status"></div> Testing connection...';
+            
+            try {
+                const response = await fetch(API_URL);
+                if (response.ok) {
+                    statusDiv.innerHTML = '<div class="alert alert-success"><i class="fas fa-check"></i> API is working! Status: ' + response.status + '</div>';
+                } else {
+                    statusDiv.innerHTML = '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> API responded with status: ' + response.status + '</div>';
+                }
+            } catch (error) {
+                statusDiv.innerHTML = '<div class="alert alert-danger"><i class="fas fa-times"></i> Connection failed: ' + error.message + '</div>';
+            }
+        }
+        
+        // Load current settings
+        async function loadCurrentSettings() {
+            const settingsDiv = document.getElementById('current-settings');
+            settingsDiv.innerHTML = '<div class="spinner-border spinner-border-sm" role="status"></div> Loading settings...';
+            
+            try {
+                const response = await fetch(API_URL);
+                if (response.ok) {
+                    const settings = await response.json();
+                    displaySettings(settings);
+                    populateForm(settings);
+                } else {
+                    settingsDiv.innerHTML = '<div class="alert alert-danger">Failed to load settings</div>';
+                }
+            } catch (error) {
+                settingsDiv.innerHTML = '<div class="alert alert-danger">Error: ' + error.message + '</div>';
+            }
+        }
+        
+        // Display settings
+        function displaySettings(settings) {
+            const settingsDiv = document.getElementById('current-settings');
+            settingsDiv.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Vision:</h6>
+                        <p>${settings.vision || 'Not set'}</p>
+                        ${settings.vision_image ? `<img src="${settings.vision_image}" alt="Vision" style="max-width: 200px; border: 1px solid #ddd; border-radius: 4px;">` : '<p class="text-muted">No vision image</p>'}
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Mission:</h6>
+                        <p>${settings.mission || 'Not set'}</p>
+                        ${settings.mission_image ? `<img src="${settings.mission_image}" alt="Mission" style="max-width: 200px; border: 1px solid #ddd; border-radius: 4px;">` : '<p class="text-muted">No mission image</p>'}
+                    </div>
+                </div>
+                <details class="mt-3">
+                    <summary>Raw JSON Response</summary>
+                    <pre class="bg-light p-3 mt-2"><code>${JSON.stringify(settings, null, 2)}</code></pre>
+                </details>
+            `;
+        }
+        
+        // Populate form with current settings
+        function populateForm(settings) {
+            document.getElementById('vision').value = settings.vision || '';
+            document.getElementById('mission').value = settings.mission || '';
+        }
+        
+        // Setup image previews
+        document.getElementById('vision_image').addEventListener('change', function(e) {
+            previewImage(e.target, 'vision-preview');
+        });
+        
+        document.getElementById('mission_image').addEventListener('change', function(e) {
+            previewImage(e.target, 'mission-preview');
+        });
+        
+        // Preview image
+        function previewImage(input, previewId) {
+            const previewDiv = document.getElementById(previewId);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewDiv.innerHTML = `<img src="${e.target.result}" alt="Preview" style="max-width: 150px; border: 1px solid #ddd; border-radius: 4px;">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                previewDiv.innerHTML = '';
+            }
+        }
+        
+        // Handle form submission
+        document.getElementById('update-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const token = document.getElementById('admin-token').value;
+            if (!token) {
+                alert('Please enter an admin token');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('vision', document.getElementById('vision').value);
+            formData.append('mission', document.getElementById('mission').value);
+            
+            const visionImage = document.getElementById('vision_image').files[0];
+            const missionImage = document.getElementById('mission_image').files[0];
+            
+            if (visionImage) formData.append('vision_image', visionImage);
+            if (missionImage) formData.append('mission_image', missionImage);
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    alert('Settings updated successfully!');
+                    loadCurrentSettings();
+                } else {
+                    const errorData = await response.json();
+                    alert('Error updating settings: ' + JSON.stringify(errorData));
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+        
+        // Load settings on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            testApiConnection();
+            loadCurrentSettings();
+        });
+    </script>
+</body>
+</html>

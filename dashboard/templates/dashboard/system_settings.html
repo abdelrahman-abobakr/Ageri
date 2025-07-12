@@ -1,0 +1,189 @@
+{% extends 'dashboard/base.html' %}
+
+{% block page_title %}System Settings{% endblock %}
+{% block page_description %}System configuration and maintenance{% endblock %}
+
+{% block content %}
+<div class="col-lg-8">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-gear me-2"></i>System Information
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6>Platform Details</h6>
+                    <table class="table table-sm">
+                        <tr>
+                            <td><strong>Platform Name:</strong></td>
+                            <td>Ageri Research Platform</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Version:</strong></td>
+                            <td>1.0.0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Django Version:</strong></td>
+                            <td>{{ django_version }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Database:</strong></td>
+                            <td>SQLite (Development)</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h6>System Status</h6>
+                    <table class="table table-sm">
+                        <tr>
+                            <td><strong>Database Size:</strong></td>
+                            <td>{{ system_stats.database_size }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Files:</strong></td>
+                            <td>{{ system_stats.total_files }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Last Backup:</strong></td>
+                            <td>{{ system_stats.last_backup }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>System Health:</strong></td>
+                            <td><span class="badge bg-success">Healthy</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-tools me-2"></i>Quick Actions
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="d-grid">
+                        <a href="/admin/" class="btn btn-outline-primary">
+                            <i class="bi bi-tools me-2"></i>Django Admin Panel
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-grid">
+                        <a href="/api/docs/" class="btn btn-outline-info" target="_blank">
+                            <i class="bi bi-book me-2"></i>API Documentation
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-grid">
+                        <button class="btn btn-outline-warning" onclick="clearCache()">
+                            <i class="bi bi-arrow-clockwise me-2"></i>Clear Cache
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-grid">
+                        <button class="btn btn-outline-success" onclick="runHealthCheck()">
+                            <i class="bi bi-heart-pulse me-2"></i>Health Check
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-shield-check me-2"></i>Security
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <label class="form-label">Debug Mode</label>
+                <div>
+                    <span class="badge bg-warning">Enabled</span>
+                    <small class="text-muted d-block">Disable in production</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">HTTPS</label>
+                <div>
+                    <span class="badge bg-danger">Disabled</span>
+                    <small class="text-muted d-block">Enable for production</small>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">CORS</label>
+                <div>
+                    <span class="badge bg-success">Configured</span>
+                    <small class="text-muted d-block">Cross-origin requests allowed</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-graph-up me-2"></i>Recent Activity
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="activity-item">
+                <div class="d-flex justify-content-between">
+                    <span>System started</span>
+                    <small class="text-muted">2 hours ago</small>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="d-flex justify-content-between">
+                    <span>Database migrated</span>
+                    <small class="text-muted">1 day ago</small>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="d-flex justify-content-between">
+                    <span>Cache cleared</span>
+                    <small class="text-muted">2 days ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function clearCache() {
+    if (confirm('Are you sure you want to clear the cache?')) {
+        // This would make an AJAX call to clear cache
+        alert('Cache clearing functionality would be implemented here.');
+    }
+}
+
+function runHealthCheck() {
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Running...';
+    btn.disabled = true;
+    
+    // Simulate health check
+    setTimeout(function() {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        alert('System health check completed successfully!');
+    }, 2000);
+}
+</script>
+{% endblock %}

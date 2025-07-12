@@ -7,20 +7,22 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django.db.models import Q, Count, F
 
 from accounts.permissions import IsAdminUser, IsModeratorOrAdmin, IsApprovedUser
-from .models import Department, Lab, ResearcherAssignment
+from .models import Department, Lab, ResearcherAssignment, OrganizationSettings
 from .serializers import (
     DepartmentSerializer, DepartmentListSerializer,
     LabSerializer, LabListSerializer,
-    ResearcherAssignmentSerializer, ResearcherAssignmentListSerializer
+    ResearcherAssignmentSerializer, ResearcherAssignmentListSerializer,
+    OrganizationSettingsSerializer, OrganizationPublicSerializer
 )
 
 
 class DepartmentListCreateView(generics.ListCreateAPIView):
     """
     List all departments or create a new department
+    Public access for listing, admin required for creation
     """
     queryset = Department.objects.all().select_related('head')
-    permission_classes = [IsApprovedUser]
+    permission_classes = [permissions.AllowAny]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['status']
     search_fields = ['name', 'description', 'head__email']
@@ -33,30 +35,35 @@ class DepartmentListCreateView(generics.ListCreateAPIView):
         return DepartmentSerializer
 
     def get_permissions(self):
+        """
+        Allow public access for GET requests, require admin for POST
+        """
         if self.request.method == 'POST':
             return [IsAdminUser()]
-        return [IsApprovedUser()]
+        return [permissions.AllowAny()]
 
 
 class DepartmentDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve, update or delete a department
+    Public access for viewing, admin required for modifications
     """
     queryset = Department.objects.all().select_related('head')
     serializer_class = DepartmentSerializer
 
     def get_permissions(self):
         if self.request.method == 'GET':
-            return [IsApprovedUser()]
+            return [permissions.AllowAny()]
         return [IsAdminUser()]
 
 
 class LabListCreateView(generics.ListCreateAPIView):
     """
     List all labs or create a new lab
+    Public access for listing, admin required for creation
     """
     queryset = Lab.objects.all().select_related('department', 'head')
-    permission_classes = [IsApprovedUser]
+    permission_classes = [permissions.AllowAny]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = ['department', 'status']
     search_fields = ['name', 'description', 'department__name', 'head__email']
@@ -69,34 +76,72 @@ class LabListCreateView(generics.ListCreateAPIView):
         return LabSerializer
 
     def get_permissions(self):
+        """
+        Allow public access for GET requests, require admin for POST
+        """
         if self.request.method == 'POST':
-            return [IsModeratorOrAdmin()]
-        return [IsApprovedUser()]
+            return [IsAdminUser()]
+        return [permissions.AllowAny()]
 
 
 class LabDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve, update or delete a lab
+    Public access for viewing, admin required for modifications
     """
     queryset = Lab.objects.all().select_related('department', 'head')
     serializer_class = LabSerializer
 
     def get_permissions(self):
         if self.request.method == 'GET':
-            return [IsApprovedUser()]
-        return [IsModeratorOrAdmin()]
+            return [permissions.AllowAny()]
+        return [IsAdminUser()]
 
 
 class LabsByDepartmentView(generics.ListAPIView):
     """
-    List labs by department
+    List labs by department (public access)
     """
     serializer_class = LabListSerializer
-    permission_classes = [IsApprovedUser]
+    permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         department_id = self.kwargs['department_id']
         return Lab.objects.filter(department_id=department_id).select_related('department', 'head')
+
+
+class LabResearchersView(generics.ListAPIView):
+    """
+    List researchers in a specific lab (public access)
+    """
+    serializer_class = ResearcherAssignmentListSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        lab_id = self.kwargs['lab_id']
+        return ResearcherAssignment.objects.filter(
+            lab_id=lab_id,
+            status='active'
+        ).select_related('researcher', 'lab', 'department')
+
+
+class LabHeadView(APIView):
+    """
+    Get the head researcher of a specific lab (public access)
+    """
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, lab_id):
+        try:
+            lab = Lab.objects.select_related('head').get(id=lab_id)
+            if lab.head:
+                from accounts.serializers import UserProfileSerializer
+                serializer = UserProfileSerializer(lab.head, context={'request': request})
+                return Response(serializer.data)
+            else:
+                return Response({'message': 'No head researcher assigned'}, status=status.HTTP_404_NOT_FOUND)
+        except Lab.DoesNotExist:
+            return Response({'error': 'Lab not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
 class ResearcherAssignmentListCreateView(generics.ListCreateAPIView):
@@ -218,3 +263,56 @@ def organization_stats(request):
     }
 
     return Response(stats)
+
+
+class OrganizationSettingsView(APIView):
+    """
+    Get or update organization settings (singleton)
+    Public access for GET, admin required for PUT/PATCH
+    """
+
+    def get_permissions(self):
+        """
+        Allow public access for GET requests, require admin for modifications
+        """
+        if self.request.method == 'GET':
+            return [permissions.AllowAny()]
+        return [IsAdminUser()]
+
+    def get_object(self):
+        """Get or create the singleton settings instance"""
+        return OrganizationSettings.get_settings()
+
+    def get(self, request):
+        """Get organization settings"""
+        settings = self.get_object()
+
+        # Use public serializer for non-admin users
+        if not request.user.is_authenticated or not request.user.is_staff:
+            serializer = OrganizationPublicSerializer(settings)
+        else:
+            serializer = OrganizationSettingsSerializer(settings)
+
+        return Response(serializer.data)
+
+    def put(self, request):
+        """Update organization settings"""
+        settings = self.get_object()
+        serializer = OrganizationSettingsSerializer(settings, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request):
+        """Partially update organization settings"""
+        settings = self.get_object()
+        serializer = OrganizationSettingsSerializer(
+            settings, data=request.data, partial=True
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

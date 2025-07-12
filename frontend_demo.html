@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization API Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .api-demo {
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .endpoint {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            border-left: 4px solid #007bff;
+            margin: 10px 0;
+        }
+        .response {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            border-left: 4px solid #28a745;
+            margin: 10px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .loading {
+            color: #007bff;
+            font-style: italic;
+        }
+        .error {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #dc3545;
+        }
+        .success {
+            color: #155724;
+            background: #d4edda;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+        .org-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .org-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+        .org-logo {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 8px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 Organization Vision & Message API Demo</h1>
+        <p>This page demonstrates how to fetch organization vision and message from your Django API.</p>
+        
+        <div class="api-demo">
+            <h2>📍 API Endpoint</h2>
+            <div class="endpoint">
+                <strong>GET</strong> http://localhost:8000/api/organization/settings/
+            </div>
+            
+            <button onclick="fetchOrganizationSettings()">🚀 Test API Call</button>
+            <button onclick="clearResults()">🗑️ Clear Results</button>
+            
+            <div id="status"></div>
+            <div id="response"></div>
+        </div>
+        
+        <div class="container">
+            <h2>📊 Organization Information</h2>
+            <div id="org-display">
+                <p class="loading">Click "Test API Call" to load organization data...</p>
+            </div>
+        </div>
+        
+        <div class="container">
+            <h2>💻 Frontend Code Examples</h2>
+            
+            <h3>1. Vanilla JavaScript (Fetch API)</h3>
+            <div class="code-block">
+async function getOrganizationSettings() {
+    try {
+        const response = await fetch('http://localhost:8000/api/organization/settings/');
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Access vision and message
+        console.log('Vision:', data.vision);
+        console.log('Mission:', data.mission);
+        console.log('Organization:', data.name);
+        
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+        return null;
+    }
+}
+            </div>
+            
+            <h3>2. React Hook Example</h3>
+            <div class="code-block">
+import { useState, useEffect } from 'react';
+
+export const useOrganizationSettings = () => {
+    const [settings, setSettings] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            try {
+                setLoading(true);
+                const response = await fetch('http://localhost:8000/api/organization/settings/');
+                const data = await response.json();
+                setSettings(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchSettings();
+    }, []);
+
+    return { settings, loading, error };
+};
+            </div>
+            
+            <h3>3. Key Data Fields</h3>
+            <div class="org-info">
+                <div class="org-card">
+                    <h4>🏢 Organization Identity</h4>
+                    <ul>
+                        <li><span class="highlight">name</span> - Organization name</li>
+                        <li><span class="highlight">vision</span> - Vision statement</li>
+                        <li><span class="highlight">mission</span> - Mission statement</li>
+                        <li><span class="highlight">about</span> - About description</li>
+                    </ul>
+                </div>
+                <div class="org-card">
+                    <h4>📞 Contact Information</h4>
+                    <ul>
+                        <li><span class="highlight">email</span> - Contact email</li>
+                        <li><span class="highlight">phone</span> - Phone number</li>
+                        <li><span class="highlight">address</span> - Physical address</li>
+                        <li><span class="highlight">website</span> - Website URL</li>
+                    </ul>
+                </div>
+                <div class="org-card">
+                    <h4>🌐 Social Media</h4>
+                    <ul>
+                        <li><span class="highlight">facebook</span> - Facebook URL</li>
+                        <li><span class="highlight">twitter</span> - Twitter URL</li>
+                        <li><span class="highlight">linkedin</span> - LinkedIn URL</li>
+                        <li><span class="highlight">instagram</span> - Instagram URL</li>
+                    </ul>
+                </div>
+                <div class="org-card">
+                    <h4>🖼️ Media Files</h4>
+                    <ul>
+                        <li><span class="highlight">logo</span> - Logo image URL</li>
+                        <li><span class="highlight">banner</span> - Banner image URL</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function fetchOrganizationSettings() {
+            const statusDiv = document.getElementById('status');
+            const responseDiv = document.getElementById('response');
+            const orgDisplay = document.getElementById('org-display');
+            
+            // Show loading state
+            statusDiv.innerHTML = '<div class="loading">🔄 Fetching organization settings...</div>';
+            responseDiv.innerHTML = '';
+            orgDisplay.innerHTML = '<div class="loading">Loading...</div>';
+            
+            try {
+                const startTime = Date.now();
+                const response = await fetch('http://localhost:8000/api/organization/settings/');
+                const endTime = Date.now();
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                
+                // Show success status
+                statusDiv.innerHTML = `
+                    <div class="success">
+                        ✅ Success! Response received in ${endTime - startTime}ms<br>
+                        Status: ${response.status} ${response.statusText}<br>
+                        Content-Type: ${response.headers.get('content-type')}
+                    </div>
+                `;
+                
+                // Show formatted response
+                responseDiv.innerHTML = `
+                    <h3>📄 API Response:</h3>
+                    <div class="response">${JSON.stringify(data, null, 2)}</div>
+                `;
+                
+                // Display organization info in a user-friendly way
+                displayOrganizationInfo(data);
+                
+            } catch (error) {
+                statusDiv.innerHTML = `
+                    <div class="error">
+                        ❌ Error: ${error.message}<br>
+                        Make sure your Django server is running at http://localhost:8000/
+                    </div>
+                `;
+                orgDisplay.innerHTML = `<div class="error">Failed to load organization data</div>`;
+            }
+        }
+        
+        function displayOrganizationInfo(data) {
+            const orgDisplay = document.getElementById('org-display');
+            
+            let html = '<div class="org-info">';
+            
+            // Organization Identity
+            html += '<div class="org-card">';
+            html += '<h4>🏢 Organization Identity</h4>';
+            html += `<p><strong>Name:</strong> ${data.name || 'Not set'}</p>`;
+            html += `<p><strong>Vision:</strong> ${data.vision || 'Not set'}</p>`;
+            html += `<p><strong>Mission:</strong> ${data.mission || 'Not set'}</p>`;
+            html += `<p><strong>About:</strong> ${data.about || 'Not set'}</p>`;
+            html += '</div>';
+            
+            // Contact Information
+            html += '<div class="org-card">';
+            html += '<h4>📞 Contact Information</h4>';
+            html += `<p><strong>Email:</strong> ${data.email || 'Not set'}</p>`;
+            html += `<p><strong>Phone:</strong> ${data.phone || 'Not set'}</p>`;
+            html += `<p><strong>Address:</strong> ${data.address || 'Not set'}</p>`;
+            html += `<p><strong>Website:</strong> ${data.website || 'Not set'}</p>`;
+            html += '</div>';
+            
+            // Media Files
+            html += '<div class="org-card">';
+            html += '<h4>🖼️ Media Files</h4>';
+            if (data.logo) {
+                html += `<p><strong>Logo:</strong><br><img src="${data.logo}" alt="Logo" class="org-logo"></p>`;
+            } else {
+                html += '<p><strong>Logo:</strong> Not uploaded</p>';
+            }
+            if (data.banner) {
+                html += `<p><strong>Banner:</strong><br><img src="${data.banner}" alt="Banner" style="max-width: 200px; border-radius: 8px;"></p>`;
+            } else {
+                html += '<p><strong>Banner:</strong> Not uploaded</p>';
+            }
+            html += '</div>';
+            
+            // Settings
+            html += '<div class="org-card">';
+            html += '<h4>⚙️ Settings</h4>';
+            html += `<p><strong>Registration Enabled:</strong> ${data.enable_registration ? 'Yes' : 'No'}</p>`;
+            html += '</div>';
+            
+            html += '</div>';
+            
+            orgDisplay.innerHTML = html;
+        }
+        
+        function clearResults() {
+            document.getElementById('status').innerHTML = '';
+            document.getElementById('response').innerHTML = '';
+            document.getElementById('org-display').innerHTML = '<p class="loading">Click "Test API Call" to load organization data...</p>';
+        }
+        
+        // Auto-load on page load
+        window.addEventListener('load', () => {
+            // Uncomment the line below to auto-fetch on page load
+            // fetchOrganizationSettings();
+        });
+    </script>
+</body>
+</html>

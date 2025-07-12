@@ -45,3 +45,10 @@ django-storages==1.14.2  # For cloud storage if needed later
 # Additional utilities
 django-filter==23.3  # For API filtering
 django-crispy-forms==2.1  # For better forms in admin
+
+# Internationalization and Translation
+django-modeltranslation==0.19.15
+django-rosetta==0.10.2
+
+# Database URL parsing
+dj-database-url==2.1.0

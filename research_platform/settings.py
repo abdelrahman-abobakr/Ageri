@@ -33,6 +33,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lamb
 # Application definition
 
 INSTALLED_APPS = [
+    "modeltranslation",  # Must be before django.contrib.admin
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_spectacular",
+    "rosetta",  # Translation management interface
 
     # Local apps
     "core",
@@ -56,12 +58,14 @@ INSTALLED_APPS = [
     "training",
     "services",
     "content",
+    "dashboard",  # Custom admin dashboard
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",  # For language switching
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -127,13 +131,28 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"  # Default to English (temporary fix for encoding issue)
+
+LANGUAGES = [
+    ('ar', 'العربية'),
+    ('en', 'English'),
+]
 
 TIME_ZONE = "UTC"
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
+
+# Translation settings
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+# Modeltranslation settings
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ar'
+MODELTRANSLATION_LANGUAGES = ('ar', 'en')
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('ar', 'en')
 
 
 # Static files (CSS, JavaScript, Images)
@@ -179,11 +198,18 @@ SIMPLE_JWT = {
 # CORS Settings (for React frontend)
 CORS_ALLOWED_ORIGINS = config(
     'CORS_ALLOWED_ORIGINS',
-    default='http://localhost:3000,http://127.0.0.1:3000',
+    default='http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173',
     cast=lambda v: [s.strip() for s in v.split(',')]
 )
 
 CORS_ALLOW_CREDENTIALS = True
+
+# Additional CORS settings for development
+CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=False, cast=bool)
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^http://localhost:\d+$",
+    r"^http://127\.0\.0\.1:\d+$",
+]
 
 # API Documentation
 SPECTACULAR_SETTINGS = {
