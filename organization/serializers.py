@@ -7,13 +7,27 @@ from .models import Department, Lab, ResearcherAssignment, OrganizationSettings
 class DepartmentListSerializer(serializers.ModelSerializer):
     """Simplified serializer for department lists"""
     head_name = serializers.CharField(source='head.get_full_name', read_only=True)
-    
+
     class Meta:
         model = Department
         fields = [
-            'id', 'name', 'head_name', 'total_labs', 
+            'id', 'name', 'head_name', 'total_labs',
             'total_researchers', 'status', 'created_at'
         ]
+
+
+class DepartmentInfoSerializer(serializers.ModelSerializer):
+    """Minimal serializer for department info - only labs and short description"""
+    labs = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Department
+        fields = ['id', 'name', 'description', 'labs']
+
+    def get_labs(self, obj):
+        """Get simplified lab information"""
+        labs = obj.labs.filter(status='active').select_related('head')
+        return LabInfoSerializer(labs, many=True).data
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -75,13 +89,35 @@ class LabListSerializer(serializers.ModelSerializer):
     """Simplified serializer for lab lists"""
     department_name = serializers.CharField(source='department.name', read_only=True)
     head_name = serializers.CharField(source='head.get_full_name', read_only=True)
-    
+
     class Meta:
         model = Lab
         fields = [
             'id', 'name', 'department_name', 'head_name',
             'current_researchers_count', 'capacity', 'available_spots',
             'status', 'created_at'
+        ]
+
+
+class LabInfoSerializer(serializers.ModelSerializer):
+    """Minimal serializer for lab info - only basic details"""
+    head_name = serializers.CharField(source='head.get_full_name', read_only=True)
+    researchers = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Lab
+        fields = ['id', 'name', 'description', 'head_name', 'researchers']
+
+    def get_researchers(self, obj):
+        """Get researchers in this lab"""
+        assignments = obj.researcher_assignments.filter(status='active').select_related('researcher')
+        return [
+            {
+                'id': assignment.researcher.id,
+                'name': assignment.researcher.get_full_name(),
+                'position': assignment.position or 'Researcher'
+            }
+            for assignment in assignments
         ]
 
 
@@ -99,7 +135,7 @@ class LabSerializer(serializers.ModelSerializer):
         model = Lab
         fields = [
             'id', 'name', 'department', 'department_id', 'description',
-            'head', 'head_id', 'equipment', 'capacity', 'location', 'phone',
+            'head', 'head_id', 'equipment', 'capacity', 'phone',
             'current_researchers_count', 'available_spots', 'is_at_capacity',
             'status', 'created_at', 'updated_at'
         ]
@@ -221,17 +257,52 @@ class ResearcherAssignmentSerializer(serializers.ModelSerializer):
 
 
 class ResearcherAssignmentListSerializer(serializers.ModelSerializer):
-    """Simplified serializer for assignment lists"""
+    """Simplified serializer for assignment lists with profile linking"""
     researcher_name = serializers.CharField(source='researcher.get_full_name', read_only=True)
+    researcher_email = serializers.CharField(source='researcher.email', read_only=True)
+    researcher_profile = serializers.SerializerMethodField()
     lab_name = serializers.CharField(source='lab.name', read_only=True)
     department_name = serializers.CharField(source='department.name', read_only=True)
 
     class Meta:
         model = ResearcherAssignment
         fields = [
-            'id', 'researcher_name', 'lab_name', 'department_name',
-            'position', 'start_date', 'end_date', 'status', 'is_active'
+            'id', 'researcher_id', 'researcher_name', 'researcher_email', 'researcher_profile',
+            'lab_name', 'department_name', 'position', 'start_date', 'end_date',
+            'status', 'is_active', 'created_at'
         ]
+
+    def get_researcher_profile(self, obj):
+        """Get researcher profile information"""
+        researcher = obj.researcher
+        profile_data = {
+            'id': researcher.id,
+            'username': researcher.username,
+            'full_name': researcher.get_full_name(),
+            'email': researcher.email,
+            'role': researcher.role,
+            'institution': researcher.institution,
+            'phone': researcher.phone,
+            'is_approved': researcher.is_approved,
+            'date_joined': researcher.date_joined
+        }
+
+        # Add profile details if available
+        if hasattr(researcher, 'profile'):
+            profile = researcher.profile
+            profile_data.update({
+                'bio': profile.bio,
+                'research_interests': profile.research_interests,
+                'orcid_id': profile.orcid_id,
+                'website': profile.website,
+                'linkedin': profile.linkedin,
+                'google_scholar': profile.google_scholar,
+                'researchgate': profile.researchgate,
+                'has_cv': profile.has_cv,
+                'is_public': profile.is_public
+            })
+
+        return profile_data
 
 
 class OrganizationSettingsSerializer(serializers.ModelSerializer):

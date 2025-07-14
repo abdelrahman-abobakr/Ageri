@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.db.models import Count, Q
+from django.db.models import Count, Q, Sum, Avg
 from django.utils import timezone, translation
 from django.http import JsonResponse
 from django.core.paginator import Paginator
@@ -555,7 +555,7 @@ def analytics_dashboard(request):
         'total_courses': Course.objects.count(),
         'active_courses': Course.objects.filter(status='active').count(),
         'total_enrollments': Course.objects.aggregate(
-            total=models.Sum('enrollments__count')
+            total=Count('enrollments')
         )['total'] or 0,
     }
 
@@ -566,7 +566,7 @@ def analytics_dashboard(request):
         'completed_requests': ServiceRequest.objects.filter(status='completed').count(),
         'revenue': ServiceRequest.objects.filter(
             status='completed'
-        ).aggregate(total=models.Sum('service__price'))['total'] or 0,
+        ).aggregate(total=Sum('final_cost'))['total'] or 0,
     }
 
     # Daily activity data for charts

@@ -9,8 +9,8 @@ from django.db.models import Q, Count, F
 from accounts.permissions import IsAdminUser, IsModeratorOrAdmin, IsApprovedUser
 from .models import Department, Lab, ResearcherAssignment, OrganizationSettings
 from .serializers import (
-    DepartmentSerializer, DepartmentListSerializer,
-    LabSerializer, LabListSerializer,
+    DepartmentSerializer, DepartmentListSerializer, DepartmentInfoSerializer,
+    LabSerializer, LabListSerializer, LabInfoSerializer,
     ResearcherAssignmentSerializer, ResearcherAssignmentListSerializer,
     OrganizationSettingsSerializer, OrganizationPublicSerializer
 )
@@ -55,6 +55,19 @@ class DepartmentDetailView(generics.RetrieveUpdateDestroyAPIView):
         if self.request.method == 'GET':
             return [permissions.AllowAny()]
         return [IsAdminUser()]
+
+
+class DepartmentInfoView(generics.RetrieveAPIView):
+    """
+    Get minimal department information with only labs and description
+    Public access
+    """
+    queryset = Department.objects.all().prefetch_related(
+        'labs__researcher_assignments__researcher',
+        'labs__head'
+    )
+    serializer_class = DepartmentInfoSerializer
+    permission_classes = [permissions.AllowAny]
 
 
 class LabListCreateView(generics.ListCreateAPIView):
@@ -221,6 +234,136 @@ class LabAvailabilityView(APIView):
         except Lab.DoesNotExist:
             return Response(
                 {'error': 'Lab not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+class LabResearcherManagementView(APIView):
+    """
+    Add or remove researchers from a lab
+    """
+    permission_classes = [IsModeratorOrAdmin]
+
+    def post(self, request, lab_id):
+        """Add a researcher to the lab"""
+        try:
+            lab = Lab.objects.get(id=lab_id)
+        except Lab.DoesNotExist:
+            return Response(
+                {'error': 'Lab not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        researcher_id = request.data.get('researcher_id')
+        position = request.data.get('position', 'Researcher')
+        start_date = request.data.get('start_date')
+        notes = request.data.get('notes', '')
+
+        if not researcher_id:
+            return Response(
+                {'error': 'researcher_id is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+            from accounts.models import User, UserRole
+            researcher = User.objects.get(id=researcher_id, role=UserRole.RESEARCHER)
+
+            if not researcher.is_approved:
+                return Response(
+                    {'error': 'Researcher must be approved'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # Check if researcher is already assigned to this lab
+            existing_assignment = ResearcherAssignment.objects.filter(
+                researcher=researcher,
+                lab=lab,
+                status='active'
+            ).first()
+
+            if existing_assignment:
+                return Response(
+                    {'error': 'Researcher is already assigned to this lab'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # Check lab capacity
+            if lab.is_at_capacity:
+                return Response(
+                    {'error': 'Lab is at full capacity'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # Create assignment
+            assignment = ResearcherAssignment.objects.create(
+                researcher=researcher,
+                lab=lab,
+                department=lab.department,
+                start_date=start_date or timezone.now().date(),
+                position=position,
+                notes=notes,
+                assigned_by=request.user,
+                status='active'
+            )
+
+            # Return assignment details with researcher profile
+            from .serializers import ResearcherAssignmentListSerializer
+            serializer = ResearcherAssignmentListSerializer(assignment)
+
+            return Response({
+                'message': 'Researcher added successfully',
+                'assignment': serializer.data
+            }, status=status.HTTP_201_CREATED)
+
+        except User.DoesNotExist:
+            return Response(
+                {'error': 'Researcher not found or not authorized'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        except Exception as e:
+            return Response(
+                {'error': str(e)},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+    def delete(self, request, lab_id):
+        """Remove a researcher from the lab"""
+        try:
+            lab = Lab.objects.get(id=lab_id)
+        except Lab.DoesNotExist:
+            return Response(
+                {'error': 'Lab not found'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        researcher_id = request.data.get('researcher_id')
+        if not researcher_id:
+            return Response(
+                {'error': 'researcher_id is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+            assignment = ResearcherAssignment.objects.get(
+                researcher_id=researcher_id,
+                lab=lab,
+                status='active'
+            )
+
+            # Set end date and deactivate
+            assignment.end_date = timezone.now().date()
+            assignment.status = 'inactive'
+            assignment.save()
+
+            return Response({
+                'message': 'Researcher removed successfully',
+                'assignment_id': assignment.id
+            })
+
+        except ResearcherAssignment.DoesNotExist:
+            return Response(
+                {'error': 'Assignment not found'},
                 status=status.HTTP_404_NOT_FOUND
             )
 

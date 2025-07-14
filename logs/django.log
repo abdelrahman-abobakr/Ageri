@@ -10905,3 +10905,1253 @@ WARNING 2025-07-12 20:36:15,245 log 179041 133849551984320 Not Found: /api/analy
 WARNING 2025-07-12 20:36:15,246 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
 WARNING 2025-07-12 20:36:45,244 log 179041 133849551984320 Not Found: /api/analytics/users/
 WARNING 2025-07-12 20:36:45,245 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+ERROR 2025-07-12 20:37:03,847 log 179041 133849560377024 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 558, in analytics_dashboard
+    total=models.Sum('enrollments__count')
+          ^^^^^^
+NameError: name 'models' is not defined
+ERROR 2025-07-12 20:37:03,850 basehttp 179041 133849560377024 "GET /dashboard/analytics/ HTTP/1.1" 500 77469
+WARNING 2025-07-12 20:37:16,236 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:37:16,236 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:37:46,745 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:37:46,746 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:38:17,375 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:38:17,376 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:38:47,794 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:38:47,795 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:39:18,380 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:39:18,381 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:39:48,874 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:39:48,874 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:40:19,590 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:40:19,591 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:40:49,973 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:40:49,973 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:41:20,576 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:41:20,576 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:41:51,160 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:41:51,161 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:42:21,744 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:42:21,745 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:42:52,250 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:42:52,250 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:43:22,812 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:43:22,812 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:43:53,425 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:43:53,427 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:44:24,056 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:44:24,056 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:44:54,593 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:44:54,594 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:45:25,332 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:45:25,333 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:45:55,874 log 179041 133849551984320 Not Found: /api/analytics/users/
+WARNING 2025-07-12 20:45:55,874 basehttp 179041 133849551984320 "GET /api/analytics/users/ HTTP/1.1" 404 3669
+WARNING 2025-07-12 20:45:59,373 log 179041 133849560377024 Not Found: /favicon.ico
+INFO 2025-07-12 20:46:17,358 basehttp 179041 133849560377024 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-12 20:46:17,375 basehttp 179041 133849560377024 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+WARNING 2025-07-12 20:46:17,418 log 179041 133849560377024 Unauthorized: /api/organization/departments/
+WARNING 2025-07-12 20:46:17,419 basehttp 179041 133849560377024 "GET /api/organization/departments/ HTTP/1.1" 401 183
+WARNING 2025-07-12 20:46:17,502 log 179041 133849560377024 Unauthorized: /api/content/announcements/
+WARNING 2025-07-12 20:46:17,502 basehttp 179041 133849560377024 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-12 20:46:17,522 basehttp 179041 133849568769728 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-12 20:46:17,522 basehttp 179041 133849543591616 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-12 20:46:17,526 basehttp 179041 133849543591616 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-12 20:46:17,620 basehttp 179041 133849560377024 "OPTIONS /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 0
+WARNING 2025-07-12 20:46:17,627 log 179041 133849543591616 Unauthorized: /api/content/announcements/
+WARNING 2025-07-12 20:46:17,632 basehttp 179041 133849543591616 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 183
+INFO 2025-07-12 20:46:17,639 basehttp 179041 133849560377024 "GET /api/organization/departments/ HTTP/1.1" 200 192
+INFO 2025-07-12 20:46:17,644 basehttp 179041 133849543591616 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-12 20:46:17,716 basehttp 179041 133849560377024 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 1567
+WARNING 2025-07-12 20:46:28,589 log 179041 133849560377024 Unauthorized: /api/content/announcements/
+WARNING 2025-07-12 20:46:28,589 basehttp 179041 133849560377024 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+ERROR 2025-07-12 20:46:28,627 log 179041 133849535198912 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 558, in analytics_dashboard
+    total=models.Sum('enrollments__count')
+          ^^^^^^
+NameError: name 'models' is not defined
+ERROR 2025-07-12 20:46:28,630 basehttp 179041 133849535198912 "GET /dashboard/analytics/ HTTP/1.1" 500 77571
+INFO 2025-07-12 20:46:28,647 basehttp 179041 133849560377024 "OPTIONS /api/notifications/?page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-12 20:46:28,653 log 179041 133849560377024 Not Found: /api/notifications/
+WARNING 2025-07-12 20:46:28,653 basehttp 179041 133849560377024 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 20:46:28,723 basehttp 179041 133849560377024 "OPTIONS /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-12 20:46:28,779 basehttp 179041 133849560377024 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-12 20:46:29,959 basehttp 179041 133849535198912 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:46:58,616 log 179041 133849526806208 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 558, in analytics_dashboard
+    total=models.Sum('enrollments__count')
+          ^^^^^^
+NameError: name 'models' is not defined
+ERROR 2025-07-12 20:46:58,619 basehttp 179041 133849526806208 "GET /dashboard/analytics/ HTTP/1.1" 500 77571
+INFO 2025-07-12 20:46:59,972 basehttp 179041 133849535198912 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 20:47:25,430 autoreload 179041 133849720283264 /home/abdo/ITI/Ageri/dashboard/views.py changed, reloading.
+INFO 2025-07-12 20:47:26,273 autoreload 187700 128936269320320 Watching for file changes with StatReloader
+ERROR 2025-07-12 20:47:28,636 log 187700 128936120940224 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 558, in analytics_dashboard
+    total=models.Sum('enrollments__count')
+          ^^^^^^
+NameError: name 'models' is not defined
+ERROR 2025-07-12 20:47:28,638 basehttp 187700 128936120940224 "GET /dashboard/analytics/ HTTP/1.1" 500 77571
+INFO 2025-07-12 20:47:30,216 basehttp 187700 128936120940224 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 20:47:38,147 autoreload 187700 128936269320320 /home/abdo/ITI/Ageri/dashboard/views.py changed, reloading.
+INFO 2025-07-12 20:47:38,740 autoreload 187794 133860128354432 Watching for file changes with StatReloader
+INFO 2025-07-12 20:47:52,599 autoreload 187794 133860128354432 /home/abdo/ITI/Ageri/dashboard/views.py changed, reloading.
+INFO 2025-07-12 20:47:53,164 autoreload 187863 136677175316608 Watching for file changes with StatReloader
+ERROR 2025-07-12 20:47:58,760 log 187863 136677093799616 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:47:58,766 basehttp 187863 136677093799616 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:48:00,311 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:48:28,681 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:48:28,682 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:48:30,613 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:48:58,718 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:48:58,719 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:49:00,647 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:49:28,712 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:49:28,714 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:49:30,818 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:49:58,722 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:49:58,724 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:50:00,820 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:50:28,709 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:50:28,711 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:50:30,995 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:50:58,715 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:50:58,717 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:51:01,020 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:51:28,714 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:51:28,716 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:51:31,116 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:51:59,264 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:51:59,265 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:52:01,311 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:52:29,351 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:52:29,352 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:52:31,481 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:52:59,844 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:52:59,846 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:53:01,727 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:53:29,929 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:53:29,931 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257532
+INFO 2025-07-12 20:53:31,831 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+ERROR 2025-07-12 20:54:00,140 log 187863 136677083309760 Internal Server Error: /dashboard/analytics/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/dashboard/views.py", line 594, in analytics_dashboard
+    return render(request, 'dashboard/analytics.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'users' not found. 'users' is not a valid view function or pattern name.
+ERROR 2025-07-12 20:54:00,142 basehttp 187863 136677083309760 "GET /dashboard/analytics/ HTTP/1.1" 500 257524
+INFO 2025-07-12 20:54:01,808 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-12 20:54:07,804 log 187863 136677083309760 Unauthorized: /api/content/announcements/
+WARNING 2025-07-12 20:54:07,805 basehttp 187863 136677083309760 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-12 20:54:07,811 log 187863 136676865210048 Not Found: /api/notifications/
+WARNING 2025-07-12 20:54:07,812 basehttp 187863 136676865210048 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 20:54:07,929 basehttp 187863 136676865210048 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+WARNING 2025-07-12 20:54:27,652 log 187863 136676865210048 Unauthorized: /api/content/announcements/
+WARNING 2025-07-12 20:54:27,653 basehttp 187863 136676865210048 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-12 20:54:27,659 log 187863 136677083309760 Not Found: /api/notifications/
+WARNING 2025-07-12 20:54:27,660 basehttp 187863 136677083309760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 20:54:27,723 basehttp 187863 136676865210048 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-12 20:54:31,839 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 20:55:01,879 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 20:55:31,911 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-12 20:55:55,956 log 187863 136677083309760 Unauthorized: /api/content/announcements/
+WARNING 2025-07-12 20:55:55,959 basehttp 187863 136677083309760 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-12 20:55:55,963 log 187863 136676865210048 Not Found: /api/notifications/
+WARNING 2025-07-12 20:55:55,964 basehttp 187863 136676865210048 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 20:55:56,096 basehttp 187863 136677083309760 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-12 20:56:01,925 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 20:56:31,953 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-12 20:56:36,842 log 187863 136676865210048 Unauthorized: /api/content/announcements/
+WARNING 2025-07-12 20:56:36,842 basehttp 187863 136676865210048 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-12 20:56:36,870 basehttp 187863 136677083309760 "OPTIONS /api/auth/users/ HTTP/1.1" 200 0
+INFO 2025-07-12 20:56:36,871 basehttp 187863 136676865210048 "OPTIONS /api/content/announcements/ HTTP/1.1" 200 0
+INFO 2025-07-12 20:56:36,881 basehttp 187863 136676856817344 "OPTIONS /api/training/courses/ HTTP/1.1" 200 0
+INFO 2025-07-12 20:56:36,882 basehttp 187863 136676848424640 "OPTIONS /api/research/publications/ HTTP/1.1" 200 0
+INFO 2025-07-12 20:56:36,888 basehttp 187863 136676840031936 "OPTIONS /api/services/requests/ HTTP/1.1" 200 0
+INFO 2025-07-12 20:56:36,897 basehttp 187863 136677083309760 "GET /api/auth/users/ HTTP/1.1" 200 980
+INFO 2025-07-12 20:56:36,915 basehttp 187863 136676840031936 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-12 20:56:36,929 basehttp 187863 136676848424640 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-12 20:56:36,933 log 187863 136676856817344 Not Found: /api/training/courses/
+WARNING 2025-07-12 20:56:36,939 basehttp 187863 136676856817344 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-12 20:56:36,952 basehttp 187863 136676865210048 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-12 20:56:36,952 basehttp 187863 136676831639232 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-12 20:56:54,374 basehttp 187863 136677093799616 "GET /dashboard/users/ HTTP/1.1" 200 32722
+WARNING 2025-07-12 20:56:54,525 log 187863 136677093799616 Not Found: /favicon.ico
+INFO 2025-07-12 20:56:55,742 basehttp 187863 136677093799616 "GET /dashboard/users/ HTTP/1.1" 200 32722
+INFO 2025-07-12 20:56:56,128 basehttp 187863 136677093799616 "GET /dashboard/ HTTP/1.1" 200 17879
+WARNING 2025-07-12 20:57:06,298 log 187863 136676856817344 Unauthorized: /api/content/announcements/
+WARNING 2025-07-12 20:57:06,299 basehttp 187863 136676856817344 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-12 20:57:06,341 basehttp 187863 136676856817344 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-12 20:57:26,352 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-12 20:57:36,987 log 187863 136676856817344 Unauthorized: /api/content/announcements/
+WARNING 2025-07-12 20:57:36,988 basehttp 187863 136676856817344 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-12 20:57:37,034 basehttp 187863 136676856817344 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-12 20:57:56,345 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 20:58:26,369 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 20:58:56,363 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 20:59:26,368 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 20:59:56,366 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:00:26,517 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:00:31,915 basehttp 187863 136677083309760 "OPTIONS /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-12 21:00:31,924 basehttp 187863 136676856817344 "GET /api/auth/users/ HTTP/1.1" 200 980
+INFO 2025-07-12 21:00:31,932 basehttp 187863 136677083309760 "GET /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 980
+INFO 2025-07-12 21:00:34,789 basehttp 187863 136676856817344 "OPTIONS /api/analytics/publications/ HTTP/1.1" 200 0
+INFO 2025-07-12 21:00:34,789 basehttp 187863 136677083309760 "OPTIONS /api/research/publications/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-12 21:00:34,804 basehttp 187863 136677083309760 "GET /api/research/publications/?page=1&page_size=10 HTTP/1.1" 200 52
+WARNING 2025-07-12 21:00:34,808 log 187863 136676856817344 Not Found: /api/analytics/publications/
+WARNING 2025-07-12 21:00:34,809 basehttp 187863 136676856817344 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-12 21:00:38,424 basehttp 187863 136676856817344 "OPTIONS /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-12 21:00:38,449 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:00:56,722 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:01:26,965 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:01:57,008 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:02:23,896 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+WARNING 2025-07-12 21:02:23,898 log 187863 136677083309760 Not Found: /api/notifications/
+WARNING 2025-07-12 21:02:23,898 basehttp 187863 136677083309760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:02:27,103 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:02:40,682 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+WARNING 2025-07-12 21:02:40,684 log 187863 136677083309760 Not Found: /api/notifications/
+WARNING 2025-07-12 21:02:40,685 basehttp 187863 136677083309760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:02:57,172 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:02:58,188 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+WARNING 2025-07-12 21:02:58,189 log 187863 136677083309760 Not Found: /api/notifications/
+WARNING 2025-07-12 21:02:58,190 basehttp 187863 136677083309760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:03:19,229 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+WARNING 2025-07-12 21:03:19,231 log 187863 136677083309760 Not Found: /api/notifications/
+WARNING 2025-07-12 21:03:19,231 basehttp 187863 136677083309760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:03:27,312 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-12 21:03:35,966 log 187863 136677083309760 Not Found: /api/notifications/
+WARNING 2025-07-12 21:03:35,971 basehttp 187863 136677083309760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:03:35,972 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+WARNING 2025-07-12 21:03:54,365 log 187863 136677083309760 Not Found: /api/notifications/
+WARNING 2025-07-12 21:03:54,370 basehttp 187863 136677083309760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:03:54,370 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:03:57,358 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:04:27,485 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:04:57,672 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:05:27,737 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:05:41,019 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+WARNING 2025-07-12 21:05:41,021 log 187863 136677083309760 Not Found: /api/notifications/
+WARNING 2025-07-12 21:05:41,022 basehttp 187863 136677083309760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:05:57,965 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:06:21,631 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:06:27,990 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:06:44,211 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:06:58,033 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:06:59,878 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:07:28,018 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:07:58,048 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:08:10,040 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:08:28,065 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:08:45,080 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:08:58,224 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:09:25,081 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:09:28,234 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:09:58,264 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:10:08,881 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:10:28,290 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:10:34,573 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:10:58,312 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:11:28,474 basehttp 187863 136677093799616 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:11:31,037 basehttp 187863 136676856817344 "OPTIONS /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-12 21:11:31,038 basehttp 187863 136677093799616 "OPTIONS /api/notifications/?page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-12 21:11:31,047 log 187863 136677093799616 Not Found: /api/notifications/
+WARNING 2025-07-12 21:11:31,047 basehttp 187863 136677093799616 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:11:31,057 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:11:58,665 basehttp 187863 136677083309760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:12:28,771 basehttp 187863 136677083309760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:12:58,783 basehttp 187863 136677083309760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:13:28,800 basehttp 187863 136677083309760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:13:58,818 basehttp 187863 136677083309760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:14:28,841 basehttp 187863 136677083309760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:14:58,858 basehttp 187863 136677083309760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:15:28,871 basehttp 187863 136677083309760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-12 21:15:29,527 log 187863 136677093799616 Not Found: /api/notifications/
+WARNING 2025-07-12 21:15:29,529 basehttp 187863 136677093799616 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:15:29,534 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:15:32,160 basehttp 187863 136677083309760 "OPTIONS /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-12 21:15:32,160 basehttp 187863 136677093799616 "OPTIONS /api/notifications/?page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-12 21:15:32,169 log 187863 136677093799616 Not Found: /api/notifications/
+WARNING 2025-07-12 21:15:32,169 basehttp 187863 136677093799616 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:15:32,178 basehttp 187863 136677083309760 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:15:50,973 basehttp 187863 136676856817344 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-07-12 21:15:51,383 basehttp 187863 136676856817344 "POST /api/auth/login/ HTTP/1.1" 200 726
+INFO 2025-07-12 21:15:51,731 basehttp 187863 136676856817344 "OPTIONS /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-12 21:15:51,735 basehttp 187863 136676865210048 "OPTIONS /api/notifications/?page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-12 21:15:51,746 basehttp 187863 136676856817344 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+WARNING 2025-07-12 21:15:51,748 log 187863 136676865210048 Not Found: /api/notifications/
+WARNING 2025-07-12 21:15:51,749 basehttp 187863 136676865210048 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:15:58,953 basehttp 187863 136676848424640 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:16:28,941 basehttp 187863 136676848424640 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:16:58,966 basehttp 187863 136676848424640 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:17:29,017 basehttp 187863 136676848424640 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:17:59,119 basehttp 187863 136676848424640 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:18:29,233 basehttp 187863 136676848424640 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:18:30,413 autoreload 187863 136677175316608 /home/abdo/ITI/Ageri/organization/serializers.py changed, reloading.
+INFO 2025-07-12 21:18:31,259 autoreload 194682 134823840399488 Watching for file changes with StatReloader
+INFO 2025-07-12 21:18:48,130 autoreload 194682 134823840399488 /home/abdo/ITI/Ageri/organization/serializers.py changed, reloading.
+INFO 2025-07-12 21:18:48,693 autoreload 194716 132012041576576 Watching for file changes with StatReloader
+INFO 2025-07-12 21:18:59,252 basehttp 194716 132011961349824 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:19:02,503 autoreload 194716 132012041576576 /home/abdo/ITI/Ageri/organization/views.py changed, reloading.
+INFO 2025-07-12 21:19:03,122 autoreload 194808 123899868037248 Watching for file changes with StatReloader
+INFO 2025-07-12 21:19:21,085 autoreload 194808 123899868037248 /home/abdo/ITI/Ageri/organization/views.py changed, reloading.
+INFO 2025-07-12 21:19:21,604 autoreload 194842 136379640250496 Watching for file changes with StatReloader
+INFO 2025-07-12 21:19:29,338 basehttp 194842 136379493250752 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:19:42,874 autoreload 194842 136379640250496 /home/abdo/ITI/Ageri/organization/urls.py changed, reloading.
+INFO 2025-07-12 21:19:43,557 autoreload 194907 137817675006080 Watching for file changes with StatReloader
+INFO 2025-07-12 21:19:59,602 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:20:29,631 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:20:55,359 basehttp 194907 137817514571456 "GET /api/organization/departments/ HTTP/1.1" 200 192
+INFO 2025-07-12 21:20:55,369 basehttp 194907 137817506178752 "GET /api/organization/departments/1/info/ HTTP/1.1" 200 111
+INFO 2025-07-12 21:20:55,378 basehttp 194907 137817497786048 "GET /api/organization/departments/1/ HTTP/1.1" 200 453
+INFO 2025-07-12 21:20:59,751 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:21:30,030 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:22:00,090 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:22:30,117 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:23:00,161 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:23:07,803 basehttp 194907 137817497786048 "GET /api/organization/departments/ HTTP/1.1" 200 192
+INFO 2025-07-12 21:23:07,818 basehttp 194907 137817506178752 "GET /api/organization/departments/1/info/ HTTP/1.1" 200 111
+INFO 2025-07-12 21:23:07,828 basehttp 194907 137817514571456 "GET /api/organization/departments/1/ HTTP/1.1" 200 453
+INFO 2025-07-12 21:23:30,205 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:24:00,235 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:24:13,733 basehttp 194907 137817506178752 "GET /api/organization/departments/1/info/ HTTP/1.1" 200 111
+INFO 2025-07-12 21:24:30,352 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:25:00,363 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:25:30,505 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:25:52,756 basehttp 194907 137817506178752 "GET /api/organization/departments/1/ HTTP/1.1" 200 453
+INFO 2025-07-12 21:26:00,542 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:26:30,571 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:27:00,700 basehttp 194907 137817594263232 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-12 21:29:55,718 basehttp 194907 137817594263232 "OPTIONS /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-12 21:29:55,720 basehttp 194907 137817506178752 "OPTIONS /api/notifications/?page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-12 21:30:38,535 basehttp 194907 137817594263232 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:31:03,665 basehttp 194907 137817594263232 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:32:13,543 basehttp 194907 137817594263232 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:32:46,660 basehttp 194907 137817594263232 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:33:08,264 basehttp 194907 137817594263232 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:33:26,754 basehttp 194907 137817594263232 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+WARNING 2025-07-12 21:33:26,761 log 194907 137817506178752 Not Found: /api/notifications/
+WARNING 2025-07-12 21:33:26,761 basehttp 194907 137817506178752 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+WARNING 2025-07-12 21:33:46,652 log 194907 137817594263232 Not Found: /api/notifications/
+WARNING 2025-07-12 21:33:46,656 basehttp 194907 137817594263232 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:33:46,658 basehttp 194907 137817506178752 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:34:07,006 basehttp 194907 137817594263232 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+WARNING 2025-07-12 21:34:07,008 log 194907 137817506178752 Not Found: /api/notifications/
+WARNING 2025-07-12 21:34:07,008 basehttp 194907 137817506178752 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:34:26,724 basehttp 194907 137817594263232 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:38:55,895 basehttp 194907 137817594263232 "OPTIONS /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-12 21:38:55,895 basehttp 194907 137817506178752 "OPTIONS /api/notifications/?page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-12 21:38:55,908 log 194907 137817506178752 Not Found: /api/notifications/
+WARNING 2025-07-12 21:38:55,910 basehttp 194907 137817506178752 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 21:38:55,915 basehttp 194907 137817594263232 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 192
+INFO 2025-07-12 21:40:52,499 basehttp 194907 137817594263232 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+INFO 2025-07-12 21:40:52,525 basehttp 194907 137817594263232 "POST /api/organization/departments/ HTTP/1.1" 201 314
+INFO 2025-07-12 21:40:52,576 basehttp 194907 137817594263232 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-12 21:48:01,928 basehttp 194907 137817594263232 "OPTIONS /api/organization/labs/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-12 21:48:01,929 log 194907 137817594263232 Unauthorized: /api/organization/labs/
+WARNING 2025-07-12 21:48:01,930 basehttp 194907 137817594263232 "GET /api/organization/labs/?page=1&page_size=10 HTTP/1.1" 401 183
+INFO 2025-07-12 21:48:01,981 basehttp 194907 137817594263232 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-12 21:48:02,025 basehttp 194907 137817594263232 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-12 21:48:02,092 basehttp 194907 137817594263232 "GET /api/organization/labs/?page=1&page_size=10 HTTP/1.1" 200 52
+INFO 2025-07-12 21:49:59,166 autoreload 194907 137817675006080 /home/abdo/ITI/Ageri/organization/serializers.py changed, reloading.
+INFO 2025-07-12 21:49:59,968 autoreload 201248 127095363502208 Watching for file changes with StatReloader
+INFO 2025-07-12 21:52:30,668 basehttp 201248 127095283906240 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-12 21:52:30,673 basehttp 201248 127095283906240 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-12 21:52:30,719 basehttp 201248 127095283906240 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-12 21:54:23,097 basehttp 201248 127095283906240 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-12 21:56:02,711 basehttp 201248 127095283906240 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-12 21:56:02,725 basehttp 201248 127095274464960 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-12 21:56:02,742 basehttp 201248 127095283906240 "GET /api/organization/departments/2/info/ HTTP/1.1" 200 157
+WARNING 2025-07-12 21:56:02,745 log 201248 127095061608128 Unauthorized: /api/organization/assignments/
+WARNING 2025-07-12 21:56:02,745 basehttp 201248 127095061608128 "GET /api/organization/assignments/ HTTP/1.1" 401 58
+INFO 2025-07-12 22:03:24,228 autoreload 201248 127095363502208 /home/abdo/ITI/Ageri/organization/views.py changed, reloading.
+INFO 2025-07-12 22:03:24,907 autoreload 202344 138759995441280 Watching for file changes with StatReloader
+INFO 2025-07-12 22:04:33,933 autoreload 202344 138759995441280 /home/abdo/ITI/Ageri/organization/serializers.py changed, reloading.
+INFO 2025-07-12 22:04:34,437 autoreload 202427 129287390834816 Watching for file changes with StatReloader
+INFO 2025-07-12 22:04:51,289 autoreload 202427 129287390834816 /home/abdo/ITI/Ageri/organization/urls.py changed, reloading.
+INFO 2025-07-12 22:04:51,942 autoreload 202492 123846221979776 Watching for file changes with StatReloader
+INFO 2025-07-12 22:07:01,732 basehttp 202492 123846142195392 "GET /api/organization/labs/ HTTP/1.1" 200 52
+WARNING 2025-07-12 22:07:01,735 log 202492 123846142195392 Unauthorized: /api/organization/assignments/
+WARNING 2025-07-12 22:07:01,735 basehttp 202492 123846142195392 "GET /api/organization/assignments/ HTTP/1.1" 401 58
+WARNING 2025-07-12 22:08:36,684 log 202492 123846132754112 Not Found: /api/notifications/
+WARNING 2025-07-12 22:08:36,685 basehttp 202492 123846132754112 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 22:08:36,695 basehttp 202492 123846142195392 "GET /api/organization/labs/?page=1&page_size=10 HTTP/1.1" 200 52
+WARNING 2025-07-12 22:08:58,162 log 202492 123846142195392 Not Found: /api/notifications/
+WARNING 2025-07-12 22:08:58,162 basehttp 202492 123846142195392 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-12 22:08:58,169 basehttp 202492 123846132754112 "GET /api/organization/labs/?page=1&page_size=10 HTTP/1.1" 200 52
+INFO 2025-07-12 22:09:23,729 basehttp 202492 123846142195392 "GET /api/organization/labs/?page=1&page_size=10 HTTP/1.1" 200 52
+INFO 2025-07-12 22:09:45,459 basehttp 202492 123846132754112 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-12 22:10:13,811 basehttp 202492 123846142195392 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-12 22:10:32,436 basehttp 202492 123846132754112 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-12 22:10:53,945 basehttp 202492 123846142195392 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-12 22:11:12,727 basehttp 202492 123846132754112 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-12 22:11:40,202 basehttp 202492 123846142195392 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-12 22:12:03,799 basehttp 202492 123846132754112 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-12 22:12:26,876 basehttp 202492 123846142195392 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
