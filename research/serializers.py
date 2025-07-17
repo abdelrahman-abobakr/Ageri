@@ -125,7 +125,7 @@ class PublicationCreateUpdateSerializer(serializers.ModelSerializer):
             'conference_name', 'publisher', 'volume', 'issue', 'pages',
             'publication_date', 'doi', 'isbn', 'issn', 'pmid', 'url', 'pdf_url',
             'document_file', 'keywords', 'research_area', 'corresponding_author',
-            'is_public', 'citation_count', 'authors_data'
+            'citation_count', 'authors_data'
         ]
     
     def validate_doi(self, value):
