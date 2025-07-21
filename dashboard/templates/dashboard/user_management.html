@@ -1,0 +1,378 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+
+{% block page_title %}{% trans "User Management" %}{% endblock %}
+{% block page_description %}{% trans "Manage user accounts and approvals" %}{% endblock %}
+
+{% block page_actions %}
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bulkActionsModal">
+    <i class="bi bi-gear me-1"></i>{% trans "Bulk Actions" %}
+</button>
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createUserModal">
+    <i class="bi bi-plus-circle me-1"></i>{% trans "Add User" %}
+</button>
+{% endblock %}
+
+{% block content %}
+<!-- Messages -->
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<!-- Bulk Actions Form -->
+<form method="post" id="bulkActionsForm">
+    {% csrf_token %}
+    <input type="hidden" name="action" id="bulkAction">
+
+<!-- Filters -->
+<div class="col-12">
+    <div class="filter-bar">
+        <form method="get" class="row g-3">
+            <div class="col-md-3">
+                <label for="status" class="form-label">{% trans "Status" %}</label>
+                <select name="status" id="status" class="form-select">
+                    <option value="all" {% if status_filter == 'all' %}selected{% endif %}>{% trans "All Users" %}</option>
+                    <option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>{% trans "Pending Approval" %}</option>
+                    <option value="approved" {% if status_filter == 'approved' %}selected{% endif %}>{% trans "Approved" %}</option>
+                    <option value="active" {% if status_filter == 'active' %}selected{% endif %}>{% trans "Active" %}</option>
+                    <option value="inactive" {% if status_filter == 'inactive' %}selected{% endif %}>{% trans "Inactive" %}</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="role" class="form-label">{% trans "Role" %}</label>
+                <select name="role" id="role" class="form-select">
+                    <option value="all" {% if role_filter == 'all' %}selected{% endif %}>{% trans "All Roles" %}</option>
+                    <option value="admin" {% if role_filter == 'admin' %}selected{% endif %}>{% trans "Admin" %}</option>
+                    <option value="moderator" {% if role_filter == 'moderator' %}selected{% endif %}>{% trans "Moderator" %}</option>
+                    <option value="researcher" {% if role_filter == 'researcher' %}selected{% endif %}>{% trans "Researcher" %}</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="search" class="form-label">{% trans "Search" %}</label>
+                <input type="text" name="search" id="search" class="form-control"
+                       placeholder="{% trans 'Search by name, email, username...' %}" value="{{ search_query }}">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">&nbsp;</label>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search me-1"></i>{% trans "Filter" %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Results Summary -->
+<div class="col-12 mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">
+            {% blocktrans count counter=total_users %}
+                {{ counter }} user found
+            {% plural %}
+                {{ counter }} users found
+            {% endblocktrans %}
+        </h5>
+        {% if search_query or status_filter != 'all' or role_filter != 'all' %}
+            <a href="{% url 'dashboard:user_management' %}" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-x-circle me-1"></i>{% trans "Clear Filters" %}
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Users Table -->
+<div class="col-12">
+    <div class="card">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="selectAll" class="form-check-input">
+                            </th>
+                            <th>{% trans "User" %}</th>
+                            <th>{% trans "Role" %}</th>
+                            <th>{% trans "Status" %}</th>
+                            <th>{% trans "Joined" %}</th>
+                            <th>{% trans "Institution" %}</th>
+                            <th>{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in page_obj %}
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="user_ids" value="{{ user.id }}" class="form-check-input user-checkbox">
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-circle me-3">
+                                            {{ user.first_name.0|default:user.username.0|upper }}
+                                        </div>
+                                        <div>
+                                            <div class="fw-semibold">
+                                                {{ user.get_full_name|default:user.username }}
+                                            </div>
+                                            <small class="text-muted">{{ user.email }}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary">{{ user.get_role_display }}</span>
+                                </td>
+                                <td>
+                                    {% if user.is_approved %}
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle me-1"></i>Approved
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-warning">
+                                            <i class="bi bi-clock me-1"></i>Pending
+                                        </span>
+                                    {% endif %}
+                                    {% if not user.is_active %}
+                                        <span class="badge bg-danger ms-1">Inactive</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span title="{{ user.date_joined }}">
+                                        {{ user.date_joined|timesince }} ago
+                                    </span>
+                                </td>
+                                <td>
+                                    <small class="text-muted">{{ user.institution|default:"Not specified" }}</small>
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a href="/admin/accounts/user/{{ user.id }}/change/" 
+                                           class="btn btn-outline-primary" title="Edit">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        {% if not user.is_approved %}
+                                            <button type="button" class="btn btn-outline-success approve-user" 
+                                                    data-user-id="{{ user.id }}" data-user-email="{{ user.email }}" title="Approve">
+                                                <i class="bi bi-check"></i>
+                                            </button>
+                                        {% else %}
+                                            <button type="button" class="btn btn-outline-warning reject-user" 
+                                                    data-user-id="{{ user.id }}" data-user-email="{{ user.email }}" title="Revoke Approval">
+                                                <i class="bi bi-x"></i>
+                                            </button>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center py-4">
+                                    <i class="bi bi-people text-muted" style="font-size: 3rem;"></i>
+                                    <p class="text-muted mt-2 mb-0">No users found matching your criteria.</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pagination -->
+{% if page_obj.has_other_pages %}
+<div class="col-12 mt-4">
+    <nav aria-label="User pagination">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter != 'all' %}&status={{ status_filter }}{% endif %}{% if role_filter != 'all' %}&role={{ role_filter }}{% endif %}">
+                        <i class="bi bi-chevron-double-left"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter != 'all' %}&status={{ status_filter }}{% endif %}{% if role_filter != 'all' %}&role={{ role_filter }}{% endif %}">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+            {% endif %}
+            
+            <li class="page-item active">
+                <span class="page-link">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            </li>
+            
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter != 'all' %}&status={{ status_filter }}{% endif %}{% if role_filter != 'all' %}&role={{ role_filter }}{% endif %}">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}{% if status_filter != 'all' %}&status={{ status_filter }}{% endif %}{% if role_filter != 'all' %}&role={{ role_filter }}{% endif %}">
+                        <i class="bi bi-chevron-double-right"></i>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Approve user
+    $('.approve-user').click(function() {
+        const userId = $(this).data('user-id');
+        const userEmail = $(this).data('user-email');
+        
+        if (confirm(`Are you sure you want to approve ${userEmail}?`)) {
+            $.post(`/dashboard/users/${userId}/approve/`, {
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            })
+            .done(function() {
+                location.reload();
+            })
+            .fail(function() {
+                alert('Error approving user. Please try again.');
+            });
+        }
+    });
+    
+    // Reject user
+    $('.reject-user').click(function() {
+        const userId = $(this).data('user-id');
+        const userEmail = $(this).data('user-email');
+        
+        if (confirm(`Are you sure you want to revoke approval for ${userEmail}?`)) {
+            $.post(`/dashboard/users/${userId}/reject/`, {
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            })
+            .done(function() {
+                location.reload();
+            })
+            .fail(function() {
+                alert('Error revoking user approval. Please try again.');
+            });
+        }
+    });
+});
+
+// Bulk actions functionality
+document.getElementById('selectAll').addEventListener('change', function() {
+    const checkboxes = document.querySelectorAll('.user-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = this.checked;
+    });
+});
+
+function performBulkAction(action, newRole = null) {
+    const selectedUsers = document.querySelectorAll('.user-checkbox:checked');
+    if (selectedUsers.length === 0) {
+        alert('Please select at least one user.');
+        return;
+    }
+
+    document.getElementById('bulkAction').value = action;
+    if (newRole) {
+        const roleInput = document.createElement('input');
+        roleInput.type = 'hidden';
+        roleInput.name = 'new_role';
+        roleInput.value = newRole;
+        document.getElementById('bulkActionsForm').appendChild(roleInput);
+    }
+
+    if (confirm(`Are you sure you want to ${action.replace('_', ' ')} ${selectedUsers.length} user(s)?`)) {
+        document.getElementById('bulkActionsForm').submit();
+    }
+}
+</script>
+
+</form>
+
+<!-- Bulk Actions Modal -->
+<div class="modal fade" id="bulkActionsModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Bulk Actions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-2">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-success w-100" onclick="performBulkAction('approve_users')">
+                            <i class="bi bi-check-circle me-1"></i>Approve
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-warning w-100" onclick="performBulkAction('reject_users')">
+                            <i class="bi bi-x-circle me-1"></i>Reject
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-info w-100" onclick="performBulkAction('activate_users')">
+                            <i class="bi bi-toggle-on me-1"></i>Activate
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-secondary w-100" onclick="performBulkAction('deactivate_users')">
+                            <i class="bi bi-toggle-off me-1"></i>Deactivate
+                        </button>
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                        <h6>Change Role:</h6>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-outline-primary w-100" onclick="performBulkAction('change_role', 'researcher')">
+                            Researcher
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-outline-primary w-100" onclick="performBulkAction('change_role', 'moderator')">
+                            Moderator
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button type="button" class="btn btn-outline-primary w-100" onclick="performBulkAction('change_role', 'admin')">
+                            Admin
+                        </button>
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                        <button type="button" class="btn btn-danger w-100" onclick="performBulkAction('delete_users')">
+                            <i class="bi bi-trash me-1"></i>Delete Users
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

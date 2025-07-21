@@ -1,0 +1,294 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Analytics Dashboard - Ageri Research Platform{% endblock %}
+
+{% block extra_css %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-0">Analytics Dashboard</h1>
+            <p class="text-muted">Comprehensive platform analytics and insights</p>
+        </div>
+        <div class="btn-group" role="group">
+            <input type="radio" class="btn-check" name="period" id="period7" value="7" {% if period == '7' %}checked{% endif %}>
+            <label class="btn btn-outline-primary" for="period7">7 Days</label>
+            
+            <input type="radio" class="btn-check" name="period" id="period30" value="30" {% if period == '30' %}checked{% endif %}>
+            <label class="btn btn-outline-primary" for="period30">30 Days</label>
+            
+            <input type="radio" class="btn-check" name="period" id="period90" value="90" {% if period == '90' %}checked{% endif %}>
+            <label class="btn btn-outline-primary" for="period90">90 Days</label>
+        </div>
+    </div>
+
+    <!-- Key Metrics Row -->
+    <div class="row mb-4">
+        <!-- User Metrics -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Users</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ user_stats.total_users }}</div>
+                            <div class="text-xs text-success">
+                                <i class="bi bi-arrow-up"></i> {{ user_stats.new_users }} new this period
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-people fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Publications Metrics -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Publications</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ content_stats.total_publications }}</div>
+                            <div class="text-xs text-success">
+                                <i class="bi bi-arrow-up"></i> {{ content_stats.new_publications }} new this period
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-journal-text fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Training Metrics -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Course Enrollments</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ training_stats.total_enrollments }}</div>
+                            <div class="text-xs text-info">
+                                {{ training_stats.active_courses }} active courses
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-book fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue Metrics -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Service Revenue</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{ service_stats.revenue|floatformat:0 }}</div>
+                            <div class="text-xs text-warning">
+                                {{ service_stats.completed_requests }} completed requests
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-currency-dollar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row mb-4">
+        <!-- Activity Chart -->
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Daily Activity Overview</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="activityChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Distribution -->
+        <div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">User Status Distribution</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                        <canvas id="userStatusChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-center small">
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-primary"></i> Active
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-warning"></i> Pending
+                        </span>
+                        <span class="mr-2">
+                            <i class="fas fa-circle text-danger"></i> Inactive
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Statistics -->
+    <div class="row">
+        <!-- Pending Approvals -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Pending Approvals</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center">
+                                <div class="h4 font-weight-bold text-warning">{{ user_stats.pending_approvals }}</div>
+                                <div class="text-xs text-uppercase">User Registrations</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <div class="h4 font-weight-bold text-info">{{ content_stats.pending_publications }}</div>
+                                <div class="text-xs text-uppercase">Publications</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center">
+                                <div class="h4 font-weight-bold text-primary">{{ service_stats.pending_requests }}</div>
+                                <div class="text-xs text-uppercase">Service Requests</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <div class="h4 font-weight-bold text-success">{{ content_stats.new_announcements }}</div>
+                                <div class="text-xs text-uppercase">New Announcements</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Quick Actions</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <a href="{% url 'dashboard:users' %}?status=pending" class="btn btn-warning btn-block">
+                                <i class="bi bi-person-check me-1"></i>Review Users
+                            </a>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <a href="{% url 'dashboard:publications' %}?status=pending" class="btn btn-info btn-block">
+                                <i class="bi bi-journal-check me-1"></i>Review Publications
+                            </a>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <a href="{% url 'dashboard:service_requests' %}?status=pending" class="btn btn-primary btn-block">
+                                <i class="bi bi-gear-fill me-1"></i>Service Requests
+                            </a>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <a href="{% url 'dashboard:content_management' %}" class="btn btn-success btn-block">
+                                <i class="bi bi-megaphone me-1"></i>Manage Content
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Activity Chart
+const activityCtx = document.getElementById('activityChart').getContext('2d');
+const activityChart = new Chart(activityCtx, {
+    type: 'line',
+    data: {
+        labels: [{% for day in daily_activity %}'{{ day.date }}'{% if not forloop.last %},{% endif %}{% endfor %}],
+        datasets: [{
+            label: 'New Users',
+            data: [{% for day in daily_activity %}{{ day.users }}{% if not forloop.last %},{% endif %}{% endfor %}],
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }, {
+            label: 'Publications',
+            data: [{% for day in daily_activity %}{{ day.publications }}{% if not forloop.last %},{% endif %}{% endfor %}],
+            borderColor: 'rgb(255, 99, 132)',
+            tension: 0.1
+        }, {
+            label: 'Service Requests',
+            data: [{% for day in daily_activity %}{{ day.service_requests }}{% if not forloop.last %},{% endif %}{% endfor %}],
+            borderColor: 'rgb(54, 162, 235)',
+            tension: 0.1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+// User Status Pie Chart
+const userStatusCtx = document.getElementById('userStatusChart').getContext('2d');
+const userStatusChart = new Chart(userStatusCtx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Active', 'Pending', 'Inactive'],
+        datasets: [{
+            data: [
+                {{ user_stats.active_users }},
+                {{ user_stats.pending_approvals }},
+                {{ user_stats.total_users|add:"-"|add:user_stats.active_users|add:"-"|add:user_stats.pending_approvals }}
+            ],
+            backgroundColor: ['#1cc88a', '#f6c23e', '#e74a3b']
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+// Period filter change
+document.querySelectorAll('input[name="period"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        window.location.href = `?period=${this.value}`;
+    });
+});
+</script>
+{% endblock %}

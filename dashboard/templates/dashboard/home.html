@@ -1,0 +1,279 @@
+{% extends 'dashboard/base.html' %}
+{% load i18n %}
+
+{% block page_title %}{% trans "Dashboard Overview" %}{% endblock %}
+{% block page_description %}{% trans "System overview and key metrics" %}{% endblock %}
+
+{% block content %}
+<!-- Organization Info Section -->
+{% if org_settings %}
+<div class="col-12 mb-4">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h4 class="card-title text-primary mb-2">{{ org_settings.name }}</h4>
+                    {% if org_settings.vision %}
+                        <p class="text-muted mb-2"><strong>{% trans "Vision" %}:</strong> {{ org_settings.vision }}</p>
+                    {% endif %}
+                    {% if org_settings.mission %}
+                        <p class="text-muted mb-0"><strong>{% trans "Mission" %}:</strong> {{ org_settings.mission }}</p>
+                    {% endif %}
+                </div>
+                <div class="col-md-4 text-end">
+                    {% if org_settings.logo %}
+                        <img src="{{ org_settings.logo.url }}" alt="Organization Logo" class="img-fluid" style="max-height: 80px;">
+                    {% endif %}
+                    <div class="mt-2">
+                        <a href="{% url 'dashboard:organization_settings' %}" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-gear me-1"></i>{% trans "Edit Settings" %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- Statistics Cards -->
+<div class="col-12 mb-4">
+    <div class="row g-3">
+        <div class="col-xl-3 col-md-6">
+            <div class="stat-card position-relative">
+                <div class="stat-number">{{ stats.total_users }}</div>
+                <div class="stat-label">{% trans "Total Users" %}</div>
+                <i class="bi bi-people stat-icon"></i>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="stat-card warning position-relative">
+                <div class="stat-number">{{ stats.pending_users }}</div>
+                <div class="stat-label">{% trans "Pending Approvals" %}</div>
+                <i class="bi bi-clock stat-icon"></i>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="stat-card success position-relative">
+                <div class="stat-number">{{ stats.total_publications }}</div>
+                <div class="stat-label">{% trans "Publications" %}</div>
+                <i class="bi bi-journal-text stat-icon"></i>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="stat-card info position-relative">
+                <div class="stat-number">{{ stats.active_service_requests }}</div>
+                <div class="stat-label">{% trans "Active Requests" %}</div>
+                <i class="bi bi-gear stat-icon"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Secondary Stats -->
+<div class="col-12 mb-4">
+    <div class="row g-3">
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-building text-primary" style="font-size: 2rem;"></i>
+                    <h4 class="mt-2 mb-1">{{ stats.total_departments }}</h4>
+                    <p class="text-muted mb-0">{% trans "Departments" %}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-flask text-success" style="font-size: 2rem;"></i>
+                    <h4 class="mt-2 mb-1">{{ stats.total_labs }}</h4>
+                    <p class="text-muted mb-0">{% trans "Laboratories" %}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-book text-info" style="font-size: 2rem;"></i>
+                    <h4 class="mt-2 mb-1">{{ stats.total_courses }}</h4>
+                    <p class="text-muted mb-0">{% trans "Courses" %}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-megaphone text-warning" style="font-size: 2rem;"></i>
+                    <h4 class="mt-2 mb-1">{{ stats.total_announcements }}</h4>
+                    <p class="text-muted mb-0">{% trans "Announcements" %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts and Recent Activity -->
+<div class="col-lg-8 mb-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-graph-up me-2"></i>User Registrations (Last 6 Months)
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="chart-container">
+                <canvas id="userRegistrationChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-4 mb-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-activity me-2"></i>Recent Activity
+            </h5>
+        </div>
+        <div class="card-body">
+            <!-- Pending Users -->
+            {% if recent_users %}
+                <h6 class="text-muted mb-2">Pending User Approvals</h6>
+                {% for user in recent_users %}
+                    <div class="activity-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <strong>{{ user.get_full_name|default:user.username }}</strong>
+                                <br>
+                                <small class="text-muted">{{ user.email }}</small>
+                            </div>
+                            <span class="badge bg-warning">Pending</span>
+                        </div>
+                        <div class="activity-time mt-1">
+                            {{ user.date_joined|timesince }} ago
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="text-center mt-3">
+                    <a href="{% url 'dashboard:user_management' %}?status=pending" class="btn btn-sm btn-outline-primary">
+                        View All Pending Users
+                    </a>
+                </div>
+            {% else %}
+                <p class="text-muted text-center">No pending user approvals</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Recent Publications and Service Requests -->
+<div class="col-lg-6 mb-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-journal-text me-2"></i>Recent Publications
+            </h5>
+        </div>
+        <div class="card-body">
+            {% if recent_publications %}
+                {% for publication in recent_publications %}
+                    <div class="activity-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <strong>{{ publication.title|truncatechars:50 }}</strong>
+                                <br>
+                                <small class="text-muted">by {{ publication.corresponding_author.get_full_name }}</small>
+                            </div>
+                            <span class="badge bg-info">{{ publication.get_status_display }}</span>
+                        </div>
+                        <div class="activity-time mt-1">
+                            {{ publication.created_at|timesince }} ago
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="text-center mt-3">
+                    <a href="{% url 'dashboard:publication_management' %}" class="btn btn-sm btn-outline-primary">
+                        View All Publications
+                    </a>
+                </div>
+            {% else %}
+                <p class="text-muted text-center">No recent publications</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-6 mb-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="bi bi-gear me-2"></i>Recent Service Requests
+            </h5>
+        </div>
+        <div class="card-body">
+            {% if recent_service_requests %}
+                {% for request in recent_service_requests %}
+                    <div class="activity-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <strong>{{ request.title|truncatechars:40 }}</strong>
+                                <br>
+                                <small class="text-muted">{{ request.service.name }}</small>
+                            </div>
+                            <span class="badge bg-warning">{{ request.get_status_display }}</span>
+                        </div>
+                        <div class="activity-time mt-1">
+                            {{ request.created_at|timesince }} ago
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="text-center mt-3">
+                    <a href="{% url 'dashboard:service_requests' %}" class="btn btn-sm btn-outline-primary">
+                        View All Requests
+                    </a>
+                </div>
+            {% else %}
+                <p class="text-muted text-center">No recent service requests</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// User Registration Chart
+const ctx = document.getElementById('userRegistrationChart').getContext('2d');
+const userRegistrationChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [{% for month in monthly_users %}'{{ month.month }}'{% if not forloop.last %},{% endif %}{% endfor %}],
+        datasets: [{
+            label: 'New Users',
+            data: [{% for month in monthly_users %}{{ month.count }}{% if not forloop.last %},{% endif %}{% endfor %}],
+            borderColor: '#0d6efd',
+            backgroundColor: 'rgba(13, 110, 253, 0.1)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1
+                }
+            }
+        }
+    }
+});
+</script>
+{% endblock %}
