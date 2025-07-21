@@ -13891,3 +13891,966 @@ INFO 2025-07-17 07:15:07,550 basehttp 118273 137339003193024 "GET /api/docs/ HTT
 INFO 2025-07-17 07:15:13,532 basehttp 118273 137338994800320 "GET /api/schema/ HTTP/1.1" 200 664502
 INFO 2025-07-17 07:23:01,415 autoreload 118273 137339344408704 /home/abdo/ITI/Ageri/research/serializers.py changed, reloading.
 INFO 2025-07-17 07:23:06,991 autoreload 121579 137795062460544 Watching for file changes with StatReloader
+INFO 2025-07-17 07:46:27,425 autoreload 11254 134657394442368 Watching for file changes with StatReloader
+INFO 2025-07-17 07:46:42,196 basehttp 11254 134657313076928 "OPTIONS /api/notifications/?page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-17 07:46:42,253 log 11254 134657313076928 Not Found: /api/notifications/
+WARNING 2025-07-17 07:46:42,256 basehttp 11254 134657313076928 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+WARNING 2025-07-17 07:48:20,617 log 11254 134657313076928 Not Found: /api/notifications/
+WARNING 2025-07-17 07:48:20,619 basehttp 11254 134657313076928 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+WARNING 2025-07-17 07:49:36,700 log 11254 134657313076928 Not Found: /api/notifications/
+WARNING 2025-07-17 07:49:36,701 basehttp 11254 134657313076928 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-17 07:51:09,744 basehttp 11254 134657313076928 "OPTIONS /api/research/publications/?submitted_by=3 HTTP/1.1" 200 0
+INFO 2025-07-17 07:51:09,885 basehttp 11254 134657313076928 "GET /api/research/publications/?submitted_by=3 HTTP/1.1" 200 52
+WARNING 2025-07-17 08:20:19,662 log 11254 134657313076928 Unauthorized: /api/research/publications/
+WARNING 2025-07-17 08:20:19,678 basehttp 11254 134657313076928 "GET /api/research/publications/?submitted_by=3 HTTP/1.1" 401 183
+WARNING 2025-07-17 08:20:19,691 log 11254 134657303635648 Not Found: /api/notifications/
+WARNING 2025-07-17 08:20:19,692 basehttp 11254 134657303635648 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-17 08:20:19,970 basehttp 11254 134657303635648 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-17 08:20:19,988 basehttp 11254 134657303635648 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-17 08:20:20,146 basehttp 11254 134657303635648 "GET /api/research/publications/?submitted_by=3 HTTP/1.1" 200 52
+INFO 2025-07-17 08:30:15,445 basehttp 11254 134657303635648 "GET /api/research/publications/?submitted_by=3 HTTP/1.1" 200 52
+INFO 2025-07-17 23:01:32,401 autoreload 77258 126564822032512 Watching for file changes with StatReloader
+INFO 2025-07-17 23:01:57,242 basehttp 77258 126564675090112 "GET /api/docs/ HTTP/1.1" 200 4487
+INFO 2025-07-17 23:02:07,929 basehttp 77258 126564675090112 "GET /api/schema/ HTTP/1.1" 200 664148
+INFO 2025-07-18 11:34:15,252 autoreload 11106 137081481031808 Watching for file changes with StatReloader
+INFO 2025-07-18 11:35:20,218 basehttp 11106 137081330333376 "OPTIONS /api/research/publications/?submitted_by=3 HTTP/1.1" 200 0
+INFO 2025-07-18 11:35:20,221 basehttp 11106 137081321940672 "OPTIONS /api/notifications/?page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-18 11:40:13,579 basehttp 11106 137081330333376 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-18 11:40:13,583 basehttp 11106 137081330333376 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+WARNING 2025-07-18 11:40:13,682 log 11106 137081330333376 Unauthorized: /api/organization/departments/
+WARNING 2025-07-18 11:40:13,684 basehttp 11106 137081330333376 "GET /api/organization/departments/ HTTP/1.1" 401 183
+WARNING 2025-07-18 11:40:14,080 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+INFO 2025-07-18 11:40:14,108 basehttp 11106 137081313547968 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+WARNING 2025-07-18 11:40:14,119 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-18 11:40:14,163 log 11106 137081330333376 Unauthorized: /api/auth/token/refresh/
+WARNING 2025-07-18 11:40:14,169 basehttp 11106 137081330333376 "POST /api/auth/token/refresh/ HTTP/1.1" 401 65
+INFO 2025-07-18 11:40:14,216 basehttp 11106 137081321940672 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-18 11:40:25,280 basehttp 11106 137081330333376 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-18 11:40:25,492 basehttp 11106 137081330333376 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 11:40:25,607 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:40:25,619 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 11:40:25,632 basehttp 11106 137081321940672 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 11:40:25,900 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:40:25,901 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 11:46:05,550 basehttp 11106 137081330333376 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-18 11:46:05,619 basehttp 11106 137081330333376 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 11:46:05,864 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:46:05,878 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 11:46:05,920 basehttp 11106 137081321940672 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 11:46:06,456 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:46:06,458 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-18 11:46:16,744 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 11:46:16,745 basehttp 11106 137081330333376 "GET /api/training/courses/?page=1&page_size=12&status=published HTTP/1.1" 404 3768
+INFO 2025-07-18 11:46:17,632 basehttp 11106 137081330333376 "GET /api/organization/settings/ HTTP/1.1" 200 668
+WARNING 2025-07-18 11:46:17,651 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:46:17,664 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 11:46:17,684 basehttp 11106 137081321940672 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 11:46:17,873 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:46:17,875 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-18 11:47:02,406 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:47:02,408 basehttp 11106 137081330333376 "GET /api/content/announcements/?page=1&page_size=10&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-18 11:47:02,461 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:47:02,462 basehttp 11106 137081330333376 "GET /api/content/announcements/?page=1&page_size=10&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 11:47:38,531 basehttp 11106 137081330333376 "GET /api/organization/settings/ HTTP/1.1" 200 668
+WARNING 2025-07-18 11:47:38,570 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:47:38,573 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 11:47:38,676 basehttp 11106 137081321940672 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 11:47:38,895 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:47:38,898 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-18 11:47:51,979 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 11:47:51,980 basehttp 11106 137081330333376 "GET /api/training/courses/?page=1&page_size=12&status=published HTTP/1.1" 404 3768
+INFO 2025-07-18 11:47:53,250 basehttp 11106 137081330333376 "GET /api/organization/settings/ HTTP/1.1" 200 668
+WARNING 2025-07-18 11:47:53,351 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:47:53,365 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 11:47:53,515 basehttp 11106 137081321940672 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 11:47:53,581 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:47:53,583 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-18 11:47:54,719 log 11106 137081330333376 Unauthorized: /api/services/test-services/
+WARNING 2025-07-18 11:47:54,722 basehttp 11106 137081330333376 "GET /api/services/test-services/?page=1&page_size=12 HTTP/1.1" 401 58
+INFO 2025-07-18 11:47:56,672 basehttp 11106 137081330333376 "GET /api/organization/settings/ HTTP/1.1" 200 668
+WARNING 2025-07-18 11:47:56,752 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:47:56,761 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 11:47:56,810 basehttp 11106 137081321940672 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 11:47:57,087 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 11:47:57,090 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-18 11:47:58,691 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 11:47:58,692 basehttp 11106 137081330333376 "GET /api/training/courses/?page=1&page_size=12&status=published HTTP/1.1" 404 3768
+INFO 2025-07-18 12:03:26,737 basehttp 11106 137081330333376 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:03:28,807 basehttp 11106 137081330333376 "POST /api/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-07-18 12:03:29,438 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:03:29,442 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:03:29,549 basehttp 11106 137081330333376 "OPTIONS /api/research/publications/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:03:29,567 basehttp 11106 137081313547968 "OPTIONS /api/services/my-requests/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:03:29,573 basehttp 11106 137081321940672 "OPTIONS /api/training/my-enrollments/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:03:29,629 basehttp 11106 137081296762560 "OPTIONS /api/auth/users/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:03:29,630 basehttp 11106 137081321940672 "OPTIONS /api/training/courses/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:03:29,659 basehttp 11106 137081288369856 "OPTIONS /api/content/announcements/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:03:29,708 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:03:29,759 log 11106 137081330333376 Forbidden: /api/auth/users/
+WARNING 2025-07-18 12:03:29,762 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 403 63
+INFO 2025-07-18 12:03:29,763 basehttp 11106 137081305155264 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:03:29,796 log 11106 137081321940672 Not Found: /api/notifications/
+WARNING 2025-07-18 12:03:29,809 log 11106 137081288369856 Not Found: /api/training/my-enrollments/
+WARNING 2025-07-18 12:03:29,811 basehttp 11106 137081321940672 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+WARNING 2025-07-18 12:03:29,832 basehttp 11106 137081288369856 "GET /api/training/my-enrollments/ HTTP/1.1" 404 3744
+WARNING 2025-07-18 12:03:29,833 log 11106 137081313547968 Not Found: /api/services/my-requests/
+INFO 2025-07-18 12:03:29,870 basehttp 11106 137081321940672 "OPTIONS /api/services/requests/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:03:29,872 basehttp 11106 137081288369856 "OPTIONS /api/organization/labs/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:03:29,883 basehttp 11106 137081296762560 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:03:29,884 basehttp 11106 137081313547968 "GET /api/services/my-requests/ HTTP/1.1" 404 15086
+INFO 2025-07-18 12:03:29,904 basehttp 11106 137081288369856 "OPTIONS /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 0
+WARNING 2025-07-18 12:03:29,913 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:03:29,949 basehttp 11106 137081330333376 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:03:30,053 basehttp 11106 137081321940672 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:03:30,073 basehttp 11106 137081313547968 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:03:30,073 basehttp 11106 137081305155264 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:03:30,133 basehttp 11106 137081288369856 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-18 12:03:36,749 basehttp 11106 137081313547968 "GET /api/research/publications/?submitted_by=3 HTTP/1.1" 200 52
+INFO 2025-07-18 12:03:39,846 basehttp 11106 137081313547968 "OPTIONS /api/research/publications/?author=3&page_size=50 HTTP/1.1" 200 0
+INFO 2025-07-18 12:03:39,885 basehttp 11106 137081313547968 "GET /api/research/publications/?author=3&page_size=50 HTTP/1.1" 200 52
+INFO 2025-07-18 12:04:13,467 basehttp 11106 137081313547968 "OPTIONS /api/auth/users/me/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:04:13,520 basehttp 11106 137081313547968 "PUT /api/auth/users/me/ HTTP/1.1" 200 489
+INFO 2025-07-18 12:04:13,988 basehttp 11106 137081313547968 "GET /api/research/publications/?author=3&page_size=50 HTTP/1.1" 200 52
+WARNING 2025-07-18 12:04:13,996 log 11106 137081288369856 Not Found: /api/notifications/
+WARNING 2025-07-18 12:04:13,998 basehttp 11106 137081288369856 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+WARNING 2025-07-18 12:04:20,245 log 11106 137081313547968 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:04:20,246 basehttp 11106 137081313547968 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:04:20,440 basehttp 11106 137081313547968 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:04:20,449 log 11106 137081288369856 Not Found: /api/training/my-enrollments/
+WARNING 2025-07-18 12:04:20,463 log 11106 137081305155264 Forbidden: /api/auth/users/
+WARNING 2025-07-18 12:04:20,466 basehttp 11106 137081288369856 "GET /api/training/my-enrollments/ HTTP/1.1" 404 3744
+WARNING 2025-07-18 12:04:20,489 basehttp 11106 137081305155264 "GET /api/auth/users/ HTTP/1.1" 403 63
+WARNING 2025-07-18 12:04:20,543 log 11106 137081330333376 Not Found: /api/services/my-requests/
+WARNING 2025-07-18 12:04:20,600 basehttp 11106 137081330333376 "GET /api/services/my-requests/ HTTP/1.1" 404 15086
+INFO 2025-07-18 12:04:20,717 basehttp 11106 137081305155264 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:04:20,731 basehttp 11106 137081321940672 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:04:20,737 log 11106 137081313547968 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:04:20,742 basehttp 11106 137081313547968 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:04:20,746 basehttp 11106 137081330333376 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:04:20,771 log 11106 137081288369856 Not Found: /api/notifications/
+WARNING 2025-07-18 12:04:20,821 basehttp 11106 137081288369856 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 12:04:20,823 basehttp 11106 137081321940672 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:04:20,929 basehttp 11106 137081305155264 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-18 12:04:20,933 basehttp 11106 137081296762560 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:04:33,202 basehttp 11106 137081313547968 "GET /api/research/publications/?author=3&page_size=50 HTTP/1.1" 200 52
+INFO 2025-07-18 12:06:06,694 basehttp 11106 137081330333376 "GET /api/research/publications/?submitted_by=3 HTTP/1.1" 200 52
+WARNING 2025-07-18 12:07:10,006 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:07:10,007 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:07:10,092 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:07:10,168 log 11106 137081313547968 Not Found: /api/training/my-enrollments/
+WARNING 2025-07-18 12:07:10,191 basehttp 11106 137081313547968 "GET /api/training/my-enrollments/ HTTP/1.1" 404 3744
+WARNING 2025-07-18 12:07:10,207 log 11106 137081296762560 Not Found: /api/services/my-requests/
+WARNING 2025-07-18 12:07:10,234 log 11106 137081305155264 Forbidden: /api/auth/users/
+WARNING 2025-07-18 12:07:10,255 basehttp 11106 137081305155264 "GET /api/auth/users/ HTTP/1.1" 403 63
+WARNING 2025-07-18 12:07:10,263 basehttp 11106 137081296762560 "GET /api/services/my-requests/ HTTP/1.1" 404 15086
+INFO 2025-07-18 12:07:10,300 basehttp 11106 137081288369856 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:07:10,312 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:07:10,337 basehttp 11106 137081330333376 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:07:10,432 basehttp 11106 137081305155264 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:07:10,497 basehttp 11106 137081313547968 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:07:10,524 basehttp 11106 137081296762560 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:07:10,581 basehttp 11106 137081321940672 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:07:10,589 basehttp 11106 137081288369856 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-18 12:07:11,671 basehttp 11106 137081330333376 "GET /api/research/publications/?submitted_by=3 HTTP/1.1" 200 52
+INFO 2025-07-18 12:07:12,903 basehttp 11106 137081296762560 "GET /api/research/publications/?author=3&page_size=50 HTTP/1.1" 200 52
+WARNING 2025-07-18 12:07:42,411 log 11106 137081330333376 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:07:42,413 basehttp 11106 137081330333376 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-18 12:07:42,519 log 11106 137081321940672 Forbidden: /api/auth/users/
+WARNING 2025-07-18 12:07:42,557 basehttp 11106 137081321940672 "GET /api/auth/users/ HTTP/1.1" 403 63
+WARNING 2025-07-18 12:07:42,661 log 11106 137081313547968 Not Found: /api/services/my-requests/
+WARNING 2025-07-18 12:07:42,679 basehttp 11106 137081313547968 "GET /api/services/my-requests/ HTTP/1.1" 404 15086
+INFO 2025-07-18 12:07:42,691 basehttp 11106 137081296762560 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:07:42,708 log 11106 137081305155264 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:07:42,759 log 11106 137081330333376 Not Found: /api/training/my-enrollments/
+INFO 2025-07-18 12:07:42,781 basehttp 11106 137081321940672 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:07:42,783 basehttp 11106 137081313547968 "GET /api/services/requests/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:07:42,795 basehttp 11106 137081305155264 "GET /api/training/courses/ HTTP/1.1" 404 3723
+WARNING 2025-07-18 12:07:42,839 basehttp 11106 137081330333376 "GET /api/training/my-enrollments/ HTTP/1.1" 404 3744
+INFO 2025-07-18 12:07:42,863 basehttp 11106 137081305155264 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:07:42,929 basehttp 11106 137081288369856 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:07:42,930 basehttp 11106 137081296762560 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:07:43,001 basehttp 11106 137081313547968 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+WARNING 2025-07-18 12:08:13,390 log 11106 137081330333376 Forbidden: /api/auth/users/
+WARNING 2025-07-18 12:08:13,391 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 403 63
+WARNING 2025-07-18 12:08:13,603 log 11106 137081313547968 Not Found: /api/training/courses/
+INFO 2025-07-18 12:08:13,607 basehttp 11106 137081288369856 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:08:13,644 basehttp 11106 137081321940672 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:08:13,644 basehttp 11106 137081313547968 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:08:13,670 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:08:13,686 basehttp 11106 137081305155264 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:08:13,715 basehttp 11106 137081296762560 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+WARNING 2025-07-18 12:08:43,591 log 11106 137081313547968 Forbidden: /api/auth/users/
+WARNING 2025-07-18 12:08:43,641 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 403 63
+INFO 2025-07-18 12:08:43,771 basehttp 11106 137081288369856 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:08:43,819 basehttp 11106 137081313547968 "GET /api/organization/labs/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:08:43,839 log 11106 137081296762560 Not Found: /api/training/courses/
+INFO 2025-07-18 12:08:43,849 basehttp 11106 137081305155264 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:08:43,861 basehttp 11106 137081296762560 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:08:43,874 basehttp 11106 137081321940672 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:08:43,887 basehttp 11106 137081330333376 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+WARNING 2025-07-18 12:09:13,604 log 11106 137081313547968 Forbidden: /api/auth/users/
+WARNING 2025-07-18 12:09:13,682 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 403 63
+INFO 2025-07-18 12:09:13,757 basehttp 11106 137081305155264 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:09:13,760 basehttp 11106 137081313547968 "GET /api/organization/labs/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:09:13,776 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:09:13,778 basehttp 11106 137081330333376 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:09:13,825 basehttp 11106 137081288369856 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:09:13,848 basehttp 11106 137081321940672 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:09:13,858 basehttp 11106 137081296762560 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:09:33,112 basehttp 11106 137081330333376 "GET /api/research/publications/?submitted_by=3 HTTP/1.1" 200 52
+INFO 2025-07-18 12:09:34,904 basehttp 11106 137081313547968 "GET /api/research/publications/?author=3&page_size=50 HTTP/1.1" 200 52
+INFO 2025-07-18 12:09:53,146 basehttp 11106 137081296762560 "OPTIONS /api/auth/logout/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:09:53,165 basehttp 11106 137081330333376 "POST /api/auth/logout/ HTTP/1.1" 200 37
+INFO 2025-07-18 12:12:26,945 basehttp 11106 137081296762560 "POST /api/auth/login/ HTTP/1.1" 200 726
+WARNING 2025-07-18 12:12:27,884 log 11106 137081296762560 Not Found: /api/notifications/
+WARNING 2025-07-18 12:12:27,885 basehttp 11106 137081296762560 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 12:12:53,701 basehttp 11106 137081330333376 "OPTIONS /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-18 12:12:53,744 basehttp 11106 137081296762560 "GET /api/auth/users/ HTTP/1.1" 200 980
+INFO 2025-07-18 12:12:53,761 basehttp 11106 137081330333376 "GET /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 980
+INFO 2025-07-18 12:13:19,062 basehttp 11106 137081296762560 "POST /api/auth/logout/ HTTP/1.1" 200 37
+INFO 2025-07-18 12:13:44,733 basehttp 11106 137081330333376 "OPTIONS /api/auth/register/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:13:46,722 basehttp 11106 137081296762560 "POST /api/auth/register/ HTTP/1.1" 201 556
+INFO 2025-07-18 12:14:10,836 basehttp 11106 137081296762560 "POST /api/auth/login/ HTTP/1.1" 200 726
+WARNING 2025-07-18 12:14:45,671 log 11106 137081330333376 Not Found: /api/notifications/
+WARNING 2025-07-18 12:14:45,672 basehttp 11106 137081330333376 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 12:14:59,552 basehttp 11106 137081330333376 "OPTIONS /api/content/announcements/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-18 12:14:59,559 basehttp 11106 137081296762560 "OPTIONS /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-18 12:14:59,663 log 11106 137081313547968 Not Found: /api/notifications/
+WARNING 2025-07-18 12:14:59,674 basehttp 11106 137081313547968 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 12:14:59,691 basehttp 11106 137081296762560 "GET /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 547
+INFO 2025-07-18 12:14:59,732 basehttp 11106 137081330333376 "GET /api/content/announcements/?page=1&page_size=10 HTTP/1.1" 200 1567
+INFO 2025-07-18 12:15:07,444 basehttp 11106 137081330333376 "GET /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 1170
+INFO 2025-07-18 12:15:07,453 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1170
+INFO 2025-07-18 12:15:37,331 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1170
+INFO 2025-07-18 12:15:41,201 basehttp 11106 137081296762560 "POST /api/auth/logout/ HTTP/1.1" 200 37
+INFO 2025-07-18 12:16:05,786 basehttp 11106 137081313547968 "POST /api/auth/register/ HTTP/1.1" 201 551
+WARNING 2025-07-18 12:16:12,137 log 11106 137081330333376 Bad Request: /api/auth/login/
+WARNING 2025-07-18 12:16:12,138 basehttp 11106 137081330333376 "POST /api/auth/login/ HTTP/1.1" 400 57
+INFO 2025-07-18 12:16:28,434 basehttp 11106 137081296762560 "POST /api/auth/login/ HTTP/1.1" 200 726
+WARNING 2025-07-18 12:16:52,085 log 11106 137081296762560 Not Found: /api/notifications/
+INFO 2025-07-18 12:16:52,086 basehttp 11106 137081330333376 "GET /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 1355
+INFO 2025-07-18 12:16:52,087 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1355
+WARNING 2025-07-18 12:16:52,089 basehttp 11106 137081296762560 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 12:17:21,822 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1355
+INFO 2025-07-18 12:17:51,811 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1355
+INFO 2025-07-18 12:18:21,806 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1355
+INFO 2025-07-18 12:18:51,810 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1355
+INFO 2025-07-18 12:19:11,864 basehttp 11106 137081296762560 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-18 12:19:12,043 basehttp 11106 137081296762560 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:19:12,553 log 11106 137081296762560 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:19:12,556 basehttp 11106 137081296762560 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:19:12,593 basehttp 11106 137081296762560 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 12:19:13,202 log 11106 137081296762560 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:19:13,203 basehttp 11106 137081296762560 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:19:21,847 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1355
+INFO 2025-07-18 12:19:51,645 basehttp 11106 137081296762560 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:19:51,824 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1355
+WARNING 2025-07-18 12:19:53,490 log 11106 137081296762560 Bad Request: /api/auth/login/
+WARNING 2025-07-18 12:19:53,491 basehttp 11106 137081296762560 "POST /api/auth/login/ HTTP/1.1" 400 57
+INFO 2025-07-18 12:20:06,911 basehttp 11106 137081288369856 "GET /admin/dashboard HTTP/1.1" 302 0
+INFO 2025-07-18 12:20:07,018 basehttp 11106 137081288369856 "GET /admin/login/?next=/admin/dashboard HTTP/1.1" 200 4193
+INFO 2025-07-18 12:20:07,394 basehttp 11106 137080785069760 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-07-18 12:20:07,407 basehttp 11106 137080776677056 "GET /static/admin/css/login.css HTTP/1.1" 200 958
+INFO 2025-07-18 12:20:07,416 basehttp 11106 137080793462464 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2694
+INFO 2025-07-18 12:20:07,435 basehttp 11106 137081279977152 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2929
+INFO 2025-07-18 12:20:07,436 basehttp 11106 137081288369856 "GET /static/admin/css/base.css HTTP/1.1" 200 21207
+INFO 2025-07-18 12:20:07,437 basehttp 11106 137080785069760 "GET /static/admin/css/responsive.css HTTP/1.1" 200 18533
+INFO 2025-07-18 12:20:07,442 basehttp 11106 137081305155264 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+WARNING 2025-07-18 12:20:08,009 log 11106 137080785069760 Not Found: /favicon.ico
+WARNING 2025-07-18 12:20:08,010 basehttp 11106 137080785069760 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 12:20:13,767 basehttp 11106 137081288369856 "GET /admin/login/?next=/dashboard HTTP/1.1" 200 4181
+INFO 2025-07-18 12:20:21,813 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1355
+INFO 2025-07-18 12:20:22,213 basehttp 11106 137081288369856 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-07-18 12:20:22,286 basehttp 11106 137081288369856 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4175
+INFO 2025-07-18 12:20:32,920 basehttp 11106 137081288369856 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-07-18 12:20:33,034 basehttp 11106 137081288369856 "GET /admin/ HTTP/1.1" 200 18416
+INFO 2025-07-18 12:20:33,156 basehttp 11106 137080785069760 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-07-18 12:20:33,180 basehttp 11106 137080785069760 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-07-18 12:20:33,184 basehttp 11106 137081279977152 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+WARNING 2025-07-18 12:20:33,258 log 11106 137080785069760 Not Found: /favicon.ico
+WARNING 2025-07-18 12:20:33,259 basehttp 11106 137080785069760 "GET /favicon.ico HTTP/1.1" 404 3642
+WARNING 2025-07-18 12:20:37,987 log 11106 137081288369856 Not Found: /admin/dashboard
+WARNING 2025-07-18 12:20:37,988 basehttp 11106 137081288369856 "GET /admin/dashboard HTTP/1.1" 404 10915
+INFO 2025-07-18 12:20:42,285 basehttp 11106 137081288369856 "GET /dashboard HTTP/1.1" 301 0
+INFO 2025-07-18 12:20:42,436 basehttp 11106 137080785069760 "GET /dashboard/ HTTP/1.1" 200 19209
+INFO 2025-07-18 12:20:42,565 basehttp 11106 137080785069760 "GET /static/dashboard/css/dashboard.css HTTP/1.1" 200 4566
+INFO 2025-07-18 12:20:42,586 basehttp 11106 137080785069760 "GET /static/dashboard/js/dashboard.js HTTP/1.1" 200 4727
+INFO 2025-07-18 12:20:51,814 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1355
+INFO 2025-07-18 12:20:59,385 basehttp 11106 137080785069760 "GET /dashboard/users/ HTTP/1.1" 200 38566
+INFO 2025-07-18 12:21:21,818 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1355
+INFO 2025-07-18 12:21:32,420 basehttp 11106 137080785069760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:21:51,814 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1355
+INFO 2025-07-18 12:22:01,247 basehttp 11106 137080785069760 "POST /dashboard/users/7/approve/ HTTP/1.1" 200 62
+INFO 2025-07-18 12:22:01,356 basehttp 11106 137080785069760 "GET /dashboard/users/ HTTP/1.1" 200 39308
+WARNING 2025-07-18 12:22:01,663 log 11106 137080785069760 Not Found: /favicon.ico
+WARNING 2025-07-18 12:22:01,664 basehttp 11106 137080785069760 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 12:22:21,816 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:22:31,747 basehttp 11106 137080785069760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:22:51,816 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:22:53,089 basehttp 11106 137080785069760 "GET /dashboard/publications/ HTTP/1.1" 200 11639
+WARNING 2025-07-18 12:22:53,575 log 11106 137080785069760 Not Found: /favicon.ico
+WARNING 2025-07-18 12:22:53,577 basehttp 11106 137080785069760 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 12:22:59,927 basehttp 11106 137081279977152 "POST /api/auth/login/ HTTP/1.1" 200 988
+WARNING 2025-07-18 12:23:00,469 log 11106 137081279977152 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:23:00,470 basehttp 11106 137081279977152 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:23:00,609 basehttp 11106 137081279977152 "OPTIONS /api/research/publications/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:23:00,613 basehttp 11106 137081279977152 "OPTIONS /api/training/my-enrollments/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:23:00,639 basehttp 11106 137081305155264 "OPTIONS /api/services/my-requests/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:23:00,729 basehttp 11106 137081305155264 "OPTIONS /api/auth/users/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:23:00,732 basehttp 11106 137081296762560 "OPTIONS /api/content/announcements/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:23:00,735 basehttp 11106 137081288369856 "OPTIONS /api/training/courses/ HTTP/1.1" 200 0
+WARNING 2025-07-18 12:23:00,836 log 11106 137081279977152 Not Found: /api/services/my-requests/
+INFO 2025-07-18 12:23:00,837 basehttp 11106 137081296762560 "OPTIONS /api/services/requests/ HTTP/1.1" 200 0
+WARNING 2025-07-18 12:23:00,842 basehttp 11106 137081279977152 "GET /api/services/my-requests/ HTTP/1.1" 404 15086
+INFO 2025-07-18 12:23:00,842 basehttp 11106 137080793462464 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:23:00,857 basehttp 11106 137080776677056 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:23:00,881 log 11106 137081305155264 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:23:00,908 log 11106 137081296762560 Forbidden: /api/auth/users/
+INFO 2025-07-18 12:23:00,911 basehttp 11106 137081279977152 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+WARNING 2025-07-18 12:23:00,913 basehttp 11106 137081305155264 "GET /api/training/courses/ HTTP/1.1" 404 3723
+WARNING 2025-07-18 12:23:00,949 basehttp 11106 137081296762560 "GET /api/auth/users/ HTTP/1.1" 403 63
+INFO 2025-07-18 12:23:00,974 basehttp 11106 137081279977152 "OPTIONS /api/organization/labs/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:23:01,028 basehttp 11106 137080776677056 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:23:01,031 basehttp 11106 137081296762560 "OPTIONS /api/notifications/?page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-18 12:23:01,039 log 11106 137081288369856 Not Found: /api/training/my-enrollments/
+WARNING 2025-07-18 12:23:01,063 basehttp 11106 137081288369856 "GET /api/training/my-enrollments/ HTTP/1.1" 404 3744
+INFO 2025-07-18 12:23:01,066 basehttp 11106 137081279977152 "OPTIONS /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-18 12:23:01,151 basehttp 11106 137080776677056 "GET /api/organization/labs/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:23:01,188 log 11106 137081296762560 Not Found: /api/notifications/
+INFO 2025-07-18 12:23:01,192 basehttp 11106 137081305155264 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:23:01,209 basehttp 11106 137081296762560 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 12:23:01,222 basehttp 11106 137080793462464 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:23:01,263 basehttp 11106 137081279977152 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-18 12:23:03,469 basehttp 11106 137081288369856 "OPTIONS /api/research/publications/?submitted_by=7 HTTP/1.1" 200 0
+INFO 2025-07-18 12:23:03,520 basehttp 11106 137081288369856 "GET /api/research/publications/?submitted_by=7 HTTP/1.1" 200 52
+INFO 2025-07-18 12:23:05,599 basehttp 11106 137081288369856 "OPTIONS /api/research/publications/?author=7&page_size=50 HTTP/1.1" 200 0
+INFO 2025-07-18 12:23:05,650 basehttp 11106 137081288369856 "GET /api/research/publications/?author=7&page_size=50 HTTP/1.1" 200 52
+INFO 2025-07-18 12:23:13,384 basehttp 11106 137080785069760 "GET /dashboard/publications/ HTTP/1.1" 200 11639
+INFO 2025-07-18 12:23:15,336 basehttp 11106 137080785069760 "GET /dashboard/ HTTP/1.1" 200 18543
+INFO 2025-07-18 12:23:21,830 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:23:27,740 basehttp 11106 137081313547968 "OPTIONS /api/analytics/publications/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:23:27,756 basehttp 11106 137081330333376 "OPTIONS /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-18 12:23:27,799 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:23:27,807 basehttp 11106 137081330333376 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 404 3747
+WARNING 2025-07-18 12:23:27,826 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:23:27,827 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:23:45,859 basehttp 11106 137080785069760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:23:52,377 log 11106 137081330333376 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:23:52,390 basehttp 11106 137081330333376 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-18 12:23:52,399 log 11106 137080768284352 Not Found: /api/notifications/
+WARNING 2025-07-18 12:23:52,405 log 11106 137081313547968 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:23:52,406 basehttp 11106 137080768284352 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+WARNING 2025-07-18 12:23:52,409 basehttp 11106 137081313547968 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 404 3747
+INFO 2025-07-18 12:23:54,682 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:23:54,700 basehttp 11106 137081313547968 "GET /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 1354
+INFO 2025-07-18 12:24:15,857 basehttp 11106 137080785069760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:24:24,575 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:24:31,941 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:24:45,863 basehttp 11106 137080785069760 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:24:51,845 basehttp 11106 137080785069760 "GET /dashboard/users/ HTTP/1.1" 200 38578
+WARNING 2025-07-18 12:24:52,112 log 11106 137080785069760 Not Found: /favicon.ico
+WARNING 2025-07-18 12:24:52,113 basehttp 11106 137080785069760 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 12:24:54,571 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:25:04,295 basehttp 11106 137080785069760 "GET /admin/accounts/user/7/change/ HTTP/1.1" 200 59799
+INFO 2025-07-18 12:25:04,651 basehttp 11106 137080785069760 "GET /static/admin/css/forms.css HTTP/1.1" 200 9047
+INFO 2025-07-18 12:25:04,659 basehttp 11106 137080793462464 "GET /static/admin/js/calendar.js HTTP/1.1" 200 8466
+INFO 2025-07-18 12:25:04,667 basehttp 11106 137081279977152 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-07-18 12:25:04,672 basehttp 11106 137080785069760 "GET /static/admin/js/core.js HTTP/1.1" 200 5682
+INFO 2025-07-18 12:25:04,684 basehttp 11106 137080793462464 "GET /static/admin/js/inlines.js HTTP/1.1" 200 15526
+INFO 2025-07-18 12:25:04,690 basehttp 11106 137081305155264 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-07-18 12:25:04,694 basehttp 11106 137080776677056 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+INFO 2025-07-18 12:25:04,699 basehttp 11106 137081279977152 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+INFO 2025-07-18 12:25:04,715 basehttp 11106 137081305155264 "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+INFO 2025-07-18 12:25:04,724 basehttp 11106 137080785069760 "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15292
+INFO 2025-07-18 12:25:04,718 basehttp 11106 137080776677056 "GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+INFO 2025-07-18 12:25:04,739 basehttp 11106 137080793462464 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-07-18 12:25:04,741 basehttp 11106 137081288369856 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-18 12:25:04,758 basehttp 11106 137081279977152 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-07-18 12:25:04,763 basehttp 11106 137080776677056 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-07-18 12:25:04,772 basehttp 11106 137081288369856 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+INFO 2025-07-18 12:25:04,776 basehttp 11106 137081305155264 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-07-18 12:25:04,807 basehttp 11106 137080785069760 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-07-18 12:25:04,808 basehttp 11106 137081288369856 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-07-18 12:25:04,874 basehttp 11106 137080776677056 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11900
+WARNING 2025-07-18 12:25:05,313 log 11106 137080776677056 Not Found: /favicon.ico
+WARNING 2025-07-18 12:25:05,315 basehttp 11106 137080776677056 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 12:25:05,342 basehttp 11106 137080776677056 "GET /static/admin/img/icon-unknown.svg HTTP/1.1" 200 655
+INFO 2025-07-18 12:25:05,351 basehttp 11106 137081288369856 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-07-18 12:25:05,352 basehttp 11106 137081305155264 "GET /static/admin/img/icon-unknown-alt.svg HTTP/1.1" 200 655
+INFO 2025-07-18 12:25:05,374 basehttp 11106 137080785069760 "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+INFO 2025-07-18 12:25:05,377 basehttp 11106 137081279977152 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-07-18 12:25:05,379 basehttp 11106 137080793462464 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-07-18 12:25:24,873 basehttp 11106 137081313547968 "OPTIONS /api/auth/users/?page=1&page_size=10&role=moderator HTTP/1.1" 200 0
+INFO 2025-07-18 12:25:24,910 basehttp 11106 137081330333376 "GET /api/auth/users/?page=1&page_size=10&role=moderator HTTP/1.1" 200 243
+INFO 2025-07-18 12:25:24,943 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:25:25,544 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:25:28,560 basehttp 11106 137081330333376 "OPTIONS /api/auth/users/?page=1&page_size=10&role=moderator&status=pending HTTP/1.1" 200 0
+INFO 2025-07-18 12:25:28,586 basehttp 11106 137081313547968 "GET /api/auth/users/?page=1&page_size=10&role=moderator&status=pending HTTP/1.1" 200 243
+INFO 2025-07-18 12:25:30,749 basehttp 11106 137081330333376 "OPTIONS /api/auth/users/?page=1&page_size=10&status=pending HTTP/1.1" 200 0
+INFO 2025-07-18 12:25:30,771 basehttp 11106 137081313547968 "GET /api/auth/users/?page=1&page_size=10&status=pending HTTP/1.1" 200 1354
+INFO 2025-07-18 12:25:54,908 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:25:55,555 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:26:12,708 basehttp 11106 137080776677056 "GET /admin/accounts/user/7/change/ HTTP/1.1" 200 59799
+INFO 2025-07-18 12:26:12,852 basehttp 11106 137080776677056 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+WARNING 2025-07-18 12:26:13,469 log 11106 137080776677056 Not Found: /favicon.ico
+WARNING 2025-07-18 12:26:13,474 basehttp 11106 137080776677056 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 12:26:24,914 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:26:29,950 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:26:45,454 basehttp 11106 137081313547968 "OPTIONS /api/research/publications/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-18 12:26:45,505 basehttp 11106 137081313547968 "GET /api/research/publications/?page=1&page_size=10 HTTP/1.1" 200 52
+WARNING 2025-07-18 12:26:45,508 log 11106 137081330333376 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:26:45,509 basehttp 11106 137081330333376 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:26:59,938 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:27:15,350 log 11106 137081330333376 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:27:15,351 basehttp 11106 137081330333376 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:27:27,995 basehttp 11106 137081313547968 "OPTIONS /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-18 12:27:28,022 basehttp 11106 137081330333376 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-18 12:27:29,937 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:27:59,945 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:28:17,550 log 11106 137081313547968 Not Found: /api/analytics/publications/
+INFO 2025-07-18 12:28:17,551 basehttp 11106 137081330333376 "GET /api/research/publications/?page=1&page_size=10 HTTP/1.1" 200 52
+WARNING 2025-07-18 12:28:17,555 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:28:19,351 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:28:19,353 basehttp 11106 137081313547968 "GET /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 1354
+INFO 2025-07-18 12:28:29,941 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:28:49,260 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:28:59,938 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:29:19,300 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:29:29,944 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:29:49,303 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:29:59,938 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:30:20,077 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:30:29,939 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:30:50,840 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:30:59,940 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:31:21,292 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:31:29,936 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:31:51,761 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:31:59,946 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:32:22,344 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:32:31,101 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:32:52,753 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:33:01,098 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:33:22,924 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:33:31,100 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:33:53,899 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:34:01,098 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:34:24,681 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:34:31,097 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:34:55,103 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:35:01,100 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:35:26,041 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:35:31,100 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:35:56,398 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:36:01,099 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:36:27,020 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:36:31,100 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:36:57,478 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:37:01,103 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:37:06,123 basehttp 11106 137081330333376 "GET /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 547
+INFO 2025-07-18 12:37:06,138 basehttp 11106 137081313547968 "GET /api/content/announcements/?page=1&page_size=10 HTTP/1.1" 200 1567
+INFO 2025-07-18 12:37:13,602 basehttp 11106 137081330333376 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-18 12:37:28,495 basehttp 11106 137081313547968 "OPTIONS /api/organization/settings/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:37:28,512 basehttp 11106 137081330333376 "GET /api/organization/settings/ HTTP/1.1" 200 835
+INFO 2025-07-18 12:37:31,098 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:37:33,213 basehttp 11106 137081313547968 "OPTIONS /api/organization/staff/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-18 12:37:33,240 log 11106 137081330333376 Not Found: /api/organization/staff/
+WARNING 2025-07-18 12:37:33,242 basehttp 11106 137081330333376 "GET /api/organization/staff/?page=1&page_size=10 HTTP/1.1" 404 6765
+INFO 2025-07-18 12:38:01,096 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:38:31,106 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:39:01,098 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:39:31,097 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:40:01,100 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:40:31,101 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:41:01,103 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:41:31,102 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:42:01,102 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:42:23,977 log 11106 137081313547968 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:42:23,985 log 11106 137081330333376 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:42:23,986 basehttp 11106 137081330333376 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-18 12:42:23,987 basehttp 11106 137081313547968 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 404 3747
+INFO 2025-07-18 12:42:25,366 basehttp 11106 137081330333376 "OPTIONS /api/services/test-services/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-18 12:42:25,382 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:42:25,383 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:42:25,412 basehttp 11106 137081330333376 "GET /api/services/test-services/?page=1&page_size=10 HTTP/1.1" 200 52
+INFO 2025-07-18 12:42:27,126 basehttp 11106 137081330333376 "GET /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 547
+INFO 2025-07-18 12:42:27,170 basehttp 11106 137081313547968 "GET /api/content/announcements/?page=1&page_size=10 HTTP/1.1" 200 1567
+WARNING 2025-07-18 12:42:28,375 log 11106 137081279977152 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:42:28,407 basehttp 11106 137081279977152 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:42:28,439 basehttp 11106 137081305155264 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:42:28,463 basehttp 11106 137081296762560 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:42:28,489 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:42:28,574 basehttp 11106 137081296762560 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:42:28,607 basehttp 11106 137081330333376 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:42:28,611 basehttp 11106 137081279977152 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:42:28,652 basehttp 11106 137081288369856 "GET /api/auth/users/ HTTP/1.1" 200 1354
+WARNING 2025-07-18 12:42:28,651 log 11106 137081313547968 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:42:28,756 basehttp 11106 137081313547968 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:42:28,780 basehttp 11106 137081296762560 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:42:28,794 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:42:28,798 basehttp 11106 137081313547968 "OPTIONS /api/admin/health-check/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:42:28,804 basehttp 11106 137081279977152 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:42:28,812 basehttp 11106 137081305155264 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:42:28,827 basehttp 11106 137081296762560 "OPTIONS /api/admin/health-check/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:42:28,857 basehttp 11106 137081288369856 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:42:28,865 log 11106 137081313547968 Not Found: /api/admin/health-check/
+WARNING 2025-07-18 12:42:28,877 basehttp 11106 137081313547968 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+WARNING 2025-07-18 12:42:28,893 log 11106 137081279977152 Not Found: /api/admin/health-check/
+WARNING 2025-07-18 12:42:28,894 basehttp 11106 137081279977152 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+INFO 2025-07-18 12:42:31,103 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:42:46,078 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:42:46,104 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:42:46,105 basehttp 11106 137081279977152 "GET /api/research/publications/?page=1&page_size=10 HTTP/1.1" 200 52
+INFO 2025-07-18 12:43:01,100 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:43:31,104 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:43:35,116 basehttp 11106 137081279977152 "OPTIONS /api/notifications/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-18 12:43:35,134 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:43:35,136 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-18 12:43:35,153 log 11106 137081279977152 Not Found: /api/notifications/
+WARNING 2025-07-18 12:43:35,154 basehttp 11106 137081279977152 "GET /api/notifications/?page=1&page_size=10 HTTP/1.1" 404 3687
+INFO 2025-07-18 12:43:40,350 basehttp 11106 137081313547968 "OPTIONS /api/notifications/2/send/ HTTP/1.1" 200 0
+WARNING 2025-07-18 12:43:40,376 log 11106 137081313547968 Not Found: /api/notifications/2/send/
+WARNING 2025-07-18 12:43:40,377 basehttp 11106 137081313547968 "POST /api/notifications/2/send/ HTTP/1.1" 404 3685
+WARNING 2025-07-18 12:43:43,019 log 11106 137081313547968 Not Found: /api/notifications/2/send/
+WARNING 2025-07-18 12:43:43,020 basehttp 11106 137081313547968 "POST /api/notifications/2/send/ HTTP/1.1" 404 3685
+INFO 2025-07-18 12:43:57,145 basehttp 11106 137081288369856 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:43:57,146 basehttp 11106 137081305155264 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:43:57,186 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:43:57,208 basehttp 11106 137081330333376 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:43:57,295 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:43:57,325 basehttp 11106 137081296762560 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:43:57,347 basehttp 11106 137081288369856 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:43:57,400 basehttp 11106 137081305155264 "GET /api/auth/users/ HTTP/1.1" 200 1354
+WARNING 2025-07-18 12:43:57,501 log 11106 137081313547968 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:43:57,520 basehttp 11106 137081313547968 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:43:57,537 basehttp 11106 137081288369856 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:43:57,548 basehttp 11106 137081305155264 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:43:57,553 basehttp 11106 137081279977152 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:43:57,554 basehttp 11106 137081330333376 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+WARNING 2025-07-18 12:43:57,641 log 11106 137081296762560 Not Found: /api/admin/health-check/
+INFO 2025-07-18 12:43:57,653 basehttp 11106 137081288369856 "GET /api/organization/labs/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:43:57,653 basehttp 11106 137081296762560 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+WARNING 2025-07-18 12:43:57,679 log 11106 137081313547968 Not Found: /api/admin/health-check/
+INFO 2025-07-18 12:43:57,683 basehttp 11106 137081279977152 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:43:57,683 basehttp 11106 137081313547968 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+INFO 2025-07-18 12:44:01,107 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:44:15,173 log 11106 137081330333376 Not Found: /api/notifications/
+WARNING 2025-07-18 12:44:15,187 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:44:15,193 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-18 12:44:15,194 basehttp 11106 137081330333376 "GET /api/notifications/?page=1&page_size=10 HTTP/1.1" 404 3687
+INFO 2025-07-18 12:44:16,883 basehttp 11106 137081296762560 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:44:16,985 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:44:16,987 basehttp 11106 137081288369856 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:44:16,988 basehttp 11106 137081305155264 "GET /api/services/requests/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:44:17,066 log 11106 137081330333376 Not Found: /api/training/courses/
+INFO 2025-07-18 12:44:17,099 basehttp 11106 137081313547968 "GET /api/organization/labs/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:44:17,105 basehttp 11106 137081330333376 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:44:17,251 basehttp 11106 137081296762560 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:44:17,273 basehttp 11106 137081279977152 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:44:17,311 basehttp 11106 137081313547968 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:44:17,335 log 11106 137081305155264 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:44:17,343 log 11106 137081330333376 Not Found: /api/admin/health-check/
+WARNING 2025-07-18 12:44:17,344 basehttp 11106 137081305155264 "GET /api/training/courses/ HTTP/1.1" 404 3723
+WARNING 2025-07-18 12:44:17,372 basehttp 11106 137081330333376 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+INFO 2025-07-18 12:44:17,408 basehttp 11106 137081279977152 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:44:17,493 basehttp 11106 137081313547968 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:44:17,498 basehttp 11106 137081296762560 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:44:17,512 basehttp 11106 137081288369856 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+WARNING 2025-07-18 12:44:17,529 log 11106 137081305155264 Not Found: /api/admin/health-check/
+WARNING 2025-07-18 12:44:17,531 basehttp 11106 137081305155264 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+WARNING 2025-07-18 12:44:20,055 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:44:20,056 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-18 12:44:20,064 log 11106 137081330333376 Not Found: /api/notifications/
+WARNING 2025-07-18 12:44:20,065 basehttp 11106 137081330333376 "GET /api/notifications/?page=1&page_size=10 HTTP/1.1" 404 3687
+INFO 2025-07-18 12:44:31,101 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:44:49,898 basehttp 11106 137081279977152 "GET /api/research/publications/?page=1&page_size=10 HTTP/1.1" 200 52
+WARNING 2025-07-18 12:44:49,906 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:44:49,907 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:45:01,102 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:45:19,779 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:45:19,781 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:45:21,608 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:45:21,625 basehttp 11106 137081305155264 "GET /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 1354
+INFO 2025-07-18 12:45:24,646 basehttp 11106 137081313547968 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+WARNING 2025-07-18 12:45:26,420 log 11106 137081313547968 Not Found: /api/analytics/publications/
+INFO 2025-07-18 12:45:26,424 basehttp 11106 137081330333376 "GET /api/services/test-services/?page=1&page_size=10 HTTP/1.1" 200 52
+WARNING 2025-07-18 12:45:26,424 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-18 12:45:27,161 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:45:27,162 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-18 12:45:27,170 log 11106 137081279977152 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:45:27,171 basehttp 11106 137081279977152 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 404 3747
+INFO 2025-07-18 12:45:31,105 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:45:57,085 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:45:57,090 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:46:01,101 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:46:27,061 log 11106 137081279977152 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:46:27,062 basehttp 11106 137081279977152 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:46:31,104 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:46:57,069 log 11106 137081313547968 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:46:57,070 basehttp 11106 137081313547968 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-18 12:47:01,111 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:47:03,034 basehttp 11106 137081279977152 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-18 12:47:06,679 basehttp 11106 137081313547968 "GET /api/organization/settings/ HTTP/1.1" 200 835
+INFO 2025-07-18 12:47:31,101 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:48:01,100 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:48:31,106 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 12:48:33,298 log 11106 137081279977152 Not Found: /api/analytics/publications/
+WARNING 2025-07-18 12:48:33,302 basehttp 11106 137081279977152 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-18 12:48:33,301 log 11106 137081313547968 Not Found: /api/notifications/
+WARNING 2025-07-18 12:48:33,306 basehttp 11106 137081313547968 "GET /api/notifications/?page=1&page_size=10 HTTP/1.1" 404 3687
+INFO 2025-07-18 12:48:35,849 basehttp 11106 137081279977152 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:48:35,925 basehttp 11106 137081305155264 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:48:35,977 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:48:35,986 basehttp 11106 137081330333376 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:48:36,087 basehttp 11106 137081279977152 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:48:36,106 basehttp 11106 137081288369856 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:48:36,173 basehttp 11106 137081296762560 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:48:36,182 basehttp 11106 137081288369856 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:48:36,215 basehttp 11106 137081313547968 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:48:36,292 basehttp 11106 137081279977152 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:48:36,344 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:48:36,353 basehttp 11106 137081330333376 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:48:36,377 basehttp 11106 137081313547968 "GET /api/services/requests/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:48:36,449 log 11106 137081296762560 Not Found: /api/admin/health-check/
+WARNING 2025-07-18 12:48:36,474 basehttp 11106 137081296762560 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+INFO 2025-07-18 12:48:36,466 basehttp 11106 137081288369856 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:48:36,457 basehttp 11106 137081305155264 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:48:36,493 basehttp 11106 137081279977152 "GET /api/organization/labs/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:48:36,565 log 11106 137081330333376 Not Found: /api/admin/health-check/
+WARNING 2025-07-18 12:48:36,566 basehttp 11106 137081330333376 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+INFO 2025-07-18 12:49:01,907 basehttp 11106 137080776677056 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:49:05,882 basehttp 11106 137081296762560 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:49:05,971 basehttp 11106 137081296762560 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:49:06,005 basehttp 11106 137081305155264 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:49:06,017 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:49:06,025 basehttp 11106 137081288369856 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:49:06,028 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:49:06,032 basehttp 11106 137081330333376 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:49:06,030 basehttp 11106 137081279977152 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:49:18,961 basehttp 11106 137080776677056 "GET /admin/accounts/user/1/change/ HTTP/1.1" 200 59750
+INFO 2025-07-18 12:49:19,131 basehttp 11106 137080793462464 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-07-18 12:49:19,150 basehttp 11106 137080759891648 "GET /static/admin/js/calendar.js HTTP/1.1" 200 8466
+INFO 2025-07-18 12:49:19,159 basehttp 11106 137080776677056 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2025-07-18 12:49:19,163 basehttp 11106 137080751498944 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-07-18 12:49:19,164 basehttp 11106 137080793462464 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-07-18 12:49:19,176 basehttp 11106 137080759891648 "GET /static/admin/js/core.js HTTP/1.1" 200 5682
+INFO 2025-07-18 12:49:19,178 basehttp 11106 137080776677056 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+INFO 2025-07-18 12:49:19,185 basehttp 11106 137080751498944 "GET /static/admin/js/inlines.js HTTP/1.1" 200 15526
+INFO 2025-07-18 12:49:19,204 basehttp 11106 137080785069760 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-18 12:49:19,204 basehttp 11106 137080793462464 "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+INFO 2025-07-18 12:49:19,229 basehttp 11106 137080785069760 "GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+INFO 2025-07-18 12:49:19,241 basehttp 11106 137080768284352 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+INFO 2025-07-18 12:49:19,252 basehttp 11106 137080759891648 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-07-18 12:49:19,253 basehttp 11106 137080776677056 "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15292
+INFO 2025-07-18 12:49:19,268 basehttp 11106 137080751498944 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-07-18 12:49:19,291 basehttp 11106 137080793462464 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-07-18 12:49:19,295 basehttp 11106 137080785069760 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-07-18 12:49:19,301 basehttp 11106 137080768284352 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+INFO 2025-07-18 12:49:19,351 basehttp 11106 137080776677056 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-07-18 12:49:19,353 basehttp 11106 137080793462464 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+WARNING 2025-07-18 12:49:19,679 log 11106 137080768284352 Not Found: /favicon.ico
+WARNING 2025-07-18 12:49:19,681 basehttp 11106 137080768284352 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 12:49:19,960 basehttp 11106 137080776677056 "GET /static/admin/img/inline-delete.svg HTTP/1.1" 200 560
+INFO 2025-07-18 12:49:35,871 basehttp 11106 137081296762560 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:49:35,891 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:49:35,940 basehttp 11106 137081330333376 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 12:49:35,946 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 200 1354
+INFO 2025-07-18 12:49:35,965 basehttp 11106 137081305155264 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:49:35,979 basehttp 11106 137081296762560 "GET /api/organization/labs/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:49:36,020 log 11106 137081330333376 Not Found: /api/admin/health-check/
+INFO 2025-07-18 12:49:36,021 basehttp 11106 137081288369856 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:49:36,022 basehttp 11106 137081330333376 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+INFO 2025-07-18 12:49:36,051 basehttp 11106 137081279977152 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:49:38,042 basehttp 11106 137080768284352 "POST /admin/accounts/user/1/change/ HTTP/1.1" 302 0
+INFO 2025-07-18 12:49:38,338 basehttp 11106 137080776677056 "GET /admin/accounts/user/ HTTP/1.1" 200 24248
+INFO 2025-07-18 12:49:38,437 basehttp 11106 137080768284352 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6566
+INFO 2025-07-18 12:49:38,439 basehttp 11106 137080776677056 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-18 12:49:38,448 basehttp 11106 137080768284352 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-07-18 12:49:38,450 basehttp 11106 137080751498944 "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+INFO 2025-07-18 12:49:38,452 basehttp 11106 137080793462464 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-07-18 12:49:38,602 basehttp 11106 137080776677056 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-07-18 12:49:38,607 basehttp 11106 137080768284352 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+WARNING 2025-07-18 12:49:50,315 log 11106 137081313547968 Forbidden: /api/auth/users/
+WARNING 2025-07-18 12:49:50,339 basehttp 11106 137081313547968 "GET /api/auth/users/ HTTP/1.1" 403 63
+INFO 2025-07-18 12:49:50,459 basehttp 11106 137081288369856 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:49:50,501 basehttp 11106 137081305155264 "GET /api/services/requests/ HTTP/1.1" 200 52
+WARNING 2025-07-18 12:49:50,543 log 11106 137081330333376 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:49:50,569 log 11106 137081305155264 Forbidden: /api/auth/users/
+WARNING 2025-07-18 12:49:50,576 basehttp 11106 137081330333376 "GET /api/training/courses/ HTTP/1.1" 404 3723
+WARNING 2025-07-18 12:49:50,583 basehttp 11106 137081305155264 "GET /api/auth/users/ HTTP/1.1" 403 63
+INFO 2025-07-18 12:49:50,593 basehttp 11106 137081296762560 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:49:50,610 basehttp 11106 137081313547968 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-18 12:49:50,610 basehttp 11106 137081279977152 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+WARNING 2025-07-18 12:49:50,640 log 11106 137081288369856 Not Found: /api/admin/health-check/
+WARNING 2025-07-18 12:49:50,684 log 11106 137081296762560 Not Found: /api/training/courses/
+WARNING 2025-07-18 12:49:50,722 basehttp 11106 137081296762560 "GET /api/training/courses/ HTTP/1.1" 404 3723
+WARNING 2025-07-18 12:49:50,740 basehttp 11106 137081288369856 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+INFO 2025-07-18 12:49:50,747 basehttp 11106 137081305155264 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:49:50,768 basehttp 11106 137081279977152 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:49:50,843 basehttp 11106 137081288369856 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 12:49:50,882 basehttp 11106 137081330333376 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 12:49:50,886 basehttp 11106 137081313547968 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:49:50,895 log 11106 137081296762560 Not Found: /api/admin/health-check/
+WARNING 2025-07-18 12:49:50,898 basehttp 11106 137081296762560 "GET /api/admin/health-check/ HTTP/1.1" 404 3678
+WARNING 2025-07-18 12:49:50,907 log 11106 137081305155264 Not Found: /api/notifications/
+WARNING 2025-07-18 12:49:50,909 basehttp 11106 137081305155264 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 12:50:04,603 basehttp 11106 137081279977152 "POST /api/auth/logout/ HTTP/1.1" 200 37
+INFO 2025-07-18 12:50:19,262 basehttp 11106 137081313547968 "POST /api/auth/login/ HTTP/1.1" 200 723
+WARNING 2025-07-18 12:50:19,869 log 11106 137081279977152 Not Found: /api/notifications/
+WARNING 2025-07-18 12:50:19,870 basehttp 11106 137081279977152 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 12:51:16,751 basehttp 11106 137081313547968 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-18 12:51:16,842 basehttp 11106 137081279977152 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:51:17,199 log 11106 137081313547968 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:51:17,222 basehttp 11106 137081313547968 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:51:17,232 basehttp 11106 137081279977152 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-18 12:51:17,752 basehttp 11106 137081313547968 "OPTIONS /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-18 12:51:17,932 basehttp 11106 137081279977152 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-18 12:51:29,429 basehttp 11106 137081313547968 "POST /api/auth/logout/ HTTP/1.1" 200 37
+INFO 2025-07-18 12:51:46,993 basehttp 11106 137081279977152 "GET /api/organization/settings/ HTTP/1.1" 200 668
+WARNING 2025-07-18 12:51:47,044 log 11106 137081279977152 Unauthorized: /api/content/announcements/
+INFO 2025-07-18 12:51:47,054 basehttp 11106 137081313547968 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:51:47,070 basehttp 11106 137081279977152 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:51:47,103 basehttp 11106 137081296762560 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 12:51:47,250 log 11106 137081313547968 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:51:47,252 basehttp 11106 137081313547968 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:52:45,219 basehttp 11106 137081279977152 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-18 12:52:45,290 basehttp 11106 137081313547968 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:52:45,320 log 11106 137081279977152 Unauthorized: /api/content/announcements/
+INFO 2025-07-18 12:52:45,356 basehttp 11106 137081313547968 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 12:52:45,357 basehttp 11106 137081279977152 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-18 12:52:45,499 log 11106 137081279977152 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:52:45,500 basehttp 11106 137081279977152 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:52:52,620 basehttp 11106 137081313547968 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-18 12:52:52,674 basehttp 11106 137081279977152 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:52:52,702 log 11106 137081313547968 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:52:52,709 basehttp 11106 137081313547968 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:52:52,732 basehttp 11106 137081279977152 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 12:52:52,881 log 11106 137081313547968 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:52:52,882 basehttp 11106 137081313547968 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:53:50,832 basehttp 11106 137081279977152 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-18 12:53:50,903 basehttp 11106 137081313547968 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:53:50,950 log 11106 137081279977152 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:53:50,960 basehttp 11106 137081279977152 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:53:51,009 basehttp 11106 137081313547968 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 12:53:51,143 log 11106 137081279977152 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:53:51,144 basehttp 11106 137081279977152 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:54:12,433 basehttp 11106 137081313547968 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-18 12:54:12,500 basehttp 11106 137081279977152 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 12:54:12,514 log 11106 137081313547968 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:54:12,516 basehttp 11106 137081313547968 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:54:12,558 basehttp 11106 137081279977152 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-18 12:54:12,788 log 11106 137081313547968 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 12:54:12,811 basehttp 11106 137081313547968 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-18 12:55:22,575 basehttp 11106 137081296762560 "GET /admin/accounts/user/1/change/ HTTP/1.1" 200 59750
+INFO 2025-07-18 12:55:22,770 basehttp 11106 137081330333376 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-07-18 12:55:22,770 basehttp 11106 137081296762560 "GET /static/admin/js/theme.js HTTP/1.1" 200 1943
+INFO 2025-07-18 12:55:22,784 basehttp 11106 137081330333376 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-07-18 12:55:22,787 basehttp 11106 137081296762560 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-07-18 12:55:22,793 basehttp 11106 137080785069760 "GET /static/admin/js/core.js HTTP/1.1" 200 5682
+INFO 2025-07-18 12:55:22,796 basehttp 11106 137080793462464 "GET /static/admin/js/calendar.js HTTP/1.1" 200 8466
+INFO 2025-07-18 12:55:22,814 basehttp 11106 137081305155264 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-18 12:55:22,814 basehttp 11106 137080793462464 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 8943
+INFO 2025-07-18 12:55:22,815 basehttp 11106 137080785069760 "GET /static/admin/js/inlines.js HTTP/1.1" 200 15526
+INFO 2025-07-18 12:55:22,823 basehttp 11106 137081305155264 "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+INFO 2025-07-18 12:55:22,834 basehttp 11106 137081296762560 "GET /static/admin/js/actions.js HTTP/1.1" 200 7872
+INFO 2025-07-18 12:55:22,836 basehttp 11106 137081330333376 "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15292
+INFO 2025-07-18 12:55:22,838 basehttp 11106 137081288369856 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 292458
+INFO 2025-07-18 12:55:22,847 basehttp 11106 137081288369856 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-07-18 12:55:22,859 basehttp 11106 137080785069760 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-07-18 12:55:22,882 basehttp 11106 137081305155264 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-07-18 12:55:22,888 basehttp 11106 137081296762560 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-07-18 12:55:22,894 basehttp 11106 137080793462464 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+INFO 2025-07-18 12:55:22,947 basehttp 11106 137080785069760 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-07-18 12:55:22,948 basehttp 11106 137081288369856 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+WARNING 2025-07-18 12:55:23,143 log 11106 137081288369856 Not Found: /favicon.ico
+WARNING 2025-07-18 12:55:23,144 basehttp 11106 137081288369856 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 12:55:23,884 basehttp 11106 137081288369856 "GET /dashboard/users/ HTTP/1.1" 200 38583
+INFO 2025-07-18 12:55:23,975 basehttp 11106 137081288369856 "GET /static/dashboard/js/dashboard.js HTTP/1.1" 200 4727
+INFO 2025-07-18 12:55:29,421 basehttp 11106 137081288369856 "GET /dashboard/ HTTP/1.1" 200 18544
+WARNING 2025-07-18 12:55:31,774 log 11106 137081288369856 Not Found: /favicon.ico
+WARNING 2025-07-18 12:55:31,776 basehttp 11106 137081288369856 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 12:55:34,350 basehttp 11106 137081288369856 "GET /dashboard/users/ HTTP/1.1" 200 38583
+WARNING 2025-07-18 12:55:37,968 log 11106 137081288369856 Not Found: /favicon.ico
+WARNING 2025-07-18 12:55:37,969 basehttp 11106 137081288369856 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 12:56:00,047 basehttp 11106 137080776677056 "OPTIONS /api/auth/logout/ HTTP/1.1" 200 0
+INFO 2025-07-18 12:56:00,069 basehttp 11106 137080776677056 "POST /api/auth/logout/ HTTP/1.1" 200 37
+INFO 2025-07-18 12:56:08,417 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:56:38,413 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:57:08,424 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:57:38,416 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:58:08,418 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:58:38,415 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:59:08,418 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 12:59:38,417 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:00:08,735 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:00:27,820 basehttp 11106 137081288369856 "GET /admin/accounts/user/6/change/ HTTP/1.1" 200 59773
+INFO 2025-07-18 13:00:28,105 basehttp 11106 137081288369856 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+WARNING 2025-07-18 13:00:28,486 log 11106 137081288369856 Not Found: /favicon.ico
+WARNING 2025-07-18 13:00:28,487 basehttp 11106 137081288369856 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 13:00:37,367 basehttp 11106 137081288369856 "POST /admin/accounts/user/6/change/ HTTP/1.1" 302 0
+INFO 2025-07-18 13:00:37,485 basehttp 11106 137081288369856 "GET /admin/accounts/user/ HTTP/1.1" 200 24255
+INFO 2025-07-18 13:00:37,693 basehttp 11106 137081288369856 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+INFO 2025-07-18 13:00:37,720 basehttp 11106 137081288369856 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-07-18 13:00:37,720 basehttp 11106 137080776677056 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-07-18 13:00:37,727 basehttp 11106 137080793462464 "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+WARNING 2025-07-18 13:00:37,982 log 11106 137081288369856 Not Found: /favicon.ico
+WARNING 2025-07-18 13:00:37,983 basehttp 11106 137081288369856 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 13:00:44,757 basehttp 11106 137081288369856 "GET /admin/accounts/user/6/change/ HTTP/1.1" 200 59773
+WARNING 2025-07-18 13:00:45,091 log 11106 137081288369856 Not Found: /favicon.ico
+WARNING 2025-07-18 13:00:45,092 basehttp 11106 137081288369856 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 13:00:47,884 basehttp 11106 137081288369856 "GET /dashboard/publications/ HTTP/1.1" 200 11639
+INFO 2025-07-18 13:01:15,560 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:01:45,559 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:02:15,564 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:02:45,558 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:03:15,563 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:03:45,562 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:04:15,619 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:04:27,144 basehttp 11106 137080776677056 "POST /api/auth/login/ HTTP/1.1" 200 723
+INFO 2025-07-18 13:04:45,559 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 13:04:55,145 log 11106 137080776677056 Not Found: /api/notifications/
+WARNING 2025-07-18 13:04:55,146 basehttp 11106 137080776677056 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 13:05:15,559 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:05:47,874 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:06:18,322 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:06:31,688 basehttp 11106 137080793462464 "POST /api/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-07-18 13:06:32,221 log 11106 137080793462464 Unauthorized: /api/content/announcements/
+WARNING 2025-07-18 13:06:32,222 basehttp 11106 137080793462464 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-18 13:06:32,439 log 11106 137080785069760 Not Found: /api/training/my-enrollments/
+INFO 2025-07-18 13:06:32,442 basehttp 11106 137080793462464 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 13:06:32,471 log 11106 137081330333376 Not Found: /api/services/my-requests/
+WARNING 2025-07-18 13:06:32,473 basehttp 11106 137080785069760 "GET /api/training/my-enrollments/ HTTP/1.1" 404 3744
+WARNING 2025-07-18 13:06:32,481 log 11106 137081315645120 Forbidden: /api/auth/users/
+WARNING 2025-07-18 13:06:32,484 basehttp 11106 137081330333376 "GET /api/services/my-requests/ HTTP/1.1" 404 15086
+WARNING 2025-07-18 13:06:32,497 basehttp 11106 137081315645120 "GET /api/auth/users/ HTTP/1.1" 403 63
+WARNING 2025-07-18 13:06:32,582 log 11106 137081298859712 Not Found: /api/training/courses/
+INFO 2025-07-18 13:06:32,625 basehttp 11106 137080785069760 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-18 13:06:32,626 basehttp 11106 137080793462464 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 13:06:32,632 basehttp 11106 137081298859712 "GET /api/training/courses/ HTTP/1.1" 404 3723
+INFO 2025-07-18 13:06:32,635 basehttp 11106 137081315645120 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-18 13:06:32,724 basehttp 11106 137081330333376 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-18 13:06:32,733 log 11106 137081298859712 Not Found: /api/notifications/
+WARNING 2025-07-18 13:06:32,738 basehttp 11106 137081298859712 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 13:06:32,769 basehttp 11106 137081307252416 "GET /api/content/announcements/ HTTP/1.1" 200 1567
+INFO 2025-07-18 13:06:32,814 basehttp 11106 137080793462464 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 1567
+INFO 2025-07-18 13:06:37,492 basehttp 11106 137081330333376 "OPTIONS /api/research/publications/?submitted_by=3 HTTP/1.1" 200 0
+INFO 2025-07-18 13:06:37,543 basehttp 11106 137081330333376 "GET /api/research/publications/?submitted_by=3 HTTP/1.1" 200 52
+INFO 2025-07-18 13:06:48,666 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:06:48,837 basehttp 11106 137081330333376 "POST /api/auth/logout/ HTTP/1.1" 200 37
+INFO 2025-07-18 13:07:06,468 basehttp 11106 137081330333376 "POST /api/auth/login/ HTTP/1.1" 200 723
+WARNING 2025-07-18 13:07:07,025 log 11106 137080785069760 Not Found: /api/notifications/
+WARNING 2025-07-18 13:07:07,031 basehttp 11106 137080785069760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 13:07:07,044 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-18 13:07:16,264 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 13:07:16,267 log 11106 137080785069760 Not Found: /api/notifications/
+WARNING 2025-07-18 13:07:16,269 basehttp 11106 137080785069760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 13:07:18,683 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+INFO 2025-07-18 13:07:21,678 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 13:07:21,687 log 11106 137080785069760 Not Found: /api/notifications/
+WARNING 2025-07-18 13:07:21,688 basehttp 11106 137080785069760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 13:07:39,590 basehttp 11106 137081330333376 "POST /api/auth/logout/ HTTP/1.1" 200 37
+INFO 2025-07-18 13:07:43,634 basehttp 11106 137081288369856 "GET /dashboard/users/ HTTP/1.1" 200 38582
+WARNING 2025-07-18 13:07:54,400 log 11106 137081288369856 Not Found: /favicon.ico
+WARNING 2025-07-18 13:07:54,401 basehttp 11106 137081288369856 "GET /favicon.ico HTTP/1.1" 404 3642
+WARNING 2025-07-18 13:08:05,697 log 11106 137081330333376 Bad Request: /api/auth/login/
+WARNING 2025-07-18 13:08:05,697 basehttp 11106 137081330333376 "POST /api/auth/login/ HTTP/1.1" 400 44
+INFO 2025-07-18 13:08:18,631 basehttp 11106 137081330333376 "POST /api/auth/login/ HTTP/1.1" 200 723
+INFO 2025-07-18 13:08:19,375 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 13:08:19,388 log 11106 137080785069760 Not Found: /api/notifications/
+WARNING 2025-07-18 13:08:19,390 basehttp 11106 137080785069760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 13:08:24,527 basehttp 11106 137081288369856 "GET /dashboard/api/pending-counts/ HTTP/1.1" 200 126
+WARNING 2025-07-18 13:08:33,038 log 11106 137080785069760 Not Found: /api/notifications/
+INFO 2025-07-18 13:08:33,039 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 13:08:33,040 basehttp 11106 137080785069760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 13:08:35,980 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 13:08:35,993 log 11106 137080785069760 Not Found: /api/notifications/
+WARNING 2025-07-18 13:08:35,996 basehttp 11106 137080785069760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 13:08:39,607 basehttp 11106 137081330333376 "POST /api/auth/logout/ HTTP/1.1" 200 37
+INFO 2025-07-18 13:08:45,988 basehttp 11106 137081288369856 "GET /admin/accounts/user/1/change/ HTTP/1.1" 200 59750
+INFO 2025-07-18 13:08:46,192 basehttp 11106 137081288369856 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+WARNING 2025-07-18 13:08:46,576 log 11106 137081288369856 Not Found: /favicon.ico
+WARNING 2025-07-18 13:08:46,577 basehttp 11106 137081288369856 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 13:08:56,501 basehttp 11106 137081288369856 "POST /admin/accounts/user/1/change/ HTTP/1.1" 302 0
+INFO 2025-07-18 13:08:56,597 basehttp 11106 137081288369856 "GET /admin/accounts/user/ HTTP/1.1" 200 24243
+INFO 2025-07-18 13:08:56,736 basehttp 11106 137081288369856 "GET /admin/jsi18n/ HTTP/1.1" 200 3343
+WARNING 2025-07-18 13:08:56,939 log 11106 137081288369856 Not Found: /favicon.ico
+WARNING 2025-07-18 13:08:56,941 basehttp 11106 137081288369856 "GET /favicon.ico HTTP/1.1" 404 3642
+INFO 2025-07-18 13:09:09,302 basehttp 11106 137081330333376 "POST /api/auth/login/ HTTP/1.1" 200 719
+INFO 2025-07-18 13:09:10,020 basehttp 11106 137081330333376 "GET /api/research/publications/ HTTP/1.1" 200 52
+WARNING 2025-07-18 13:09:10,027 log 11106 137080785069760 Not Found: /api/notifications/
+WARNING 2025-07-18 13:09:10,028 basehttp 11106 137080785069760 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 3676
+INFO 2025-07-18 13:09:22,845 basehttp 11106 137080785069760 "OPTIONS /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-18 13:09:22,899 basehttp 11106 137081330333376 "GET /api/auth/users/ HTTP/1.1" 200 1339
+INFO 2025-07-18 13:09:22,905 basehttp 11106 137080785069760 "GET /api/auth/users/?page=1&page_size=10 HTTP/1.1" 200 1339
+INFO 2025-07-18 13:09:35,571 basehttp 11106 137081330333376 "OPTIONS /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-18 13:09:35,603 basehttp 11106 137081330333376 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 301
+INFO 2025-07-21 19:16:35,184 autoreload 32042 131840114294912 Watching for file changes with StatReloader
+INFO 2025-07-21 19:21:07,588 basehttp 32042 131840024241856 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+INFO 2025-07-21 19:21:07,757 basehttp 32042 131840032634560 "GET /api/organization/settings/ HTTP/1.1" 200 668
+WARNING 2025-07-21 19:21:07,791 log 32042 131840024241856 Unauthorized: /api/organization/departments/
+WARNING 2025-07-21 19:21:07,792 basehttp 32042 131840024241856 "GET /api/organization/departments/ HTTP/1.1" 401 183
+WARNING 2025-07-21 19:21:08,581 log 32042 131840032634560 Unauthorized: /api/content/announcements/
+WARNING 2025-07-21 19:21:08,608 basehttp 32042 131840032634560 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-21 19:21:08,611 basehttp 32042 131840015849152 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+WARNING 2025-07-21 19:21:08,669 log 32042 131840015849152 Unauthorized: /api/auth/token/refresh/
+WARNING 2025-07-21 19:21:08,682 basehttp 32042 131840015849152 "POST /api/auth/token/refresh/ HTTP/1.1" 401 65
+INFO 2025-07-21 19:21:08,742 basehttp 32042 131840024241856 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-21 19:21:19,547 basehttp 32042 131840024241856 "GET /api/organization/settings/ HTTP/1.1" 200 668
+INFO 2025-07-21 19:21:19,650 basehttp 32042 131840024241856 "GET /api/organization/departments/ HTTP/1.1" 200 301
+WARNING 2025-07-21 19:21:19,841 log 32042 131840024241856 Unauthorized: /api/content/announcements/
+WARNING 2025-07-21 19:21:19,849 basehttp 32042 131840024241856 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-21 19:21:19,877 basehttp 32042 131840015849152 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-21 19:21:20,121 log 32042 131840024241856 Unauthorized: /api/content/announcements/
+WARNING 2025-07-21 19:21:20,122 basehttp 32042 131840024241856 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-21 19:21:23,904 log 32042 131840024241856 Unauthorized: /api/content/announcements/
+WARNING 2025-07-21 19:21:23,905 basehttp 32042 131840024241856 "GET /api/content/announcements/?page=1&page_size=10&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-21 19:21:23,991 log 32042 131840024241856 Unauthorized: /api/content/announcements/
+WARNING 2025-07-21 19:21:23,992 basehttp 32042 131840024241856 "GET /api/content/announcements/?page=1&page_size=10&ordering=-created_at HTTP/1.1" 401 58
+WARNING 2025-07-21 19:21:25,152 log 32042 131840024241856 Unauthorized: /api/training/api/courses/
+WARNING 2025-07-21 19:21:25,154 basehttp 32042 131840024241856 "GET /api/training/api/courses/?page=1 HTTP/1.1" 401 58
+INFO 2025-07-21 20:20:33,498 basehttp 32042 131840024241856 "GET /api/docs/ HTTP/1.1" 200 4487
+INFO 2025-07-21 20:20:36,753 basehttp 32042 131840024241856 "GET /api/schema/ HTTP/1.1" 200 664148
+INFO 2025-07-21 20:21:26,093 basehttp 32042 131840015849152 "GET /api/training/api/courses HTTP/1.1" 301 0
+WARNING 2025-07-21 20:21:26,111 log 32042 131840015849152 Unauthorized: /api/training/api/courses/
+WARNING 2025-07-21 20:21:26,112 basehttp 32042 131840015849152 "GET /api/training/api/courses/ HTTP/1.1" 401 58
+INFO 2025-07-21 20:21:51,826 basehttp 32042 131840015849152 "GET /api/training/api/courses HTTP/1.1" 301 0
+WARNING 2025-07-21 20:21:51,870 log 32042 131840015849152 Not Acceptable: /api/training/api/courses/
+WARNING 2025-07-21 20:21:51,872 basehttp 32042 131840015849152 "GET /api/training/api/courses/ HTTP/1.1" 406 57
+INFO 2025-07-21 20:23:08,096 basehttp 32042 131840024241856 "POST /api/auth/login/ HTTP/1.1" 200 980
+INFO 2025-07-21 20:23:37,660 basehttp 32042 131840015849152 "GET /api/training/api/courses HTTP/1.1" 301 0
+WARNING 2025-07-21 20:23:37,679 log 32042 131840015849152 Not Acceptable: /api/training/api/courses/
+WARNING 2025-07-21 20:23:37,680 basehttp 32042 131840015849152 "GET /api/training/api/courses/ HTTP/1.1" 406 57
+INFO 2025-07-21 20:27:52,579 autoreload 32042 131840114294912 /home/abdo/ITI/Ageri/research_platform/settings.py changed, reloading.
+INFO 2025-07-21 20:27:55,547 autoreload 44760 125525972353152 Watching for file changes with StatReloader
+INFO 2025-07-21 20:28:53,839 autoreload 45151 124769372770432 Watching for file changes with StatReloader
+INFO 2025-07-21 20:29:41,039 basehttp 44760 125525890692800 "GET /api/training/api/courses HTTP/1.1" 301 0
+WARNING 2025-07-21 20:29:41,072 log 44760 125525890692800 Not Acceptable: /api/training/api/courses/
+WARNING 2025-07-21 20:29:41,073 basehttp 44760 125525890692800 "GET /api/training/api/courses/ HTTP/1.1" 406 57
+WARNING 2025-07-21 20:29:48,905 log 44760 125525890692800 Not Acceptable: /api/training/api/courses/
+WARNING 2025-07-21 20:29:48,906 basehttp 44760 125525890692800 "GET /api/training/api/courses/ HTTP/1.1" 406 57
+INFO 2025-07-21 20:34:51,451 autoreload 48216 136558221959296 Watching for file changes with StatReloader
+WARNING 2025-07-21 20:36:49,755 log 48216 136558074132160 Not Acceptable: /api/training/api/courses/
+WARNING 2025-07-21 20:36:49,830 basehttp 48216 136558074132160 "GET /api/training/api/courses/ HTTP/1.1" 406 57
+INFO 2025-07-21 20:37:53,482 basehttp 48216 136558064690880 "POST /api/auth/login/ HTTP/1.1" 200 980
+WARNING 2025-07-21 20:38:14,338 log 48216 136558074132160 Not Acceptable: /api/training/api/courses/
+WARNING 2025-07-21 20:38:14,339 basehttp 48216 136558074132160 "GET /api/training/api/courses/ HTTP/1.1" 406 57
+WARNING 2025-07-21 20:40:43,205 log 48216 136558074132160 Not Acceptable: /api/training/api/courses/
+WARNING 2025-07-21 20:40:43,211 basehttp 48216 136558074132160 "GET /api/training/api/courses/ HTTP/1.1" 406 57
+INFO 2025-07-21 20:47:39,090 autoreload 51902 131413647773824 Watching for file changes with StatReloader
+WARNING 2025-07-21 20:48:24,772 log 51902 131413500229312 Unauthorized: /api/training/api/courses/
+WARNING 2025-07-21 20:48:24,774 basehttp 51902 131413500229312 "GET /api/training/api/courses/ HTTP/1.1" 401 58
+INFO 2025-07-21 20:50:28,922 autoreload 51902 131413647773824 /home/abdo/ITI/Ageri/training/views.py changed, reloading.
+INFO 2025-07-21 20:50:32,841 autoreload 52799 136827862208640 Watching for file changes with StatReloader
+INFO 2025-07-21 20:51:24,157 autoreload 52799 136827862208640 /home/abdo/ITI/Ageri/training/views.py changed, reloading.
+INFO 2025-07-21 20:51:27,031 autoreload 53013 139030045401216 Watching for file changes with StatReloader
+WARNING 2025-07-21 20:58:33,877 log 53013 139029898065600 Not Acceptable: /api/training/api/courses/
+WARNING 2025-07-21 20:58:33,879 basehttp 53013 139029898065600 "GET /api/training/api/courses/ HTTP/1.1" 406 57
+INFO 2025-07-21 20:58:42,786 basehttp 53013 139029898065600 "GET /api/training/api/courses/f HTTP/1.1" 301 0
+WARNING 2025-07-21 20:58:42,803 log 53013 139029898065600 Not Acceptable: /api/training/api/courses/f/
+WARNING 2025-07-21 20:58:42,804 basehttp 53013 139029898065600 "GET /api/training/api/courses/f/ HTTP/1.1" 406 57
+INFO 2025-07-21 20:58:52,044 basehttp 53013 139029898065600 "GET /api/training/api/courses/f HTTP/1.1" 301 0
+WARNING 2025-07-21 20:58:52,109 log 53013 139029898065600 Not Found: /api/training/api/courses/f/
+WARNING 2025-07-21 20:58:52,110 basehttp 53013 139029898065600 "GET /api/training/api/courses/f/ HTTP/1.1" 404 23
+INFO 2025-07-21 20:58:57,518 basehttp 53013 139029898065600 "GET /api/training/api/courses/ HTTP/1.1" 200 52
+INFO 2025-07-21 20:59:52,649 basehttp 53013 139029887575744 "GET /api/training/api/courses/?page=1 HTTP/1.1" 200 52
+INFO 2025-07-21 20:59:52,707 basehttp 53013 139029887575744 "GET /api/organization/departments/ HTTP/1.1" 200 301

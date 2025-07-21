@@ -37,6 +37,8 @@ class CourseViewSet(viewsets.ModelViewSet):
         """Return appropriate permissions based on action"""
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             permission_classes = [IsModeratorOrAdmin]
+        elif self.action in ['list', 'retrieve']:
+            permission_classes = []  # Allow public access for listing and retrieving courses
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
