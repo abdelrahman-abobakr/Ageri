@@ -7,6 +7,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.parsers import MultiPartParser, FormParser,JSONParser
 
 from accounts.permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly, IsModeratorOrAdmin, IsApprovedUser
 from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment
@@ -223,6 +224,8 @@ class PostViewSet(viewsets.ModelViewSet):
         'category', 'status', 'is_featured', 'is_public',
         'registration_required'
     ]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
+    
     search_fields = ['title', 'content', 'excerpt', 'tags', 'event_location']
     ordering_fields = ['publish_at', 'created_at', 'event_date', 'view_count', 'like_count']
     ordering = ['-is_featured', '-publish_at']
@@ -231,7 +234,7 @@ class PostViewSet(viewsets.ModelViewSet):
         """Get queryset based on user permissions"""
         user = self.request.user
 
-        queryset = Post.objects.select_related('author', 'approved_by')
+        queryset = Post.objects.select_related('author', 'approved_by').filter(is_deleted=False)
 
         # Handle anonymous users
         if not user.is_authenticated:
@@ -274,15 +277,15 @@ class PostViewSet(viewsets.ModelViewSet):
             return [permissions.AllowAny()]  # Public posts can be viewed by anyone
 
     def perform_create(self, serializer):
-        """Set author when creating post"""
+        print("FILES:", self.request.FILES)  # ✅ اطبع للتأكيد
         serializer.save(author=self.request.user)
 
     def retrieve(self, request, *args, **kwargs):
         """Retrieve post and increment view count"""
         instance = self.get_object()
 
-        # Check if user can view this post
-        if not instance.can_be_viewed_by(request.user):
+        # ✅ Allow admin to bypass permission check
+        if not request.user.is_admin and not instance.can_be_viewed_by(request.user):
             return Response(
                 {'error': 'You do not have permission to view this post'},
                 status=status.HTTP_403_FORBIDDEN
@@ -293,6 +296,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
+
 
     @action(detail=True, methods=['post'], permission_classes=[IsAdminOrReadOnly])
     def approve(self, request, pk=None):
@@ -364,6 +368,11 @@ class PostViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset().filter(status='pending')
         serializer = PostListSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.delete()  # Soft delete
+        return Response({'message': 'Post deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
 
 
 class CommentViewSet(viewsets.ModelViewSet):

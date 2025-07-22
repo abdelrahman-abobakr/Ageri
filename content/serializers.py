@@ -133,7 +133,7 @@ class AnnouncementCreateUpdateSerializer(serializers.ModelSerializer):
         fields = [
             'title', 'content', 'summary', 'announcement_type',
             'priority', 'target_audience', 'is_pinned', 'is_featured',
-            'publish_at', 'expires_at', 'attachment'
+            'publish_at', 'expires_at', 'attachment','status' 
         ]
     
     def validate_expires_at(self, value):
@@ -184,9 +184,9 @@ class PostListSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'title', 'excerpt', 'category', 'tags_list',
             'event_date', 'event_location', 'status', 'is_featured',
-            'is_public', 'publish_at', 'author', 'featured_image',
+            'is_public', 'publish_at', 'featured_image', 'attachment',
             'view_count', 'is_published', 'is_event',
-            'is_upcoming_event', 'created_at'
+            'is_upcoming_event', 'created_at', 'author'
         ]
 
 
@@ -224,7 +224,7 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
             'title', 'content', 'excerpt', 'category', 'tags',
             'event_date', 'event_location', 'registration_required',
             'registration_deadline', 'max_participants', 'is_featured',
-            'is_public', 'publish_at', 'featured_image', 'attachment'
+            'is_public', 'publish_at', 'featured_image', 'attachment', 'status'
         ]
     
     def validate_event_date(self, value):
@@ -243,13 +243,11 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
         """Cross-field validation"""
         event_date = data.get('event_date')
         registration_deadline = data.get('registration_deadline')
-        
         if event_date and registration_deadline:
             if registration_deadline >= event_date:
                 raise serializers.ValidationError(
                     "Registration deadline must be before event date."
                 )
-        
         return data
 
 

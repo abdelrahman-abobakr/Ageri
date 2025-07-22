@@ -290,8 +290,8 @@ class PostCategory(models.TextChoices):
 
 
 def upload_to_posts(instance, filename):
-    """Upload post attachments to organized directories"""
-    return f'content/posts/{instance.id}/{filename}'
+    now = timezone.now().strftime('%Y%m%d%H%M%S')
+    return f'content/posts/temp_{now}/{filename}'
 
 
 class Post(TimeStampedModel):
@@ -395,6 +395,7 @@ class Post(TimeStampedModel):
 
     # Engagement tracking
     view_count = models.PositiveIntegerField(default=0)
+    is_deleted = models.BooleanField(default=False, help_text="Soft delete flag")
 
     class Meta:
         ordering = ['-is_featured', '-publish_at']
@@ -485,6 +486,10 @@ class Post(TimeStampedModel):
         """Increment view count"""
         self.view_count += 1
         self.save(update_fields=['view_count'])
+
+    def delete(self, *args, **kwargs):
+        self.is_deleted = True
+        self.save()
 
 
 

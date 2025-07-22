@@ -449,3 +449,32 @@ msgstr[2] "تم العثور على مستخدمين اثنين"
 msgstr[3] "تم العثور على %(counter)d مستخدمين"
 msgstr[4] "تم العثور على %(counter)d مستخدماً"
 msgstr[5] "تم العثور على %(counter)d مستخدم"
+
+msgid "type"
+msgstr "النوع"
+
+msgid "status"
+msgstr "الحالة"
+msgid "general"
+msgstr "عام"
+
+msgid "activity"
+msgstr "نشاط"
+
+msgid "workshop"
+msgstr "ورشة عمل"
+
+msgid "seminar"
+msgstr "ندوة"
+
+msgid "conference"
+msgstr "مؤتمر"
+
+msgid "training"
+msgstr "تدريب"
+
+msgid "collaboration"
+msgstr "تعاون"
+
+msgid "achievement"
+msgstr "إنجاز"

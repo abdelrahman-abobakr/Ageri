@@ -24,6 +24,7 @@ class StatusChoices(models.TextChoices):
     INACTIVE = 'inactive', 'Inactive'
     DRAFT = 'draft', 'Draft'
     PUBLISHED = 'published', 'Published'
+    SCHEDULED = 'scheduled', 'Scheduled'
 
 
 class PriorityChoices(models.TextChoices):
