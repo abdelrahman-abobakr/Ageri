@@ -14894,3 +14894,9 @@ INFO 2025-07-24 13:06:00,990 autoreload 17711 124723360215168 Watching for file 
 WARNING 2025-07-24 13:06:10,465 log 17711 124723212056256 Bad Request: /api/training/api/courses/
 WARNING 2025-07-24 13:06:10,467 basehttp 17711 124723212056256 "POST /api/training/api/courses/ HTTP/1.1" 400 298
 INFO 2025-07-24 13:13:12,826 autoreload 21456 134650332713088 Watching for file changes with StatReloader
+INFO 2025-07-24 22:22:44,363 autoreload 32781 132868633993344 Watching for file changes with StatReloader
+WARNING 2025-07-24 22:25:21,632 log 32781 132868485412544 Unauthorized: /api/training/api/courses/
+WARNING 2025-07-24 22:25:21,635 basehttp 32781 132868485412544 "POST /api/training/api/courses/ HTTP/1.1" 401 183
+INFO 2025-07-24 22:26:16,534 basehttp 32781 132868477019840 "POST /api/auth/login/ HTTP/1.1" 200 719
+WARNING 2025-07-24 22:26:31,892 log 32781 132868485412544 Bad Request: /api/training/api/courses/
+WARNING 2025-07-24 22:26:31,894 basehttp 32781 132868485412544 "POST /api/training/api/courses/ HTTP/1.1" 400 298
