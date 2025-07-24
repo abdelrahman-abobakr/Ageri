@@ -23,14 +23,13 @@ class CourseEnrollmentInline(admin.TabularInline):
 class CourseAdmin(admin.ModelAdmin):
     """Admin interface for courses"""
     list_display = [
-        'course_code', 'title_short', 'training_type', 'difficulty_level',
-        'instructor', 'start_date', 'enrollment_status', 'price', 'status'
+        'course_code', 'course_name_short', 'type', 'instructor',
+        'start_date', 'enrollment_status', 'cost', 'status'
     ]
     list_filter = [
-        'training_type', 'difficulty_level', 'status', 'is_featured',
-        'is_public', 'is_free', 'start_date'
+        'type', 'status', 'is_featured', 'is_public', 'start_date'
     ]
-    search_fields = ['title', 'course_code', 'description', 'tags']
+    search_fields = ['course_name', 'course_code', 'description', 'tags', 'instructor']
     readonly_fields = ['current_enrollment', 'created_at', 'updated_at']
     date_hierarchy = 'start_date'
     ordering = ['-is_featured', '-start_date']
@@ -38,35 +37,35 @@ class CourseAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Basic Information', {
             'fields': (
-                'title', 'course_code', 'description', 'short_description',
-                'training_type', 'difficulty_level'
+                'course_name', 'course_code', 'instructor', 'description'
             )
         }),
-        ('Academic Details', {
+        ('Course Details', {
             'fields': (
-                'credits', 'duration_hours', 'prerequisites',
-                'materials_provided', 'tags'
+                'type', 'training_hours', 'cost'
             )
-        }),
-        ('Organization', {
-            'fields': ('instructor', 'department')
         }),
         ('Scheduling', {
             'fields': ('start_date', 'end_date', 'registration_deadline')
         }),
         ('Capacity & Enrollment', {
             'fields': (
-                'max_participants', 'min_participants', 'current_enrollment'
+                'max_participants', 'current_enrollment'
             )
-        }),
-        ('Pricing', {
-            'fields': ('price', 'is_free')
         }),
         ('Status & Visibility', {
             'fields': ('status', 'is_featured', 'is_public')
         }),
+        ('Organization', {
+            'fields': ('department',)
+        }),
+        ('Additional Information', {
+            'fields': ('prerequisites', 'materials_provided', 'tags'),
+            'classes': ('collapse',)
+        }),
         ('Media', {
-            'fields': ('featured_image', 'syllabus')
+            'fields': ('featured_image', 'syllabus'),
+            'classes': ('collapse',)
         }),
         ('Metadata', {
             'fields': ('created_at', 'updated_at'),
@@ -76,10 +75,10 @@ class CourseAdmin(admin.ModelAdmin):
 
     inlines = [CourseEnrollmentInline]
 
-    def title_short(self, obj):
-        """Display shortened title"""
-        return obj.title[:50] + '...' if len(obj.title) > 50 else obj.title
-    title_short.short_description = 'Title'
+    def course_name_short(self, obj):
+        """Display shortened course name"""
+        return obj.course_name[:50] + '...' if len(obj.course_name) > 50 else obj.course_name
+    course_name_short.short_description = 'Course Name'
 
     def enrollment_status(self, obj):
         """Display enrollment status with color coding"""
@@ -127,9 +126,7 @@ class CourseAdmin(admin.ModelAdmin):
     mark_as_featured.short_description = 'Mark selected courses as featured'
 
     def get_queryset(self, request):
-        return super().get_queryset(request).select_related(
-            'instructor', 'department'
-        )
+        return super().get_queryset(request).select_related('department')
 
 
 class SummerTrainingApplicationInline(admin.TabularInline):
@@ -355,11 +352,11 @@ class CourseEnrollmentAdmin(admin.ModelAdmin):
     ]
     list_filter = [
         'status', 'payment_status', 'certificate_issued',
-        'enrollment_date', 'course__training_type'
+        'enrollment_date', 'course__type'
     ]
     search_fields = [
         'student__first_name', 'student__last_name', 'student__email',
-        'course__title', 'course__course_code'
+        'course__course_name', 'course__course_code'
     ]
     readonly_fields = ['enrollment_date', 'payment_date', 'completion_date']
     date_hierarchy = 'enrollment_date'

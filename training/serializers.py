@@ -10,21 +10,20 @@ User = get_user_model()
 
 class CourseListSerializer(serializers.ModelSerializer):
     """Serializer for course list view"""
-    instructor_name = serializers.CharField(source='instructor.get_full_name', read_only=True)
     department_name = serializers.CharField(source='department.name', read_only=True)
     enrollment_percentage = serializers.ReadOnlyField()
     is_registration_open = serializers.ReadOnlyField()
     is_full = serializers.ReadOnlyField()
     can_register = serializers.ReadOnlyField()
-    
+    is_free = serializers.ReadOnlyField()
+
     class Meta:
         model = Course
         fields = [
-            'id', 'title', 'short_description', 'course_code', 'credits',
-            'duration_hours', 'training_type', 'difficulty_level',
-            'instructor_name', 'department_name', 'start_date', 'end_date',
+            'id', 'course_name', 'course_code', 'instructor', 'type',
+            'training_hours', 'department_name', 'start_date', 'end_date',
             'registration_deadline', 'max_participants', 'current_enrollment',
-            'enrollment_percentage', 'price', 'is_free', 'status',
+            'enrollment_percentage', 'cost', 'is_free', 'status',
             'is_featured', 'featured_image', 'is_registration_open',
             'is_full', 'can_register', 'created_at'
         ]
@@ -32,29 +31,27 @@ class CourseListSerializer(serializers.ModelSerializer):
 
 class CourseDetailSerializer(serializers.ModelSerializer):
     """Serializer for course detail view"""
-    instructor_name = serializers.CharField(source='instructor.get_full_name', read_only=True)
     department_name = serializers.CharField(source='department.name', read_only=True)
     enrollment_percentage = serializers.ReadOnlyField()
     is_registration_open = serializers.ReadOnlyField()
     is_full = serializers.ReadOnlyField()
     can_register = serializers.ReadOnlyField()
+    is_free = serializers.ReadOnlyField()
     enrollments_count = serializers.SerializerMethodField()
-    
+
     class Meta:
         model = Course
         fields = [
-            'id', 'title', 'description', 'short_description', 'course_code',
-            'credits', 'duration_hours', 'training_type', 'difficulty_level',
-            'instructor', 'instructor_name', 'department', 'department_name',
+            'id', 'course_name', 'description', 'course_code', 'instructor',
+            'type', 'training_hours', 'department', 'department_name',
             'start_date', 'end_date', 'registration_deadline',
-            'max_participants', 'min_participants', 'current_enrollment',
-            'enrollment_percentage', 'enrollments_count', 'price', 'is_free',
-            'status', 'is_featured', 'is_public', 'prerequisites',
-            'materials_provided', 'featured_image', 'syllabus', 'tags',
-            'is_registration_open', 'is_full', 'can_register',
+            'max_participants', 'current_enrollment', 'enrollment_percentage',
+            'enrollments_count', 'cost', 'is_free', 'status', 'is_featured',
+            'is_public', 'prerequisites', 'materials_provided', 'featured_image',
+            'syllabus', 'tags', 'is_registration_open', 'is_full', 'can_register',
             'created_at', 'updated_at'
         ]
-    
+
     def get_enrollments_count(self, obj):
         """Get count of active enrollments"""
         return obj.enrollments.filter(status__in=['approved', 'completed']).count()
