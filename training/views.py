@@ -26,10 +26,9 @@ class CourseViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = [
-        'training_type', 'difficulty_level', 'status', 'is_featured',
-        'is_public', 'is_free', 'instructor', 'department'
+        'type', 'status', 'is_featured', 'is_public', 'department'
     ]
-    search_fields = ['title', 'course_code', 'description', 'tags']
+    search_fields = ['course_name', 'course_code', 'description', 'tags', 'instructor']
     ordering_fields = ['start_date', 'created_at', 'price', 'current_enrollment']
     ordering = ['-is_featured', '-start_date']
 
@@ -345,11 +344,11 @@ class CourseEnrollmentViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = [
         'status', 'payment_status', 'certificate_issued',
-        'course__training_type', 'course'
+        'course__type', 'course'
     ]
     search_fields = [
         'student__first_name', 'student__last_name', 'student__email',
-        'course__title', 'course__course_code'
+        'course__course_name', 'course__course_code'
     ]
     ordering_fields = ['enrollment_date', 'completion_date']
     ordering = ['-enrollment_date']

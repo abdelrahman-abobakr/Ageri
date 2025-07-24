@@ -38,97 +38,87 @@ class Course(TimeStampedModel):
     """
     Model for training courses
     """
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    short_description = models.CharField(
-        max_length=300,
-        blank=True,
-        help_text="Brief description for course listings"
+    # Basic course information
+    course_name = models.CharField(
+        max_length=200,
+        help_text="Name of the course"
+    )
+    instructor = models.CharField(
+        max_length=255,
+        help_text="Name of the course instructor (can be external)"
+    )
+    cost = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=Decimal('0.00'),
+        validators=[MinValueValidator(Decimal('0.00'))],
+        help_text="Course cost/fee"
     )
 
+    # Scheduling
+    start_date = models.DateField(help_text="Course start date")
+    end_date = models.DateField(help_text="Course end date")
+    registration_deadline = models.DateField(help_text="Last date for registration")
+
     # Course details
+    type = models.CharField(
+        max_length=20,
+        choices=TrainingType.choices,
+        default=TrainingType.COURSE,
+        help_text="Type of training/course"
+    )
+    training_hours = models.PositiveIntegerField(
+        help_text="Total training hours for the course"
+    )
+    description = models.TextField(help_text="Detailed course description")
+
+    # Additional useful fields
     course_code = models.CharField(
         max_length=20,
         unique=True,
         help_text="Unique course identifier (e.g., CS101)"
     )
-    credits = models.PositiveIntegerField(
-        default=3,
-        validators=[MinValueValidator(1), MaxValueValidator(10)]
+    max_participants = models.PositiveIntegerField(
+        default=30,
+        help_text="Maximum number of participants"
     )
-    duration_hours = models.PositiveIntegerField(
-        help_text="Total course duration in hours"
+    current_enrollment = models.PositiveIntegerField(
+        default=0,
+        help_text="Current number of enrolled participants"
     )
-
-    # Classification
-    training_type = models.CharField(
-        max_length=20,
-        choices=TrainingType.choices,
-        default=TrainingType.COURSE
-    )
-    difficulty_level = models.CharField(
-        max_length=15,
-        choices=DifficultyLevel.choices,
-        default=DifficultyLevel.BEGINNER
-    )
-
-    # Instructor and organization
-    instructor = models.CharField(
-        max_length=255,
-        blank=True,
-        help_text="Name of the course instructor"
-    )
-    department = models.ForeignKey(
-        'organization.Department',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='courses'
-    )
-
-    # Scheduling
-    start_date = models.DateField()
-    end_date = models.DateField()
-    registration_deadline = models.DateField()
-
-    # Capacity and enrollment
-    max_participants = models.PositiveIntegerField(default=30)
-    min_participants = models.PositiveIntegerField(default=5)
-    current_enrollment = models.PositiveIntegerField(default=0)
-
-    # Pricing
-    price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        default=Decimal('0.00'),
-        validators=[MinValueValidator(Decimal('0.00'))]
-    )
-    is_free = models.BooleanField(default=False)
 
     # Status and visibility
     status = models.CharField(
         max_length=20,
         choices=StatusChoices.choices,
-        default=StatusChoices.DRAFT
+        default=StatusChoices.DRAFT,
+        help_text="Course status"
     )
-    is_featured = models.BooleanField(default=False)
-    is_public = models.BooleanField(default=True)
-
-    # Requirements and materials
-    prerequisites = models.TextField(
-        blank=True,
-        help_text="Course prerequisites and requirements"
+    is_featured = models.BooleanField(
+        default=False,
+        help_text="Whether to feature this course"
     )
-    materials_provided = models.TextField(
-        blank=True,
-        help_text="Materials and resources provided"
+    is_public = models.BooleanField(
+        default=True,
+        help_text="Whether this course is publicly visible"
     )
 
-    # Media
+    # Optional organizational link
+    department = models.ForeignKey(
+        'organization.Department',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='courses',
+        help_text="Department offering this course (optional)"
+    )
+
+    # Media and materials
     featured_image = models.ImageField(
         upload_to='training/courses/',
         blank=True,
-        null=True
+        null=True,
+        help_text="Course promotional image"
     )
     syllabus = models.FileField(
         upload_to='training/syllabi/',
@@ -137,7 +127,15 @@ class Course(TimeStampedModel):
         help_text="Course syllabus PDF"
     )
 
-    # Metadata
+    # Additional information
+    prerequisites = models.TextField(
+        blank=True,
+        help_text="Course prerequisites and requirements"
+    )
+    materials_provided = models.TextField(
+        blank=True,
+        help_text="Materials and resources provided"
+    )
     tags = models.CharField(
         max_length=500,
         blank=True,
@@ -148,12 +146,13 @@ class Course(TimeStampedModel):
         ordering = ['-is_featured', '-start_date']
         indexes = [
             models.Index(fields=['status', 'start_date']),
-            models.Index(fields=['training_type', 'difficulty_level']),
+            models.Index(fields=['type']),
             models.Index(fields=['is_featured', 'is_public']),
+            models.Index(fields=['registration_deadline']),
         ]
 
     def __str__(self):
-        return f"{self.course_code} - {self.title}"
+        return f"{self.course_code} - {self.course_name}"
 
     def clean(self):
         """Validate course data"""
@@ -166,9 +165,6 @@ class Course(TimeStampedModel):
         if self.registration_deadline and self.start_date:
             if self.registration_deadline >= self.start_date:
                 raise ValidationError("Registration deadline must be before start date")
-
-        if self.min_participants > self.max_participants:
-            raise ValidationError("Minimum participants cannot exceed maximum participants")
 
     @property
     def is_registration_open(self):
@@ -189,6 +185,11 @@ class Course(TimeStampedModel):
         if self.max_participants == 0:
             return 0
         return (self.current_enrollment / self.max_participants) * 100
+
+    @property
+    def is_free(self):
+        """Check if course is free"""
+        return self.cost == Decimal('0.00')
 
     def can_register(self):
         """Check if new registrations are allowed"""
