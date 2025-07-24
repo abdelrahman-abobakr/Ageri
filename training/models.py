@@ -73,13 +73,10 @@ class Course(TimeStampedModel):
     )
 
     # Instructor and organization
-    instructor = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True,
+    instructor = models.CharField(
+        max_length=255,
         blank=True,
-        related_name='taught_courses',
-        limit_choices_to={'role__in': ['admin', 'moderator']}
+        help_text="Name of the course instructor"
     )
     department = models.ForeignKey(
         'organization.Department',

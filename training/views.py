@@ -52,7 +52,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Filter queryset based on user permissions"""
         queryset = super().get_queryset().select_related(
-            'instructor', 'department'
+            'department'
         ).prefetch_related('enrollments')
 
         # Non-admin users can only see published courses

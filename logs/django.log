@@ -14854,3 +14854,43 @@ WARNING 2025-07-21 20:58:52,110 basehttp 53013 139029898065600 "GET /api/trainin
 INFO 2025-07-21 20:58:57,518 basehttp 53013 139029898065600 "GET /api/training/api/courses/ HTTP/1.1" 200 52
 INFO 2025-07-21 20:59:52,649 basehttp 53013 139029887575744 "GET /api/training/api/courses/?page=1 HTTP/1.1" 200 52
 INFO 2025-07-21 20:59:52,707 basehttp 53013 139029887575744 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-21 21:29:12,302 basehttp 53013 139029898065600 "GET /api/training/api/courses/ HTTP/1.1" 200 52
+WARNING 2025-07-21 21:29:18,214 log 53013 139029898065600 Unauthorized: /api/training/api/courses/
+WARNING 2025-07-21 21:29:18,216 basehttp 53013 139029898065600 "POST /api/training/api/courses/ HTTP/1.1" 401 58
+INFO 2025-07-21 21:41:17,251 autoreload 65865 127538742304896 Watching for file changes with StatReloader
+INFO 2025-07-21 21:58:34,505 autoreload 65865 127538742304896 /home/abdo/ITI/Ageri/research_platform/settings.py changed, reloading.
+INFO 2025-07-21 21:58:36,981 autoreload 68579 124201895387264 Watching for file changes with StatReloader
+INFO 2025-07-21 21:59:30,725 basehttp 68579 124201813931712 "GET /api/training/api/courses/ HTTP/1.1" 200 52
+WARNING 2025-07-21 21:59:41,740 log 68579 124201813931712 Unauthorized: /api/training/api/courses/
+WARNING 2025-07-21 21:59:41,741 basehttp 68579 124201813931712 "POST /api/training/api/courses/ HTTP/1.1" 401 58
+WARNING 2025-07-21 21:59:51,677 log 68579 124201813931712 Unauthorized: /api/training/api/courses/
+WARNING 2025-07-21 21:59:51,679 basehttp 68579 124201813931712 "POST /api/training/api/courses/ HTTP/1.1" 401 183
+WARNING 2025-07-21 22:01:59,302 log 68579 124201730045632 Bad Request: /api/auth/login/
+WARNING 2025-07-21 22:01:59,304 basehttp 68579 124201730045632 "POST /api/auth/login/ HTTP/1.1" 400 44
+INFO 2025-07-21 22:02:17,425 basehttp 68579 124201730045632 "POST /api/auth/login/ HTTP/1.1" 200 719
+WARNING 2025-07-21 22:02:33,124 log 68579 124201813931712 Bad Request: /api/training/api/courses/
+WARNING 2025-07-21 22:02:33,126 basehttp 68579 124201813931712 "POST /api/training/api/courses/ HTTP/1.1" 400 298
+WARNING 2025-07-21 22:12:09,297 log 68579 124201813931712 Bad Request: /api/training/api/courses/
+WARNING 2025-07-21 22:12:09,300 basehttp 68579 124201813931712 "POST /api/training/api/courses/ HTTP/1.1" 400 298
+INFO 2025-07-21 22:33:14,259 basehttp 68579 124201721652928 "GET /api/docs/ HTTP/1.1" 200 4487
+INFO 2025-07-21 22:33:17,357 basehttp 68579 124201721652928 "GET /api/schema/ HTTP/1.1" 200 664148
+INFO 2025-07-21 23:10:53,407 basehttp 68579 124201721652928 "GET /api/docs/ HTTP/1.1" 200 4487
+INFO 2025-07-21 23:10:55,319 basehttp 68579 124201721652928 "GET /api/schema/ HTTP/1.1" 200 664148
+INFO 2025-07-21 23:11:21,886 basehttp 68579 124201713260224 "GET /api/docs/ HTTP/1.1" 200 4487
+INFO 2025-07-21 23:11:25,858 basehttp 68579 124201713260224 "GET /api/schema/ HTTP/1.1" 200 662462
+INFO 2025-07-23 19:43:34,089 autoreload 81057 131452105674880 Watching for file changes with StatReloader
+INFO 2025-07-23 22:42:09,835 autoreload 106513 136785084244096 Watching for file changes with StatReloader
+INFO 2025-07-23 22:42:37,378 basehttp 106513 136785002755776 "GET /api/docs/ HTTP/1.1" 200 4487
+INFO 2025-07-23 22:42:54,495 basehttp 106513 136785002755776 "GET /api/schema/ HTTP/1.1" 200 662462
+INFO 2025-07-23 22:48:26,679 autoreload 110146 134548918890624 Watching for file changes with StatReloader
+INFO 2025-07-24 11:32:32,600 autoreload 6178 129989813358720 Watching for file changes with StatReloader
+WARNING 2025-07-24 12:45:35,519 log 6178 129989664044736 Unauthorized: /api/training/api/courses/
+WARNING 2025-07-24 12:45:35,522 basehttp 6178 129989664044736 "POST /api/training/api/courses/ HTTP/1.1" 401 58
+INFO 2025-07-24 12:50:48,728 basehttp 6178 129989655652032 "POST /api/auth/login/ HTTP/1.1" 200 719
+WARNING 2025-07-24 12:51:16,141 log 6178 129989664044736 Bad Request: /api/training/api/courses/
+WARNING 2025-07-24 12:51:16,143 basehttp 6178 129989664044736 "POST /api/training/api/courses/ HTTP/1.1" 400 298
+INFO 2025-07-24 13:05:57,010 autoreload 6178 129989813358720 /home/abdo/ITI/Ageri/training/models.py changed, reloading.
+INFO 2025-07-24 13:06:00,990 autoreload 17711 124723360215168 Watching for file changes with StatReloader
+WARNING 2025-07-24 13:06:10,465 log 17711 124723212056256 Bad Request: /api/training/api/courses/
+WARNING 2025-07-24 13:06:10,467 basehttp 17711 124723212056256 "POST /api/training/api/courses/ HTTP/1.1" 400 298
+INFO 2025-07-24 13:13:12,826 autoreload 21456 134650332713088 Watching for file changes with StatReloader
