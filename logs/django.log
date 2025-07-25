@@ -14963,3 +14963,549 @@ WARNING 2025-07-25 10:03:32,463 basehttp 14327 129353918707392 "GET /api/trainin
 INFO 2025-07-25 10:04:05,103 basehttp 14327 129353907168960 "POST /api/auth/login/ HTTP/1.1" 200 729
 INFO 2025-07-25 10:04:21,985 basehttp 14327 129353918707392 "GET /api/training/courses/ HTTP/1.1" 200 2064
 INFO 2025-07-25 12:53:43,241 autoreload 16660 129908453519488 Watching for file changes with StatReloader
+INFO 2025-07-25 13:02:20,253 autoreload 18881 133990056263808 Watching for file changes with StatReloader
+INFO 2025-07-25 13:02:27,299 basehttp 18881 133989976241856 "GET /api/organization/settings/ HTTP/1.1" 200 277
+WARNING 2025-07-25 13:02:27,367 log 18881 133989893404352 Unauthorized: /api/content/announcements/
+INFO 2025-07-25 13:02:27,367 basehttp 18881 133989976241856 "GET /api/organization/departments/ HTTP/1.1" 200 52
+WARNING 2025-07-25 13:02:27,386 basehttp 18881 133989893404352 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 13:02:27,413 basehttp 18881 133989885011648 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-25 13:02:27,480 log 18881 133989976241856 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 13:02:27,481 basehttp 18881 133989976241856 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 13:02:45,367 basehttp 18881 133989976241856 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-07-25 13:02:47,172 basehttp 18881 133989976241856 "POST /api/auth/login/ HTTP/1.1" 200 729
+WARNING 2025-07-25 13:02:47,802 log 18881 133989976241856 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 13:02:47,804 basehttp 18881 133989976241856 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 13:02:48,019 basehttp 18881 133989976241856 "OPTIONS /api/auth/users/ HTTP/1.1" 200 0
+INFO 2025-07-25 13:02:48,021 basehttp 18881 133989893404352 "OPTIONS /api/content/announcements/ HTTP/1.1" 200 0
+INFO 2025-07-25 13:02:48,022 basehttp 18881 133989885011648 "OPTIONS /api/training/courses/ HTTP/1.1" 200 0
+INFO 2025-07-25 13:02:48,026 basehttp 18881 133989976241856 "OPTIONS /api/research/publications/ HTTP/1.1" 200 0
+INFO 2025-07-25 13:02:48,032 basehttp 18881 133989893404352 "OPTIONS /api/services/requests/ HTTP/1.1" 200 0
+INFO 2025-07-25 13:02:48,042 basehttp 18881 133989885011648 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+INFO 2025-07-25 13:02:48,051 basehttp 18881 133989876618944 "OPTIONS /api/organization/labs/ HTTP/1.1" 200 0
+INFO 2025-07-25 13:02:48,223 basehttp 18881 133989868226240 "GET /api/content/announcements/ HTTP/1.1" 200 52
+INFO 2025-07-25 13:02:48,254 basehttp 18881 133989876618944 "GET /api/auth/users/ HTTP/1.1" 200 228
+INFO 2025-07-25 13:02:48,270 basehttp 18881 133989893404352 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-25 13:02:48,315 basehttp 18881 133989876618944 "OPTIONS /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-25 13:02:48,348 basehttp 18881 133989885011648 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-25 13:02:48,382 basehttp 18881 133989976241856 "GET /api/training/courses/ HTTP/1.1" 200 2064
+INFO 2025-07-25 13:02:48,389 basehttp 18881 133989859833536 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-25 13:02:48,419 basehttp 18881 133989876618944 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 13:02:48,421 basehttp 18881 133989868226240 "GET /api/organization/departments/ HTTP/1.1" 200 52
+INFO 2025-07-25 13:03:03,036 basehttp 18881 133989976241856 "OPTIONS /api/analytics/publications/ HTTP/1.1" 200 0
+INFO 2025-07-25 13:03:03,042 basehttp 18881 133989976241856 "OPTIONS /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-25 13:03:03,103 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:03:03,106 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 13:03:03,142 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2064
+WARNING 2025-07-25 13:03:32,893 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:03:32,894 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 13:03:38,762 basehttp 18881 133989876618944 "OPTIONS /api/training/courses/?page=1&page_size=10&search=Neque HTTP/1.1" 200 0
+INFO 2025-07-25 13:03:38,790 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10&search=Neque HTTP/1.1" 200 52
+WARNING 2025-07-25 13:04:02,943 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:04:02,945 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:04:21,235 log 18881 133989876618944 Bad Request: /api/training/courses/
+WARNING 2025-07-25 13:04:21,236 basehttp 18881 133989876618944 "POST /api/training/courses/ HTTP/1.1" 400 195
+WARNING 2025-07-25 13:04:32,976 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:04:32,977 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:05:02,944 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:05:02,945 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:05:33,877 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:05:33,878 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 13:05:46,087 basehttp 18881 133989976241856 "GET /api/docs/ HTTP/1.1" 200 4487
+WARNING 2025-07-25 13:06:04,156 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:06:04,157 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:06:34,432 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:06:34,433 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 13:06:58,669 basehttp 18881 133989976241856 "GET /api/schema/ HTTP/1.1" 200 663688
+WARNING 2025-07-25 13:07:04,709 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:07:04,710 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:07:35,024 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:07:35,026 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:08:05,306 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:08:05,308 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:08:35,379 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:08:35,380 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:09:05,871 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:09:05,872 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:09:36,100 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:09:36,102 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:10:06,726 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:10:06,727 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:10:36,909 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:10:36,910 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:11:07,209 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:11:07,211 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:11:37,303 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:11:37,304 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:12:07,634 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:12:07,635 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:12:37,712 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:12:37,713 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:13:08,011 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:13:08,012 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:13:38,144 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:13:38,146 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:14:08,531 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:14:08,533 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:14:38,617 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:14:38,624 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:15:09,016 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:15:09,017 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:15:39,224 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:15:39,225 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:16:09,650 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:16:09,657 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:16:40,001 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:16:40,001 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:17:10,206 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:17:10,207 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:17:40,736 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:17:40,737 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:18:10,824 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:18:10,827 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:18:41,382 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:18:41,383 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:19:11,595 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:19:11,597 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:19:41,879 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:19:41,880 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:20:12,238 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:20:12,239 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:20:42,374 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:20:42,376 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:21:12,730 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:21:12,731 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:21:42,878 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:21:42,880 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 13:22:13,241 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 13:22:13,242 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 13:22:38,300 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10&search=Neque HTTP/1.1" 200 52
+INFO 2025-07-25 13:23:06,123 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10&search=Neque HTTP/1.1" 200 52
+WARNING 2025-07-25 14:16:53,784 log 18881 133989976241856 Unauthorized: /api/training/courses/
+WARNING 2025-07-25 14:16:53,843 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 401 183
+WARNING 2025-07-25 14:16:53,865 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:16:53,871 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 14:16:54,843 basehttp 18881 133989876618944 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-25 14:16:54,966 basehttp 18881 133989876618944 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-25 14:16:55,345 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2064
+WARNING 2025-07-25 14:17:22,589 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:17:22,590 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 14:17:52,602 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:17:52,603 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 14:18:22,739 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:18:22,740 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 14:18:52,938 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:18:52,939 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 14:19:22,947 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:19:22,948 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 14:19:34,779 basehttp 18881 133989876618944 "POST /api/training/courses/ HTTP/1.1" 201 804
+INFO 2025-07-25 14:19:35,065 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 14:19:35,076 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:19:35,077 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 14:19:44,721 basehttp 18881 133989876618944 "OPTIONS /api/training/courses/5/ HTTP/1.1" 200 0
+INFO 2025-07-25 14:19:44,798 basehttp 18881 133989976241856 "GET /api/training/courses/5/ HTTP/1.1" 200 804
+WARNING 2025-07-25 14:19:52,947 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:19:52,948 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 14:19:55,225 basehttp 18881 133989976241856 "PUT /api/training/courses/5/ HTTP/1.1" 200 797
+WARNING 2025-07-25 14:19:55,349 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:19:55,358 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 14:19:55,379 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 14:20:18,143 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:20:18,151 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 14:20:18,189 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 14:20:48,311 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:20:48,312 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 14:21:18,578 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:21:18,580 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 14:21:48,716 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:21:48,717 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 14:22:19,690 log 18881 133989876618944 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:22:19,701 basehttp 18881 133989876618944 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 14:22:50,861 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 14:23:12,960 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 14:23:44,492 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 14:23:44,503 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 14:23:44,530 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 14:24:12,641 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 14:25:08,390 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 14:25:38,510 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 14:26:13,055 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 14:26:35,640 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 15:00:24,389 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:00:24,415 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:00:24,800 basehttp 18881 133989876618944 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 15:00:41,573 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:00:41,579 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:01:11,477 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:01:11,479 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:01:41,505 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:01:41,508 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:01:44,620 basehttp 18881 133989885011648 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-07-25 15:01:46,758 basehttp 18881 133989885011648 "POST /api/auth/login/ HTTP/1.1" 200 729
+INFO 2025-07-25 15:01:48,452 basehttp 18881 133989885011648 "OPTIONS /api/analytics/publications/ HTTP/1.1" 200 0
+INFO 2025-07-25 15:01:48,464 basehttp 18881 133989868226240 "OPTIONS /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-25 15:01:48,494 log 18881 133989885011648 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:01:48,495 basehttp 18881 133989885011648 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:01:48,581 basehttp 18881 133989868226240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 15:02:11,590 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:02:11,593 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:02:18,796 log 18881 133989885011648 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:02:18,800 basehttp 18881 133989885011648 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:03:19,152 basehttp 18881 133989885011648 "OPTIONS /api/analytics/publications/ HTTP/1.1" 200 0
+INFO 2025-07-25 15:03:19,156 basehttp 18881 133989976241856 "OPTIONS /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-25 15:03:34,363 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:03:34,364 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:04:04,383 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:04:04,384 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:04:41,081 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:04:41,083 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:05:04,358 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:05:04,359 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:05:34,361 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:05:34,363 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:06:04,351 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:06:04,352 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:06:34,361 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:06:34,362 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:07:04,360 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:07:04,361 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:07:34,369 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:07:34,370 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:08:04,364 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:08:04,365 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:08:34,435 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:08:34,439 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:09:04,361 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:09:04,362 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:09:34,363 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:09:34,364 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:10:04,363 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:10:04,364 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:10:18,640 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 15:10:41,287 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 15:12:22,603 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 15:13:01,736 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 15:18:05,699 log 18881 133989885011648 Unauthorized: /api/training/courses/
+WARNING 2025-07-25 15:18:05,701 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:18:05,707 basehttp 18881 133989885011648 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 401 183
+WARNING 2025-07-25 15:18:05,713 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:18:05,994 basehttp 18881 133989976241856 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-25 15:18:06,052 basehttp 18881 133989976241856 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-25 15:18:06,246 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 15:18:31,334 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:18:31,335 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:18:31,372 basehttp 18881 133989885011648 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 15:19:01,939 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:19:01,944 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:19:01,997 basehttp 18881 133989885011648 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+WARNING 2025-07-25 15:19:31,688 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:19:31,689 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:20:01,702 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:20:01,703 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:20:31,695 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:20:31,696 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:21:02,242 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:21:02,244 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:21:32,500 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:21:32,501 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:22:02,571 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:22:02,573 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:22:33,426 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:22:33,427 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:23:03,469 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:23:03,470 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:23:34,185 log 18881 133989976241856 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:23:34,186 basehttp 18881 133989976241856 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:23:52,191 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 15:26:34,804 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 15:27:23,065 basehttp 18881 133989976241856 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2568
+INFO 2025-07-25 15:45:47,440 autoreload 46731 140108847804544 Watching for file changes with StatReloader
+INFO 2025-07-25 15:48:01,507 basehttp 46731 140108767426240 "OPTIONS /api/analytics/publications/ HTTP/1.1" 200 0
+INFO 2025-07-25 15:48:01,508 basehttp 46731 140108759033536 "OPTIONS /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-25 15:48:31,202 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:48:31,204 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:49:00,968 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:49:00,969 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:49:30,971 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:49:30,972 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:50:01,862 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:50:01,863 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:50:31,927 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:50:31,928 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:51:02,403 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:51:02,404 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:51:32,523 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:51:32,524 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:52:02,995 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:52:03,001 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:52:33,267 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:52:33,268 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:52:46,985 basehttp 46731 140108759033536 "POST /api/auth/login/ HTTP/1.1" 200 729
+WARNING 2025-07-25 15:53:03,299 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:53:03,300 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:53:19,290 log 46731 140108544079552 Unauthorized: /api/training/courses/1/
+WARNING 2025-07-25 15:53:19,291 basehttp 46731 140108544079552 "DELETE /api/training/courses/1/ HTTP/1.1" 401 58
+INFO 2025-07-25 15:53:29,375 basehttp 46731 140108544079552 "DELETE /api/training/courses/1/ HTTP/1.1" 204 0
+WARNING 2025-07-25 15:53:33,766 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:53:33,767 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:54:02,927 log 46731 140108544079552 Not Found: /api/training/api/courses/
+WARNING 2025-07-25 15:54:02,931 basehttp 46731 140108544079552 "GET /api/training/api/courses/ HTTP/1.1" 404 23330
+WARNING 2025-07-25 15:54:03,831 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:54:03,832 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:54:07,167 log 46731 140108544079552 Not Found: /api/training/api/courses/
+WARNING 2025-07-25 15:54:07,168 basehttp 46731 140108544079552 "GET /api/training/api/courses/ HTTP/1.1" 404 23330
+WARNING 2025-07-25 15:54:11,780 log 46731 140108544079552 Not Acceptable: /api/training/courses/
+WARNING 2025-07-25 15:54:11,781 basehttp 46731 140108544079552 "GET /api/training/courses/ HTTP/1.1" 406 57
+INFO 2025-07-25 15:54:23,240 basehttp 46731 140108544079552 "GET /api/training/courses/ HTTP/1.1" 200 2058
+WARNING 2025-07-25 15:54:34,365 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:54:34,367 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:55:02,257 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:55:02,258 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:55:02,308 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2058
+WARNING 2025-07-25 15:55:32,004 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:55:32,007 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:56:02,075 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:56:02,076 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:56:32,840 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:56:32,841 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:57:02,906 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:57:02,907 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:57:33,654 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:57:33,656 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 15:58:03,729 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 15:58:03,730 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 15:58:13,696 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2058
+INFO 2025-07-25 15:59:03,849 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2058
+INFO 2025-07-25 15:59:44,654 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2058
+INFO 2025-07-25 16:00:32,471 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2058
+INFO 2025-07-25 16:01:30,879 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2058
+INFO 2025-07-25 16:02:28,280 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2058
+WARNING 2025-07-25 16:04:46,641 log 46731 140108535686848 Not Found: /api/analytics/publications/
+INFO 2025-07-25 16:04:46,654 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 2058
+WARNING 2025-07-25 16:04:46,655 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:05:16,308 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:05:16,309 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:05:26,923 basehttp 46731 140108535686848 "OPTIONS /api/training/courses/5/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:05:26,959 basehttp 46731 140108535686848 "DELETE /api/training/courses/5/ HTTP/1.1" 204 0
+INFO 2025-07-25 16:05:27,213 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1554
+INFO 2025-07-25 16:05:39,754 basehttp 46731 140108535686848 "OPTIONS /api/training/courses/3/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:05:39,796 basehttp 46731 140108535686848 "GET /api/training/courses/3/ HTTP/1.1" 200 787
+WARNING 2025-07-25 16:05:46,302 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:05:46,303 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:06:09,890 basehttp 46731 140108535686848 "DELETE /api/training/courses/3/ HTTP/1.1" 204 0
+INFO 2025-07-25 16:06:10,004 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+WARNING 2025-07-25 16:06:16,302 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:06:16,303 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:06:24,656 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:06:24,664 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:06:24,690 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+WARNING 2025-07-25 16:06:54,385 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:06:54,386 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:07:24,402 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:07:24,403 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:07:54,383 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:07:54,384 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:08:24,604 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:08:24,605 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:08:55,079 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:08:55,082 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:08:57,508 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+INFO 2025-07-25 16:09:52,268 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+INFO 2025-07-25 16:10:54,004 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+WARNING 2025-07-25 16:14:27,572 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:14:27,574 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:14:27,605 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+WARNING 2025-07-25 16:14:57,348 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:14:57,349 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:15:01,991 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:15:01,992 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:15:02,139 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+WARNING 2025-07-25 16:15:31,631 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:15:31,632 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:16:01,637 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:16:01,638 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:16:31,629 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:16:31,630 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:17:01,635 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:17:01,636 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:17:31,627 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:17:31,628 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:18:01,637 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:18:01,638 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:18:31,632 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:18:31,632 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:19:01,638 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:19:01,639 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:19:32,458 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:19:32,459 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:20:01,840 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:20:01,841 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:20:32,268 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:20:32,269 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:21:02,263 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:21:02,264 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:21:31,844 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:21:31,845 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:22:01,267 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:22:01,268 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:22:31,270 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:22:31,271 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:23:01,263 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:23:01,264 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:23:31,265 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:23:31,266 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:23:54,536 log 46731 140108767426240 Unauthorized: /api/training/courses/
+WARNING 2025-07-25 16:23:54,544 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 401 183
+WARNING 2025-07-25 16:23:54,539 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:23:54,550 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:23:55,202 basehttp 46731 140108535686848 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:23:55,298 basehttp 46731 140108535686848 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-25 16:23:55,655 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+WARNING 2025-07-25 16:24:24,130 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:24:24,131 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:24:54,138 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:24:54,139 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:25:24,180 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:25:24,181 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:25:54,145 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:25:54,146 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:26:24,142 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:26:24,144 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:26:54,137 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:26:54,139 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:27:24,138 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:27:24,139 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:27:29,354 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+INFO 2025-07-25 16:30:03,347 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+INFO 2025-07-25 16:30:57,900 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+WARNING 2025-07-25 16:36:40,247 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:36:40,249 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:36:40,314 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 1057
+WARNING 2025-07-25 16:37:09,208 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:37:09,209 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:37:39,206 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:37:39,207 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:38:09,198 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:38:09,199 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:38:39,205 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:38:39,206 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:39:08,480 basehttp 46731 140108535686848 "OPTIONS /api/training/courses/2/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:39:08,529 basehttp 46731 140108535686848 "DELETE /api/training/courses/2/ HTTP/1.1" 204 0
+WARNING 2025-07-25 16:39:08,778 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:39:08,780 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:39:08,805 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 556
+WARNING 2025-07-25 16:39:09,208 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:39:09,209 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:39:13,454 basehttp 46731 140108535686848 "OPTIONS /api/training/courses/4/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:39:13,497 basehttp 46731 140108767426240 "DELETE /api/training/courses/4/ HTTP/1.1" 204 0
+WARNING 2025-07-25 16:39:13,635 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:39:13,638 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:39:13,639 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 52
+WARNING 2025-07-25 16:39:39,196 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:39:39,197 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:40:09,201 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:40:09,202 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:40:40,203 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:40:40,204 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:41:10,094 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:41:10,095 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:41:40,523 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:41:40,524 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:42:10,517 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:42:10,518 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:42:30,969 basehttp 46731 140108767426240 "OPTIONS /api/training/courses/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:42:31,032 basehttp 46731 140108535686848 "POST /api/training/courses/ HTTP/1.1" 201 796
+WARNING 2025-07-25 16:42:31,084 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:42:31,085 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:42:31,110 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 583
+WARNING 2025-07-25 16:42:40,511 log 46731 140108767426240 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:42:40,512 basehttp 46731 140108767426240 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 16:42:47,190 log 46731 140108535686848 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 16:42:47,191 basehttp 46731 140108535686848 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 16:42:47,245 basehttp 46731 140108767426240 "OPTIONS /api/auth/users/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:42:47,251 basehttp 46731 140108527294144 "OPTIONS /api/content/announcements/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:42:47,264 basehttp 46731 140108527294144 "OPTIONS /api/research/publications/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:42:47,293 basehttp 46731 140108510508736 "OPTIONS /api/services/requests/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:42:47,298 basehttp 46731 140108510508736 "OPTIONS /api/organization/labs/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:42:47,307 basehttp 46731 140108502116032 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:42:47,391 basehttp 46731 140108767426240 "GET /api/auth/users/ HTTP/1.1" 200 228
+INFO 2025-07-25 16:42:47,400 basehttp 46731 140108535686848 "GET /api/training/courses/ HTTP/1.1" 200 583
+INFO 2025-07-25 16:42:47,437 basehttp 46731 140108527294144 "GET /api/organization/departments/ HTTP/1.1" 200 52
+INFO 2025-07-25 16:42:47,493 basehttp 46731 140108767426240 "OPTIONS /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-25 16:42:47,525 basehttp 46731 140108518901440 "GET /api/content/announcements/ HTTP/1.1" 200 52
+INFO 2025-07-25 16:42:47,532 basehttp 46731 140108502116032 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-25 16:42:47,550 basehttp 46731 140108510508736 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-25 16:42:47,587 basehttp 46731 140108535686848 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-25 16:42:47,602 basehttp 46731 140108767426240 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 16:42:56,647 basehttp 46731 140108535686848 "GET /api/organization/settings/ HTTP/1.1" 200 277
+INFO 2025-07-25 16:42:56,706 basehttp 46731 140108767426240 "GET /api/organization/departments/ HTTP/1.1" 200 52
+WARNING 2025-07-25 16:42:56,984 log 46731 140108535686848 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 16:42:56,997 basehttp 46731 140108535686848 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 16:42:57,032 basehttp 46731 140108767426240 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 16:42:57,155 basehttp 46731 140108535686848 "OPTIONS /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-25 16:42:57,197 basehttp 46731 140108767426240 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 16:42:59,139 basehttp 46731 140108535686848 "OPTIONS /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 0
+INFO 2025-07-25 16:42:59,162 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 52
+INFO 2025-07-25 16:43:03,590 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 52
+INFO 2025-07-25 16:43:03,606 basehttp 46731 140108767426240 "GET /api/organization/departments/ HTTP/1.1" 200 52
+INFO 2025-07-25 16:43:29,748 basehttp 46731 140108535686848 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 52
+INFO 2025-07-25 16:43:29,749 basehttp 46731 140108767426240 "GET /api/organization/departments/ HTTP/1.1" 200 52
+INFO 2025-07-25 16:43:39,923 basehttp 46731 140108535686848 "GET /api/organization/settings/ HTTP/1.1" 200 277
+WARNING 2025-07-25 16:43:40,085 log 46731 140108767426240 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 16:43:40,086 basehttp 46731 140108767426240 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 16:43:40,148 basehttp 46731 140108535686848 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 16:43:40,384 basehttp 46731 140108767426240 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-25 16:43:45,747 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:43:45,755 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:43:45,777 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 583
+INFO 2025-07-25 16:43:50,324 basehttp 46731 140108535686848 "OPTIONS /api/training/courses/6/ HTTP/1.1" 200 0
+INFO 2025-07-25 16:43:50,357 basehttp 46731 140108767426240 "GET /api/training/courses/6/ HTTP/1.1" 200 796
+INFO 2025-07-25 16:43:57,433 basehttp 46731 140108535686848 "PUT /api/training/courses/6/ HTTP/1.1" 200 800
+WARNING 2025-07-25 16:43:57,488 log 46731 140108535686848 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 16:43:57,489 basehttp 46731 140108535686848 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 16:43:57,501 basehttp 46731 140108767426240 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 587
+WARNING 2025-07-25 16:44:01,445 log 46731 140108767426240 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 16:44:01,446 basehttp 46731 140108767426240 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 16:44:03,425 basehttp 46731 140108527294144 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+WARNING 2025-07-25 16:44:03,915 log 46731 140108527294144 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 16:44:03,922 basehttp 46731 140108527294144 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 16:44:03,950 basehttp 46731 140108502116032 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 16:44:04,111 basehttp 46731 140108527294144 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 16:44:08,054 basehttp 46731 140108502116032 "GET /api/organization/departments/ HTTP/1.1" 200 52
+INFO 2025-07-25 16:44:08,086 basehttp 46731 140108527294144 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 587
+INFO 2025-07-25 20:23:00,708 basehttp 46731 140108527294144 "OPTIONS /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:00,713 basehttp 46731 140108502116032 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:04,135 basehttp 46731 140108527294144 "GET /api/organization/settings/ HTTP/1.1" 200 277
+WARNING 2025-07-25 20:23:04,171 log 46731 140108527294144 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 20:23:04,204 basehttp 46731 140108527294144 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 20:23:04,243 basehttp 46731 140108527294144 "OPTIONS /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:04,244 basehttp 46731 140108502116032 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-25 20:23:04,303 log 46731 140108527294144 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 20:23:04,303 basehttp 46731 140108527294144 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 183
+INFO 2025-07-25 20:23:04,357 basehttp 46731 140108527294144 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:04,416 basehttp 46731 140108527294144 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-25 20:23:04,490 basehttp 46731 140108527294144 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 20:23:05,621 basehttp 46731 140108527294144 "OPTIONS /api/auth/users/ HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:05,622 basehttp 46731 140108527294144 "OPTIONS /api/content/announcements/ HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:05,625 basehttp 46731 140108502116032 "OPTIONS /api/training/courses/ HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:05,627 basehttp 46731 140108510508736 "OPTIONS /api/research/publications/ HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:05,627 basehttp 46731 140108502116032 "OPTIONS /api/services/requests/ HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:05,628 basehttp 46731 140108518901440 "OPTIONS /api/organization/labs/ HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:05,682 basehttp 46731 140108527294144 "OPTIONS /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:05,733 basehttp 46731 140108527294144 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 20:23:07,836 basehttp 46731 140108527294144 "OPTIONS /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:07,844 basehttp 46731 140108527294144 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 52
+INFO 2025-07-25 20:23:18,372 basehttp 46731 140108527294144 "OPTIONS /api/organization/departments/?page=1&page_size=10&search=Ut HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:18,382 basehttp 46731 140108527294144 "GET /api/organization/departments/?page=1&page_size=10&search=Ut HTTP/1.1" 200 52
+INFO 2025-07-25 20:23:21,477 basehttp 46731 140108527294144 "POST /api/organization/departments/ HTTP/1.1" 201 233
+INFO 2025-07-25 20:23:21,486 basehttp 46731 140108527294144 "GET /api/organization/departments/?page=1&page_size=10&search=Ut HTTP/1.1" 200 52
+INFO 2025-07-25 20:23:31,434 basehttp 46731 140108502116032 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 158
+INFO 2025-07-25 20:23:31,434 basehttp 46731 140108527294144 "GET /api/organization/departments/?page=1&page_size=10&search=Ut HTTP/1.1" 200 52
+INFO 2025-07-25 20:23:36,305 basehttp 46731 140108527294144 "GET /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 158
+INFO 2025-07-25 20:23:43,113 basehttp 46731 140108527294144 "OPTIONS /api/organization/labs/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:43,124 basehttp 46731 140108527294144 "GET /api/organization/labs/?page=1&page_size=10 HTTP/1.1" 200 52
+INFO 2025-07-25 20:23:50,188 basehttp 46731 140108527294144 "OPTIONS /api/organization/labs/?page=1&page_size=10&search=Autem HTTP/1.1" 200 0
+INFO 2025-07-25 20:23:50,196 basehttp 46731 140108527294144 "GET /api/organization/labs/?page=1&page_size=10&search=Autem HTTP/1.1" 200 52
+WARNING 2025-07-25 20:24:01,120 log 46731 140108527294144 Bad Request: /api/organization/labs/
+WARNING 2025-07-25 20:24:01,120 basehttp 46731 140108527294144 "POST /api/organization/labs/ HTTP/1.1" 400 45
+WARNING 2025-07-25 20:24:04,914 log 46731 140108527294144 Bad Request: /api/organization/labs/
+WARNING 2025-07-25 20:24:04,914 basehttp 46731 140108527294144 "POST /api/organization/labs/ HTTP/1.1" 400 45
