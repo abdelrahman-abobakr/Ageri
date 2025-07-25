@@ -179,7 +179,6 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
-    'DEFAULT_CONTENT_NEGOTIATION_CLASS': 'research_platform.content_negotiation.FlexibleContentNegotiation',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': config('DEFAULT_PAGE_SIZE', default=20, cast=int),
     'DEFAULT_FILTER_BACKENDS': [

@@ -14942,3 +14942,24 @@ INFO 2025-07-24 23:43:38,964 autoreload 52942 130487909171328 /home/abdo/ITI/Age
 INFO 2025-07-24 23:44:26,186 autoreload 53688 124851864416384 Watching for file changes with StatReloader
 INFO 2025-07-24 23:52:10,128 autoreload 57192 132710774911104 Watching for file changes with StatReloader
 INFO 2025-07-24 23:55:16,654 autoreload 58330 127913669480576 Watching for file changes with StatReloader
+INFO 2025-07-25 00:35:23,981 autoreload 14104 129584077930624 Watching for file changes with StatReloader
+INFO 2025-07-25 00:36:12,420 autoreload 14104 129584077930624 /home/abdo/ITI/Ageri/research_platform/settings.py changed, reloading.
+INFO 2025-07-25 00:36:14,036 autoreload 14327 129353998930048 Watching for file changes with StatReloader
+INFO 2025-07-25 00:36:39,344 autoreload 14555 139404274000000 Watching for file changes with StatReloader
+INFO 2025-07-25 07:23:53,672 autoreload 17076 133490667688064 Watching for file changes with StatReloader
+INFO 2025-07-25 07:30:44,558 autoreload 17941 132421784117376 Watching for file changes with StatReloader
+INFO 2025-07-25 07:55:03,201 autoreload 21027 128730662363264 Watching for file changes with StatReloader
+INFO 2025-07-25 08:01:42,664 basehttp 14327 129353918707392 "GET /api/training/courses/ HTTP/1.1" 200 552
+INFO 2025-07-25 09:53:05,945 basehttp 14327 129353918707392 "GET /api/training/courses/ HTTP/1.1" 200 552
+INFO 2025-07-25 10:00:25,692 basehttp 14327 129353918707392 "GET /api/training/courses/ HTTP/1.1" 200 11271
+WARNING 2025-07-25 10:02:10,544 log 14327 129353918707392 Not Found: /api/training/api/courses/
+WARNING 2025-07-25 10:02:10,545 basehttp 14327 129353918707392 "GET /api/training/api/courses/ HTTP/1.1" 404 23330
+WARNING 2025-07-25 10:02:42,655 log 14327 129353918707392 Not Found: /api/training/api/courses/
+WARNING 2025-07-25 10:02:42,656 basehttp 14327 129353918707392 "GET /api/training/api/courses/ HTTP/1.1" 404 23330
+WARNING 2025-07-25 10:03:01,190 log 14327 129353918707392 Not Acceptable: /api/training/courses/
+WARNING 2025-07-25 10:03:01,191 basehttp 14327 129353918707392 "GET /api/training/courses/ HTTP/1.1" 406 57
+WARNING 2025-07-25 10:03:32,462 log 14327 129353918707392 Unauthorized: /api/training/courses/
+WARNING 2025-07-25 10:03:32,463 basehttp 14327 129353918707392 "GET /api/training/courses/ HTTP/1.1" 401 183
+INFO 2025-07-25 10:04:05,103 basehttp 14327 129353907168960 "POST /api/auth/login/ HTTP/1.1" 200 729
+INFO 2025-07-25 10:04:21,985 basehttp 14327 129353918707392 "GET /api/training/courses/ HTTP/1.1" 200 2064
+INFO 2025-07-25 12:53:43,241 autoreload 16660 129908453519488 Watching for file changes with StatReloader
