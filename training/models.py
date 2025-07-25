@@ -158,13 +158,19 @@ class Course(TimeStampedModel):
         """Validate course data"""
         from django.core.exceptions import ValidationError
 
+        # Validate that end_date is after start_date
         if self.start_date and self.end_date:
-            if self.start_date >= self.end_date:
-                raise ValidationError("End date must be after start date")
+            if self.end_date <= self.start_date:
+                raise ValidationError({
+                    'end_date': 'End date must be after start date.'
+                })
 
+        # Validate that registration deadline is before start_date
         if self.registration_deadline and self.start_date:
             if self.registration_deadline >= self.start_date:
-                raise ValidationError("Registration deadline must be before start date")
+                raise ValidationError({
+                    'registration_deadline': 'Registration deadline must be before start date.'
+                })
 
     @property
     def is_registration_open(self):

@@ -18,5 +18,5 @@ router.register(r'service-requests', PublicServiceRequestViewSet)
 app_name = 'training'
 
 urlpatterns = [
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]

@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +32,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lamb
 # Application definition
 
 INSTALLED_APPS = [
-    "modeltranslation",  # Must be before django.contrib.admin
+    # "modeltranslation",  # Temporarily disabled - missing dependency
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -45,10 +44,10 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
-    "django_extensions",
+    # "django_extensions",  # Temporarily disabled
     "django_filters",
     "drf_spectacular",
-    "rosetta",  # Translation management interface
+    # "rosetta",  # Temporarily disabled - missing dependency
 
     # Local apps
     "core",
@@ -98,11 +97,10 @@ WSGI_APPLICATION = "research_platform.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL', default='sqlite:///db.sqlite3'),
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Add ATOMIC_REQUESTS for test database
@@ -181,6 +179,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    'DEFAULT_CONTENT_NEGOTIATION_CLASS': 'research_platform.content_negotiation.FlexibleContentNegotiation',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': config('DEFAULT_PAGE_SIZE', default=20, cast=int),
     'DEFAULT_FILTER_BACKENDS': [

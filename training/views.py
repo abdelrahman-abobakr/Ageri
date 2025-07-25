@@ -2,6 +2,7 @@ from rest_framework import viewsets, status, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from django_filters.rest_framework import DjangoFilterBackend
 from django.utils import timezone
 from django.db.models import Q, Count, Avg
@@ -24,6 +25,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     """ViewSet for managing courses"""
     queryset = Course.objects.all()
     permission_classes = [IsAuthenticated]
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = [
         'type', 'status', 'is_featured', 'is_public', 'department'

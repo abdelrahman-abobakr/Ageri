@@ -56,6 +56,34 @@ class CourseDetailSerializer(serializers.ModelSerializer):
         """Get count of active enrollments"""
         return obj.enrollments.filter(status__in=['approved', 'completed']).count()
 
+    def validate(self, data):
+        """Validate course data"""
+        start_date = data.get('start_date')
+        end_date = data.get('end_date')
+        registration_deadline = data.get('registration_deadline')
+
+        # If updating, get current values if not provided
+        if self.instance:
+            start_date = start_date or self.instance.start_date
+            end_date = end_date or self.instance.end_date
+            registration_deadline = registration_deadline or self.instance.registration_deadline
+
+        # Validate that end_date is after start_date
+        if start_date and end_date:
+            if end_date <= start_date:
+                raise serializers.ValidationError({
+                    'end_date': 'End date must be after start date.'
+                })
+
+        # Validate that registration deadline is before start_date
+        if registration_deadline and start_date:
+            if registration_deadline >= start_date:
+                raise serializers.ValidationError({
+                    'registration_deadline': 'Registration deadline must be before start date.'
+                })
+
+        return data
+
 
 class SummerTrainingListSerializer(serializers.ModelSerializer):
     """Serializer for summer training list view"""
