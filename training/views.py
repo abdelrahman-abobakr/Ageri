@@ -89,7 +89,7 @@ class CourseViewSet(viewsets.ModelViewSet):
         enrollment = CourseEnrollment.objects.create(
             course=course,
             student=request.user,
-            payment_amount=course.price if not course.is_free else 0
+            payment_amount=course.cost if not course.is_free else 0
         )
 
         # Update course enrollment count

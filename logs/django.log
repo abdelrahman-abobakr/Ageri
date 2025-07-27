@@ -15510,3 +15510,694 @@ WARNING 2025-07-25 20:24:01,120 basehttp 46731 140108527294144 "POST /api/organi
 WARNING 2025-07-25 20:24:04,914 log 46731 140108527294144 Bad Request: /api/organization/labs/
 WARNING 2025-07-25 20:24:04,914 basehttp 46731 140108527294144 "POST /api/organization/labs/ HTTP/1.1" 400 45
 INFO 2025-07-25 21:13:09,523 autoreload 5976 137781158604928 Watching for file changes with StatReloader
+INFO 2025-07-25 22:14:57,291 basehttp 5976 137781007349440 "OPTIONS /api/organization/departments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-25 22:23:44,599 basehttp 5976 137780998956736 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+INFO 2025-07-25 22:23:45,109 basehttp 5976 137781007349440 "GET /api/organization/settings/ HTTP/1.1" 200 277
+WARNING 2025-07-25 22:23:45,273 log 5976 137781007349440 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 22:23:45,279 log 5976 137780998956736 Unauthorized: /api/organization/departments/
+WARNING 2025-07-25 22:23:45,289 basehttp 5976 137780998956736 "GET /api/organization/departments/ HTTP/1.1" 401 183
+WARNING 2025-07-25 22:23:45,290 basehttp 5976 137781007349440 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 22:23:45,408 basehttp 5976 137781007349440 "OPTIONS /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 0
+WARNING 2025-07-25 22:23:45,413 log 5976 137781007349440 Unauthorized: /api/content/announcements/
+INFO 2025-07-25 22:23:45,413 basehttp 5976 137780998956736 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+WARNING 2025-07-25 22:23:45,415 basehttp 5976 137781007349440 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 183
+INFO 2025-07-25 22:23:45,463 basehttp 5976 137780990564032 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 22:23:45,478 basehttp 5976 137781007349440 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-25 22:23:45,481 basehttp 5976 137780998956736 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-25 22:23:45,574 basehttp 5976 137781007349440 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 22:23:45,618 basehttp 5976 137780998956736 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-25 22:24:05,351 basehttp 5976 137781007349440 "OPTIONS /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 0
+INFO 2025-07-25 22:24:05,401 basehttp 5976 137780998956736 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 587
+INFO 2025-07-25 22:24:30,553 basehttp 5976 137780998956736 "GET /api/organization/settings/ HTTP/1.1" 200 277
+WARNING 2025-07-25 22:24:30,625 log 5976 137780998956736 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 22:24:30,637 basehttp 5976 137780998956736 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 22:24:30,650 basehttp 5976 137781007349440 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 22:24:30,761 basehttp 5976 137780998956736 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 22:24:35,860 basehttp 5976 137781007349440 "OPTIONS /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-25 22:24:35,860 basehttp 5976 137780998956736 "OPTIONS /api/analytics/publications/ HTTP/1.1" 200 0
+WARNING 2025-07-25 22:24:35,949 log 5976 137780998956736 Not Found: /api/analytics/publications/
+INFO 2025-07-25 22:24:35,950 basehttp 5976 137781007349440 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 587
+WARNING 2025-07-25 22:24:35,950 basehttp 5976 137780998956736 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 22:24:44,701 log 5976 137780998956736 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 22:24:44,709 basehttp 5976 137780998956736 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 22:24:44,725 basehttp 5976 137781007349440 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 587
+INFO 2025-07-25 22:24:51,206 basehttp 5976 137780998956736 "OPTIONS /api/training/courses/6/ HTTP/1.1" 200 0
+INFO 2025-07-25 22:24:51,250 basehttp 5976 137780998956736 "GET /api/training/courses/6/ HTTP/1.1" 200 800
+WARNING 2025-07-25 22:25:14,594 log 5976 137780998956736 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 22:25:14,595 basehttp 5976 137780998956736 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 22:25:28,122 basehttp 5976 137780998956736 "GET /api/training/courses/6/ HTTP/1.1" 200 800
+WARNING 2025-07-25 22:25:44,588 log 5976 137780998956736 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 22:25:44,589 basehttp 5976 137780998956736 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 22:25:58,953 log 5976 137780998956736 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 22:25:58,955 basehttp 5976 137780998956736 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 22:25:58,994 basehttp 5976 137781007349440 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 587
+INFO 2025-07-25 22:26:10,600 basehttp 5976 137780998956736 "GET /api/training/courses/6/ HTTP/1.1" 200 800
+INFO 2025-07-25 22:26:17,425 basehttp 5976 137780998956736 "PUT /api/training/courses/6/ HTTP/1.1" 200 801
+INFO 2025-07-25 22:26:17,672 basehttp 5976 137780998956736 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 588
+WARNING 2025-07-25 22:26:17,674 log 5976 137781007349440 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 22:26:17,675 basehttp 5976 137781007349440 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 22:26:20,710 basehttp 5976 137780998956736 "GET /api/training/courses/6/ HTTP/1.1" 200 801
+WARNING 2025-07-25 22:26:28,724 log 5976 137781007349440 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 22:26:28,725 basehttp 5976 137781007349440 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-25 22:26:58,751 log 5976 137780998956736 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 22:26:58,752 basehttp 5976 137780998956736 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 22:27:13,276 basehttp 5976 137781007349440 "PUT /api/training/courses/6/ HTTP/1.1" 200 799
+WARNING 2025-07-25 22:27:13,384 log 5976 137781007349440 Not Found: /api/analytics/publications/
+WARNING 2025-07-25 22:27:13,385 basehttp 5976 137781007349440 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-25 22:27:13,417 basehttp 5976 137780998956736 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 586
+INFO 2025-07-25 22:27:24,494 basehttp 5976 137781007349440 "GET /api/organization/settings/ HTTP/1.1" 200 277
+INFO 2025-07-25 22:27:24,590 basehttp 5976 137780998956736 "GET /api/organization/departments/ HTTP/1.1" 200 158
+WARNING 2025-07-25 22:27:24,892 log 5976 137781007349440 Unauthorized: /api/content/announcements/
+WARNING 2025-07-25 22:27:24,910 basehttp 5976 137781007349440 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-25 22:27:24,925 basehttp 5976 137780998956736 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 22:27:25,322 basehttp 5976 137781007349440 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-25 22:27:26,109 basehttp 5976 137780998956736 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 586
+INFO 2025-07-25 22:27:46,968 basehttp 5976 137781007349440 "OPTIONS /api/training/courses/6/enroll/ HTTP/1.1" 200 0
+ERROR 2025-07-25 22:27:47,140 log 5976 137780998956736 Internal Server Error: /api/training/courses/6/enroll/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/training/views.py", line 92, in enroll
+    payment_amount=course.price if not course.is_free else 0
+                   ^^^^^^^^^^^^
+AttributeError: 'Course' object has no attribute 'price'
+ERROR 2025-07-25 22:27:47,159 basehttp 5976 137780998956736 "POST /api/training/courses/6/enroll/ HTTP/1.1" 500 98868
+ERROR 2025-07-25 22:33:13,663 log 5976 137780998956736 Internal Server Error: /api/training/courses/6/enroll/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/training/views.py", line 92, in enroll
+    payment_amount=course.price if not course.is_free else 0
+                   ^^^^^^^^^^^^
+AttributeError: 'Course' object has no attribute 'price'
+ERROR 2025-07-25 22:33:13,670 basehttp 5976 137780998956736 "POST /api/training/courses/6/enroll/ HTTP/1.1" 500 98868
+INFO 2025-07-25 22:35:40,405 basehttp 5976 137780998956736 "OPTIONS /api/training/courses/?page=1&page_size=10&search=Dolore&status=published HTTP/1.1" 200 0
+INFO 2025-07-25 22:35:40,464 basehttp 5976 137780998956736 "GET /api/training/courses/?page=1&page_size=10&search=Dolore&status=published HTTP/1.1" 200 52
+INFO 2025-07-25 22:35:40,469 basehttp 5976 137781007349440 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-25 22:40:32,152 basehttp 5976 137780998956736 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-25 22:40:32,171 basehttp 5976 137781007349440 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 586
+ERROR 2025-07-25 22:40:50,112 log 5976 137781007349440 Internal Server Error: /api/training/courses/6/enroll/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/training/views.py", line 92, in enroll
+    payment_amount=course.price if not course.is_free else 0
+                   ^^^^^^^^^^^^
+AttributeError: 'Course' object has no attribute 'price'
+ERROR 2025-07-25 22:40:50,121 basehttp 5976 137781007349440 "POST /api/training/courses/6/enroll/ HTTP/1.1" 500 98868
+ERROR 2025-07-25 22:41:27,050 log 5976 137781007349440 Internal Server Error: /api/training/courses/6/enroll/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/training/views.py", line 92, in enroll
+    payment_amount=course.price if not course.is_free else 0
+                   ^^^^^^^^^^^^
+AttributeError: 'Course' object has no attribute 'price'
+ERROR 2025-07-25 22:41:27,057 basehttp 5976 137781007349440 "POST /api/training/courses/6/enroll/ HTTP/1.1" 500 98868
+INFO 2025-07-25 22:41:28,182 basehttp 5976 137781007349440 "GET /api/training/courses/6/ HTTP/1.1" 200 799
+INFO 2025-07-26 21:38:42,415 autoreload 19390 126474755731584 Watching for file changes with StatReloader
+WARNING 2025-07-26 21:39:57,405 log 19390 126474675812032 Unauthorized: /api/training/courses/
+WARNING 2025-07-26 21:39:57,409 log 19390 126474667419328 Unauthorized: /api/organization/departments/
+WARNING 2025-07-26 21:39:57,410 basehttp 19390 126474667419328 "GET /api/organization/departments/ HTTP/1.1" 401 183
+WARNING 2025-07-26 21:39:57,411 basehttp 19390 126474675812032 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 401 183
+WARNING 2025-07-26 21:39:58,012 log 19390 126474667419328 Unauthorized: /api/auth/token/refresh/
+WARNING 2025-07-26 21:39:58,013 log 19390 126474675812032 Unauthorized: /api/auth/token/refresh/
+WARNING 2025-07-26 21:39:58,015 basehttp 19390 126474667419328 "POST /api/auth/token/refresh/ HTTP/1.1" 401 65
+WARNING 2025-07-26 21:39:58,016 basehttp 19390 126474675812032 "POST /api/auth/token/refresh/ HTTP/1.1" 401 65
+INFO 2025-07-26 21:40:12,065 basehttp 19390 126474667419328 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-07-26 21:40:14,268 basehttp 19390 126474675812032 "POST /api/auth/login/ HTTP/1.1" 200 729
+WARNING 2025-07-26 21:40:14,882 log 19390 126474675812032 Unauthorized: /api/content/announcements/
+WARNING 2025-07-26 21:40:14,883 basehttp 19390 126474675812032 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-26 21:40:15,010 basehttp 19390 126474675812032 "OPTIONS /api/auth/users/ HTTP/1.1" 200 0
+INFO 2025-07-26 21:40:15,066 basehttp 19390 126474675812032 "GET /api/auth/users/ HTTP/1.1" 200 228
+INFO 2025-07-26 21:40:15,103 basehttp 19390 126474667419328 "OPTIONS /api/content/announcements/ HTTP/1.1" 200 0
+INFO 2025-07-26 21:40:15,183 basehttp 19390 126474675812032 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-26 21:40:15,226 basehttp 19390 126474675812032 "GET /api/content/announcements/ HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:15,263 basehttp 19390 126474667419328 "OPTIONS /api/organization/labs/ HTTP/1.1" 200 0
+INFO 2025-07-26 21:40:15,295 basehttp 19390 126474675812032 "OPTIONS /api/training/courses/ HTTP/1.1" 200 0
+INFO 2025-07-26 21:40:15,327 basehttp 19390 126474667419328 "OPTIONS /api/research/publications/ HTTP/1.1" 200 0
+INFO 2025-07-26 21:40:15,342 basehttp 19390 126474675812032 "OPTIONS /api/services/requests/ HTTP/1.1" 200 0
+INFO 2025-07-26 21:40:15,394 basehttp 19390 126474304616128 "OPTIONS /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-26 21:40:15,417 basehttp 19390 126474667419328 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:15,527 basehttp 19390 126474304616128 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:15,559 basehttp 19390 126474649585344 "GET /api/training/courses/ HTTP/1.1" 200 586
+INFO 2025-07-26 21:40:15,572 basehttp 19390 126474657978048 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:15,592 basehttp 19390 126474675812032 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:32,208 basehttp 19390 126474675812032 "GET /api/organization/settings/ HTTP/1.1" 200 277
+INFO 2025-07-26 21:40:32,298 basehttp 19390 126474675812032 "GET /api/organization/departments/ HTTP/1.1" 200 158
+WARNING 2025-07-26 21:40:32,648 log 19390 126474675812032 Unauthorized: /api/content/announcements/
+WARNING 2025-07-26 21:40:32,659 basehttp 19390 126474675812032 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-26 21:40:32,685 basehttp 19390 126474649585344 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:33,017 basehttp 19390 126474675812032 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:35,583 basehttp 19390 126474675812032 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 586
+INFO 2025-07-26 21:40:40,875 basehttp 19390 126474675812032 "GET /api/organization/settings/ HTTP/1.1" 200 277
+WARNING 2025-07-26 21:40:40,928 log 19390 126474675812032 Unauthorized: /api/content/announcements/
+WARNING 2025-07-26 21:40:40,936 basehttp 19390 126474675812032 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-26 21:40:40,961 basehttp 19390 126474649585344 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:41,099 basehttp 19390 126474675812032 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-26 21:40:45,053 log 19390 126474675812032 Unauthorized: /api/content/announcements/
+WARNING 2025-07-26 21:40:45,054 basehttp 19390 126474675812032 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-26 21:40:45,311 basehttp 19390 126474675812032 "GET /api/auth/users/ HTTP/1.1" 200 228
+INFO 2025-07-26 21:40:45,312 basehttp 19390 126474649585344 "GET /api/content/announcements/ HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:45,344 basehttp 19390 126474667419328 "GET /api/training/courses/ HTTP/1.1" 200 586
+INFO 2025-07-26 21:40:45,550 basehttp 19390 126474304616128 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:45,552 basehttp 19390 126474649585344 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:45,573 basehttp 19390 126474675812032 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-26 21:40:45,605 basehttp 19390 126474667419328 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-26 21:40:45,781 basehttp 19390 126474675812032 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-26 21:41:07,334 basehttp 19390 126474649585344 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 586
+WARNING 2025-07-26 21:41:07,353 log 19390 126474675812032 Not Found: /api/analytics/publications/
+WARNING 2025-07-26 21:41:07,355 basehttp 19390 126474675812032 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-26 21:41:12,255 basehttp 19390 126474675812032 "GET /api/training/courses/6/ HTTP/1.1" 200 799
+WARNING 2025-07-26 21:41:38,189 log 19390 126474675812032 Not Found: /api/analytics/publications/
+WARNING 2025-07-26 21:41:38,190 basehttp 19390 126474675812032 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-26 21:42:08,194 log 19390 126474675812032 Not Found: /api/analytics/publications/
+WARNING 2025-07-26 21:42:08,195 basehttp 19390 126474675812032 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-26 21:42:38,199 log 19390 126474675812032 Not Found: /api/analytics/publications/
+WARNING 2025-07-26 21:42:38,200 basehttp 19390 126474675812032 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-26 21:42:38,896 basehttp 19390 126474675812032 "PUT /api/training/courses/6/ HTTP/1.1" 200 799
+WARNING 2025-07-26 21:42:38,957 log 19390 126474667419328 Not Found: /api/analytics/publications/
+WARNING 2025-07-26 21:42:38,970 basehttp 19390 126474667419328 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-26 21:42:38,984 basehttp 19390 126474675812032 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 586
+INFO 2025-07-26 21:42:51,618 basehttp 19390 126474667419328 "GET /api/organization/settings/ HTTP/1.1" 200 277
+INFO 2025-07-26 21:42:51,694 basehttp 19390 126474675812032 "GET /api/organization/departments/ HTTP/1.1" 200 158
+WARNING 2025-07-26 21:42:51,981 log 19390 126474667419328 Unauthorized: /api/content/announcements/
+WARNING 2025-07-26 21:42:51,996 basehttp 19390 126474667419328 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-26 21:42:52,012 basehttp 19390 126474675812032 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-26 21:42:52,282 basehttp 19390 126474667419328 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-26 21:42:54,242 basehttp 19390 126474675812032 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 586
+ERROR 2025-07-26 21:43:16,093 log 19390 126474667419328 Internal Server Error: /api/training/courses/6/enroll/
+Traceback (most recent call last):
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/home/abdo/ITI/Ageri/venv/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/abdo/ITI/Ageri/training/views.py", line 92, in enroll
+    payment_amount=course.price if not course.is_free else 0
+                   ^^^^^^^^^^^^
+AttributeError: 'Course' object has no attribute 'price'
+ERROR 2025-07-26 21:43:16,103 basehttp 19390 126474667419328 "POST /api/training/courses/6/enroll/ HTTP/1.1" 500 98868
+INFO 2025-07-26 21:43:55,008 autoreload 20873 127133600825472 Watching for file changes with StatReloader
+INFO 2025-07-27 00:11:21,367 autoreload 20873 127133600825472 /home/abdo/ITI/Ageri/training/views.py changed, reloading.
+INFO 2025-07-27 00:11:24,330 autoreload 30010 129781331046528 Watching for file changes with StatReloader
+WARNING 2025-07-27 00:11:52,985 log 30010 129781251176128 Unauthorized: /api/training/courses/
+WARNING 2025-07-27 00:11:52,987 log 30010 129781242783424 Unauthorized: /api/organization/departments/
+WARNING 2025-07-27 00:11:52,988 basehttp 30010 129781251176128 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 401 183
+WARNING 2025-07-27 00:11:52,989 basehttp 30010 129781242783424 "GET /api/organization/departments/ HTTP/1.1" 401 183
+INFO 2025-07-27 00:11:53,230 basehttp 30010 129781251176128 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-27 00:11:53,232 basehttp 30010 129781242783424 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-27 00:11:53,252 basehttp 30010 129781251176128 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-27 00:11:53,254 basehttp 30010 129781242783424 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-27 00:11:53,374 basehttp 30010 129781242783424 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-27 00:11:53,395 basehttp 30010 129781251176128 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 586
+INFO 2025-07-27 00:12:09,769 basehttp 30010 129781251176128 "POST /api/training/courses/6/enroll/ HTTP/1.1" 201 473
+INFO 2025-07-27 00:12:09,791 basehttp 30010 129781251176128 "OPTIONS /api/training/courses/?page=1&page_size=10&search=Quaerat&status=published HTTP/1.1" 200 0
+INFO 2025-07-27 00:12:09,863 basehttp 30010 129781251176128 "GET /api/training/courses/?page=1&page_size=10&search=Quaerat&status=published HTTP/1.1" 200 52
+INFO 2025-07-27 00:12:59,599 basehttp 30010 129781251176128 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 601
+INFO 2025-07-27 00:12:59,644 basehttp 30010 129781242783424 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-27 14:39:05,912 autoreload 7686 138048714150016 Watching for file changes with StatReloader
+INFO 2025-07-27 15:05:13,252 basehttp 7686 138048566195904 "OPTIONS /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 0
+INFO 2025-07-27 15:05:13,250 basehttp 7686 138048557803200 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+WARNING 2025-07-27 15:05:13,607 log 7686 138048557803200 Unauthorized: /api/organization/departments/
+WARNING 2025-07-27 15:05:13,608 log 7686 138048566195904 Unauthorized: /api/training/courses/
+WARNING 2025-07-27 15:05:13,609 basehttp 7686 138048557803200 "GET /api/organization/departments/ HTTP/1.1" 401 183
+WARNING 2025-07-27 15:05:13,610 basehttp 7686 138048566195904 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 401 183
+INFO 2025-07-27 15:05:14,157 basehttp 7686 138048566195904 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-27 15:05:14,168 basehttp 7686 138048557803200 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-07-27 15:05:14,290 basehttp 7686 138048566195904 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-27 15:05:14,290 basehttp 7686 138048557803200 "POST /api/auth/token/refresh/ HTTP/1.1" 200 483
+INFO 2025-07-27 15:05:15,749 basehttp 7686 138048557803200 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 601
+INFO 2025-07-27 15:05:15,751 basehttp 7686 138048566195904 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-27 15:06:25,190 basehttp 7686 138048557803200 "OPTIONS /api/training/courses/6/enroll/ HTTP/1.1" 200 0
+WARNING 2025-07-27 15:06:25,243 log 7686 138048557803200 Bad Request: /api/training/courses/6/enroll/
+WARNING 2025-07-27 15:06:25,244 basehttp 7686 138048557803200 "POST /api/training/courses/6/enroll/ HTTP/1.1" 400 51
+WARNING 2025-07-27 15:06:37,670 log 7686 138048557803200 Bad Request: /api/training/courses/6/enroll/
+WARNING 2025-07-27 15:06:37,672 basehttp 7686 138048557803200 "POST /api/training/courses/6/enroll/ HTTP/1.1" 400 51
+INFO 2025-07-27 15:09:40,014 basehttp 7686 138048566195904 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-27 15:09:40,018 basehttp 7686 138048557803200 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 601
+INFO 2025-07-27 15:15:08,315 basehttp 7686 138048557803200 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 601
+INFO 2025-07-27 15:15:08,316 basehttp 7686 138048566195904 "GET /api/organization/departments/ HTTP/1.1" 200 158
+WARNING 2025-07-27 15:16:00,003 log 7686 138048548361920 Unauthorized: /api/content/announcements/
+WARNING 2025-07-27 15:16:00,004 basehttp 7686 138048548361920 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-27 15:16:00,522 basehttp 7686 138048539969216 "OPTIONS /api/auth/users/ HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:00,527 basehttp 7686 138048539969216 "OPTIONS /api/content/announcements/ HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:00,543 basehttp 7686 138048531576512 "OPTIONS /api/training/courses/ HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:00,552 basehttp 7686 138048523183808 "OPTIONS /api/research/publications/ HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:00,556 basehttp 7686 138048531576512 "OPTIONS /api/organization/labs/ HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:00,573 basehttp 7686 138048514791104 "OPTIONS /api/services/requests/ HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:00,638 basehttp 7686 138048514791104 "OPTIONS /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:00,831 basehttp 7686 138048548361920 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-27 15:16:00,837 basehttp 7686 138048539969216 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-27 15:16:00,842 basehttp 7686 138048514791104 "GET /api/content/announcements/ HTTP/1.1" 200 52
+INFO 2025-07-27 15:16:00,856 basehttp 7686 138048531576512 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-27 15:16:00,856 basehttp 7686 138048033519296 "GET /api/auth/users/ HTTP/1.1" 200 228
+INFO 2025-07-27 15:16:00,871 basehttp 7686 138048523183808 "GET /api/training/courses/ HTTP/1.1" 200 601
+INFO 2025-07-27 15:16:00,925 basehttp 7686 138048548361920 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-27 15:16:00,939 basehttp 7686 138048033519296 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-27 15:16:08,573 basehttp 7686 138048523183808 "OPTIONS /api/analytics/publications/ HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:08,597 basehttp 7686 138048033519296 "OPTIONS /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:08,824 basehttp 7686 138048033519296 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 601
+WARNING 2025-07-27 15:16:08,881 log 7686 138048523183808 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:16:08,882 basehttp 7686 138048523183808 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 15:16:17,494 basehttp 7686 138048523183808 "OPTIONS /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:17,531 basehttp 7686 138048523183808 "OPTIONS /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:17,538 basehttp 7686 138048033519296 "OPTIONS /api/training/admin/enrollments/stats/ HTTP/1.1" 200 0
+INFO 2025-07-27 15:16:17,687 basehttp 7686 138048523183808 "GET /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 525
+WARNING 2025-07-27 15:16:17,824 log 7686 138048033519296 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 15:16:17,843 log 7686 138048523183808 Not Found: /api/training/admin/enrollments/stats/
+WARNING 2025-07-27 15:16:17,844 basehttp 7686 138048033519296 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+WARNING 2025-07-27 15:16:17,845 basehttp 7686 138048523183808 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+INFO 2025-07-27 15:16:22,345 basehttp 7686 138048033519296 "OPTIONS /api/training/admin/enrollments/export_pdf/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 200 0
+WARNING 2025-07-27 15:16:22,382 log 7686 138048033519296 Not Found: /api/training/admin/enrollments/export_pdf/
+WARNING 2025-07-27 15:16:22,383 basehttp 7686 138048033519296 "GET /api/training/admin/enrollments/export_pdf/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23464
+WARNING 2025-07-27 15:16:35,686 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:16:35,687 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:16:38,420 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:16:38,421 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:17:08,422 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:17:08,423 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:17:38,444 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:17:38,445 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 15:17:40,895 basehttp 7686 138048033519296 "OPTIONS /api/training/sessions/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-27 15:17:40,940 log 7686 138048033519296 Not Found: /api/training/sessions/
+WARNING 2025-07-27 15:17:40,941 basehttp 7686 138048033519296 "GET /api/training/sessions/?page=1&page_size=10 HTTP/1.1" 404 23345
+INFO 2025-07-27 15:17:47,021 basehttp 7686 138048033519296 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 601
+INFO 2025-07-27 15:17:49,629 basehttp 7686 138048033519296 "GET /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 525
+WARNING 2025-07-27 15:18:08,424 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:18:08,425 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:18:38,429 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:18:38,430 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:19:08,638 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:19:08,640 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:19:39,304 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:19:39,305 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:20:09,615 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:20:09,618 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:20:39,859 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:20:39,860 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:21:10,090 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:21:10,091 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:21:40,208 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:21:40,209 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:22:01,726 log 7686 138048033519296 Not Found: /api/training/admin/enrollments/export_pdf/
+WARNING 2025-07-27 15:22:01,728 basehttp 7686 138048033519296 "GET /api/training/admin/enrollments/export_pdf/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23464
+WARNING 2025-07-27 15:22:10,195 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:22:10,197 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:22:40,198 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:22:40,199 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:23:10,861 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:23:10,864 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:23:41,574 log 7686 138048033519296 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:23:41,576 basehttp 7686 138048033519296 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 15:24:07,183 basehttp 7686 138048514791104 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-27 15:24:07,184 basehttp 7686 138048523183808 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 601
+WARNING 2025-07-27 15:24:08,862 log 7686 138048033519296 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 15:24:08,863 basehttp 7686 138048033519296 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+WARNING 2025-07-27 15:24:09,020 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/stats/
+WARNING 2025-07-27 15:24:09,046 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+INFO 2025-07-27 15:24:09,054 basehttp 7686 138048539969216 "GET /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 525
+WARNING 2025-07-27 15:27:35,398 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:27:35,406 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 15:27:35,606 basehttp 7686 138048531576512 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 601
+WARNING 2025-07-27 15:28:05,789 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:28:05,790 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:28:35,938 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:28:35,939 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:29:06,634 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:29:06,635 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:29:36,701 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:29:36,702 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:30:07,281 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:30:07,283 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:30:37,365 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:30:37,366 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:31:07,980 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:31:07,981 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:31:38,204 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:31:38,205 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:32:08,857 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:32:08,859 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:32:39,011 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:32:39,013 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:33:09,556 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:33:09,557 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:33:39,805 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:33:39,806 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:34:10,011 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:34:10,013 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:34:40,190 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:34:40,191 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:35:10,824 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:35:10,825 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:35:41,033 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:35:41,034 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:36:11,451 log 7686 138048539969216 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:36:11,452 basehttp 7686 138048539969216 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:36:30,940 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 15:36:30,944 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+INFO 2025-07-27 15:36:30,959 basehttp 7686 138048539969216 "GET /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 525
+WARNING 2025-07-27 15:36:30,992 log 7686 138048033519296 Not Found: /api/training/admin/enrollments/stats/
+WARNING 2025-07-27 15:36:30,994 basehttp 7686 138048033519296 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+WARNING 2025-07-27 15:36:32,372 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/export_pdf/
+WARNING 2025-07-27 15:36:32,373 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/export_pdf/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23464
+WARNING 2025-07-27 15:36:32,477 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 15:36:32,478 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+WARNING 2025-07-27 15:36:41,430 log 7686 138048531576512 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:36:41,431 basehttp 7686 138048531576512 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:36:47,344 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/export_pdf/
+WARNING 2025-07-27 15:36:47,345 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/export_pdf/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23464
+WARNING 2025-07-27 15:36:47,535 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 15:36:47,536 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+WARNING 2025-07-27 15:36:51,415 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/export_pdf/
+WARNING 2025-07-27 15:36:51,415 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/export_pdf/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23464
+WARNING 2025-07-27 15:36:51,463 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 15:36:51,464 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+WARNING 2025-07-27 15:37:11,495 log 7686 138048531576512 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:37:11,501 basehttp 7686 138048531576512 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:37:41,441 log 7686 138048531576512 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:37:41,442 basehttp 7686 138048531576512 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:38:12,248 log 7686 138048531576512 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:38:12,250 basehttp 7686 138048531576512 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:38:42,476 log 7686 138048531576512 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 15:38:42,477 basehttp 7686 138048531576512 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 15:38:51,653 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 15:38:51,658 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+WARNING 2025-07-27 15:38:52,114 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/stats/
+WARNING 2025-07-27 15:38:52,139 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+INFO 2025-07-27 15:38:52,371 basehttp 7686 138048531576512 "GET /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 525
+INFO 2025-07-27 15:38:53,755 basehttp 7686 138048539969216 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 601
+INFO 2025-07-27 15:38:53,774 basehttp 7686 138048033519296 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-27 15:40:02,114 basehttp 7686 138048033519296 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-27 15:40:02,121 basehttp 7686 138048539969216 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 601
+WARNING 2025-07-27 15:40:03,372 log 7686 138048531576512 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 15:40:03,374 basehttp 7686 138048531576512 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+WARNING 2025-07-27 15:40:03,435 log 7686 138048523183808 Not Found: /api/training/admin/enrollments/stats/
+WARNING 2025-07-27 15:40:03,442 basehttp 7686 138048523183808 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+INFO 2025-07-27 15:40:03,515 basehttp 7686 138048566195904 "GET /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 525
+INFO 2025-07-27 22:15:57,087 autoreload 33505 139314858074240 Watching for file changes with StatReloader
+INFO 2025-07-27 22:16:37,441 basehttp 33505 139314709132992 "OPTIONS /api/analytics/publications/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:16:37,454 basehttp 33505 139314700740288 "OPTIONS /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-27 22:16:37,644 log 33505 139314700740288 Unauthorized: /api/training/courses/
+WARNING 2025-07-27 22:16:37,663 basehttp 33505 139314700740288 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 401 183
+WARNING 2025-07-27 22:16:37,664 log 33505 139314709132992 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:16:37,666 basehttp 33505 139314709132992 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 22:16:38,076 basehttp 33505 139314709132992 "OPTIONS /api/auth/token/refresh/ HTTP/1.1" 200 0
+WARNING 2025-07-27 22:16:38,120 log 33505 139314709132992 Unauthorized: /api/auth/token/refresh/
+WARNING 2025-07-27 22:16:38,122 basehttp 33505 139314709132992 "POST /api/auth/token/refresh/ HTTP/1.1" 401 65
+INFO 2025-07-27 22:16:51,363 basehttp 33505 139314709132992 "OPTIONS /api/auth/login/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:16:53,810 basehttp 33505 139314709132992 "POST /api/auth/login/ HTTP/1.1" 200 729
+WARNING 2025-07-27 22:16:54,666 log 33505 139314709132992 Unauthorized: /api/content/announcements/
+WARNING 2025-07-27 22:16:54,670 basehttp 33505 139314709132992 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-27 22:16:54,798 basehttp 33505 139314709132992 "OPTIONS /api/auth/users/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:16:54,801 basehttp 33505 139314709132992 "OPTIONS /api/content/announcements/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:16:54,820 basehttp 33505 139314683954880 "OPTIONS /api/research/publications/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:16:54,823 basehttp 33505 139314692347584 "OPTIONS /api/training/courses/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:16:54,856 basehttp 33505 139314709132992 "OPTIONS /api/services/requests/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:16:54,913 basehttp 33505 139314675562176 "OPTIONS /api/organization/departments/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:16:54,925 basehttp 33505 139314667169472 "OPTIONS /api/organization/labs/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:16:54,930 basehttp 33505 139314700740288 "GET /api/auth/users/ HTTP/1.1" 200 228
+INFO 2025-07-27 22:16:55,034 basehttp 33505 139314709132992 "GET /api/content/announcements/ HTTP/1.1" 200 52
+INFO 2025-07-27 22:16:55,106 basehttp 33505 139314709132992 "OPTIONS /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-27 22:16:55,175 basehttp 33505 139314675562176 "GET /api/services/requests/ HTTP/1.1" 200 52
+INFO 2025-07-27 22:16:55,203 basehttp 33505 139314683954880 "GET /api/research/publications/ HTTP/1.1" 200 52
+INFO 2025-07-27 22:16:55,211 basehttp 33505 139314700740288 "GET /api/organization/labs/ HTTP/1.1" 200 52
+INFO 2025-07-27 22:16:55,231 basehttp 33505 139314692347584 "GET /api/training/courses/ HTTP/1.1" 200 601
+INFO 2025-07-27 22:16:55,283 basehttp 33505 139314667169472 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-27 22:16:55,283 basehttp 33505 139314709132992 "GET /api/content/announcements/?page_size=3&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-27 22:17:01,069 basehttp 33505 139314692347584 "OPTIONS /api/services/test-services/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-27 22:17:01,094 log 33505 139314709132992 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:17:01,100 basehttp 33505 139314709132992 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 22:17:01,135 basehttp 33505 139314692347584 "GET /api/services/test-services/?page=1&page_size=10 HTTP/1.1" 200 52
+WARNING 2025-07-27 22:17:02,636 log 33505 139314709132992 Not Found: /api/analytics/publications/
+INFO 2025-07-27 22:17:02,648 basehttp 33505 139314692347584 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 601
+WARNING 2025-07-27 22:17:02,648 basehttp 33505 139314709132992 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 22:17:16,030 basehttp 33505 139314709132992 "OPTIONS /api/training/courses/6/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:17:16,106 basehttp 33505 139314709132992 "GET /api/training/courses/6/ HTTP/1.1" 200 814
+INFO 2025-07-27 22:17:20,097 basehttp 33505 139314709132992 "OPTIONS /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 0
+INFO 2025-07-27 22:17:20,103 basehttp 33505 139314700740288 "OPTIONS /api/training/admin/enrollments/stats/ HTTP/1.1" 200 0
+INFO 2025-07-27 22:17:20,108 basehttp 33505 139314692347584 "OPTIONS /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 200 0
+WARNING 2025-07-27 22:17:20,276 log 33505 139314692347584 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 22:17:20,295 basehttp 33505 139314692347584 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+WARNING 2025-07-27 22:17:20,303 log 33505 139314700740288 Not Found: /api/training/admin/enrollments/stats/
+WARNING 2025-07-27 22:17:20,321 basehttp 33505 139314700740288 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+INFO 2025-07-27 22:17:20,320 basehttp 33505 139314709132992 "GET /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 525
+INFO 2025-07-27 22:17:29,857 basehttp 33505 139314692347584 "OPTIONS /api/training/admin/enrollments/export_pdf/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 200 0
+WARNING 2025-07-27 22:17:29,897 log 33505 139314692347584 Not Found: /api/training/admin/enrollments/export_pdf/
+WARNING 2025-07-27 22:17:29,898 basehttp 33505 139314692347584 "GET /api/training/admin/enrollments/export_pdf/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23464
+WARNING 2025-07-27 22:17:29,988 log 33505 139314692347584 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 22:17:29,989 basehttp 33505 139314692347584 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+WARNING 2025-07-27 22:17:36,830 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:17:36,831 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 22:17:57,475 basehttp 33505 139314692347584 "OPTIONS /api/training/admin/enrollments/?page=1&page_size=10&search=ddd&course_id=&payment_status=&status= HTTP/1.1" 200 0
+WARNING 2025-07-27 22:17:57,603 log 33505 139314692347584 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 22:17:57,604 basehttp 33505 139314692347584 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=ddd&course_id=&payment_status=&status= HTTP/1.1" 404 23434
+WARNING 2025-07-27 22:17:57,607 log 33505 139314700740288 Not Found: /api/training/admin/enrollments/stats/
+WARNING 2025-07-27 22:17:57,610 basehttp 33505 139314700740288 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+INFO 2025-07-27 22:18:01,259 basehttp 33505 139314692347584 "OPTIONS /api/training/admin/enrollments/?page=1&page_size=10&search=a&course_id=&payment_status=&status= HTTP/1.1" 200 0
+WARNING 2025-07-27 22:18:01,306 log 33505 139314700740288 Not Found: /api/training/admin/enrollments/stats/
+WARNING 2025-07-27 22:18:01,313 basehttp 33505 139314700740288 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+WARNING 2025-07-27 22:18:01,333 log 33505 139314692347584 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 22:18:01,334 basehttp 33505 139314692347584 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=a&course_id=&payment_status=&status= HTTP/1.1" 404 23432
+WARNING 2025-07-27 22:18:02,439 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:18:02,440 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 22:18:05,281 basehttp 33505 139314692347584 "OPTIONS /api/training/admin/enrollments/?page=1&page_size=10&search=ahmed&course_id=&payment_status=&status= HTTP/1.1" 200 0
+WARNING 2025-07-27 22:18:05,329 log 33505 139314700740288 Not Found: /api/training/admin/enrollments/stats/
+WARNING 2025-07-27 22:18:05,332 basehttp 33505 139314700740288 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+WARNING 2025-07-27 22:18:05,354 log 33505 139314692347584 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 22:18:05,356 basehttp 33505 139314692347584 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=ahmed&course_id=&payment_status=&status= HTTP/1.1" 404 23436
+WARNING 2025-07-27 22:18:32,448 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:18:32,449 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:19:02,469 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:19:02,478 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 22:19:02,515 basehttp 33505 139314700740288 "GET /api/services/test-services/?page=1&page_size=10 HTTP/1.1" 200 52
+WARNING 2025-07-27 22:19:07,971 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:19:07,982 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 22:19:08,018 basehttp 33505 139314700740288 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 601
+WARNING 2025-07-27 22:19:12,600 log 33505 139314700740288 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 22:19:12,623 basehttp 33505 139314700740288 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+WARNING 2025-07-27 22:19:12,630 log 33505 139314709132992 Not Found: /api/training/admin/enrollments/stats/
+INFO 2025-07-27 22:19:12,632 basehttp 33505 139314692347584 "GET /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 525
+WARNING 2025-07-27 22:19:12,633 basehttp 33505 139314709132992 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+INFO 2025-07-27 22:19:15,548 basehttp 33505 139314692347584 "OPTIONS /api/training/sessions/?page=1&page_size=10 HTTP/1.1" 200 0
+WARNING 2025-07-27 22:19:15,578 log 33505 139314692347584 Not Found: /api/training/sessions/
+WARNING 2025-07-27 22:19:15,579 basehttp 33505 139314692347584 "GET /api/training/sessions/?page=1&page_size=10 HTTP/1.1" 404 23345
+INFO 2025-07-27 22:19:15,861 basehttp 33505 139314692347584 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 601
+INFO 2025-07-27 22:19:27,907 basehttp 33505 139314692347584 "GET /api/organization/settings/ HTTP/1.1" 200 277
+WARNING 2025-07-27 22:19:28,655 log 33505 139314700740288 Unauthorized: /api/content/announcements/
+WARNING 2025-07-27 22:19:28,672 basehttp 33505 139314700740288 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-27 22:19:28,710 basehttp 33505 139314700740288 "OPTIONS /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-27 22:19:28,712 basehttp 33505 139314709132992 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-27 22:19:28,727 basehttp 33505 139314692347584 "GET /api/organization/departments/ HTTP/1.1" 200 158
+INFO 2025-07-27 22:19:28,774 basehttp 33505 139314700740288 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-27 22:19:30,047 log 33505 139314692347584 Unauthorized: /api/content/announcements/
+WARNING 2025-07-27 22:19:30,049 basehttp 33505 139314692347584 "GET /api/content/announcements/?page=1&page_size=10&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-27 22:19:30,118 basehttp 33505 139314692347584 "OPTIONS /api/content/announcements/?page=1&page_size=10&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-07-27 22:19:30,143 basehttp 33505 139314692347584 "GET /api/content/announcements/?page=1&page_size=10&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-27 22:19:30,577 basehttp 33505 139314692347584 "OPTIONS /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 0
+INFO 2025-07-27 22:19:30,612 basehttp 33505 139314692347584 "GET /api/training/courses/?page=1&page_size=10&status=published HTTP/1.1" 200 601
+WARNING 2025-07-27 22:19:37,887 log 33505 139314692347584 Unauthorized: /api/content/announcements/
+WARNING 2025-07-27 22:19:37,888 basehttp 33505 139314692347584 "GET /api/content/announcements/?page=1&page_size=10&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-27 22:19:37,988 basehttp 33505 139314692347584 "GET /api/content/announcements/?page=1&page_size=10&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-27 22:19:38,234 basehttp 33505 139314692347584 "GET /api/organization/settings/ HTTP/1.1" 200 277
+WARNING 2025-07-27 22:19:38,252 log 33505 139314692347584 Unauthorized: /api/content/announcements/
+WARNING 2025-07-27 22:19:38,260 basehttp 33505 139314692347584 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-27 22:19:38,289 basehttp 33505 139314700740288 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-27 22:19:38,389 basehttp 33505 139314692347584 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-07-27 22:19:41,235 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:19:41,242 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 22:19:41,268 basehttp 33505 139314700740288 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 601
+WARNING 2025-07-27 22:20:00,493 log 33505 139314692347584 Not Found: /api/training/sessions/
+WARNING 2025-07-27 22:20:00,494 basehttp 33505 139314692347584 "GET /api/training/sessions/?page=1&page_size=10 HTTP/1.1" 404 23345
+WARNING 2025-07-27 22:20:03,142 log 33505 139314700740288 Not Found: /api/training/admin/enrollments/
+WARNING 2025-07-27 22:20:03,151 basehttp 33505 139314700740288 "GET /api/training/admin/enrollments/?page=1&page_size=10&search=&course_id=&payment_status=&status= HTTP/1.1" 404 23431
+INFO 2025-07-27 22:20:03,155 basehttp 33505 139314692347584 "GET /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 525
+WARNING 2025-07-27 22:20:03,186 log 33505 139314709132992 Not Found: /api/training/admin/enrollments/stats/
+WARNING 2025-07-27 22:20:03,188 basehttp 33505 139314709132992 "GET /api/training/admin/enrollments/stats/ HTTP/1.1" 404 23366
+WARNING 2025-07-27 22:20:09,500 log 33505 139314692347584 Not Found: /api/training/sessions/
+WARNING 2025-07-27 22:20:09,501 basehttp 33505 139314692347584 "GET /api/training/sessions/?page=1&page_size=10 HTTP/1.1" 404 23345
+WARNING 2025-07-27 22:20:11,015 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:20:11,016 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 22:20:15,512 basehttp 33505 139314692347584 "GET /api/training/courses/?page=1&page_size=10 HTTP/1.1" 200 601
+INFO 2025-07-27 22:20:27,305 basehttp 33505 139314692347584 "GET /api/training/enrollments/?page=1&page_size=10 HTTP/1.1" 200 525
+WARNING 2025-07-27 22:20:41,011 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:20:41,012 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:21:11,354 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:21:11,355 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:21:41,353 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:21:41,355 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:22:11,342 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:22:11,343 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:22:41,341 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:22:41,342 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:23:11,348 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:23:11,350 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:23:41,340 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:23:41,341 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:24:11,996 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:24:11,996 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:24:42,416 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:24:42,417 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:25:12,730 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:25:12,731 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:25:42,894 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:25:42,895 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:26:13,470 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:26:13,471 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:26:43,669 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:26:43,670 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:27:14,237 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:27:14,238 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:27:44,423 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:27:44,424 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:28:15,022 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:28:15,023 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:28:45,241 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:28:45,241 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:29:15,709 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:29:15,711 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:29:45,910 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:29:45,911 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:30:16,679 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:30:16,680 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:30:47,404 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:30:47,405 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:31:17,788 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:31:17,789 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:31:48,273 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:31:48,275 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:32:18,473 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:32:18,474 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:32:49,169 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:32:49,170 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:33:19,480 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:33:19,482 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:33:50,045 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:33:50,047 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:34:20,103 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:34:20,105 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:34:50,786 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:34:50,787 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:35:20,983 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:35:20,987 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:35:51,634 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:35:51,635 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:36:21,829 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:36:21,830 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:36:52,381 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:36:52,382 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:37:22,635 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:37:22,636 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:37:53,359 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:37:53,360 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:38:23,628 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:38:23,630 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:38:54,312 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:38:54,313 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:39:24,869 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:39:24,871 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+WARNING 2025-07-27 22:39:54,898 log 33505 139314692347584 Not Found: /api/analytics/publications/
+WARNING 2025-07-27 22:39:54,901 basehttp 33505 139314692347584 "GET /api/analytics/publications/ HTTP/1.1" 404 3690
+INFO 2025-07-27 22:40:04,076 basehttp 33505 139314692347584 "GET /api/organization/settings/ HTTP/1.1" 200 277
+INFO 2025-07-27 22:40:04,146 basehttp 33505 139314709132992 "GET /api/organization/departments/ HTTP/1.1" 200 158
+WARNING 2025-07-27 22:40:17,215 log 33505 139314692347584 Unauthorized: /api/content/announcements/
+WARNING 2025-07-27 22:40:17,247 basehttp 33505 139314692347584 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
+INFO 2025-07-27 22:40:17,423 basehttp 33505 139314709132992 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-27 22:40:17,714 basehttp 33505 139314692347584 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52

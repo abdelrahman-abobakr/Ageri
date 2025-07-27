@@ -305,6 +305,7 @@ class CourseViewSet(viewsets.ModelViewSet):
                     'message': 'Successfully enrolled in course',
                     'enrollment': EnrollmentDetailSerializer(enrollment).data,
                     'enrollment_token': enrollment.enrollment_token,
+                    'payment_amount': course.cost if not course.is_free else 0,
                     'next_steps': [
                         'Save your enrollment ID for future reference',
                         'Check course start date and prepare materials',
