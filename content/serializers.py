@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment
+from rest_framework.exceptions import ValidationError
 
 User = get_user_model()
 
@@ -214,10 +215,10 @@ class PostDetailSerializer(serializers.ModelSerializer):
             'created_at', 'updated_at'
         ]
 
-
 class PostCreateUpdateSerializer(serializers.ModelSerializer):
-    """Serializer for creating and updating posts"""
-    
+    attachment = serializers.FileField(required=False, allow_null=True)
+    featured_image = serializers.ImageField(required=False, allow_null=True)
+
     class Meta:
         model = Post
         fields = [
@@ -226,6 +227,16 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
             'registration_deadline', 'max_participants', 'is_featured',
             'is_public', 'publish_at', 'featured_image', 'attachment', 'status'
         ]
+
+    def validate_attachment(self, value):
+        if value and not hasattr(value, 'file'):
+            raise ValidationError("Uploaded file is not valid.")
+        return value
+    
+    def validate_featured_image(self, value):
+        if value and not hasattr(value, 'file'):
+            raise ValidationError("Uploaded image is not valid.")
+        return value
     
     def validate_event_date(self, value):
         """Validate event date"""
