@@ -254,33 +254,28 @@ LOGGING = {
             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
             'style': '{',
         },
-        'simple': {
-            'format': '{levelname} {message}',
-            'style': '{',
-        },
     },
     'handlers': {
-        'file': {
-            'level': config('LOG_LEVEL', default='INFO'),
-            'class': 'logging.FileHandler',
-            'filename': config('LOG_FILE', default='logs/django.log'),
+        'console': {
+            'class': 'logging.StreamHandler',
             'formatter': 'verbose',
         },
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'simple',
-        },
-    },
-    'root': {
-        'handlers': ['console', 'file'],
-        'level': config('LOG_LEVEL', default='INFO'),
     },
     'loggers': {
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': config('LOG_LEVEL', default='INFO'),
-            'propagate': False,
+        'research': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'training': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
         },
     },
 }

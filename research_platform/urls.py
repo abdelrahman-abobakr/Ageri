@@ -22,30 +22,17 @@ from django.conf.urls.i18n import i18n_patterns
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
-    # Language switching
     path('i18n/', include('django.conf.urls.i18n')),
-
-    # API endpoints (not translated)
     path('api/auth/', include('accounts.urls')),
     path('api/organization/', include('organization.urls')),
     path('api/research/', include('research.urls')),
     path('api/content/', include('content.urls')),
     path('api/training/', include('training.urls')),
     path('api/services/', include('services.urls')),
-
-    # API Documentation
+    # Remove duplicate notifications route
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-]
-
-# Translated URLs
-urlpatterns += i18n_patterns(
-    path("admin/", admin.site.urls),
-    path('dashboard/', include('dashboard.urls')),  # Custom admin dashboard
-    path('rosetta/', include('rosetta.urls')),  # Translation management
-    prefix_default_language=False,
-)
-
-# Serve media files in development
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('admin/', admin.site.urls),
+    path('dashboard/', include('dashboard.urls')),
+    path('rosetta/', include('rosetta.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
