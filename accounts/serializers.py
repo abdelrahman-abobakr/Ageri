@@ -6,33 +6,51 @@ from .models import User, UserProfile, UserRole
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    """Serializer for UserProfile model"""
+    """Serializer for UserProfile model - Enhanced like medical"""
+    has_cv = serializers.ReadOnlyField()
+    has_orcid = serializers.ReadOnlyField()
     
     class Meta:
         model = UserProfile
         fields = [
-            'orcid_id', 'bio', 'research_interests', 'cv_file',
-            'website', 'linkedin', 'google_scholar', 'researchgate',
-            'is_public', 'created_at', 'updated_at'
+            'profile_picture',
+            'position',
+            'academic_degree',
+            'specialization',
+            'phone',
+            'orcid_id',
+            'bio',
+            'research_interests',
+            'cv_file',
+            'website',
+            'linkedin',
+            'google_scholar',
+            'researchgate',
+            'is_public',
+            'created_at',
+            'updated_at',
+            'has_cv',
+            'has_orcid'
         ]
-        read_only_fields = ['created_at', 'updated_at']
+        read_only_fields = ['created_at', 'updated_at', 'has_cv', 'has_orcid']
 
 
 class UserSerializer(serializers.ModelSerializer):
-    """Serializer for User model"""
+    """Serializer for User model - Enhanced like medical"""
     profile = UserProfileSerializer(read_only=True)
     password = serializers.CharField(write_only=True, validators=[validate_password], required=False)
     password_confirm = serializers.CharField(write_only=True, required=False)
+    full_name = serializers.CharField(source='get_full_name', read_only=True)
 
     class Meta:
         model = User
         fields = [
-            'id', 'username', 'email', 'first_name', 'last_name',
+            'id', 'username', 'email', 'first_name', 'last_name', 'full_name',
             'role', 'is_approved', 'approval_date', 'phone',
-            'institution', 'date_joined', 'profile',
+            'institution', 'department', 'date_joined', 'profile',
             'password', 'password_confirm'
         ]
-        read_only_fields = ['id', 'is_approved', 'approval_date', 'date_joined']
+        read_only_fields = ['id', 'is_approved', 'approval_date', 'date_joined', 'full_name']
         extra_kwargs = {
             'username': {'required': False},
             'email': {'required': False},
@@ -52,7 +70,7 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
 
-        # Create user profile
+        # Create user profile automatically
         UserProfile.objects.create(user=user)
         return user
 
@@ -73,7 +91,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
-    """Serializer for user registration"""
+    """Serializer for user registration - Enhanced like medical"""
     password = serializers.CharField(write_only=True, validators=[validate_password])
     password_confirm = serializers.CharField(write_only=True)
     
@@ -81,7 +99,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             'username', 'email', 'first_name', 'last_name',
-            'password', 'password_confirm', 'phone', 'institution'
+            'password', 'password_confirm', 'phone', 'institution', 'department'
         ]
     
     def validate_email(self, value):
@@ -107,13 +125,13 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         
-        # Create user profile
+        # Create user profile automatically
         UserProfile.objects.create(user=user)
         return user
 
 
 class LoginSerializer(serializers.Serializer):
-    """Serializer for user login"""
+    """Serializer for user login - Enhanced like medical"""
     email = serializers.EmailField()
     password = serializers.CharField()
     
@@ -136,7 +154,7 @@ class LoginSerializer(serializers.Serializer):
 
 
 class UserApprovalSerializer(serializers.ModelSerializer):
-    """Serializer for user approval by admin"""
+    """Serializer for user approval by admin - Enhanced like medical"""
     
     class Meta:
         model = User
@@ -156,12 +174,98 @@ class UserApprovalSerializer(serializers.ModelSerializer):
 
 
 class UserListSerializer(serializers.ModelSerializer):
-    """Simplified serializer for user lists"""
+    """Simplified serializer for user lists - Enhanced like medical"""
     full_name = serializers.CharField(source='get_full_name', read_only=True)
+    profile_complete = serializers.SerializerMethodField()
     
     class Meta:
         model = User
         fields = [
             'id', 'username', 'email', 'full_name', 'role',
-            'is_approved', 'date_joined', 'institution'
+            'is_approved', 'date_joined', 'institution', 'department',
+            'profile_complete'
         ]
+    
+    def get_profile_complete(self, obj):
+        """Check if user profile is complete"""
+        try:
+            profile = obj.profile
+            return bool(profile.bio and profile.research_interests)
+        except:
+            return False
+
+
+# Additional serializers for better profile management
+class UserProfileUpdateSerializer(serializers.ModelSerializer):
+    """Dedicated serializer for profile updates"""
+    
+    class Meta:
+        model = UserProfile
+        fields = [
+            'profile_picture',
+            'position',
+            'academic_degree', 
+            'specialization',
+            'phone',
+            'orcid_id',
+            'bio',
+            'research_interests',
+            'cv_file',
+            'website',
+            'linkedin',
+            'google_scholar',
+            'researchgate',
+            'is_public',
+            'admin_notes',
+        ]
+        extra_kwargs = {
+            'admin_notes': {'read_only': True}
+        }
+
+    def update(self, instance, validated_data):
+        """Custom update to handle all fields properly"""
+        print(f"Serializer update called with: {validated_data}")
+        
+        # Update all fields including is_public
+        for attr, value in validated_data.items():
+            if attr == 'admin_notes' and not self.context['request'].user.is_admin:
+                continue  # Skip admin_notes for non-admin users
+            setattr(instance, attr, value)
+            print(f"Set {attr} = {value}")
+        
+        instance.save()
+        print(f"Saved instance. is_public is now: {instance.is_public}")
+        return instance
+
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    """Detailed user serializer with profile information"""
+    profile = UserProfileSerializer(read_only=True)
+    full_name = serializers.CharField(source='get_full_name', read_only=True)
+    is_profile_owner = serializers.SerializerMethodField()
+    can_edit = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = User
+        fields = [
+            'id', 'username', 'email', 'first_name', 'last_name', 'full_name',
+            'role', 'is_approved', 'approval_date', 'phone',
+            'institution', 'department', 'date_joined', 'profile',
+            'is_profile_owner', 'can_edit'
+        ]
+        read_only_fields = ['id', 'is_approved', 'approval_date', 'date_joined']
+    
+    def get_is_profile_owner(self, obj):
+        """Check if current user is the profile owner"""
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return request.user.id == obj.id
+        return False
+    
+    def get_can_edit(self, obj):
+        """Check if current user can edit this profile"""
+        request = self.context.get('request')
+        if request and request.user.is_authenticated:
+            return (request.user.id == obj.id or 
+                   request.user.role == UserRole.ADMIN)
+        return False

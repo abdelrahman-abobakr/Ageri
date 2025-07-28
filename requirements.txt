@@ -2,6 +2,10 @@
 Django==4.2.7
 djangorestframework==3.14.0
 
+# API documentation
+drf-spectacular==0.26.5
+coreapi==2.3.3
+
 # Database and ORM
 psycopg2-binary==2.9.7  # For PostgreSQL (production ready)
 
@@ -14,9 +18,6 @@ Pillow==10.0.1
 # Development and debugging tools
 django-extensions==3.2.3
 django-debug-toolbar==4.2.0
-
-# API documentation
-drf-spectacular==0.26.5
 
 # Authentication and permissions
 djangorestframework-simplejwt==5.3.0
