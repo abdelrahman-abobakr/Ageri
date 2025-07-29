@@ -379,7 +379,7 @@ class PublicationCreateUpdateSerializer(serializers.ModelSerializer):
             validated_data['submitted_by'] = request.user
         
         # Set default values
-        validated_data.setdefault('status', 'draft')
+        validated_data.setdefault('status', 'pending')
         validated_data.setdefault('is_public', False)
         validated_data.setdefault('priority', 0)
         validated_data.setdefault('citation_count', 0)

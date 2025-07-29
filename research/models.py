@@ -249,7 +249,7 @@ class Publication(TimeStampedModel):
     status = models.CharField(
         max_length=20,
         choices=StatusChoices.choices,
-        default=StatusChoices.DRAFT,
+        default=StatusChoices.PENDING,  # Changed default from DRAFT to PENDING
         db_index=True
     )
     submitted_by = models.ForeignKey(
