@@ -16201,3 +16201,7 @@ WARNING 2025-07-27 22:40:17,215 log 33505 139314692347584 Unauthorized: /api/con
 WARNING 2025-07-27 22:40:17,247 basehttp 33505 139314692347584 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 401 58
 INFO 2025-07-27 22:40:17,423 basehttp 33505 139314709132992 "GET /api/content/posts/?page_size=8&ordering=-created_at HTTP/1.1" 200 52
 INFO 2025-07-27 22:40:17,714 basehttp 33505 139314692347584 "GET /api/content/announcements/?page_size=6&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-07-28 12:18:49,608 autoreload 93318 129631946432640 Watching for file changes with StatReloader
+INFO 2025-07-28 12:27:09,466 autoreload 99024 131544408731776 Watching for file changes with StatReloader
+INFO 2025-07-28 12:39:05,109 autoreload 6951 128210808963200 Watching for file changes with StatReloader
+INFO 2025-07-29 09:03:32,825 autoreload 68361 137966798626944 Watching for file changes with StatReloader
