@@ -33,32 +33,28 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1', cast=lamb
 # Application definition
 
 INSTALLED_APPS = [
-    "modeltranslation",  # Must be before django.contrib.admin
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    
     # Third party apps
-    "rest_framework",
-    "rest_framework_simplejwt",
-    "corsheaders",
-    "django_extensions",
-    "django_filters",
-    "drf_spectacular",
-    "rosetta",  # Translation management interface
-
+    'rest_framework',
+    'corsheaders',
+    'django_filters',
+    'drf_spectacular',
+    
     # Local apps
-    "core",
-    "accounts",
-    "research",
-    "organization",
-    "training",
-    "services",
-    "content",
-    "dashboard",  # Custom admin dashboard
+    'accounts',
+    'organization', 
+    'research',
+    'content',
+    'training',
+    'services',
+    'dashboard',
+    'adminReviewApp',
 ]
 
 MIDDLEWARE = [

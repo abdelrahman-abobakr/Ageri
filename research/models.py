@@ -249,8 +249,8 @@ class Publication(TimeStampedModel):
     status = models.CharField(
         max_length=20,
         choices=StatusChoices.choices,
-        default=StatusChoices.DRAFT,
-        db_index=True
+  default=StatusChoices.PENDING,     
+  db_index=True
     )
     submitted_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -259,7 +259,8 @@ class Publication(TimeStampedModel):
         help_text=_("User who submitted this publication")
     )
     submitted_at = models.DateTimeField(
-        auto_now_add=True,
+        null=True,
+        blank=True,
         db_index=True
     )
 

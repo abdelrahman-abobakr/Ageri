@@ -29,7 +29,8 @@ urlpatterns = [
     path('api/content/', include('content.urls')),
     path('api/training/', include('training.urls')),
     path('api/services/', include('services.urls')),
-    # Remove duplicate notifications route
+    path('api/admin/review/', include('adminReviewApp.urls')),  # Admin review endpoints
+    # API Documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('admin/', admin.site.urls),
