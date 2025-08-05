@@ -182,9 +182,9 @@ class PostListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = [
-            'id', 'title', 'excerpt', 'category', 'tags_list',
+            'id', 'title', 'content', 'excerpt', 'category', 'tags_list',
             'event_date', 'event_location', 'status', 'is_featured',
-            'is_public', 'publish_at', 'author', 'featured_image',
+            'is_public', 'publish_at', 'author', 'featured_image', 'attachment',
             'view_count', 'is_published', 'is_event',
             'is_upcoming_event', 'created_at'
         ]
@@ -223,8 +223,8 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
         fields = [
             'title', 'content', 'excerpt', 'category', 'tags',
             'event_date', 'event_location', 'registration_required',
-            'registration_deadline', 'max_participants', 'is_featured',
-            'is_public', 'publish_at', 'featured_image', 'attachment'
+            'registration_deadline', 'max_participants', 'status',
+            'is_featured', 'is_public', 'publish_at', 'featured_image', 'attachment'
         ]
     
     def validate_event_date(self, value):

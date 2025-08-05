@@ -2,7 +2,10 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 from decimal import Decimal
+import uuid
 
 from core.models import TimeStampedModel, StatusChoices, PriorityChoices
 
@@ -32,6 +35,16 @@ class PaymentStatus(models.TextChoices):
     PAID = 'paid', 'Paid'
     FAILED = 'failed', 'Failed'
     REFUNDED = 'refunded', 'Refunded'
+
+
+class PaymentMethod(models.TextChoices):
+    """Payment method choices"""
+    CASH = 'cash', 'Cash'
+    BANK_TRANSFER = 'bank_transfer', 'Bank Transfer'
+    CREDIT_CARD = 'credit_card', 'Credit Card'
+    MOBILE_PAYMENT = 'mobile_payment', 'Mobile Payment'
+    CHECK = 'check', 'Check'
+    OTHER = 'other', 'Other'
 
 
 class Course(TimeStampedModel):
@@ -593,7 +606,48 @@ class CourseEnrollment(TimeStampedModel):
     student = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='course_enrollments'
+        related_name='course_enrollments',
+        null=True,
+        blank=True,
+        help_text="Registered user (null for guest enrollments)"
+    )
+
+    # Guest enrollment fields
+    first_name = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="First name for guest enrollment"
+    )
+    last_name = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Last name for guest enrollment"
+    )
+    email = models.EmailField(
+        blank=True,
+        help_text="Email for guest enrollment"
+    )
+    phone = models.CharField(
+        max_length=20,
+        blank=True,
+        help_text="Phone number for guest enrollment"
+    )
+    organization = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Organization/Company for guest enrollment"
+    )
+    job_title = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Job title for guest enrollment"
+    )
+
+    # Enrollment token for guest access
+    enrollment_token = models.UUIDField(
+        default=uuid.uuid4,
+        unique=True,
+        help_text="Unique token for guest enrollment access"
     )
 
     # Enrollment details
@@ -614,15 +668,21 @@ class CourseEnrollment(TimeStampedModel):
     payment_status = models.CharField(
         max_length=20,
         choices=PaymentStatus.choices,
-        default=PaymentStatus.PENDING
+        default=PaymentStatus.PENDING,
+        help_text="Current payment status"
+    )
+    payment_method = models.CharField(
+        max_length=20,
+        choices=PaymentMethod.choices,
+        blank=True,
+        help_text="Method used for payment"
     )
     payment_amount = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        default=Decimal('0.00')
+        default=Decimal('0.00'),
+        help_text="Amount paid or to be paid"
     )
-    payment_date = models.DateTimeField(null=True, blank=True)
-    payment_reference = models.CharField(max_length=100, blank=True)
 
     # Academic information
     grade = models.CharField(
@@ -650,20 +710,58 @@ class CourseEnrollment(TimeStampedModel):
     )
 
     class Meta:
-        unique_together = ['course', 'student']
         ordering = ['-enrollment_date']
         indexes = [
             models.Index(fields=['status', 'enrollment_date']),
             models.Index(fields=['payment_status']),
+            models.Index(fields=['enrollment_token']),
+        ]
+        constraints = [
+            # Ensure unique enrollment per course for registered users
+            models.UniqueConstraint(
+                fields=['course', 'student'],
+                condition=models.Q(student__isnull=False),
+                name='unique_course_student'
+            ),
+            # Ensure unique enrollment per course for guest users by email
+            models.UniqueConstraint(
+                fields=['course', 'email'],
+                condition=models.Q(student__isnull=True),
+                name='unique_course_guest_email'
+            ),
         ]
 
     def __str__(self):
-        return f"{self.student.get_full_name()} - {self.course.title}"
+        if self.student:
+            return f"{self.student.get_full_name()} - {self.course.title}"
+        else:
+            return f"{self.first_name} {self.last_name} (Guest) - {self.course.title}"
 
     @property
     def is_active(self):
         """Check if enrollment is active"""
         return self.status in ['approved', 'completed']
+
+    @property
+    def is_guest_enrollment(self):
+        """Check if this is a guest enrollment"""
+        return self.student is None
+
+    @property
+    def enrollee_name(self):
+        """Get the name of the enrollee (user or guest)"""
+        if self.student:
+            return self.student.get_full_name()
+        else:
+            return f"{self.first_name} {self.last_name}"
+
+    @property
+    def enrollee_email(self):
+        """Get the email of the enrollee (user or guest)"""
+        if self.student:
+            return self.student.email
+        else:
+            return self.email
 
     def mark_completed(self):
         """Mark enrollment as completed"""
@@ -928,3 +1026,51 @@ class PublicServiceRequest(TimeStampedModel):
         self.status = 'completed'
         self.actual_completion = timezone.now().date()
         self.save(update_fields=['status', 'actual_completion'])
+
+
+# Signal handlers for automatic enrollment count updates
+@receiver(post_save, sender=CourseEnrollment)
+def update_course_enrollment_on_create(sender, instance, created, **kwargs):
+    """
+    Update course enrollment count when a new enrollment is created
+    """
+    if created:
+        # Increment the course enrollment count
+        Course.objects.filter(id=instance.course.id).update(
+            current_enrollment=models.F('current_enrollment') + 1
+        )
+
+
+@receiver(post_delete, sender=CourseEnrollment)
+def update_course_enrollment_on_delete(sender, instance, **kwargs):
+    """
+    Update course enrollment count when an enrollment is deleted
+    """
+    # Decrement the course enrollment count
+    Course.objects.filter(id=instance.course.id).update(
+        current_enrollment=models.F('current_enrollment') - 1
+    )
+
+
+@receiver(post_save, sender=SummerTrainingApplication)
+def update_summer_training_enrollment_on_create(sender, instance, created, **kwargs):
+    """
+    Update summer training enrollment count when a new application is approved
+    """
+    if created and instance.status == 'approved':
+        # Increment the summer training enrollment count
+        SummerTraining.objects.filter(id=instance.program.id).update(
+            current_enrollment=models.F('current_enrollment') + 1
+        )
+
+
+@receiver(post_delete, sender=SummerTrainingApplication)
+def update_summer_training_enrollment_on_delete(sender, instance, **kwargs):
+    """
+    Update summer training enrollment count when an application is deleted
+    """
+    if instance.status == 'approved':
+        # Decrement the summer training enrollment count
+        SummerTraining.objects.filter(id=instance.program.id).update(
+            current_enrollment=models.F('current_enrollment') - 1
+        )

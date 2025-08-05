@@ -192,23 +192,30 @@ class PublicServiceDetailSerializer(serializers.ModelSerializer):
 
 
 class CourseEnrollmentSerializer(serializers.ModelSerializer):
-    """Serializer for course enrollments"""
+    """Serializer for course enrollments - includes guest enrollment fields"""
     student_name = serializers.CharField(source='student.get_full_name', read_only=True)
-    course_title = serializers.CharField(source='course.title', read_only=True)
+    course_title = serializers.CharField(source='course.course_name', read_only=True)
     course_code = serializers.CharField(source='course.course_code', read_only=True)
     is_active = serializers.ReadOnlyField()
-    
+
+    # Helper properties for unified access
+    enrollee_name = serializers.ReadOnlyField()
+    enrollee_email = serializers.ReadOnlyField()
+    is_guest_enrollment = serializers.ReadOnlyField()
+
     class Meta:
         model = CourseEnrollment
         fields = [
             'id', 'course', 'course_title', 'course_code', 'student',
-            'student_name', 'enrollment_date', 'status', 'payment_status',
-            'payment_amount', 'payment_date', 'payment_reference',
+            'student_name', 'first_name', 'last_name', 'email', 'phone',
+            'organization', 'job_title', 'enrollment_date', 'enrollment_token',
+            'status', 'payment_status', 'payment_method', 'payment_amount',
             'grade', 'attendance_percentage', 'completion_date',
-            'certificate_issued', 'certificate_number', 'notes',
-            'is_active', 'created_at', 'updated_at'
+            'certificate_issued', 'certificate_number', 'notes', 'is_active',
+            'enrollee_name', 'enrollee_email', 'is_guest_enrollment',
+            'created_at', 'updated_at'
         ]
-        read_only_fields = ['enrollment_date', 'payment_date', 'completion_date']
+        read_only_fields = ['enrollment_date', 'completion_date', 'enrollment_token']
     
     def validate(self, data):
         """Validate enrollment data"""
@@ -304,3 +311,126 @@ class PublicServiceRequestSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("This service is not currently available for requests")
         
         return data
+
+
+class GuestEnrollmentSerializer(serializers.ModelSerializer):
+    """Serializer for guest course enrollment"""
+
+    # Make required fields explicit with validation
+    first_name = serializers.CharField(
+        max_length=100,
+        required=True,
+        allow_blank=False,
+        error_messages={
+            'required': 'First name is required.',
+            'blank': 'First name cannot be empty.'
+        }
+    )
+    last_name = serializers.CharField(
+        max_length=100,
+        required=True,
+        allow_blank=False,
+        error_messages={
+            'required': 'Last name is required.',
+            'blank': 'Last name cannot be empty.'
+        }
+    )
+    email = serializers.EmailField(
+        required=True,
+        allow_blank=False,
+        error_messages={
+            'required': 'Email is required.',
+            'blank': 'Email cannot be empty.',
+            'invalid': 'Please enter a valid email address.'
+        }
+    )
+    phone = serializers.CharField(
+        max_length=20,
+        required=True,
+        allow_blank=False,
+        error_messages={
+            'required': 'Phone number is required.',
+            'blank': 'Phone number cannot be empty.'
+        }
+    )
+
+    class Meta:
+        model = CourseEnrollment
+        fields = [
+            'id',
+            'course',
+            'first_name',
+            'last_name',
+            'email',
+            'phone',
+            'organization',
+            'job_title',
+            'enrollment_date',
+            'enrollment_token',
+            'status'
+        ]
+        read_only_fields = ['id', 'enrollment_date', 'enrollment_token', 'status']
+
+    def validate_email(self, value):
+        """Check if email is already enrolled in this course"""
+        course_id = self.initial_data.get('course')
+        if course_id:
+            existing = CourseEnrollment.objects.filter(
+                course_id=course_id,
+                email=value,
+                student__isnull=True  # Only check guest enrollments
+            ).exists()
+            if existing:
+                raise serializers.ValidationError(
+                    "This email is already enrolled in this course."
+                )
+        return value
+
+    def validate(self, data):
+        """Validate guest enrollment data"""
+        course = data.get('course')
+
+        # Check if course allows registration
+        if course and not course.can_register():
+            raise serializers.ValidationError("Registration is not open for this course")
+
+        # Check if course is full
+        if course and course.is_full:
+            raise serializers.ValidationError("This course is full")
+
+        return data
+
+    def create(self, validated_data):
+        """Create guest enrollment"""
+        # Set default status for guest enrollments
+        validated_data['status'] = 'approved'  # Auto-approve guest enrollments
+        validated_data['student'] = None  # Ensure this is a guest enrollment
+
+        enrollment = super().create(validated_data)
+
+        # Update course enrollment count
+        course = enrollment.course
+        course.current_enrollment += 1
+        course.save(update_fields=['current_enrollment'])
+
+        return enrollment
+
+
+class EnrollmentDetailSerializer(serializers.ModelSerializer):
+    """Detailed serializer for enrollment responses"""
+    course_title = serializers.CharField(source='course.course_name', read_only=True)
+    course_code = serializers.CharField(source='course.course_code', read_only=True)
+    enrollee_name = serializers.ReadOnlyField()
+    enrollee_email = serializers.ReadOnlyField()
+    is_guest_enrollment = serializers.ReadOnlyField()
+
+    class Meta:
+        model = CourseEnrollment
+        fields = [
+            'id', 'course', 'course_title', 'course_code',
+            'first_name', 'last_name', 'email', 'phone',
+            'organization', 'job_title', 'enrollment_date',
+            'enrollment_token', 'status', 'payment_status', 'payment_method',
+            'payment_amount', 'enrollee_name', 'enrollee_email',
+            'is_guest_enrollment', 'created_at'
+        ]

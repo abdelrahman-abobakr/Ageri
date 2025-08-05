@@ -348,7 +348,8 @@ class Post(TimeStampedModel):
     status = models.CharField(
         max_length=20,
         choices=StatusChoices.choices,
-        default=StatusChoices.DRAFT
+        default=StatusChoices.PENDING,
+        help_text="Post status: pending (awaiting review) or published (live)"
     )
     is_featured = models.BooleanField(
         default=False,

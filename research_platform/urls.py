@@ -42,7 +42,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path("admin/", admin.site.urls),
     path('dashboard/', include('dashboard.urls')),  # Custom admin dashboard
-    path('rosetta/', include('rosetta.urls')),  # Translation management
+    # path('rosetta/', include('rosetta.urls')),  # Translation management - disabled
     prefix_default_language=False,
 )
 

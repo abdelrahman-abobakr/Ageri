@@ -12,9 +12,9 @@ class CourseEnrollmentInline(admin.TabularInline):
     """Inline for course enrollments"""
     model = CourseEnrollment
     extra = 0
-    readonly_fields = ['enrollment_date', 'payment_date', 'completion_date']
+    readonly_fields = ['enrollment_date', 'completion_date']
     fields = [
-        'student', 'status', 'payment_status', 'payment_amount',
+        'student', 'status', 'payment_status', 'payment_method', 'payment_amount',
         'grade', 'attendance_percentage', 'certificate_issued'
     ]
 
@@ -358,7 +358,7 @@ class CourseEnrollmentAdmin(admin.ModelAdmin):
         'student__first_name', 'student__last_name', 'student__email',
         'course__course_name', 'course__course_code'
     ]
-    readonly_fields = ['enrollment_date', 'payment_date', 'completion_date']
+    readonly_fields = ['enrollment_date', 'completion_date']
     date_hierarchy = 'enrollment_date'
     ordering = ['-enrollment_date']
 
@@ -368,8 +368,7 @@ class CourseEnrollmentAdmin(admin.ModelAdmin):
         }),
         ('Payment Information', {
             'fields': (
-                'payment_status', 'payment_amount', 'payment_date',
-                'payment_reference'
+                'payment_status', 'payment_method', 'payment_amount'
             )
         }),
         ('Academic Information', {
