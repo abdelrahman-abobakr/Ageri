@@ -22620,3 +22620,12 @@ INFO 2025-08-05 23:49:02,950 basehttp 141392 137433014326976 "OPTIONS /api/resea
 INFO 2025-08-05 23:49:02,965 basehttp 141392 137433014326976 "GET /api/research/publications/my_publications/?page=1&page_size=20&ordering=-created_at HTTP/1.1" 200 430
 INFO 2025-08-05 23:49:30,944 basehttp 141392 137433014326976 "GET /api/research/publications/my_publications/?page=1&page_size=20&ordering=-created_at HTTP/1.1" 200 430
 INFO 2025-08-05 23:49:30,968 basehttp 141392 137433014326976 "GET /api/research/publications/my_publications/?page=1&page_size=20&ordering=-created_at HTTP/1.1" 200 430
+INFO 2025-08-05 23:56:09,929 basehttp 141392 137433014326976 "GET /api/research/publications/my_publications/?page=1&page_size=20&ordering=-created_at HTTP/1.1" 200 430
+INFO 2025-08-05 23:56:09,968 basehttp 141392 137433014326976 "GET /api/research/publications/my_publications/?page=1&page_size=20&ordering=-created_at HTTP/1.1" 200 430
+INFO 2025-08-06 00:01:55,020 basehttp 141392 137433014326976 "GET /api/research/publications/my_publications/?page=1&page_size=20&ordering=-created_at HTTP/1.1" 200 430
+INFO 2025-08-06 00:01:55,057 basehttp 141392 137433014326976 "GET /api/research/publications/my_publications/?page=1&page_size=20&ordering=-created_at HTTP/1.1" 200 430
+INFO 2025-08-06 00:02:22,927 basehttp 141392 137433014326976 "GET /api/research/publications/my_publications/?page=1&page_size=20&ordering=-created_at HTTP/1.1" 200 430
+INFO 2025-08-06 00:02:22,962 basehttp 141392 137433014326976 "GET /api/research/publications/my_publications/?page=1&page_size=20&ordering=-created_at HTTP/1.1" 200 430
+INFO 2025-08-06 00:03:21,388 basehttp 141392 137433014326976 "GET /api/research/publications/1/ HTTP/1.1" 200 1245
+INFO 2025-08-06 00:03:21,408 basehttp 141392 137433022719680 "GET /api/research/publications/1/ HTTP/1.1" 200 1245
+INFO 2025-08-06 00:03:29,772 basehttp 141392 137433022719680 "GET /api/research/publications/1/ HTTP/1.1" 200 1245
