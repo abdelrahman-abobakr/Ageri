@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
@@ -1068,6 +1069,111 @@ def update_summer_training_enrollment_on_create(sender, instance, created, **kwa
 def update_summer_training_enrollment_on_delete(sender, instance, **kwargs):
     """
     Update summer training enrollment count when an application is deleted
+    """
+    if instance.status == 'approved':
+        # Decrement the summer training enrollment count
+        SummerTraining.objects.filter(id=instance.program.id).update(
+            current_enrollment=models.F('current_enrollment') - 1
+        )
+
+# Signal handlers for automatic enrollment count updates
+@receiver(post_save, sender=CourseEnrollment)
+def update_course_enrollment_on_create(sender, instance, created, **kwargs):
+    """
+    Update course enrollment count when a new enrollment is created
+    """
+    if created and instance.status == 'approved':
+        # Increment the course enrollment count
+        Course.objects.filter(id=instance.course.id).update(
+            current_enrollment=models.F('current_enrollment') + 1
+        )
+
+
+@receiver(post_delete, sender=CourseEnrollment)
+def update_course_enrollment_on_delete(sender, instance, **kwargs):
+    """
+    Update course enrollment count when an enrollment is deleted
+    """
+    if instance.status == 'approved':
+        # Decrement the course enrollment count
+        Course.objects.filter(id=instance.course.id).update(
+            current_enrollment=models.F('current_enrollment') - 1
+        )
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
+from decimal import Decimal
+
+from core.models import TimeStampedModel, StatusChoices, PriorityChoices
+
+User = get_user_model()
+
+
+class TrainingType(models.TextChoices):
+    """Training type choices"""
+    COURSE = 'course', 'Course'
+    SUMMER_TRAINING = 'summer_training', 'Summer Training'
+    PUBLIC_SERVICE = 'public_service', 'Public Service'
+    WORKSHOP = 'workshop', 'Workshop'
+    SEMINAR = 'seminar', 'Seminar'
+
+
+class DifficultyLevel(models.TextChoices):
+    """Difficulty level choices"""
+    BEGINNER = 'beginner', 'Beginner'
+    INTERMEDIATE = 'intermediate', 'Intermediate'
+    ADVANCED = 'advanced', 'Advanced'
+    EXPERT = 'expert', 'Expert'
+
+
+class PaymentStatus(models.TextChoices):
+    """Payment status choices"""
+    PENDING = 'pending', 'Pending'
+    PAID = 'paid', 'Paid'
+    FAILED = 'failed', 'Failed'
+    REFUNDED = 'refunded', 'Refunded'
+
+
+# Signal handlers for automatic enrollment count updates
+@receiver(post_save, sender=CourseEnrollment)
+def update_course_enrollment_on_create(sender, instance, created, **kwargs):
+    """
+    Update course enrollment count when a new enrollment is created
+    """
+    if created and instance.status == 'approved':
+        # Increment the course enrollment count
+        Course.objects.filter(id=instance.course.id).update(
+            current_enrollment=models.F('current_enrollment') + 1
+        )
+
+
+@receiver(post_delete, sender=CourseEnrollment)
+def update_course_enrollment_on_delete(sender, instance, **kwargs):
+    """
+    Update course enrollment count when an enrollment is deleted
+    """
+    if instance.status == 'approved':
+        # Decrement the course enrollment count
+        Course.objects.filter(id=instance.course.id).update(
+            current_enrollment=models.F('current_enrollment') - 1
+        )
+
+
+@receiver(post_save, sender=SummerTrainingApplication)
+def update_summer_training_enrollment_on_approve(sender, instance, **kwargs):
+    """
+    Update summer training enrollment count when application is approved
+    """
+    if instance.status == 'approved':
+        # Increment the summer training enrollment count
+        SummerTraining.objects.filter(id=instance.program.id).update(
+            current_enrollment=models.F('current_enrollment') + 1
+        )
+
+
+@receiver(post_delete, sender=SummerTrainingApplication)
+def update_summer_training_enrollment_on_delete(sender, instance, **kwargs):
+    """
+    Update summer training enrollment count when application is deleted
     """
     if instance.status == 'approved':
         # Decrement the summer training enrollment count
