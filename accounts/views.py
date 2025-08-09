@@ -76,9 +76,9 @@ class UserListView(generics.ListAPIView):
     ordering = ['-date_joined']
 
 
-class UserDetailView(generics.RetrieveUpdateAPIView):
+class UserDetailView(generics.RetrieveUpdateDestroyAPIView):  # Changed from RetrieveUpdateAPIView
     """
-    Retrieve and update user details
+    Retrieve, update, and delete user details
     Enhanced like medical system
     """
     queryset = User.objects.all().select_related('profile')
@@ -102,6 +102,44 @@ class UserDetailView(generics.RetrieveUpdateAPIView):
         data['last_login'] = instance.last_login
         
         return Response(data)
+
+    def destroy(self, request, *args, **kwargs):
+        """Enhanced delete with additional checks and logging"""
+        instance = self.get_object()
+        
+        # Prevent user from deleting themselves through the 'me' endpoint
+        if 'pk' not in self.kwargs:  # This is the 'me' endpoint
+            return Response({
+                'error': 'You cannot delete your own account through this endpoint'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Check if user has admin permissions for deletion
+        if not request.user.is_staff and not request.user.role == 'admin':
+            return Response({
+                'error': 'You do not have permission to delete users'
+            }, status=status.HTTP_403_FORBIDDEN)
+        
+        # Prevent admin from deleting themselves
+        if instance == request.user:
+            return Response({
+                'error': 'You cannot delete your own account'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Store user info for response
+        user_email = instance.email
+        user_name = instance.get_full_name() or instance.username
+        
+        # Perform the deletion
+        self.perform_destroy(instance)
+        
+        return Response({
+            'message': f'User "{user_name}" ({user_email}) has been successfully deleted',
+            'deleted_user': {
+                'id': kwargs.get('pk'),
+                'email': user_email,
+                'name': user_name
+            }
+        }, status=status.HTTP_200_OK)
 
     def _calculate_profile_completion(self, user):
         """Calculate profile completion percentage"""

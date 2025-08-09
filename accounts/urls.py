@@ -19,7 +19,7 @@ urlpatterns = [
     # User approval (admin only) - Enhanced like medical
     path('users/<int:pk>/approve/', views.UserApprovalView.as_view(), name='user-approve'),
     path('users/pending/', views.PendingUsersView.as_view(), name='pending-users'),
-    
+
     # User profiles - Enhanced like medical
     path('profiles/<int:pk>/', views.UserProfileView.as_view(), name='profile-detail'),
     path('profiles/me/', views.UserProfileView.as_view(), name='profile-me'),
