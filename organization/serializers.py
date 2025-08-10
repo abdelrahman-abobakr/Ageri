@@ -52,7 +52,7 @@ class DepartmentSerializer(serializers.ModelSerializer):
             from accounts.models import User, UserRole
             try:
                 user = User.objects.get(id=value)
-                if user.role not in [UserRole.ADMIN, UserRole.MODERATOR]:
+                if user.role not in [UserRole.ADMIN, UserRole.MODERATOR, UserRole.RESEARCHER]:
                     raise serializers.ValidationError(
                         "Department head must be an admin or moderator"
                     )
@@ -273,7 +273,7 @@ class ResearcherAssignmentListSerializer(serializers.ModelSerializer):
         ]
 
     def get_researcher_profile(self, obj):
-        """Get researcher profile information"""
+        """Get researcher profile information including profile picture"""
         researcher = obj.researcher
         profile_data = {
             'id': researcher.id,
@@ -291,6 +291,7 @@ class ResearcherAssignmentListSerializer(serializers.ModelSerializer):
         if hasattr(researcher, 'profile'):
             profile = researcher.profile
             profile_data.update({
+                'profile_picture': profile.profile_picture.url if profile.profile_picture else None,  # Add this line
                 'bio': profile.bio,
                 'research_interests': profile.research_interests,
                 'orcid_id': profile.orcid_id,
@@ -303,7 +304,6 @@ class ResearcherAssignmentListSerializer(serializers.ModelSerializer):
             })
 
         return profile_data
-
 
 class OrganizationSettingsSerializer(serializers.ModelSerializer):
     """Serializer for organization settings"""
