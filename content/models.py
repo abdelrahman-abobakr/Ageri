@@ -486,10 +486,10 @@ class Post(TimeStampedModel):
         """Increment view count"""
         self.view_count += 1
         self.save(update_fields=['view_count'])
-
-    def delete(self, *args, **kwargs):
-        self.is_deleted = True
-        self.save()
+    # soft dlete
+    # def delete(self, *args, **kwargs):
+    #     self.is_deleted = True
+    #     self.save()
 
 
 class PostImage(TimeStampedModel):
