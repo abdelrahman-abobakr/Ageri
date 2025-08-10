@@ -323,12 +323,6 @@ msgstr "الإجراءات المجمعة"
 msgid "Add User"
 msgstr "إضافة مستخدم"
 
-msgid "All Users"
-msgstr "جميع المستخدمين"
-
-msgid "Pending Approval"
-msgstr "في انتظار الموافقة"
-
 msgid "All Roles"
 msgstr "جميع الأدوار"
 
@@ -354,9 +348,6 @@ msgid "Institution"
 msgstr "المؤسسة"
 
 # Department Management
-msgid "Create Department"
-msgstr "إنشاء قسم"
-
 msgid "Create a new department"
 msgstr "إنشاء قسم جديد"
 
@@ -385,9 +376,6 @@ msgid "You can assign a department head later if needed."
 msgstr "يمكنك تعيين رئيس قسم لاحقاً إذا لزم الأمر."
 
 # Service Requests
-msgid "Service Requests"
-msgstr "طلبات الخدمة"
-
 msgid "Manage testing service requests and assignments"
 msgstr "إدارة طلبات خدمات الاختبار والتكليفات"
 
@@ -439,6 +427,37 @@ msgstr "لا"
 
 msgid "OK"
 msgstr "موافق"
+
+# Additional Terms
+msgid "type"
+msgstr "النوع"
+
+msgid "status"
+msgstr "الحالة"
+
+msgid "general"
+msgstr "عام"
+
+msgid "activity"
+msgstr "نشاط"
+
+msgid "workshop"
+msgstr "ورشة عمل"
+
+msgid "seminar"
+msgstr "ندوة"
+
+msgid "conference"
+msgstr "مؤتمر"
+
+msgid "training"
+msgstr "تدريب"
+
+msgid "collaboration"
+msgstr "تعاون"
+
+msgid "achievement"
+msgstr "إنجاز"
 
 # Pluralization
 msgid "user found"

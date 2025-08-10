@@ -9,13 +9,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 from accounts.permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly, IsModeratorOrAdmin, IsApprovedUser
-from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment
+from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment, PostImage
 from .serializers import (
     AnnouncementListSerializer, AnnouncementDetailSerializer,
     AnnouncementCreateUpdateSerializer, AnnouncementApprovalSerializer,
     PostListSerializer, PostDetailSerializer, PostCreateUpdateSerializer,
     PostApprovalSerializer, CommentSerializer, CommentCreateSerializer,
-    CommentLikeSerializer, AnnouncementImageSerializer, AnnouncementAttachmentSerializer
+    CommentLikeSerializer, AnnouncementImageSerializer, AnnouncementAttachmentSerializer,
+    PostImageSerializer
 )
 
 
@@ -364,6 +365,62 @@ class PostViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset().filter(status='pending')
         serializer = PostListSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
+
+    @action(detail=True, methods=['get', 'post'], permission_classes=[IsModeratorOrAdmin])
+    def images(self, request, pk=None):
+        """Manage post images"""
+        post = self.get_object()
+
+        if request.method == 'GET':
+            images = post.images.all()
+            serializer = PostImageSerializer(images, many=True, context={'request': request})
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            serializer = PostImageSerializer(data=request.data, context={'request': request})
+            if serializer.is_valid():
+                serializer.save(post=post)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['delete'], permission_classes=[IsModeratorOrAdmin], url_path='images/(?P<image_id>[^/.]+)')
+    def delete_image(self, request, pk=None, image_id=None):
+        """Delete post image"""
+        post = self.get_object()
+        try:
+            image = post.images.get(id=image_id)
+            image.delete()
+            return Response({'message': 'Image deleted successfully'})
+        except PostImage.DoesNotExist:
+            return Response({'error': 'Image not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    @action(detail=True, methods=['get', 'post'], permission_classes=[IsModeratorOrAdmin])
+    def attachments(self, request, pk=None):
+        """Manage announcement attachments"""
+        announcement = self.get_object()
+
+        if request.method == 'GET':
+            attachments = announcement.attachments.all()
+            serializer = AnnouncementAttachmentSerializer(attachments, many=True, context={'request': request})
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            serializer = AnnouncementAttachmentSerializer(data=request.data, context={'request': request})
+            if serializer.is_valid():
+                serializer.save(announcement=announcement)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['delete'], permission_classes=[IsModeratorOrAdmin], url_path='attachments/(?P<attachment_id>[^/.]+)')
+    def delete_attachment(self, request, pk=None, attachment_id=None):
+        """Delete announcement attachment"""
+        announcement = self.get_object()
+        try:
+            attachment = announcement.attachments.get(id=attachment_id)
+            attachment.delete()
+            return Response({'message': 'Attachment deleted successfully'})
+        except AnnouncementAttachment.DoesNotExist:
+            return Response({'error': 'Attachment not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
 class CommentViewSet(viewsets.ModelViewSet):

@@ -2,6 +2,8 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment
+from .post_image_serializer import PostImageSerializer
+from rest_framework.exceptions import ValidationError
 
 User = get_user_model()
 
@@ -133,7 +135,7 @@ class AnnouncementCreateUpdateSerializer(serializers.ModelSerializer):
         fields = [
             'title', 'content', 'summary', 'announcement_type',
             'priority', 'target_audience', 'is_pinned', 'is_featured',
-            'publish_at', 'expires_at', 'attachment'
+            'publish_at', 'expires_at', 'attachment','status' 
         ]
     
     def validate_expires_at(self, value):
@@ -178,15 +180,16 @@ class PostListSerializer(serializers.ModelSerializer):
     is_event = serializers.BooleanField(read_only=True)
     is_upcoming_event = serializers.BooleanField(read_only=True)
     tags_list = serializers.ListField(read_only=True)
+    images = PostImageSerializer(many=True, read_only=True)
     
     class Meta:
         model = Post
         fields = [
             'id', 'title', 'content', 'excerpt', 'category', 'tags_list',
             'event_date', 'event_location', 'status', 'is_featured',
-            'is_public', 'publish_at', 'author', 'featured_image', 'attachment',
+            'is_public', 'publish_at', 'author', 'images', 'attachment',
             'view_count', 'is_published', 'is_event',
-            'is_upcoming_event', 'created_at'
+            'is_upcoming_event', 'created_at', 'author'
         ]
 
 
@@ -200,6 +203,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
     is_past_event = serializers.BooleanField(read_only=True)
     registration_open = serializers.BooleanField(read_only=True)
     tags_list = serializers.ListField(read_only=True)
+    images = PostImageSerializer(many=True, read_only=True)
     
     class Meta:
         model = Post
@@ -208,7 +212,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
             'tags_list', 'event_date', 'event_location', 'registration_required',
             'registration_deadline', 'max_participants', 'status',
             'is_featured', 'is_public', 'publish_at', 'author',
-            'approved_by', 'approved_at', 'featured_image', 'attachment',
+            'approved_by', 'approved_at', 'images', 'attachment',
             'view_count', 'is_published', 'is_event',
             'is_upcoming_event', 'is_past_event', 'registration_open',
             'created_at', 'updated_at'
@@ -216,7 +220,8 @@ class PostDetailSerializer(serializers.ModelSerializer):
 
 
 class PostCreateUpdateSerializer(serializers.ModelSerializer):
-    """Serializer for creating and updating posts"""
+    attachment = serializers.FileField(required=False, allow_null=True)
+    # Remove featured_image, handle images separately in view
     
     class Meta:
         model = Post
@@ -224,8 +229,18 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
             'title', 'content', 'excerpt', 'category', 'tags',
             'event_date', 'event_location', 'registration_required',
             'registration_deadline', 'max_participants', 'status',
-            'is_featured', 'is_public', 'publish_at', 'featured_image', 'attachment'
+            'is_featured', 'is_public', 'publish_at', 'attachment'
         ]
+
+    def validate_attachment(self, value):
+        if value and not hasattr(value, 'file'):
+            raise ValidationError("Uploaded file is not valid.")
+        return value
+    
+    def validate_featured_image(self, value):
+        if value and not hasattr(value, 'file'):
+            raise ValidationError("Uploaded image is not valid.")
+        return value
     
     def validate_event_date(self, value):
         """Validate event date"""
@@ -243,13 +258,11 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
         """Cross-field validation"""
         event_date = data.get('event_date')
         registration_deadline = data.get('registration_deadline')
-        
         if event_date and registration_deadline:
             if registration_deadline >= event_date:
                 raise serializers.ValidationError(
                     "Registration deadline must be before event date."
                 )
-        
         return data
 
 

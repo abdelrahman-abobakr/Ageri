@@ -55,7 +55,8 @@ class Course(TimeStampedModel):
     # Basic course information
     course_name = models.CharField(
         max_length=200,
-        help_text="Name of the course"
+        help_text="Name of the course",
+        default=""
     )
     instructor = models.CharField(
         max_length=255,
@@ -82,7 +83,8 @@ class Course(TimeStampedModel):
         help_text="Type of training/course"
     )
     training_hours = models.PositiveIntegerField(
-        help_text="Total training hours for the course"
+        help_text="Total training hours for the course",
+        default=0
     )
     description = models.TextField(help_text="Detailed course description")
 

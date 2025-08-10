@@ -290,8 +290,12 @@ class PostCategory(models.TextChoices):
 
 
 def upload_to_posts(instance, filename):
-    """Upload post attachments to organized directories"""
-    return f'content/posts/{instance.id}/{filename}'
+    now = timezone.now().strftime('%Y%m%d%H%M%S')
+    return f'content/posts/temp_{now}/{filename}'
+
+def upload_to_post_images(instance, filename):
+    """Upload announcement images to organized directories"""
+    return f'content/posts/{instance.post.id}/images/{filename}'
 
 
 class Post(TimeStampedModel):
@@ -382,11 +386,6 @@ class Post(TimeStampedModel):
     approved_at = models.DateTimeField(null=True, blank=True)
 
     # Media attachments
-    featured_image = models.ImageField(
-        upload_to=upload_to_posts,
-        blank=True,
-        help_text="Featured image for the post"
-    )
     attachment = models.FileField(
         upload_to=upload_to_posts,
         blank=True,
@@ -396,6 +395,7 @@ class Post(TimeStampedModel):
 
     # Engagement tracking
     view_count = models.PositiveIntegerField(default=0)
+    is_deleted = models.BooleanField(default=False, help_text="Soft delete flag")
 
     class Meta:
         ordering = ['-is_featured', '-publish_at']
@@ -487,6 +487,47 @@ class Post(TimeStampedModel):
         self.view_count += 1
         self.save(update_fields=['view_count'])
 
+    def delete(self, *args, **kwargs):
+        self.is_deleted = True
+        self.save()
+
+
+class PostImage(TimeStampedModel):
+    """
+    Model for post images
+    """
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='images'
+    )
+    image = models.ImageField(
+        upload_to=upload_to_post_images,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif', 'webp'])],
+        help_text="Post image (JPG, PNG, GIF, WebP)"
+    )
+    caption = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Optional image caption"
+    )
+    alt_text = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Alternative text for accessibility"
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        help_text="Display order (0 = first)"
+    )
+
+    class Meta:
+        ordering = ['order', 'created_at']
+        verbose_name = 'Post Image'
+        verbose_name_plural = 'Post Images'
+
+    def __str__(self):
+        return f"Image for {self.post.title}"
 
 
 
