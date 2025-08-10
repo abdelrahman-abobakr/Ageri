@@ -293,6 +293,10 @@ def upload_to_posts(instance, filename):
     now = timezone.now().strftime('%Y%m%d%H%M%S')
     return f'content/posts/temp_{now}/{filename}'
 
+def upload_to_post_images(instance, filename):
+    """Upload announcement images to organized directories"""
+    return f'content/posts/{instance.post.id}/images/{filename}'
+
 
 class Post(TimeStampedModel):
     """
@@ -348,7 +352,8 @@ class Post(TimeStampedModel):
     status = models.CharField(
         max_length=20,
         choices=StatusChoices.choices,
-        default=StatusChoices.DRAFT
+        default=StatusChoices.PENDING,
+        help_text="Post status: pending (awaiting review) or published (live)"
     )
     is_featured = models.BooleanField(
         default=False,
@@ -381,11 +386,6 @@ class Post(TimeStampedModel):
     approved_at = models.DateTimeField(null=True, blank=True)
 
     # Media attachments
-    featured_image = models.ImageField(
-        upload_to=upload_to_posts,
-        blank=True,
-        help_text="Featured image for the post"
-    )
     attachment = models.FileField(
         upload_to=upload_to_posts,
         blank=True,
@@ -491,6 +491,43 @@ class Post(TimeStampedModel):
         self.is_deleted = True
         self.save()
 
+
+class PostImage(TimeStampedModel):
+    """
+    Model for post images
+    """
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name='images'
+    )
+    image = models.ImageField(
+        upload_to=upload_to_post_images,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png', 'gif', 'webp'])],
+        help_text="Post image (JPG, PNG, GIF, WebP)"
+    )
+    caption = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Optional image caption"
+    )
+    alt_text = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Alternative text for accessibility"
+    )
+    order = models.PositiveIntegerField(
+        default=0,
+        help_text="Display order (0 = first)"
+    )
+
+    class Meta:
+        ordering = ['order', 'created_at']
+        verbose_name = 'Post Image'
+        verbose_name_plural = 'Post Images'
+
+    def __str__(self):
+        return f"Image for {self.post.title}"
 
 
 

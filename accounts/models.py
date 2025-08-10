@@ -93,7 +93,20 @@ class UserProfile(TimeStampedModel):
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
 
+    # Profile Picture
+    profile_picture = models.ImageField(
+        upload_to=upload_to_user_directory,
+        null=True,
+        blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
+        help_text="Upload profile image (JPG, PNG only)"
+    )
+
     # Professional Information
+    position = models.CharField(max_length=100, blank=True, help_text="Current position/title")
+    academic_degree = models.CharField(max_length=100, blank=True, help_text="Highest academic degree")
+    specialization = models.CharField(max_length=200, blank=True, help_text="Area of specialization")
+    phone = models.CharField(max_length=20, blank=True, help_text="Phone number")
     orcid_id = models.CharField(max_length=19, blank=True, help_text="ORCID ID (e.g., 0000-0000-0000-0000)")
     bio = models.TextField(blank=True, max_length=1000)
     research_interests = models.TextField(blank=True, max_length=500)
@@ -107,16 +120,16 @@ class UserProfile(TimeStampedModel):
     )
 
     # Social Links
-    website = models.URLField(blank=True)
-    linkedin = models.URLField(blank=True)
-    google_scholar = models.URLField(blank=True)
-    researchgate = models.URLField(blank=True)
-
-    # Admin Notes
-    admin_notes = models.TextField(blank=True, help_text="Internal notes for admin use")
+    website = models.URLField(blank=True, max_length=200)
+    linkedin = models.URLField(blank=True, max_length=200)
+    google_scholar = models.URLField(blank=True, max_length=200)
+    researchgate = models.URLField(blank=True, max_length=200)
 
     # Profile Status
     is_public = models.BooleanField(default=True, help_text="Make profile visible to public")
+
+    # Admin Notes
+    admin_notes = models.TextField(blank=True, max_length=1000, help_text="Internal notes for admin use")
 
     class Meta:
         verbose_name = 'User Profile'

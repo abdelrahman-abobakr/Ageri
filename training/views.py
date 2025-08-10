@@ -1,10 +1,12 @@
-from rest_framework import viewsets, status, filters
+from rest_framework import viewsets, status, filters, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 from django_filters.rest_framework import DjangoFilterBackend
 from django.utils import timezone
 from django.db.models import Q, Count, Avg
+from django.db import transaction
 
 from accounts.permissions import IsModeratorOrAdmin, IsResearcherOrAbove
 from .models import (
@@ -16,7 +18,8 @@ from .serializers import (
     SummerTrainingListSerializer, SummerTrainingDetailSerializer,
     PublicServiceListSerializer, PublicServiceDetailSerializer,
     CourseEnrollmentSerializer, SummerTrainingApplicationSerializer,
-    PublicServiceRequestSerializer
+    PublicServiceRequestSerializer, GuestEnrollmentSerializer,
+    EnrollmentDetailSerializer
 )
 
 
@@ -24,12 +27,12 @@ class CourseViewSet(viewsets.ModelViewSet):
     """ViewSet for managing courses"""
     queryset = Course.objects.all()
     permission_classes = [IsAuthenticated]
+    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = [
-        'training_type', 'difficulty_level', 'status', 'is_featured',
-        'is_public', 'is_free', 'instructor', 'department'
+        'type', 'status', 'is_featured', 'is_public', 'department'
     ]
-    search_fields = ['title', 'course_code', 'description', 'tags']
+    search_fields = ['course_name', 'course_code', 'description', 'tags', 'instructor']
     ordering_fields = ['start_date', 'created_at', 'price', 'current_enrollment']
     ordering = ['-is_featured', '-start_date']
 
@@ -37,6 +40,10 @@ class CourseViewSet(viewsets.ModelViewSet):
         """Return appropriate permissions based on action"""
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
             permission_classes = [IsModeratorOrAdmin]
+        elif self.action in ['list', 'retrieve']:
+            permission_classes = []  # Allow public access for listing and retrieving courses
+        elif self.action == 'enroll':
+            permission_classes = [permissions.AllowAny]  # Allow guest enrollment
         else:
             permission_classes = [IsAuthenticated]
         return [permission() for permission in permission_classes]
@@ -50,7 +57,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Filter queryset based on user permissions"""
         queryset = super().get_queryset().select_related(
-            'instructor', 'department'
+            'department'
         ).prefetch_related('enrollments')
 
         # Non-admin users can only see published courses
@@ -63,38 +70,49 @@ class CourseViewSet(viewsets.ModelViewSet):
         """Set default values when creating course"""
         serializer.save()
 
-    @action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    @action(detail=True, methods=['post'], permission_classes=[permissions.AllowAny])
     def enroll(self, request, pk=None):
-        """Enroll user in course"""
-        course = self.get_object()
+        """Guest enrollment in course - no authentication required"""
+        try:
+            course = self.get_object()
 
-        # Check if user can register
-        if not course.can_register():
-            return Response(
-                {'error': 'Registration is not open for this course'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            # Add course to the data
+            enrollment_data = request.data.copy()
+            enrollment_data['course'] = course.id
 
-        # Check if already enrolled
-        if CourseEnrollment.objects.filter(course=course, student=request.user).exists():
-            return Response(
-                {'error': 'You are already enrolled in this course'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            # Create enrollment using serializer
+            serializer = GuestEnrollmentSerializer(data=enrollment_data)
 
-        # Create enrollment
-        enrollment = CourseEnrollment.objects.create(
-            course=course,
-            student=request.user,
-            payment_amount=course.price if not course.is_free else 0
-        )
+            if serializer.is_valid():
+                with transaction.atomic():
+                    enrollment = serializer.save()
 
-        # Update course enrollment count
-        course.current_enrollment += 1
-        course.save(update_fields=['current_enrollment'])
+                return Response({
+                    'message': 'Successfully enrolled in course',
+                    'enrollment': EnrollmentDetailSerializer(enrollment).data,
+                    'enrollment_token': enrollment.enrollment_token,
+                    'payment_amount': course.cost if not course.is_free else 0,
+                    'next_steps': [
+                        'Save your enrollment ID for future reference',
+                        'Check course start date and prepare materials',
+                        'Contact support if you have questions'
+                    ]
+                }, status=status.HTTP_201_CREATED)
+            else:
+                return Response({
+                    'error': 'Invalid enrollment data',
+                    'details': serializer.errors
+                }, status=status.HTTP_400_BAD_REQUEST)
 
-        serializer = CourseEnrollmentSerializer(enrollment)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        except Course.DoesNotExist:
+            return Response({
+                'error': 'Course not found'
+            }, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({
+                'error': 'An error occurred during enrollment',
+                'details': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     @action(detail=True, methods=['get'])
     def enrollments(self, request, pk=None):
@@ -343,11 +361,12 @@ class CourseEnrollmentViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = [
         'status', 'payment_status', 'certificate_issued',
-        'course__training_type', 'course'
+        'course__type', 'course'
     ]
     search_fields = [
         'student__first_name', 'student__last_name', 'student__email',
-        'course__title', 'course__course_code'
+        'first_name', 'last_name', 'email',  # Guest enrollment fields
+        'course__course_name', 'course__course_code'
     ]
     ordering_fields = ['enrollment_date', 'completion_date']
     ordering = ['-enrollment_date']

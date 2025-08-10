@@ -18,7 +18,7 @@ class TestServiceListSerializer(serializers.ModelSerializer):
             'department_name', 'lab_name', 'base_price', 'is_free',
             'estimated_duration', 'status', 'is_featured', 'is_public',
             'is_available', 'is_at_capacity', 'availability_percentage',
-            'technician_count', 'current_requests', 'max_concurrent_requests'
+            'technician_count', 'current_requests', 'max_concurrent_requests', 'contact_email','contact_phone','description'
         ]
     
     def get_technician_count(self, obj):

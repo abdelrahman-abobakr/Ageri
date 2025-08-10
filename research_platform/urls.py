@@ -21,18 +21,16 @@ from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
+# API URLs (non-translated)
 urlpatterns = [
-    # Language switching
     path('i18n/', include('django.conf.urls.i18n')),
-
-    # API endpoints (not translated)
     path('api/auth/', include('accounts.urls')),
     path('api/organization/', include('organization.urls')),
     path('api/research/', include('research.urls')),
     path('api/content/', include('content.urls')),
     path('api/training/', include('training.urls')),
     path('api/services/', include('services.urls')),
-
+    path('api/admin/review/', include('adminReviewApp.urls')),  # Admin review endpoints
     # API Documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),

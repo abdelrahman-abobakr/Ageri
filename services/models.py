@@ -37,9 +37,10 @@ class TestService(TimeStampedModel):
     name = models.CharField(max_length=200)
     description = models.TextField()
     short_description = models.CharField(
-        max_length=300,
+        max_length=100000,
         blank=True,
         help_text="Brief description for service listings"
+        
     )
 
     # Service Details

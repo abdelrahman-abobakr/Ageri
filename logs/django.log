@@ -24945,3 +24945,34 @@ INFO 2025-07-27 19:44:51,684 basehttp 60173 136236580705984 "GET /api/content/po
 INFO 2025-07-27 19:44:51,698 basehttp 60173 136236094191296 "GET /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 4969
 INFO 2025-07-27 19:46:37,961 basehttp 60173 136236580705984 "GET /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 4969
 INFO 2025-07-27 19:46:37,972 basehttp 60173 136236094191296 "GET /api/content/posts/?page=1&page_size=1000 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:52:52,254 autoreload 63526 125512636465280 Watching for file changes with StatReloader
+WARNING 2025-07-27 19:53:03,383 log 63526 125512482543296 Not Found: /api/notifications/
+WARNING 2025-07-27 19:53:03,384 basehttp 63526 125512482543296 "GET /api/notifications/?page_size=10 HTTP/1.1" 404 4419
+INFO 2025-07-27 19:53:03,436 basehttp 63526 125512499328704 "GET /api/content/posts/?page=1&page_size=1000 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:53:03,446 basehttp 63526 125512490936000 "GET /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:53:03,726 basehttp 63526 125512474150592 "GET /api/content/posts/?page=1&page_size=12&status=published&is_public=true&ordering=-created_at HTTP/1.1" 200 4478
+INFO 2025-07-27 19:53:03,735 basehttp 63526 125512465757888 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-27 19:53:04,007 basehttp 63526 125512456316608 "GET /media/content/posts/temp_20250727182354/default.jpg HTTP/1.1" 304 0
+INFO 2025-07-27 19:53:04,008 basehttp 63526 125512447923904 "GET /media/content/posts/temp_20250727180647/28479592_7391560.jpg HTTP/1.1" 304 0
+INFO 2025-07-27 19:53:46,233 basehttp 63526 125512499328704 "OPTIONS /api/content/posts/?page=1&page_size=10&author=7 HTTP/1.1" 200 0
+INFO 2025-07-27 19:53:46,255 basehttp 63526 125512490936000 "GET /api/content/posts/?page=1&page_size=1000 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:53:46,266 basehttp 63526 125512499328704 "GET /api/content/posts/?page=1&page_size=10&author=7 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:53:59,696 basehttp 63526 125512490936000 "GET /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:53:59,696 basehttp 63526 125512499328704 "GET /api/content/posts/?page=1&page_size=1000 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:54:08,435 basehttp 63526 125512499328704 "OPTIONS /api/content/posts/?page=1&page_size=20 HTTP/1.1" 200 0
+INFO 2025-07-27 19:54:08,519 basehttp 63526 125512499328704 "GET /api/content/posts/?page=1&page_size=20 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:54:08,538 basehttp 63526 125512490936000 "GET /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:54:21,044 basehttp 63526 125512499328704 "OPTIONS /api/content/posts/?page=1&page_size=100 HTTP/1.1" 200 0
+INFO 2025-07-27 19:54:21,070 basehttp 63526 125512490936000 "GET /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:54:21,080 basehttp 63526 125512499328704 "GET /api/content/posts/?page=1&page_size=100 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:54:22,595 basehttp 63526 125512499328704 "GET /api/content/posts/?page=1&page_size=1000 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:54:22,595 basehttp 63526 125512490936000 "GET /api/content/posts/?page=1&page_size=10 HTTP/1.1" 200 4969
+INFO 2025-07-27 19:56:23,826 basehttp 63526 125512465757888 "GET /api/content/posts/?page=1&page_size=12&status=published&is_public=true&ordering=-created_at HTTP/1.1" 200 4478
+INFO 2025-07-27 19:56:23,831 basehttp 63526 125512474150592 "GET /api/organization/departments/ HTTP/1.1" 200 301
+INFO 2025-07-27 19:56:24,079 basehttp 63526 125512447923904 "GET /media/content/posts/temp_20250727175635/2148071818.jpg HTTP/1.1" 304 0
+INFO 2025-07-27 19:56:43,806 basehttp 63526 125512474150592 "GET /api/content/posts/?page=1&page_size=5&status=published&is_public=true&ordering=-created_at HTTP/1.1" 200 4478
+WARNING 2025-07-27 19:56:50,341 log 63526 125512474150592 Not Found: /api/content/posts/
+WARNING 2025-07-27 19:56:50,341 basehttp 63526 125512474150592 "GET /api/content/posts/?page=2&page_size=5&status=published&is_public=true&ordering=-created_at HTTP/1.1" 404 26
+INFO 2025-07-27 19:56:52,624 basehttp 63526 125512474150592 "GET /api/content/posts/?page=1&page_size=5&status=published&is_public=true&ordering=-created_at HTTP/1.1" 200 4478
+INFO 2025-07-27 19:57:10,429 basehttp 63526 125512474150592 "GET /api/content/posts/?page=1&page_size=1&status=published&is_public=true&ordering=-created_at HTTP/1.1" 200 4478
+INFO 2025-07-27 19:57:12,360 basehttp 63526 125512474150592 "GET /api/content/posts/?page=1&page_size=100&status=published&is_public=true&ordering=-created_at HTTP/1.1" 200 4478

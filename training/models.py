@@ -1,8 +1,12 @@
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 from decimal import Decimal
+import uuid
 
 from core.models import TimeStampedModel, StatusChoices, PriorityChoices
 
@@ -34,104 +38,103 @@ class PaymentStatus(models.TextChoices):
     REFUNDED = 'refunded', 'Refunded'
 
 
+class PaymentMethod(models.TextChoices):
+    """Payment method choices"""
+    CASH = 'cash', 'Cash'
+    BANK_TRANSFER = 'bank_transfer', 'Bank Transfer'
+    CREDIT_CARD = 'credit_card', 'Credit Card'
+    MOBILE_PAYMENT = 'mobile_payment', 'Mobile Payment'
+    CHECK = 'check', 'Check'
+    OTHER = 'other', 'Other'
+
+
 class Course(TimeStampedModel):
     """
     Model for training courses
     """
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    short_description = models.CharField(
-        max_length=300,
-        blank=True,
-        help_text="Brief description for course listings"
+    # Basic course information
+    course_name = models.CharField(
+        max_length=200,
+        help_text="Name of the course",
+        default=""
+    )
+    instructor = models.CharField(
+        max_length=255,
+        help_text="Name of the course instructor (can be external)"
+    )
+    cost = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        default=Decimal('0.00'),
+        validators=[MinValueValidator(Decimal('0.00'))],
+        help_text="Course cost/fee"
     )
 
+    # Scheduling
+    start_date = models.DateField(help_text="Course start date")
+    end_date = models.DateField(help_text="Course end date")
+    registration_deadline = models.DateField(help_text="Last date for registration")
+
     # Course details
+    type = models.CharField(
+        max_length=20,
+        choices=TrainingType.choices,
+        default=TrainingType.COURSE,
+        help_text="Type of training/course"
+    )
+    training_hours = models.PositiveIntegerField(
+        help_text="Total training hours for the course",
+        default=0
+    )
+    description = models.TextField(help_text="Detailed course description")
+
+    # Additional useful fields
     course_code = models.CharField(
         max_length=20,
         unique=True,
         help_text="Unique course identifier (e.g., CS101)"
     )
-    credits = models.PositiveIntegerField(
-        default=3,
-        validators=[MinValueValidator(1), MaxValueValidator(10)]
+    max_participants = models.PositiveIntegerField(
+        default=30,
+        help_text="Maximum number of participants"
     )
-    duration_hours = models.PositiveIntegerField(
-        help_text="Total course duration in hours"
+    current_enrollment = models.PositiveIntegerField(
+        default=0,
+        help_text="Current number of enrolled participants"
     )
-
-    # Classification
-    training_type = models.CharField(
-        max_length=20,
-        choices=TrainingType.choices,
-        default=TrainingType.COURSE
-    )
-    difficulty_level = models.CharField(
-        max_length=15,
-        choices=DifficultyLevel.choices,
-        default=DifficultyLevel.BEGINNER
-    )
-
-    # Instructor and organization
-    instructor = models.ForeignKey(
-        User,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='taught_courses',
-        limit_choices_to={'role__in': ['admin', 'moderator']}
-    )
-    department = models.ForeignKey(
-        'organization.Department',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='courses'
-    )
-
-    # Scheduling
-    start_date = models.DateField()
-    end_date = models.DateField()
-    registration_deadline = models.DateField()
-
-    # Capacity and enrollment
-    max_participants = models.PositiveIntegerField(default=30)
-    min_participants = models.PositiveIntegerField(default=5)
-    current_enrollment = models.PositiveIntegerField(default=0)
-
-    # Pricing
-    price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        default=Decimal('0.00'),
-        validators=[MinValueValidator(Decimal('0.00'))]
-    )
-    is_free = models.BooleanField(default=False)
 
     # Status and visibility
     status = models.CharField(
         max_length=20,
         choices=StatusChoices.choices,
-        default=StatusChoices.DRAFT
+        default=StatusChoices.DRAFT,
+        help_text="Course status"
     )
-    is_featured = models.BooleanField(default=False)
-    is_public = models.BooleanField(default=True)
-
-    # Requirements and materials
-    prerequisites = models.TextField(
-        blank=True,
-        help_text="Course prerequisites and requirements"
+    is_featured = models.BooleanField(
+        default=False,
+        help_text="Whether to feature this course"
     )
-    materials_provided = models.TextField(
-        blank=True,
-        help_text="Materials and resources provided"
+    is_public = models.BooleanField(
+        default=True,
+        help_text="Whether this course is publicly visible"
     )
 
-    # Media
+    # Optional organizational link
+    department = models.ForeignKey(
+        'organization.Department',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='courses',
+        help_text="Department offering this course (optional)"
+    )
+
+    # Media and materials
     featured_image = models.ImageField(
         upload_to='training/courses/',
         blank=True,
-        null=True
+        null=True,
+        help_text="Course promotional image"
     )
     syllabus = models.FileField(
         upload_to='training/syllabi/',
@@ -140,7 +143,15 @@ class Course(TimeStampedModel):
         help_text="Course syllabus PDF"
     )
 
-    # Metadata
+    # Additional information
+    prerequisites = models.TextField(
+        blank=True,
+        help_text="Course prerequisites and requirements"
+    )
+    materials_provided = models.TextField(
+        blank=True,
+        help_text="Materials and resources provided"
+    )
     tags = models.CharField(
         max_length=500,
         blank=True,
@@ -151,27 +162,31 @@ class Course(TimeStampedModel):
         ordering = ['-is_featured', '-start_date']
         indexes = [
             models.Index(fields=['status', 'start_date']),
-            models.Index(fields=['training_type', 'difficulty_level']),
+            models.Index(fields=['type']),
             models.Index(fields=['is_featured', 'is_public']),
+            models.Index(fields=['registration_deadline']),
         ]
 
     def __str__(self):
-        return f"{self.course_code} - {self.title}"
+        return f"{self.course_code} - {self.course_name}"
 
     def clean(self):
         """Validate course data"""
         from django.core.exceptions import ValidationError
 
+        # Validate that end_date is after start_date
         if self.start_date and self.end_date:
-            if self.start_date >= self.end_date:
-                raise ValidationError("End date must be after start date")
+            if self.end_date <= self.start_date:
+                raise ValidationError({
+                    'end_date': 'End date must be after start date.'
+                })
 
+        # Validate that registration deadline is before start_date
         if self.registration_deadline and self.start_date:
             if self.registration_deadline >= self.start_date:
-                raise ValidationError("Registration deadline must be before start date")
-
-        if self.min_participants > self.max_participants:
-            raise ValidationError("Minimum participants cannot exceed maximum participants")
+                raise ValidationError({
+                    'registration_deadline': 'Registration deadline must be before start date.'
+                })
 
     @property
     def is_registration_open(self):
@@ -192,6 +207,11 @@ class Course(TimeStampedModel):
         if self.max_participants == 0:
             return 0
         return (self.current_enrollment / self.max_participants) * 100
+
+    @property
+    def is_free(self):
+        """Check if course is free"""
+        return self.cost == Decimal('0.00')
 
     def can_register(self):
         """Check if new registrations are allowed"""
@@ -589,7 +609,48 @@ class CourseEnrollment(TimeStampedModel):
     student = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='course_enrollments'
+        related_name='course_enrollments',
+        null=True,
+        blank=True,
+        help_text="Registered user (null for guest enrollments)"
+    )
+
+    # Guest enrollment fields
+    first_name = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="First name for guest enrollment"
+    )
+    last_name = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Last name for guest enrollment"
+    )
+    email = models.EmailField(
+        blank=True,
+        help_text="Email for guest enrollment"
+    )
+    phone = models.CharField(
+        max_length=20,
+        blank=True,
+        help_text="Phone number for guest enrollment"
+    )
+    organization = models.CharField(
+        max_length=200,
+        blank=True,
+        help_text="Organization/Company for guest enrollment"
+    )
+    job_title = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Job title for guest enrollment"
+    )
+
+    # Enrollment token for guest access
+    enrollment_token = models.UUIDField(
+        default=uuid.uuid4,
+        unique=True,
+        help_text="Unique token for guest enrollment access"
     )
 
     # Enrollment details
@@ -610,15 +671,21 @@ class CourseEnrollment(TimeStampedModel):
     payment_status = models.CharField(
         max_length=20,
         choices=PaymentStatus.choices,
-        default=PaymentStatus.PENDING
+        default=PaymentStatus.PENDING,
+        help_text="Current payment status"
+    )
+    payment_method = models.CharField(
+        max_length=20,
+        choices=PaymentMethod.choices,
+        blank=True,
+        help_text="Method used for payment"
     )
     payment_amount = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        default=Decimal('0.00')
+        default=Decimal('0.00'),
+        help_text="Amount paid or to be paid"
     )
-    payment_date = models.DateTimeField(null=True, blank=True)
-    payment_reference = models.CharField(max_length=100, blank=True)
 
     # Academic information
     grade = models.CharField(
@@ -646,20 +713,58 @@ class CourseEnrollment(TimeStampedModel):
     )
 
     class Meta:
-        unique_together = ['course', 'student']
         ordering = ['-enrollment_date']
         indexes = [
             models.Index(fields=['status', 'enrollment_date']),
             models.Index(fields=['payment_status']),
+            models.Index(fields=['enrollment_token']),
+        ]
+        constraints = [
+            # Ensure unique enrollment per course for registered users
+            models.UniqueConstraint(
+                fields=['course', 'student'],
+                condition=models.Q(student__isnull=False),
+                name='unique_course_student'
+            ),
+            # Ensure unique enrollment per course for guest users by email
+            models.UniqueConstraint(
+                fields=['course', 'email'],
+                condition=models.Q(student__isnull=True),
+                name='unique_course_guest_email'
+            ),
         ]
 
     def __str__(self):
-        return f"{self.student.get_full_name()} - {self.course.title}"
+        if self.student:
+            return f"{self.student.get_full_name()} - {self.course.title}"
+        else:
+            return f"{self.first_name} {self.last_name} (Guest) - {self.course.title}"
 
     @property
     def is_active(self):
         """Check if enrollment is active"""
         return self.status in ['approved', 'completed']
+
+    @property
+    def is_guest_enrollment(self):
+        """Check if this is a guest enrollment"""
+        return self.student is None
+
+    @property
+    def enrollee_name(self):
+        """Get the name of the enrollee (user or guest)"""
+        if self.student:
+            return self.student.get_full_name()
+        else:
+            return f"{self.first_name} {self.last_name}"
+
+    @property
+    def enrollee_email(self):
+        """Get the email of the enrollee (user or guest)"""
+        if self.student:
+            return self.student.email
+        else:
+            return self.email
 
     def mark_completed(self):
         """Mark enrollment as completed"""
@@ -924,3 +1029,156 @@ class PublicServiceRequest(TimeStampedModel):
         self.status = 'completed'
         self.actual_completion = timezone.now().date()
         self.save(update_fields=['status', 'actual_completion'])
+
+
+# Signal handlers for automatic enrollment count updates
+@receiver(post_save, sender=CourseEnrollment)
+def update_course_enrollment_on_create(sender, instance, created, **kwargs):
+    """
+    Update course enrollment count when a new enrollment is created
+    """
+    if created:
+        # Increment the course enrollment count
+        Course.objects.filter(id=instance.course.id).update(
+            current_enrollment=models.F('current_enrollment') + 1
+        )
+
+
+@receiver(post_delete, sender=CourseEnrollment)
+def update_course_enrollment_on_delete(sender, instance, **kwargs):
+    """
+    Update course enrollment count when an enrollment is deleted
+    """
+    # Decrement the course enrollment count
+    Course.objects.filter(id=instance.course.id).update(
+        current_enrollment=models.F('current_enrollment') - 1
+    )
+
+
+@receiver(post_save, sender=SummerTrainingApplication)
+def update_summer_training_enrollment_on_create(sender, instance, created, **kwargs):
+    """
+    Update summer training enrollment count when a new application is approved
+    """
+    if created and instance.status == 'approved':
+        # Increment the summer training enrollment count
+        SummerTraining.objects.filter(id=instance.program.id).update(
+            current_enrollment=models.F('current_enrollment') + 1
+        )
+
+
+@receiver(post_delete, sender=SummerTrainingApplication)
+def update_summer_training_enrollment_on_delete(sender, instance, **kwargs):
+    """
+    Update summer training enrollment count when an application is deleted
+    """
+    if instance.status == 'approved':
+        # Decrement the summer training enrollment count
+        SummerTraining.objects.filter(id=instance.program.id).update(
+            current_enrollment=models.F('current_enrollment') - 1
+        )
+
+# Signal handlers for automatic enrollment count updates
+@receiver(post_save, sender=CourseEnrollment)
+def update_course_enrollment_on_create(sender, instance, created, **kwargs):
+    """
+    Update course enrollment count when a new enrollment is created
+    """
+    if created and instance.status == 'approved':
+        # Increment the course enrollment count
+        Course.objects.filter(id=instance.course.id).update(
+            current_enrollment=models.F('current_enrollment') + 1
+        )
+
+
+@receiver(post_delete, sender=CourseEnrollment)
+def update_course_enrollment_on_delete(sender, instance, **kwargs):
+    """
+    Update course enrollment count when an enrollment is deleted
+    """
+    if instance.status == 'approved':
+        # Decrement the course enrollment count
+        Course.objects.filter(id=instance.course.id).update(
+            current_enrollment=models.F('current_enrollment') - 1
+        )
+from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils import timezone
+from decimal import Decimal
+
+from core.models import TimeStampedModel, StatusChoices, PriorityChoices
+
+User = get_user_model()
+
+
+class TrainingType(models.TextChoices):
+    """Training type choices"""
+    COURSE = 'course', 'Course'
+    SUMMER_TRAINING = 'summer_training', 'Summer Training'
+    PUBLIC_SERVICE = 'public_service', 'Public Service'
+    WORKSHOP = 'workshop', 'Workshop'
+    SEMINAR = 'seminar', 'Seminar'
+
+
+class DifficultyLevel(models.TextChoices):
+    """Difficulty level choices"""
+    BEGINNER = 'beginner', 'Beginner'
+    INTERMEDIATE = 'intermediate', 'Intermediate'
+    ADVANCED = 'advanced', 'Advanced'
+    EXPERT = 'expert', 'Expert'
+
+
+class PaymentStatus(models.TextChoices):
+    """Payment status choices"""
+    PENDING = 'pending', 'Pending'
+    PAID = 'paid', 'Paid'
+    FAILED = 'failed', 'Failed'
+    REFUNDED = 'refunded', 'Refunded'
+
+
+# Signal handlers for automatic enrollment count updates
+@receiver(post_save, sender=CourseEnrollment)
+def update_course_enrollment_on_create(sender, instance, created, **kwargs):
+    """
+    Update course enrollment count when a new enrollment is created
+    """
+    if created and instance.status == 'approved':
+        # Increment the course enrollment count
+        Course.objects.filter(id=instance.course.id).update(
+            current_enrollment=models.F('current_enrollment') + 1
+        )
+
+
+@receiver(post_delete, sender=CourseEnrollment)
+def update_course_enrollment_on_delete(sender, instance, **kwargs):
+    """
+    Update course enrollment count when an enrollment is deleted
+    """
+    if instance.status == 'approved':
+        # Decrement the course enrollment count
+        Course.objects.filter(id=instance.course.id).update(
+            current_enrollment=models.F('current_enrollment') - 1
+        )
+
+
+@receiver(post_save, sender=SummerTrainingApplication)
+def update_summer_training_enrollment_on_approve(sender, instance, **kwargs):
+    """
+    Update summer training enrollment count when application is approved
+    """
+    if instance.status == 'approved':
+        # Increment the summer training enrollment count
+        SummerTraining.objects.filter(id=instance.program.id).update(
+            current_enrollment=models.F('current_enrollment') + 1
+        )
+
+
+@receiver(post_delete, sender=SummerTrainingApplication)
+def update_summer_training_enrollment_on_delete(sender, instance, **kwargs):
+    """
+    Update summer training enrollment count when application is deleted
+    """
+    if instance.status == 'approved':
+        # Decrement the summer training enrollment count
+        SummerTraining.objects.filter(id=instance.program.id).update(
+            current_enrollment=models.F('current_enrollment') - 1
+        )

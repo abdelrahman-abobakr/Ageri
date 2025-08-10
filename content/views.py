@@ -7,16 +7,16 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.parsers import MultiPartParser, FormParser,JSONParser
 
 from accounts.permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly, IsModeratorOrAdmin, IsApprovedUser
-from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment
+from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment, PostImage
 from .serializers import (
     AnnouncementListSerializer, AnnouncementDetailSerializer,
     AnnouncementCreateUpdateSerializer, AnnouncementApprovalSerializer,
     PostListSerializer, PostDetailSerializer, PostCreateUpdateSerializer,
     PostApprovalSerializer, CommentSerializer, CommentCreateSerializer,
-    CommentLikeSerializer, AnnouncementImageSerializer, AnnouncementAttachmentSerializer
+    CommentLikeSerializer, AnnouncementImageSerializer, AnnouncementAttachmentSerializer,
+    PostImageSerializer
 )
 
 
@@ -224,8 +224,6 @@ class PostViewSet(viewsets.ModelViewSet):
         'category', 'status', 'is_featured', 'is_public',
         'registration_required'
     ]
-    parser_classes = [MultiPartParser, FormParser, JSONParser]
-    
     search_fields = ['title', 'content', 'excerpt', 'tags', 'event_location']
     ordering_fields = ['publish_at', 'created_at', 'event_date', 'view_count', 'like_count']
     ordering = ['-is_featured', '-publish_at']
@@ -234,7 +232,7 @@ class PostViewSet(viewsets.ModelViewSet):
         """Get queryset based on user permissions"""
         user = self.request.user
 
-        queryset = Post.objects.select_related('author', 'approved_by').filter(is_deleted=False)
+        queryset = Post.objects.select_related('author', 'approved_by')
 
         # Handle anonymous users
         if not user.is_authenticated:
@@ -277,15 +275,15 @@ class PostViewSet(viewsets.ModelViewSet):
             return [permissions.AllowAny()]  # Public posts can be viewed by anyone
 
     def perform_create(self, serializer):
-        print("FILES:", self.request.FILES)  # ✅ اطبع للتأكيد
+        """Set author when creating post"""
         serializer.save(author=self.request.user)
 
     def retrieve(self, request, *args, **kwargs):
         """Retrieve post and increment view count"""
         instance = self.get_object()
 
-        # ✅ Allow admin to bypass permission check
-        if not request.user.is_admin and not instance.can_be_viewed_by(request.user):
+        # Check if user can view this post
+        if not instance.can_be_viewed_by(request.user):
             return Response(
                 {'error': 'You do not have permission to view this post'},
                 status=status.HTTP_403_FORBIDDEN
@@ -296,7 +294,6 @@ class PostViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
-
 
     @action(detail=True, methods=['post'], permission_classes=[IsAdminOrReadOnly])
     def approve(self, request, pk=None):
@@ -369,10 +366,61 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer = PostListSerializer(queryset, many=True, context={'request': request})
         return Response(serializer.data)
 
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        instance.delete()  # Soft delete
-        return Response({'message': 'Post deleted successfully.'}, status=status.HTTP_204_NO_CONTENT)
+    @action(detail=True, methods=['get', 'post'], permission_classes=[IsModeratorOrAdmin])
+    def images(self, request, pk=None):
+        """Manage post images"""
+        post = self.get_object()
+
+        if request.method == 'GET':
+            images = post.images.all()
+            serializer = PostImageSerializer(images, many=True, context={'request': request})
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            serializer = PostImageSerializer(data=request.data, context={'request': request})
+            if serializer.is_valid():
+                serializer.save(post=post)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['delete'], permission_classes=[IsModeratorOrAdmin], url_path='images/(?P<image_id>[^/.]+)')
+    def delete_image(self, request, pk=None, image_id=None):
+        """Delete post image"""
+        post = self.get_object()
+        try:
+            image = post.images.get(id=image_id)
+            image.delete()
+            return Response({'message': 'Image deleted successfully'})
+        except PostImage.DoesNotExist:
+            return Response({'error': 'Image not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    @action(detail=True, methods=['get', 'post'], permission_classes=[IsModeratorOrAdmin])
+    def attachments(self, request, pk=None):
+        """Manage announcement attachments"""
+        announcement = self.get_object()
+
+        if request.method == 'GET':
+            attachments = announcement.attachments.all()
+            serializer = AnnouncementAttachmentSerializer(attachments, many=True, context={'request': request})
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            serializer = AnnouncementAttachmentSerializer(data=request.data, context={'request': request})
+            if serializer.is_valid():
+                serializer.save(announcement=announcement)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['delete'], permission_classes=[IsModeratorOrAdmin], url_path='attachments/(?P<attachment_id>[^/.]+)')
+    def delete_attachment(self, request, pk=None, attachment_id=None):
+        """Delete announcement attachment"""
+        announcement = self.get_object()
+        try:
+            attachment = announcement.attachments.get(id=attachment_id)
+            attachment.delete()
+            return Response({'message': 'Attachment deleted successfully'})
+        except AnnouncementAttachment.DoesNotExist:
+            return Response({'error': 'Attachment not found'}, status=status.HTTP_404_NOT_FOUND)
 
 
 class CommentViewSet(viewsets.ModelViewSet):

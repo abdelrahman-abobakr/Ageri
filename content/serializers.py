@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment
+from .post_image_serializer import PostImageSerializer
 from rest_framework.exceptions import ValidationError
 
 User = get_user_model()
@@ -179,13 +180,14 @@ class PostListSerializer(serializers.ModelSerializer):
     is_event = serializers.BooleanField(read_only=True)
     is_upcoming_event = serializers.BooleanField(read_only=True)
     tags_list = serializers.ListField(read_only=True)
+    images = PostImageSerializer(many=True, read_only=True)
     
     class Meta:
         model = Post
         fields = [
-            'id', 'title', 'excerpt', 'category', 'tags_list',
+            'id', 'title', 'content', 'excerpt', 'category', 'tags_list',
             'event_date', 'event_location', 'status', 'is_featured',
-            'is_public', 'publish_at', 'featured_image', 'attachment',
+            'is_public', 'publish_at', 'author', 'images', 'attachment',
             'view_count', 'is_published', 'is_event',
             'is_upcoming_event', 'created_at', 'author'
         ]
@@ -201,6 +203,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
     is_past_event = serializers.BooleanField(read_only=True)
     registration_open = serializers.BooleanField(read_only=True)
     tags_list = serializers.ListField(read_only=True)
+    images = PostImageSerializer(many=True, read_only=True)
     
     class Meta:
         model = Post
@@ -209,23 +212,24 @@ class PostDetailSerializer(serializers.ModelSerializer):
             'tags_list', 'event_date', 'event_location', 'registration_required',
             'registration_deadline', 'max_participants', 'status',
             'is_featured', 'is_public', 'publish_at', 'author',
-            'approved_by', 'approved_at', 'featured_image', 'attachment',
+            'approved_by', 'approved_at', 'images', 'attachment',
             'view_count', 'is_published', 'is_event',
             'is_upcoming_event', 'is_past_event', 'registration_open',
             'created_at', 'updated_at'
         ]
 
+
 class PostCreateUpdateSerializer(serializers.ModelSerializer):
     attachment = serializers.FileField(required=False, allow_null=True)
-    featured_image = serializers.ImageField(required=False, allow_null=True)
-
+    # Remove featured_image, handle images separately in view
+    
     class Meta:
         model = Post
         fields = [
             'title', 'content', 'excerpt', 'category', 'tags',
             'event_date', 'event_location', 'registration_required',
-            'registration_deadline', 'max_participants', 'is_featured',
-            'is_public', 'publish_at', 'featured_image', 'attachment', 'status'
+            'registration_deadline', 'max_participants', 'status',
+            'is_featured', 'is_public', 'publish_at', 'attachment'
         ]
 
     def validate_attachment(self, value):

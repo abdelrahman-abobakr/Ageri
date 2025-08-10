@@ -1,11 +1,11 @@
 from rest_framework import viewsets, status, filters, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from django_filters.rest_framework import DjangoFilterBackend
 from django.utils import timezone
 from django.db.models import Q, Count, Sum, Avg, F
-
+from rest_framework_simplejwt.authentication import JWTAuthentication
 from accounts.permissions import IsModeratorOrAdmin, IsAdminOrReadOnly
 from .models import TestService, Client, TechnicianAssignment, ServiceRequest
 from .serializers import (
@@ -21,12 +21,28 @@ class TestServiceViewSet(viewsets.ModelViewSet):
     ViewSet for managing test services
     """
     queryset = TestService.objects.all()
-    permission_classes = [permissions.IsAuthenticated, IsAdminOrReadOnly]
+    authentication_classes = [JWTAuthentication]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['category', 'department', 'lab', 'status', 'is_featured', 'is_public']
     search_fields = ['name', 'description', 'service_code', 'tags']
     ordering_fields = ['name', 'created_at', 'base_price', 'max_concurrent_requests']
     ordering = ['-is_featured', 'name']
+
+    def get_permissions(self):
+        """
+        Instantiates and returns the list of permissions that this view requires.
+        """
+        if self.action in ['list', 'retrieve']:
+            # Allow guests to list and view individual services
+            permission_classes = [AllowAny]
+        elif self.action == 'statistics':
+            # Allow authenticated users to view statistics
+            permission_classes = [IsAuthenticated]
+        else:
+            # Create, update, delete, and custom actions require moderator/admin permissions
+            permission_classes = [IsAuthenticated, IsModeratorOrAdmin]
+        
+        return [permission() for permission in permission_classes]
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -43,9 +59,13 @@ class TestServiceViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(status='active')
             # Additional filtering will be done in the serializer or view
 
-        # Filter by user role - check if user is authenticated first
-        if self.request.user.is_authenticated and self.request.user.role == 'researcher':
-            queryset = queryset.filter(is_public=True)
+        # Filter by user role - only apply if user is authenticated
+        if self.request.user.is_authenticated:
+            if self.request.user.role == 'researcher':
+                queryset = queryset.filter(is_public=True)
+        else:
+            # For guests (unauthenticated users), only show public services
+            queryset = queryset.filter(is_public=True, status='active')
 
         return queryset.select_related('department', 'lab').prefetch_related('technician_assignments')
 
@@ -102,9 +122,9 @@ class TestServiceViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_404_NOT_FOUND
             )
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
     def statistics(self, request):
-        """Get service statistics"""
+        """Get service statistics - requires authentication"""
         queryset = self.get_queryset()
 
         stats = {
@@ -127,6 +147,7 @@ class TestServiceViewSet(viewsets.ModelViewSet):
         return Response(stats)
 
 
+# Rest of the viewsets remain unchanged...
 class ClientViewSet(viewsets.ModelViewSet):
     """
     ViewSet for managing clients
