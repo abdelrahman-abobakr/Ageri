@@ -229,24 +229,21 @@ class PostViewSet(viewsets.ModelViewSet):
     ordering = ['-is_featured', '-publish_at']
 
     def get_queryset(self):
-        """Get queryset based on user permissions"""
         user = self.request.user
+        
 
-        queryset = Post.objects.select_related('author', 'approved_by')
+        queryset = Post.objects.filter(is_deleted=False).select_related('author', 'approved_by')
 
-        # Handle anonymous users
         if not user.is_authenticated:
             return queryset.filter(status='published', is_public=True)
 
         if user.is_admin:
             return queryset
         elif user.is_moderator:
-            # Moderators see published posts and their own
             return queryset.filter(
                 Q(status='published') | Q(author=user)
             )
         else:
-            # Regular users see published posts they can view
             return queryset.filter(
                 Q(status='published') &
                 (Q(is_public=True) | Q(author=user))
@@ -421,6 +418,15 @@ class PostViewSet(viewsets.ModelViewSet):
             return Response({'message': 'Attachment deleted successfully'})
         except AnnouncementAttachment.DoesNotExist:
             return Response({'error': 'Attachment not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    def destroy(self, request, *args, **kwargs):
+        """Soft delete post"""
+        instance = self.get_object()
+        instance.delete()  # This calls the soft delete
+        return Response(
+            {'message': 'Post deleted successfully'}, 
+            status=status.HTTP_204_NO_CONTENT
+        )
 
 
 class CommentViewSet(viewsets.ModelViewSet):
