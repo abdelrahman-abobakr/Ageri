@@ -282,7 +282,7 @@ class UserProfilePublicView(generics.RetrieveAPIView):
     """
     queryset = UserProfile.objects.filter(is_public=True)
     serializer_class = UserProfileSerializer
-    permission_classes = [IsApprovedUser]
+    permission_classes = [permissions.AllowAny]
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()

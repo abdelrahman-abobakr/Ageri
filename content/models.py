@@ -486,10 +486,12 @@ class Post(TimeStampedModel):
         """Increment view count"""
         self.view_count += 1
         self.save(update_fields=['view_count'])
-    # soft dlete
-    # def delete(self, *args, **kwargs):
-    #     self.is_deleted = True
-    #     self.save()
+
+    def delete(self, *args, **kwargs):
+        """Soft delete: set is_deleted=True and save. Never actually delete from DB."""
+        if not self.is_deleted:
+            self.is_deleted = True
+            self.save(update_fields=['is_deleted'])
 
 
 class PostImage(TimeStampedModel):

@@ -220,52 +220,48 @@ class PostDetailSerializer(serializers.ModelSerializer):
 
 
 class PostCreateUpdateSerializer(serializers.ModelSerializer):
-    attachment = serializers.FileField(required=False, allow_null=True)
-    # Remove featured_image, handle images separately in view
-    
+    featured_image = serializers.ImageField(required=False, allow_null=True)
+    images = PostImageSerializer(many=True, required=False)
+
     class Meta:
         model = Post
         fields = [
             'title', 'content', 'excerpt', 'category', 'tags',
             'event_date', 'event_location', 'registration_required',
-            'registration_deadline', 'max_participants', 'status',
-            'is_featured', 'is_public', 'publish_at', 'attachment'
+            'registration_deadline', 'max_participants', 'featured_image', 
+            'attachment', 'images', 'status', 'is_featured', 'is_public'
         ]
 
-    def validate_attachment(self, value):
-        if value and not hasattr(value, 'file'):
-            raise ValidationError("Uploaded file is not valid.")
-        return value
-    
-    def validate_featured_image(self, value):
-        if value and not hasattr(value, 'file'):
-            raise ValidationError("Uploaded image is not valid.")
-        return value
-    
-    def validate_event_date(self, value):
-        """Validate event date"""
-        if value and value <= timezone.now():
-            raise serializers.ValidationError("Event date must be in the future.")
-        return value
-    
-    def validate_registration_deadline(self, value):
-        """Validate registration deadline"""
-        if value and value <= timezone.now():
-            raise serializers.ValidationError("Registration deadline must be in the future.")
-        return value
-    
-    def validate(self, data):
-        """Cross-field validation"""
-        event_date = data.get('event_date')
-        registration_deadline = data.get('registration_deadline')
-        if event_date and registration_deadline:
-            if registration_deadline >= event_date:
-                raise serializers.ValidationError(
-                    "Registration deadline must be before event date."
-                )
-        return data
+    def create(self, validated_data):
+        featured_image = validated_data.pop('featured_image', None)
+        images_data = validated_data.pop('images', [])
+        
+        post = Post.objects.create(**validated_data)
 
+        # إضافة الـ featured_image للـ images array
+        if featured_image:
+            PostImage.objects.create(
+                post=post, 
+                image=featured_image, 
+                order=0,
+                caption="Featured Image"
+            )
 
+        for i, image_data in enumerate(images_data, start=1):
+            PostImage.objects.create(post=post, order=i, **image_data)
+
+        return post
+
+    def update(self, instance, validated_data):
+        images_data = validated_data.pop('images', None)
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+        if images_data is not None:
+            instance.images.all().delete()
+            for image_data in images_data:
+                PostImage.objects.create(post=instance, **image_data)
+        return instance
 class PostApprovalSerializer(serializers.ModelSerializer):
     """Serializer for post approval"""
     
@@ -335,6 +331,5 @@ class CommentLikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = CommentLike
         fields = ['id', 'user', 'created_at']
-
 
 

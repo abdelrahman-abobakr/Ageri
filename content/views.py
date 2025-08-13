@@ -229,24 +229,21 @@ class PostViewSet(viewsets.ModelViewSet):
     ordering = ['-is_featured', '-publish_at']
 
     def get_queryset(self):
-        """Get queryset based on user permissions"""
         user = self.request.user
+        
 
-        queryset = Post.objects.select_related('author', 'approved_by')
+        queryset = Post.objects.filter(is_deleted=False).select_related('author', 'approved_by')
 
-        # Handle anonymous users
         if not user.is_authenticated:
             return queryset.filter(status='published', is_public=True)
 
         if user.is_admin:
             return queryset
         elif user.is_moderator:
-            # Moderators see published posts and their own
             return queryset.filter(
                 Q(status='published') | Q(author=user)
             )
         else:
-            # Regular users see published posts they can view
             return queryset.filter(
                 Q(status='published') &
                 (Q(is_public=True) | Q(author=user))
@@ -277,44 +274,6 @@ class PostViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Set author when creating post"""
         serializer.save(author=self.request.user)
-
-    def destroy(self, request, *args, **kwargs):
-        """Override destroy method to handle permissions"""
-        instance = self.get_object()
-        user = request.user
-        
-        # Check if user can delete this post (admins and moderators only)
-        if not user.is_authenticated:
-            return Response(
-                {'error': 'Authentication required'},
-                status=status.HTTP_401_UNAUTHORIZED
-            )
-        
-        # Only admins and moderators can delete posts
-        if not (user.is_admin or user.is_moderator):
-            return Response(
-                {'error': 'You do not have permission to delete posts. Only admins and moderators can delete posts.'},
-                status=status.HTTP_403_FORBIDDEN
-            )
-        
-        try:
-            # Log the deletion
-            print(f"Hard deleting post {instance.id} '{instance.title}' by user {user.id} ({user.role})")
-            
-            # Use Django's default deletion (hard delete)
-            instance.delete()
-            
-            return Response(
-                {'message': 'Post deleted successfully'},
-                status=status.HTTP_204_NO_CONTENT
-            )
-            
-        except Exception as e:
-            print(f"Error deleting post: {str(e)}")
-            return Response(
-                {'error': 'Failed to delete post'},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
 
     def retrieve(self, request, *args, **kwargs):
         """Retrieve post and increment view count"""
@@ -352,6 +311,8 @@ class PostViewSet(viewsets.ModelViewSet):
                 ).data
             })
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
     @action(detail=False, methods=['get'])
     def featured(self, request):
@@ -429,6 +390,44 @@ class PostViewSet(viewsets.ModelViewSet):
             return Response({'message': 'Image deleted successfully'})
         except PostImage.DoesNotExist:
             return Response({'error': 'Image not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    @action(detail=True, methods=['get', 'post'], permission_classes=[IsModeratorOrAdmin])
+    def attachments(self, request, pk=None):
+        """Manage announcement attachments"""
+        announcement = self.get_object()
+
+        if request.method == 'GET':
+            attachments = announcement.attachments.all()
+            serializer = AnnouncementAttachmentSerializer(attachments, many=True, context={'request': request})
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            serializer = AnnouncementAttachmentSerializer(data=request.data, context={'request': request})
+            if serializer.is_valid():
+                serializer.save(announcement=announcement)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['delete'], permission_classes=[IsModeratorOrAdmin], url_path='attachments/(?P<attachment_id>[^/.]+)')
+    def delete_attachment(self, request, pk=None, attachment_id=None):
+        """Delete announcement attachment"""
+        announcement = self.get_object()
+        try:
+            attachment = announcement.attachments.get(id=attachment_id)
+            attachment.delete()
+            return Response({'message': 'Attachment deleted successfully'})
+        except AnnouncementAttachment.DoesNotExist:
+            return Response({'error': 'Attachment not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    def destroy(self, request, *args, **kwargs):
+        """Soft delete post"""
+        instance = self.get_object()
+        instance.delete()  # This calls the soft delete
+        return Response(
+            {'message': 'Post deleted successfully'}, 
+            status=status.HTTP_204_NO_CONTENT
+        )
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     """
