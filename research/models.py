@@ -158,7 +158,7 @@ class Publication(TimeStampedModel):
     # Publication Details
     journal_name = models.CharField(
         max_length=300,
-        blank=False,
+        blank=True,
         help_text=_("Journal name")
     )
     conference_name = models.CharField(
