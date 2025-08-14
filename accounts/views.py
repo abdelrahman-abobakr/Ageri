@@ -280,31 +280,24 @@ class UserProfilePublicView(generics.RetrieveAPIView):
     """
     Public view of user profiles (for researchers to view each other)
     """
-    queryset = UserProfile.objects.filter(is_public=True)
     serializer_class = UserProfileSerializer
     permission_classes = [permissions.AllowAny]
 
+    def get_object(self):
+        # Fetch UserProfile by user_id instead of profile id
+        user_id = self.kwargs.get('pk')
+        return get_object_or_404(UserProfile, user_id=user_id, is_public=True)
+
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
-        
-        # Only show public profiles or allow owners/admins to see private ones
-        if not instance.is_public:
-            if not (request.user == instance.user or request.user.is_admin):
-                return Response(
-                    {'error': 'This profile is private'}, 
-                    status=status.HTTP_403_FORBIDDEN
-                )
-        
         serializer = self.get_serializer(instance)
         data = serializer.data
-        
         # Add basic user info for public view
         data['user_info'] = {
             'full_name': instance.user.get_full_name(),
             'institution': instance.user.institution,
             'role': instance.user.role
         }
-        
         return Response(data)
 
 
