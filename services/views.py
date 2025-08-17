@@ -7,12 +7,11 @@ from django.utils import timezone
 from django.db.models import Q, Count, Sum, Avg, F
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from accounts.permissions import IsModeratorOrAdmin, IsAdminOrReadOnly
-from .models import TestService, Client, TechnicianAssignment, ServiceRequest
+from .models import TestService, ServiceImage
 from .serializers import (
     TestServiceListSerializer, TestServiceDetailSerializer, TestServiceCreateUpdateSerializer,
-    ClientListSerializer, ClientDetailSerializer, ClientCreateUpdateSerializer,
-    TechnicianAssignmentSerializer, TechnicianAssignmentCreateUpdateSerializer,
-    ServiceRequestListSerializer, ServiceRequestDetailSerializer, ServiceRequestCreateUpdateSerializer
+    ServiceImageSerializer, ServiceImageUploadSerializer, ServiceImageUpdateSerializer,
+    TestServiceWithImagesSerializer
 )
 
 
@@ -23,17 +22,17 @@ class TestServiceViewSet(viewsets.ModelViewSet):
     queryset = TestService.objects.all()
     authentication_classes = [JWTAuthentication]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['category', 'department', 'lab', 'status', 'is_featured', 'is_public']
+    filterset_fields = ['category', 'status', 'is_featured', 'is_free']
     search_fields = ['name', 'description', 'service_code', 'tags']
-    ordering_fields = ['name', 'created_at', 'base_price', 'max_concurrent_requests']
+    ordering_fields = ['name', 'created_at', 'base_price']
     ordering = ['-is_featured', 'name']
 
     def get_permissions(self):
         """
         Instantiates and returns the list of permissions that this view requires.
         """
-        if self.action in ['list', 'retrieve']:
-            # Allow guests to list and view individual services
+        if self.action in ['list', 'retrieve', 'images', 'primary_image']:
+            # Allow guests to list and view services and their images
             permission_classes = [AllowAny]
         elif self.action == 'statistics':
             # Allow authenticated users to view statistics
@@ -49,78 +48,22 @@ class TestServiceViewSet(viewsets.ModelViewSet):
             return TestServiceListSerializer
         elif self.action in ['create', 'update', 'partial_update']:
             return TestServiceCreateUpdateSerializer
+        elif self.action == 'with_images':
+            return TestServiceWithImagesSerializer
         return TestServiceDetailSerializer
 
     def get_queryset(self):
         queryset = super().get_queryset()
 
-        # Filter by availability - we'll filter this in Python since current_requests is a property
+        # Filter by availability
         if self.request.query_params.get('available_only') == 'true':
             queryset = queryset.filter(status='active')
-            # Additional filtering will be done in the serializer or view
 
-        # Filter by user role - only apply if user is authenticated
-        if self.request.user.is_authenticated:
-            if self.request.user.role == 'researcher':
-                queryset = queryset.filter(is_public=True)
-        else:
-            # For guests (unauthenticated users), only show public services
-            queryset = queryset.filter(is_public=True, status='active')
+        # For guests (unauthenticated users), show all active services
+        if not self.request.user.is_authenticated:
+            queryset = queryset.filter(status='active')
 
-        return queryset.select_related('department', 'lab').prefetch_related('technician_assignments')
-
-    @action(detail=True, methods=['post'], permission_classes=[IsModeratorOrAdmin])
-    def assign_technician(self, request, pk=None):
-        """Assign a technician to a service"""
-        service = self.get_object()
-        technician_id = request.data.get('technician_id')
-        role = request.data.get('role', 'primary')
-
-        try:
-            from accounts.models import User
-            technician = User.objects.get(id=technician_id, role__in=['admin', 'moderator'])
-
-            assignment, created = TechnicianAssignment.objects.get_or_create(
-                service=service,
-                technician=technician,
-                defaults={'role': role}
-            )
-
-            if not created:
-                assignment.role = role
-                assignment.is_active = True
-                assignment.save()
-
-            serializer = TechnicianAssignmentSerializer(assignment)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        except User.DoesNotExist:
-            return Response(
-                {'error': 'Technician not found or not authorized'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-    @action(detail=True, methods=['post'], permission_classes=[IsModeratorOrAdmin])
-    def remove_technician(self, request, pk=None):
-        """Remove a technician from a service"""
-        service = self.get_object()
-        technician_id = request.data.get('technician_id')
-
-        try:
-            assignment = TechnicianAssignment.objects.get(
-                service=service,
-                technician_id=technician_id
-            )
-            assignment.is_active = False
-            assignment.save()
-
-            return Response({'message': 'Technician removed successfully'})
-
-        except TechnicianAssignment.DoesNotExist:
-            return Response(
-                {'error': 'Assignment not found'},
-                status=status.HTTP_404_NOT_FOUND
-            )
+        return queryset
 
     @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
     def statistics(self, request):
@@ -130,276 +73,177 @@ class TestServiceViewSet(viewsets.ModelViewSet):
         stats = {
             'total_services': queryset.count(),
             'active_services': queryset.filter(status='active').count(),
+            'inactive_services': queryset.filter(status='inactive').count(),
             'featured_services': queryset.filter(is_featured=True).count(),
+            'free_services': queryset.filter(is_free=True).count(),
+            'paid_services': queryset.filter(is_free=False).count(),
             'services_by_category': dict(
                 queryset.values('category').annotate(count=Count('id')).values_list('category', 'count')
             ),
             'average_price': queryset.filter(is_free=False).aggregate(
                 avg_price=Avg('base_price')
             )['avg_price'] or 0,
-            'total_requests': ServiceRequest.objects.filter(service__in=queryset).count(),
-            'capacity_utilization': {
-                'total_capacity': queryset.aggregate(total=Sum('max_concurrent_requests'))['total'] or 0,
-                'current_usage': sum(service.current_requests for service in queryset),
-            }
+            'services_with_images': queryset.filter(featured_image__isnull=False).count(),
         }
 
         return Response(stats)
-
-
-# Rest of the viewsets remain unchanged...
-class ClientViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet for managing clients
-    """
-    queryset = Client.objects.all()
-    permission_classes = [IsModeratorOrAdmin]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['client_type', 'is_active', 'payment_terms']
-    search_fields = ['name', 'organization', 'email', 'client_id']
-    ordering_fields = ['name', 'registration_date', 'total_requests', 'total_spent']
-    ordering = ['-registration_date']
-
-    def get_serializer_class(self):
-        if self.action == 'list':
-            return ClientListSerializer
-        elif self.action in ['create', 'update', 'partial_update']:
-            return ClientCreateUpdateSerializer
-        return ClientDetailSerializer
-
-    @action(detail=False, methods=['get'])
-    def statistics(self, request):
-        """Get client statistics"""
-        queryset = self.get_queryset()
-
-        stats = {
-            'total_clients': queryset.count(),
-            'active_clients': queryset.filter(is_active=True).count(),
-            'clients_by_type': dict(
-                queryset.values('client_type').annotate(count=Count('id')).values_list('client_type', 'count')
-            ),
-            'total_revenue': queryset.aggregate(total=Sum('total_spent'))['total'] or 0,
-            'average_spending': queryset.aggregate(avg=Avg('total_spent'))['avg'] or 0,
-            'top_clients': ClientListSerializer(
-                queryset.order_by('-total_spent')[:5], many=True
-            ).data
-        }
-
-        return Response(stats)
-
-
-class ServiceRequestViewSet(viewsets.ModelViewSet):
-    """
-    ViewSet for managing service requests
-    """
-    queryset = ServiceRequest.objects.all()
-    permission_classes = [IsAuthenticated]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['service', 'client', 'assigned_technician', 'status', 'priority', 'urgency', 'is_paid']
-    search_fields = ['request_id', 'title', 'description']
-    ordering_fields = ['requested_date', 'preferred_completion_date', 'priority', 'status']
-    ordering = ['-requested_date']
-
-    def get_serializer_class(self):
-        if self.action == 'list':
-            return ServiceRequestListSerializer
-        elif self.action in ['create', 'update', 'partial_update']:
-            return ServiceRequestCreateUpdateSerializer
-        return ServiceRequestDetailSerializer
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-
-        # Filter by user role
-        if self.request.user.is_authenticated and self.request.user.role == 'researcher':
-            # Researchers can only see requests they're assigned to
-            queryset = queryset.filter(assigned_technician=self.request.user)
-
-        return queryset.select_related('service', 'client', 'assigned_technician', 'reviewed_by')
 
     @action(detail=True, methods=['post'], permission_classes=[IsModeratorOrAdmin])
-    def assign_technician(self, request, pk=None):
-        """Assign a technician to a request"""
-        service_request = self.get_object()
-        technician_id = request.data.get('technician_id')
+    def upload_image(self, request, pk=None):
+        """Upload additional images for a service"""
+        service = self.get_object()
+        
+        serializer = ServiceImageUploadSerializer(data=request.data)
+        if serializer.is_valid():
+            image = serializer.save(service=service)
+            return Response(
+                ServiceImageSerializer(image, context={'request': request}).data,
+                status=status.HTTP_201_CREATED
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @action(detail=True, methods=['get'])
+    def images(self, request, pk=None):
+        """Get all additional images for a service"""
+        service = self.get_object()
+        images = service.images.all()
+        serializer = ServiceImageSerializer(images, many=True, context={'request': request})
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['delete'], permission_classes=[IsModeratorOrAdmin])
+    def delete_image(self, request, pk=None):
+        """Delete an additional service image"""
+        service = self.get_object()
+        image_id = request.data.get('image_id')
+        
         try:
-            from accounts.models import User
-            technician = User.objects.get(id=technician_id, role__in=['admin', 'moderator', 'researcher'])
+            image = service.images.get(id=image_id)
+            image.delete()
+            return Response({'message': 'Image deleted successfully'})
+        except ServiceImage.DoesNotExist:
+            return Response(
+                {'error': 'Image not found'}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
 
-            service_request.assigned_technician = technician
-            if service_request.status == 'approved':
-                service_request.status = 'in_progress'
-                service_request.started_date = timezone.now()
-            service_request.save()
+    @action(detail=True, methods=['post'], permission_classes=[IsModeratorOrAdmin])
+    def set_primary_image(self, request, pk=None):
+        """Set an image as primary for a service"""
+        service = self.get_object()
+        image_id = request.data.get('image_id')
+        
+        try:
+            # Reset all images to non-primary
+            service.images.update(is_primary=False)
+            
+            # Set the specified image as primary
+            image = service.images.get(id=image_id)
+            image.is_primary = True
+            image.save()
+            
+            return Response({'message': 'Primary image set successfully'})
+        except ServiceImage.DoesNotExist:
+            return Response(
+                {'error': 'Image not found'}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
 
-            serializer = self.get_serializer(service_request)
+    @action(detail=True, methods=['get'])
+    def primary_image(self, request, pk=None):
+        """Get the primary additional image for a service"""
+        service = self.get_object()
+        primary_image = service.images.filter(is_primary=True).first()
+        
+        if primary_image:
+            serializer = ServiceImageSerializer(primary_image, context={'request': request})
             return Response(serializer.data)
+        return Response(
+            {'message': 'No primary image found for this service'},
+            status=status.HTTP_404_NOT_FOUND
+        )
 
-        except User.DoesNotExist:
-            return Response(
-                {'error': 'Technician not found or not authorized'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-    @action(detail=True, methods=['post'])
-    def start_request(self, request, pk=None):
-        """Start working on a request"""
-        service_request = self.get_object()
-
-        if not service_request.can_be_started():
-            return Response(
-                {'error': 'Request cannot be started'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        service_request.status = 'in_progress'
-        service_request.started_date = timezone.now()
-        service_request.save()
-
-        serializer = self.get_serializer(service_request)
-        return Response(serializer.data)
-
-    @action(detail=True, methods=['post'])
-    def complete_request(self, request, pk=None):
-        """Mark request as completed"""
-        service_request = self.get_object()
-
-        if not service_request.can_be_completed():
-            return Response(
-                {'error': 'Request cannot be completed'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        service_request.status = 'completed'
-        service_request.completed_date = timezone.now()
-
-        # Update final cost if provided
-        final_cost = request.data.get('final_cost')
-        if final_cost:
-            service_request.final_cost = final_cost
-
-        service_request.save()
-
-        serializer = self.get_serializer(service_request)
-        return Response(serializer.data)
-
-    @action(detail=True, methods=['post'], permission_classes=[IsModeratorOrAdmin])
-    def approve_request(self, request, pk=None):
-        """Approve a service request"""
-        service_request = self.get_object()
-
-        if service_request.status != 'under_review':
-            return Response(
-                {'error': 'Only requests under review can be approved'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        service_request.status = 'approved'
-        service_request.reviewed_by = request.user
-        service_request.review_date = timezone.now()
-        service_request.review_notes = request.data.get('review_notes', '')
-
-        # Set estimated cost if provided
-        estimated_cost = request.data.get('estimated_cost')
-        if estimated_cost:
-            service_request.estimated_cost = estimated_cost
-
-        service_request.save()
-
-        serializer = self.get_serializer(service_request)
-        return Response(serializer.data)
-
-    @action(detail=True, methods=['post'], permission_classes=[IsModeratorOrAdmin])
-    def reject_request(self, request, pk=None):
-        """Reject a service request"""
-        service_request = self.get_object()
-
-        if service_request.status not in ['submitted', 'under_review']:
-            return Response(
-                {'error': 'Only submitted or under review requests can be rejected'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        service_request.status = 'cancelled'
-        service_request.reviewed_by = request.user
-        service_request.review_date = timezone.now()
-        service_request.review_notes = request.data.get('review_notes', '')
-        service_request.save()
-
-        serializer = self.get_serializer(service_request)
+    @action(detail=True, methods=['get'])
+    def with_images(self, request, pk=None):
+        """Get service details with all images"""
+        service = self.get_object()
+        serializer = TestServiceWithImagesSerializer(service, context={'request': request})
         return Response(serializer.data)
 
     @action(detail=False, methods=['get'])
-    def statistics(self, request):
-        """Get request statistics"""
-        queryset = self.get_queryset()
+    def featured(self, request):
+        """Get featured services"""
+        featured_services = self.get_queryset().filter(is_featured=True, status='active')
+        page = self.paginate_queryset(featured_services)
+        if page is not None:
+            serializer = TestServiceListSerializer(page, many=True, context={'request': request})
+            return self.get_paginated_response(serializer.data)
+        
+        serializer = TestServiceListSerializer(featured_services, many=True, context={'request': request})
+        return Response(serializer.data)
 
-        stats = {
-            'total_requests': queryset.count(),
-            'requests_by_status': dict(
-                queryset.values('status').annotate(count=Count('id')).values_list('status', 'count')
-            ),
-            'requests_by_priority': dict(
-                queryset.values('priority').annotate(count=Count('id')).values_list('priority', 'count')
-            ),
-            'overdue_requests': queryset.filter(
-                preferred_completion_date__lt=timezone.now().date(),
-                status__in=['submitted', 'under_review', 'approved', 'in_progress']
-            ).count(),
-            'total_revenue': queryset.filter(is_paid=True).aggregate(
-                total=Sum('final_cost')
-            )['total'] or 0,
-            'pending_revenue': queryset.filter(
-                is_paid=False,
-                status__in=['completed', 'delivered']
-            ).aggregate(total=Sum('final_cost'))['total'] or 0,
-            'average_completion_time': queryset.filter(
-                completed_date__isnull=False
-            ).aggregate(
-                avg_time=Avg('completed_date') - Avg('requested_date')
-            )
-        }
+    @action(detail=False, methods=['get'])
+    def by_category(self, request):
+        """Get services grouped by category"""
+        category = request.query_params.get('category')
+        if not category:
+            return Response({'error': 'Category parameter is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        services = self.get_queryset().filter(category=category, status='active')
+        page = self.paginate_queryset(services)
+        if page is not None:
+            serializer = TestServiceListSerializer(page, many=True, context={'request': request})
+            return self.get_paginated_response(serializer.data)
+        
+        serializer = TestServiceListSerializer(services, many=True, context={'request': request})
+        return Response(serializer.data)
 
-        return Response(stats)
+    @action(detail=True, methods=['post'], permission_classes=[IsModeratorOrAdmin])
+    def toggle_featured(self, request, pk=None):
+        """Toggle featured status of a service"""
+        service = self.get_object()
+        service.is_featured = not service.is_featured
+        service.save()
+        
+        serializer = self.get_serializer(service)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['post'], permission_classes=[IsModeratorOrAdmin])
+    def toggle_status(self, request, pk=None):
+        """Toggle active/inactive status of a service"""
+        service = self.get_object()
+        new_status = request.data.get('status')
+        
+        if new_status in ['active', 'inactive', 'pending']:
+            service.status = new_status
+            service.save()
+            
+            serializer = self.get_serializer(service)
+            return Response(serializer.data)
+        
+        return Response(
+            {'error': 'Invalid status. Must be active, inactive, or pending'}, 
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
 
-class TechnicianAssignmentViewSet(viewsets.ModelViewSet):
+class ServiceImageViewSet(viewsets.ModelViewSet):
     """
-    ViewSet for managing technician assignments
+    ViewSet for managing service images
     """
-    queryset = TechnicianAssignment.objects.all()
-    permission_classes = [IsModeratorOrAdmin]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['service', 'technician', 'role', 'is_active']
-    search_fields = ['service__name', 'technician__first_name', 'technician__last_name']
-    ordering_fields = ['start_date', 'total_completed', 'workload_percentage']
-    ordering = ['-start_date']
+    queryset = ServiceImage.objects.all()
+    serializer_class = ServiceImageSerializer
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated, IsModeratorOrAdmin]
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['service', 'is_primary']
+    ordering = ['-is_primary', '-created_at']
 
     def get_serializer_class(self):
-        if self.action in ['create', 'update', 'partial_update']:
-            return TechnicianAssignmentCreateUpdateSerializer
-        return TechnicianAssignmentSerializer
+        if self.action in ['create']:
+            return ServiceImageUploadSerializer
+        elif self.action in ['update', 'partial_update']:
+            return ServiceImageUpdateSerializer
+        return ServiceImageSerializer
 
     def get_queryset(self):
-        return super().get_queryset().select_related('service', 'technician')
-
-    @action(detail=False, methods=['get'])
-    def workload_report(self, request):
-        """Get technician workload report"""
-        queryset = self.get_queryset().filter(is_active=True)
-
-        report = []
-        for assignment in queryset:
-            report.append({
-                'technician': assignment.technician.get_full_name(),
-                'service': assignment.service.name,
-                'role': assignment.role,
-                'current_requests': assignment.current_requests,
-                'max_requests': assignment.max_concurrent_requests,
-                'workload_percentage': assignment.workload_percentage,
-                'total_completed': assignment.total_completed,
-                'is_available': assignment.is_available
-            })
-
-        return Response(report)
+        return super().get_queryset().select_related('service')

@@ -1,213 +1,116 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from django.urls import reverse
-from django.utils.safestring import mark_safe
-from .models import TestService, Client, TechnicianAssignment, ServiceRequest
-
-
-class TechnicianAssignmentInline(admin.TabularInline):
-    model = TechnicianAssignment
-    extra = 0
-    fields = ['technician', 'role', 'is_active', 'start_date', 'end_date', 'max_concurrent_requests', 'current_requests']
-    readonly_fields = ['current_requests']
+from .models import TestService, ServiceImage
 
 
 @admin.register(TestService)
 class TestServiceAdmin(admin.ModelAdmin):
     list_display = [
-        'service_code', 'name', 'category', 'department', 'lab',
-        'base_price', 'is_free', 'status', 'is_featured', 'availability_status'
+        'service_code', 'name', 'category', 'display_price', 
+        'status', 'is_featured', 'is_available', 'has_image', 'created_at'
     ]
-    list_filter = ['category', 'department', 'lab', 'status', 'is_featured', 'is_public', 'is_free']
+    list_filter = ['category', 'status', 'is_featured', 'is_free', 'created_at']
     search_fields = ['name', 'service_code', 'description', 'tags']
-    readonly_fields = ['current_requests', 'availability_percentage', 'created_at', 'updated_at']
-    inlines = [TechnicianAssignmentInline]
-
+    readonly_fields = ['created_at', 'updated_at', 'display_price', 'image_preview']
+    
     fieldsets = (
         ('Basic Information', {
-            'fields': ('name', 'description', 'short_description', 'service_code', 'category')
-        }),
-        ('Organization', {
-            'fields': ('department', 'lab')
+            'fields': ('name', 'service_code', 'category', 'description', 'tags')
         }),
         ('Pricing', {
-            'fields': ('base_price', 'is_free', 'pricing_structure')
+            'fields': ('is_free', 'base_price', 'display_price')
         }),
         ('Service Details', {
-            'fields': ('estimated_duration', 'sample_requirements', 'equipment_used', 'methodology')
-        }),
-        ('Capacity & Availability', {
-            'fields': ('max_concurrent_requests', 'current_requests', 'availability_percentage')
-        }),
-        ('Requirements', {
-            'fields': ('required_documents', 'safety_requirements')
-        }),
-        ('Status & Visibility', {
-            'fields': ('status', 'is_featured', 'is_public')
-        }),
-        ('Contact & Media', {
-            'fields': ('contact_email', 'contact_phone', 'featured_image', 'service_brochure')
-        }),
-        ('Metadata', {
-            'fields': ('tags', 'created_at', 'updated_at')
-        }),
-    )
-
-    def availability_status(self, obj):
-        if obj.is_available:
-            color = 'green'
-            text = f'Available ({obj.current_requests}/{obj.max_concurrent_requests})'
-        else:
-            color = 'red'
-            text = f'At Capacity ({obj.current_requests}/{obj.max_concurrent_requests})'
-        return format_html(
-            '<span style="color: {};">{}</span>',
-            color, text
-        )
-    availability_status.short_description = 'Availability'
-
-
-@admin.register(Client)
-class ClientAdmin(admin.ModelAdmin):
-    list_display = [
-        'client_id', 'name', 'organization', 'client_type', 'email',
-        'is_active', 'total_requests', 'total_spent', 'registration_date'
-    ]
-    list_filter = ['client_type', 'is_active', 'payment_terms', 'registration_date']
-    search_fields = ['name', 'organization', 'email', 'client_id']
-    readonly_fields = ['total_requests', 'total_spent', 'registration_date', 'created_at', 'updated_at']
-
-    fieldsets = (
-        ('Basic Information', {
-            'fields': ('name', 'organization', 'client_type', 'client_id')
+            'fields': ('estimated_duration', 'status', 'is_featured')
         }),
         ('Contact Information', {
-            'fields': ('email', 'phone', 'address', 'position', 'department', 'website')
+            'fields': ('contact_email', 'contact_phone')
         }),
-        ('Account Information', {
-            'fields': ('registration_date', 'is_active')
-        }),
-        ('Billing Information', {
-            'fields': ('billing_address', 'tax_id', 'payment_terms')
-        }),
-        ('Statistics', {
-            'fields': ('total_requests', 'total_spent')
-        }),
-        ('Notes', {
-            'fields': ('notes',)
+        ('Media', {
+            'fields': ('featured_image', 'image_preview')
         }),
         ('Timestamps', {
-            'fields': ('created_at', 'updated_at')
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
         }),
     )
+    
+    def image_preview(self, obj):
+        if obj.featured_image:
+            return format_html(
+                '<img src="{}" width="100" height="100" style="object-fit: cover;" />',
+                obj.featured_image.url
+            )
+        return "No image"
+    image_preview.short_description = "Image Preview"
+    
+    def has_image(self, obj):
+        return obj.has_image
+    has_image.boolean = True
+    has_image.short_description = "Has Image"
+    
+    actions = ['make_featured', 'remove_featured', 'activate_services', 'deactivate_services']
+    
+    def make_featured(self, request, queryset):
+        updated = queryset.update(is_featured=True)
+        self.message_user(request, f'{updated} services marked as featured.')
+    make_featured.short_description = "Mark selected services as featured"
+    
+    def remove_featured(self, request, queryset):
+        updated = queryset.update(is_featured=False)
+        self.message_user(request, f'{updated} services removed from featured.')
+    remove_featured.short_description = "Remove selected services from featured"
+    
+    def activate_services(self, request, queryset):
+        updated = queryset.update(status='active')
+        self.message_user(request, f'{updated} services activated.')
+    activate_services.short_description = "Activate selected services"
+    
+    def deactivate_services(self, request, queryset):
+        updated = queryset.update(status='inactive')
+        self.message_user(request, f'{updated} services deactivated.')
+    deactivate_services.short_description = "Deactivate selected services"
 
 
-class ServiceRequestInline(admin.TabularInline):
-    model = ServiceRequest
-    extra = 0
-    fields = ['request_id', 'title', 'status', 'priority', 'requested_date', 'estimated_cost']
-    readonly_fields = ['request_id', 'requested_date']
-
-
-@admin.register(TechnicianAssignment)
-class TechnicianAssignmentAdmin(admin.ModelAdmin):
-    list_display = [
-        'technician', 'service', 'role', 'is_active', 'workload_display',
-        'total_completed', 'start_date'
-    ]
-    list_filter = ['role', 'is_active', 'service__category', 'start_date']
-    search_fields = ['technician__first_name', 'technician__last_name', 'service__name']
-    readonly_fields = ['current_requests', 'total_completed', 'workload_percentage', 'created_at', 'updated_at']
-
+@admin.register(ServiceImage)
+class ServiceImageAdmin(admin.ModelAdmin):
+    list_display = ['id', 'service', 'is_primary', 'image_preview', 'created_at']
+    list_filter = ['is_primary', 'created_at', 'service__category']
+    search_fields = ['service__name', 'service__service_code']
+    readonly_fields = ['created_at', 'updated_at', 'image_preview']
+    
     fieldsets = (
-        ('Assignment Details', {
-            'fields': ('service', 'technician', 'role', 'is_active')
-        }),
-        ('Schedule', {
-            'fields': ('start_date', 'end_date')
-        }),
-        ('Workload', {
-            'fields': ('max_concurrent_requests', 'current_requests', 'workload_percentage')
-        }),
-        ('Performance', {
-            'fields': ('total_completed', 'average_completion_time')
-        }),
-        ('Notes', {
-            'fields': ('notes',)
+        ('Image Details', {
+            'fields': ('service', 'image', 'image_preview', 'is_primary')
         }),
         ('Timestamps', {
-            'fields': ('created_at', 'updated_at')
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
         }),
     )
-
-    def workload_display(self, obj):
-        percentage = obj.workload_percentage
-        if percentage >= 90:
-            color = 'red'
-        elif percentage >= 70:
-            color = 'orange'
-        else:
-            color = 'green'
-        return format_html(
-            '<span style="color: {};">{:.1f}% ({}/{})</span>',
-            color, percentage, obj.current_requests, obj.max_concurrent_requests
-        )
-    workload_display.short_description = 'Workload'
-
-
-@admin.register(ServiceRequest)
-class ServiceRequestAdmin(admin.ModelAdmin):
-    list_display = [
-        'request_id', 'title', 'service', 'client', 'assigned_technician',
-        'status', 'priority', 'requested_date', 'cost_display', 'is_paid'
-    ]
-    list_filter = [
-        'status', 'priority', 'urgency', 'is_paid', 'service__category',
-        'requested_date', 'preferred_completion_date'
-    ]
-    search_fields = ['request_id', 'title', 'description', 'client__name', 'service__name']
-    readonly_fields = [
-        'requested_date', 'is_overdue', 'duration_in_progress', 'total_duration',
-        'created_at', 'updated_at'
-    ]
-
-    fieldsets = (
-        ('Request Information', {
-            'fields': ('request_id', 'service', 'client', 'title', 'description')
-        }),
-        ('Sample Details', {
-            'fields': ('sample_description', 'quantity')
-        }),
-        ('Priority & Scheduling', {
-            'fields': ('priority', 'urgency', 'requested_date', 'preferred_completion_date')
-        }),
-        ('Assignment & Status', {
-            'fields': ('assigned_technician', 'status', 'started_date', 'completed_date')
-        }),
-        ('Pricing', {
-            'fields': ('estimated_cost', 'final_cost', 'is_paid', 'payment_date')
-        }),
-        ('Files', {
-            'fields': ('request_documents', 'results_file')
-        }),
-        ('Communication', {
-            'fields': ('client_notes', 'internal_notes')
-        }),
-        ('Review', {
-            'fields': ('reviewed_by', 'review_date', 'review_notes')
-        }),
-        ('Performance Metrics', {
-            'fields': ('is_overdue', 'duration_in_progress', 'total_duration')
-        }),
-        ('Timestamps', {
-            'fields': ('created_at', 'updated_at')
-        }),
-    )
-
-    def cost_display(self, obj):
-        if obj.final_cost:
-            return f"${obj.final_cost}"
-        elif obj.estimated_cost:
-            return f"~${obj.estimated_cost}"
-        return "Not set"
-    cost_display.short_description = 'Cost'
+    
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" width="100" height="100" style="object-fit: cover;" />',
+                obj.image.url
+            )
+        return "No image"
+    image_preview.short_description = "Preview"
+    
+    actions = ['make_primary', 'remove_primary']
+    
+    def make_primary(self, request, queryset):
+        for image in queryset:
+            # Reset all images for this service to non-primary
+            ServiceImage.objects.filter(service=image.service).update(is_primary=False)
+            # Set this image as primary
+            image.is_primary = True
+            image.save()
+        self.message_user(request, f'{queryset.count()} images set as primary.')
+    make_primary.short_description = "Set selected images as primary"
+    
+    def remove_primary(self, request, queryset):
+        updated = queryset.update(is_primary=False)
+        self.message_user(request, f'{updated} images removed from primary.')
+    remove_primary.short_description = "Remove primary status from selected images"
