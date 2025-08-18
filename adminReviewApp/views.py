@@ -99,7 +99,7 @@ class AdminReviewViewSet(viewsets.ReadOnlyModelViewSet):
     
     @action(detail=True, methods=['post'])
     def reject(self, request, pk=None):
-        """Reject a publication"""
+        """Reject and delete a publication"""
         publication = get_object_or_404(Publication, pk=pk)
         
         # Validate current status
@@ -111,22 +111,16 @@ class AdminReviewViewSet(viewsets.ReadOnlyModelViewSet):
         
         serializer = PublicationRejectionSerializer(data=request.data)
         if serializer.is_valid():
-            with transaction.atomic():
-                # Update publication
-                publication.status = 'rejected'
-                publication.reviewed_by = request.user
-                publication.reviewed_at = timezone.now()
-                publication.review_notes = serializer.validated_data['review_notes']
-                publication.save()
+            # Store publication details before deletion
+            publication_title = publication.title
+            publication_id = publication.id
             
-            # Return updated publication data
-            response_serializer = PublicationReviewSerializer(
-                publication, 
-                context={'request': request}
-            )
+            # Delete the publication (this will also delete related files, authors, and metrics due to cascade)
+            publication.delete()
+            
             return Response({
-                'message': 'Publication rejected successfully',
-                'publication': response_serializer.data
+                'message': f'Publication "{publication_title}" has been rejected and deleted successfully',
+                'deleted_publication_id': publication_id
             }, status=status.HTTP_200_OK)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
