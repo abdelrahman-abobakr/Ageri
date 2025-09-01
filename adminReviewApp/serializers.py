@@ -74,13 +74,17 @@ class PublicationListSerializer(serializers.ModelSerializer):
     submitted_by = UserBasicSerializer(read_only=True)
     author_count = serializers.SerializerMethodField()
     days_pending = serializers.SerializerMethodField()
+    authors = AuthorSerializer(source='author_assignments', many=True, read_only=True)
+    document_file_url = serializers.SerializerMethodField()
     
     class Meta:
         model = Publication
         fields = [
-            'id', 'title', 'status', 'publication_type', 'research_area',
+            'id', 'title', 'abstract', 'status', 'publication_type', 'research_area',
+            'keywords', 'journal_name', 'conference_name', 'publisher', 'publication_date',
+            'doi', 'url', 'pdf_url',
             'submitted_by', 'submitted_at', 'author_count', 'days_pending',
-            'is_featured', 'priority'
+            'is_featured', 'priority', 'citation_count', 'authors', 'document_file_url'
         ]
     
     def get_author_count(self, obj):
@@ -92,6 +96,14 @@ class PublicationListSerializer(serializers.ModelSerializer):
             delta = timezone.now() - obj.submitted_at
             return delta.days
         return 0
+    
+    def get_document_file_url(self, obj):
+        if obj.document_file:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.document_file.url)
+            return obj.document_file.url
+        return None
 
 
 class PublicationApprovalSerializer(serializers.Serializer):

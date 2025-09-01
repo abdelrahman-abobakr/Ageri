@@ -119,12 +119,12 @@ class Publication(TimeStampedModel):
     # Basic Information
     title = models.CharField(
         max_length=500,
-        blank=True,  # Allow blank in forms
+        blank=False,  # Allow blank in forms
         null=True,   # Allow NULL in database
         help_text=_("Publication title")
     )
     abstract = models.TextField(
-        blank=True,
+        blank=False,
         max_length=2000,
         help_text=_("Publication abstract")
     )
@@ -132,7 +132,9 @@ class Publication(TimeStampedModel):
         max_length=20,
         choices=PublicationType.choices,
         default=PublicationType.JOURNAL_ARTICLE,
-        db_index=True
+        db_index=True,
+        blank=False,
+        help_text=_("Type of publication")
     )
 
     # Authors (Many-to-Many relationship with User)

@@ -23,10 +23,11 @@ from .serializers import (
 )
 
 
+
 class CourseViewSet(viewsets.ModelViewSet):
     """ViewSet for managing courses"""
     queryset = Course.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = [
@@ -37,16 +38,10 @@ class CourseViewSet(viewsets.ModelViewSet):
     ordering = ['-is_featured', '-start_date']
 
     def get_permissions(self):
-        """Return appropriate permissions based on action"""
+        """Override permissions for write operations"""
         if self.action in ['create', 'update', 'partial_update', 'destroy']:
-            permission_classes = [IsModeratorOrAdmin]
-        elif self.action in ['list', 'retrieve']:
-            permission_classes = []  # Allow public access for listing and retrieving courses
-        elif self.action == 'enroll':
-            permission_classes = [permissions.AllowAny]  # Allow guest enrollment
-        else:
-            permission_classes = [IsAuthenticated]
-        return [permission() for permission in permission_classes]
+            return [IsModeratorOrAdmin()]
+        return super().get_permissions() 
 
     def get_serializer_class(self):
         """Return appropriate serializer based on action"""
@@ -357,7 +352,7 @@ class CourseEnrollmentViewSet(viewsets.ModelViewSet):
     """ViewSet for managing course enrollments"""
     queryset = CourseEnrollment.objects.all()
     serializer_class = CourseEnrollmentSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = [
         'status', 'payment_status', 'certificate_issued',

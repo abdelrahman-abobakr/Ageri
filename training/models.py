@@ -736,9 +736,9 @@ class CourseEnrollment(TimeStampedModel):
 
     def __str__(self):
         if self.student:
-            return f"{self.student.get_full_name()} - {self.course.title}"
+            return f"{self.student.get_full_name()} - {self.course.course_name}"
         else:
-            return f"{self.first_name} {self.last_name} (Guest) - {self.course.title}"
+            return f"{self.first_name} {self.last_name} (Guest) - {self.course.course_name}"
 
     @property
     def is_active(self):

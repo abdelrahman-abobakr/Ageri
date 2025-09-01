@@ -12,7 +12,7 @@ from accounts.models import User
 from research.models import Publication
 from organization.models import Department, Lab, OrganizationSettings
 from training.models import Course, SummerTraining
-from services.models import ServiceRequest, TestService
+from services.models import  TestService
 from content.models import Announcement, Post, AnnouncementImage, AnnouncementAttachment
 
 

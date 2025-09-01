@@ -273,6 +273,12 @@ class OrganizationSettings(TimeStampedModel):
         blank=True,
         help_text="About the organization"
     )
+    about_image = models.ImageField(
+        upload_to=upload_to_organization,
+        blank=True,
+        validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'png'])],
+        help_text="About section image (JPG, PNG)"
+    )
 
     # Contact Information
     email = models.EmailField(blank=True, help_text="Main contact email")

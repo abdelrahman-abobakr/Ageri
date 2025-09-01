@@ -1,0 +1,1 @@
+2025-08-18 13:26:17,319 - ERROR - Failed to setup Django environment: cannot import name 'Department' from 'training.models' (/home/abdallrhman/Abdelrahman/work/freelance/Ageri/Ageri/training/models.py)
