@@ -238,7 +238,6 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
         
         post = Post.objects.create(**validated_data)
 
-        # إضافة الـ featured_image للـ images array
         if featured_image:
             PostImage.objects.create(
                 post=post, 
