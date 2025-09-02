@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.utils import timezone
-from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment
+from .models import Announcement, Post, Comment, CommentLike, AnnouncementImage, AnnouncementAttachment, PostImage
 from .post_image_serializer import PostImageSerializer
 from rest_framework.exceptions import ValidationError
 
@@ -238,7 +238,6 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
         
         post = Post.objects.create(**validated_data)
 
-        # إضافة الـ featured_image للـ images array
         if featured_image:
             PostImage.objects.create(
                 post=post, 

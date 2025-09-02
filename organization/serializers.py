@@ -311,7 +311,7 @@ class OrganizationSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrganizationSettings
         fields = [
-            'id', 'name', 'vision', 'vision_image', 'mission', 'mission_image', 'about',
+            'id', 'name', 'vision', 'vision_image', 'mission', 'mission_image', 'about', 'about_image',
             'email', 'phone', 'address',
             'website', 'facebook', 'twitter', 'linkedin', 'instagram',
             'logo', 'banner', 'enable_registration', 'require_approval',
@@ -327,7 +327,7 @@ class OrganizationPublicSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrganizationSettings
         fields = [
-            'name', 'vision', 'vision_image', 'mission', 'mission_image', 'about',
+            'name', 'vision', 'vision_image', 'mission', 'mission_image', 'about', 'about_image',
             'email', 'phone', 'address',
             'website', 'facebook', 'twitter', 'linkedin', 'instagram',
             'logo', 'banner', 'enable_registration'
