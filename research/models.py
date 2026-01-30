@@ -197,7 +197,6 @@ class Publication(TimeStampedModel):
     doi = models.CharField(
         max_length=200,
         blank=True,
-        unique=True,
         null=True,
         help_text=_("Digital Object Identifier (must start with 10.)")
     )

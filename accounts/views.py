@@ -243,29 +243,23 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
         partial = kwargs.pop('partial', False)
         instance = self.get_object()
         
-        # Convert multipart boolean strings to actual booleans
-        data = request.data.copy()
-        if 'is_public' in data:
-            if isinstance(data['is_public'], str):
-                data['is_public'] = data['is_public'].lower() in ['true', '1', 'yes']
-        
-        print(f"Original data: {request.data}")
-        print(f"Processed data: {data}")
-        print(f"Current is_public: {instance.is_public}")
+        # Handle multipart data properly - don't convert files
+        data = {}
+        for key, value in request.data.items():
+            if key == 'is_public' and isinstance(value, str):
+                data[key] = value.lower() in ['true', '1', 'yes']
+            else:
+                data[key] = value
         
         serializer = self.get_serializer(instance, data=data, 
                                        partial=partial, context={'request': request})
         serializer.is_valid(raise_exception=True)
-        
-        print(f"Validated data: {serializer.validated_data}")
         
         # Perform the update
         self.perform_update(serializer)
         
         # Refresh from database
         instance.refresh_from_db()
-        
-        print(f"Final is_public: {instance.is_public}")
         
         # Return response with fresh data
         response_serializer = UserProfileSerializer(instance)
